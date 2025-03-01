@@ -1,0 +1,5 @@
+2025/03/02-02:22:12.309341 1adcc8c0 Recovering log #3
+2025/03/02-02:22:12.309366 1adcc8c0 Level-0 table #5: started
+2025/03/02-02:22:12.312842 1adcc8c0 Level-0 table #5: 295 bytes OK
+2025/03/02-02:22:12.323730 1adcc8c0 Delete type=3 #2
+2025/03/02-02:22:12.323821 1adcc8c0 Delete type=0 #3

@@ -1,0 +1,162 @@
+2025-03-02 02:22:01.090	Initialized. Chain height: -1, Txs: 0
+2025-03-02 02:22:01.096	Entity (00000101, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (00000201, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (00000102, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (00000202, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (0000010A, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (0000010B, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (0000010F, 0000000000000000000000000000000000000000) added successfully
+2025-03-02 02:22:01.097	Entity (00000103, 247313e0e16bad4d22c502f343fafa4f8fb2a21f) added successfully
+2025-03-02 02:22:01.097	Entity (00000203, 247313e0e16bad4d22c502f343fafa4f8fb2a21f) added successfully
+2025-03-02 02:22:01.144	Entity (00000105, 000000007ab51894a9d6cb0f65b0334f42508168) added successfully
+2025-03-02 02:22:01.144	Entity (00000205, 000000007ab51894a9d6cb0f65b0334f42508168) added successfully
+2025-03-02 02:22:01.144	Entity (00000106, 000000007ab51894a9d6cb0f65b0334f42508168) added successfully
+2025-03-02 02:22:01.144	Entity (00000206, 000000007ab51894a9d6cb0f65b0334f42508168) added successfully
+2025-03-02 02:22:01.144	Entity (00000107, 000000007ab51894a9d6cb0f65b0334f42508168) added successfully
+2025-03-02 02:22:01.144	Entity (00000207, 000000007ab51894a9d6cb0f65b0334f42508168) added successfully
+2025-03-02 02:22:01.163	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block 0, flags 00000000, import 0
+2025-03-02 02:22:01.170	NewBlock 0, Txs: 1, Rows: 4
+2025-03-02 02:22:01.919	NewBlock 1, Txs: 0, Rows: 0
+2025-03-02 02:22:01.952	NewBlock 2, Txs: 0, Rows: 0
+2025-03-02 02:22:02.882	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block -1, flags 00000000, import 0
+2025-03-02 02:22:02.882	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block -1, flags 00000000, import 0
+2025-03-02 02:22:08.298	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block 3, flags 00000000, import 0
+2025-03-02 02:22:08.299	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block 3, flags 00000000, import 0
+2025-03-02 02:22:08.302	NewBlock 3, Txs: 0, Rows: 4
+2025-03-02 02:22:25.956	NewBlock 4, Txs: 0, Rows: 0
+2025-03-02 02:22:42.219	NewBlock 5, Txs: 0, Rows: 0
+2025-03-02 02:22:53.051	NewTx 7190271b9d62a57b005d6f64ff8c98188c4692841e21f55816d6acedf21e90fb, block -1, flags 00000004, import 0
+2025-03-02 02:23:29.621	UpdateTx 7190271b9d, block 6, flags 00000004, import 0
+2025-03-02 02:23:29.625	NewBlock 6, Txs: 1, Rows: 6
+2025-03-02 02:23:38.578	NewBlock 7, Txs: 0, Rows: 0
+2025-03-02 02:24:00.791	NewBlock 8, Txs: 0, Rows: 0
+2025-03-02 02:24:12.950	NewBlock 9, Txs: 0, Rows: 0
+2025-03-02 02:24:33.616	NewBlock 10, Txs: 0, Rows: 0
+2025-03-02 02:24:46.885	NewBlock 11, Txs: 0, Rows: 0
+2025-03-02 02:25:04.457	NewBlock 12, Txs: 0, Rows: 0
+2025-03-02 02:25:09.125	NewBlock 13, Txs: 0, Rows: 0
+2025-03-02 02:25:15.616	NewBlock 14, Txs: 0, Rows: 0
+2025-03-02 02:25:31.174	NewBlock 15, Txs: 0, Rows: 0
+2025-03-02 02:25:47.836	NewBlock 16, Txs: 0, Rows: 0
+2025-03-02 02:26:06.359	NewBlock 17, Txs: 0, Rows: 0
+2025-03-02 02:26:29.532	Rolled back to block 16 successfully
+2025-03-02 02:26:29.550	NewBlock 17, Txs: 0, Rows: 0
+2025-03-02 02:26:29.570	NewBlock 18, Txs: 0, Rows: 0
+2025-03-02 02:26:38.512	NewBlock 19, Txs: 0, Rows: 0
+2025-03-02 02:26:57.289	NewBlock 20, Txs: 0, Rows: 0
+2025-03-02 02:27:11.462	NewBlock 21, Txs: 0, Rows: 0
+2025-03-02 02:27:29.726	NewBlock 22, Txs: 0, Rows: 0
+2025-03-02 02:27:40.382	NewBlock 23, Txs: 0, Rows: 0
+2025-03-02 02:27:59.144	NewBlock 24, Txs: 0, Rows: 0
+2025-03-02 02:28:06.687	NewBlock 25, Txs: 0, Rows: 0
+2025-03-02 02:28:20.746	NewBlock 26, Txs: 0, Rows: 0
+2025-03-02 02:28:43.306	Rolled back to block 25 successfully
+2025-03-02 02:28:43.324	NewBlock 26, Txs: 0, Rows: 0
+2025-03-02 02:28:43.342	NewBlock 27, Txs: 0, Rows: 0
+2025-03-02 02:28:56.388	NewBlock 28, Txs: 0, Rows: 0
+2025-03-02 02:29:13.050	NewBlock 29, Txs: 0, Rows: 0
+2025-03-02 02:29:24.208	NewBlock 30, Txs: 0, Rows: 0
+2025-03-02 02:29:41.582	NewBlock 31, Txs: 0, Rows: 0
+2025-03-02 02:29:53.846	NewBlock 32, Txs: 0, Rows: 0
+2025-03-02 02:30:11.601	NewBlock 33, Txs: 0, Rows: 0
+2025-03-02 02:30:23.563	NewBlock 34, Txs: 0, Rows: 0
+2025-03-02 02:30:39.284	NewBlock 35, Txs: 0, Rows: 0
+2025-03-02 02:30:54.447	NewBlock 36, Txs: 0, Rows: 0
+2025-03-02 02:31:08.105	NewBlock 37, Txs: 0, Rows: 0
+2025-03-02 02:31:21.265	NewBlock 38, Txs: 0, Rows: 0
+2025-03-02 02:31:38.528	NewBlock 39, Txs: 0, Rows: 0
+2025-03-02 02:31:51.880	NewBlock 40, Txs: 0, Rows: 0
+2025-03-02 02:32:10.641	NewBlock 41, Txs: 0, Rows: 0
+2025-03-02 02:32:21.399	NewBlock 42, Txs: 0, Rows: 0
+2025-03-02 02:32:34.662	NewBlock 43, Txs: 0, Rows: 0
+2025-03-02 02:32:49.138	NewBlock 44, Txs: 0, Rows: 0
+2025-03-02 02:33:11.032	NewBlock 45, Txs: 0, Rows: 0
+2025-03-02 02:33:27.616	NewBlock 46, Txs: 0, Rows: 0
+2025-03-02 02:33:34.386	NewBlock 47, Txs: 0, Rows: 0
+2025-03-02 02:33:51.860	NewBlock 48, Txs: 0, Rows: 0
+2025-03-02 02:34:04.920	NewBlock 49, Txs: 0, Rows: 0
+2025-03-02 02:34:20.485	NewBlock 50, Txs: 0, Rows: 0
+2025-03-02 02:34:33.861	NewBlock 51, Txs: 0, Rows: 0
+2025-03-02 02:34:55.837	NewBlock 52, Txs: 0, Rows: 0
+2025-03-02 02:35:03.782	NewBlock 53, Txs: 0, Rows: 0
+2025-03-02 02:35:17.645	NewBlock 54, Txs: 0, Rows: 0
+2025-03-02 02:35:36.705	NewBlock 55, Txs: 0, Rows: 0
+2025-03-02 02:35:51.169	NewBlock 56, Txs: 0, Rows: 0
+2025-03-02 02:36:09.631	NewBlock 57, Txs: 0, Rows: 0
+2025-03-02 02:36:20.610	NewBlock 58, Txs: 0, Rows: 0
+2025-03-02 02:36:40.260	NewBlock 59, Txs: 0, Rows: 0
+2025-03-02 02:36:40.777	Rolled back to block 58 successfully
+2025-03-02 02:36:40.812	NewBlock 59, Txs: 0, Rows: 0
+2025-03-02 02:36:50.229	NewBlock 60, Txs: 0, Rows: 0
+2025-03-02 02:44:46.113	NewBlock 61, Txs: 0, Rows: 0
+2025-03-02 02:44:52.561	NewBlock 62, Txs: 0, Rows: 0
+2025-03-02 02:44:58.013	NewBlock 63, Txs: 0, Rows: 0
+2025-03-02 02:45:06.657	NewBlock 64, Txs: 0, Rows: 0
+2025-03-02 02:45:17.791	NewBlock 65, Txs: 0, Rows: 0
+2025-03-02 02:45:22.339	NewBlock 66, Txs: 0, Rows: 0
+2025-03-02 02:45:26.510	NewBlock 67, Txs: 0, Rows: 0
+2025-03-02 02:45:32.480	NewBlock 68, Txs: 0, Rows: 0
+2025-03-02 02:45:43.349	NewBlock 69, Txs: 0, Rows: 0
+2025-03-02 02:45:50.897	NewBlock 70, Txs: 0, Rows: 0
+2025-03-02 02:45:56.753	NewBlock 71, Txs: 0, Rows: 0
+2025-03-02 02:46:19.317	NewBlock 72, Txs: 0, Rows: 0
+2025-03-02 02:46:43.993	NewBlock 73, Txs: 0, Rows: 0
+2025-03-02 02:47:10.282	NewBlock 74, Txs: 0, Rows: 0
+2025-03-02 02:47:27.955	NewBlock 75, Txs: 0, Rows: 0
+2025-03-02 02:47:44.137	NewBlock 76, Txs: 0, Rows: 0
+2025-03-02 02:47:50.034	NewBlock 77, Txs: 0, Rows: 0
+2025-03-02 02:48:03.099	NewBlock 78, Txs: 0, Rows: 0
+2025-03-02 02:48:15.467	NewBlock 79, Txs: 0, Rows: 0
+2025-03-02 02:48:30.650	NewBlock 80, Txs: 0, Rows: 0
+2025-03-02 02:48:43.027	NewBlock 81, Txs: 0, Rows: 0
+2025-03-02 02:49:04.996	NewBlock 82, Txs: 0, Rows: 0
+2025-03-02 02:49:18.457	NewBlock 83, Txs: 0, Rows: 0
+2025-03-02 02:49:35.364	NewBlock 84, Txs: 0, Rows: 0
+2025-03-02 02:49:35.606	Rolled back to block 83 successfully
+2025-03-02 02:49:35.624	NewBlock 84, Txs: 0, Rows: 0
+2025-03-02 02:49:45.783	NewBlock 85, Txs: 0, Rows: 0
+2025-03-02 03:40:11.808	NewBlock 86, Txs: 0, Rows: 0
+2025-03-02 03:40:21.753	NewBlock 87, Txs: 0, Rows: 0
+2025-03-02 03:40:27.206	NewBlock 88, Txs: 0, Rows: 0
+2025-03-02 03:40:34.557	NewBlock 89, Txs: 0, Rows: 0
+2025-03-02 03:40:39.293	NewBlock 90, Txs: 0, Rows: 0
+2025-03-02 03:40:44.852	NewBlock 91, Txs: 0, Rows: 0
+2025-03-02 03:40:54.325	NewBlock 92, Txs: 0, Rows: 0
+2025-03-02 03:40:58.226	NewBlock 93, Txs: 0, Rows: 0
+2025-03-02 03:41:03.197	NewBlock 94, Txs: 0, Rows: 0
+2025-03-02 03:41:08.787	NewBlock 95, Txs: 0, Rows: 0
+2025-03-02 03:41:23.102	NewBlock 96, Txs: 0, Rows: 0
+2025-03-02 03:41:37.576	NewBlock 97, Txs: 0, Rows: 0
+2025-03-02 03:42:03.860	NewBlock 98, Txs: 0, Rows: 0
+2025-03-02 03:42:24.188	NewBlock 99, Txs: 0, Rows: 0
+2025-03-02 03:42:43.446	NewBlock 100, Txs: 0, Rows: 0
+2025-03-02 03:42:58.007	NewBlock 101, Txs: 0, Rows: 0
+2025-03-02 03:43:07.881	NewBlock 102, Txs: 0, Rows: 0
+2025-03-02 03:43:29.850	NewBlock 103, Txs: 0, Rows: 0
+2025-03-02 03:43:34.505	NewBlock 104, Txs: 0, Rows: 0
+2025-03-02 03:43:52.066	NewBlock 105, Txs: 0, Rows: 0
+2025-03-02 03:44:00.913	NewBlock 106, Txs: 0, Rows: 0
+2025-03-02 03:44:15.987	NewBlock 107, Txs: 0, Rows: 0
+2025-03-02 03:44:33.583	NewBlock 108, Txs: 0, Rows: 0
+2025-03-02 03:44:50.192	NewBlock 109, Txs: 0, Rows: 0
+2025-03-02 03:44:50.450	NewBlock 110, Txs: 0, Rows: 0
+2025-03-02 03:45:12.234	NewBlock 111, Txs: 0, Rows: 0
+2025-03-02 03:45:32.006	Rolled back to block 110 successfully
+2025-03-02 03:45:32.025	NewBlock 111, Txs: 0, Rows: 0
+2025-03-02 03:45:32.044	NewBlock 112, Txs: 0, Rows: 0
+2025-03-02 03:45:52.319	NewBlock 113, Txs: 0, Rows: 0
+2025-03-02 03:46:11.979	NewBlock 114, Txs: 0, Rows: 0
+2025-03-02 03:46:21.622	NewBlock 115, Txs: 0, Rows: 0
+2025-03-02 03:46:33.091	NewBlock 116, Txs: 0, Rows: 0
+2025-03-02 03:46:54.489	NewBlock 117, Txs: 0, Rows: 0
+2025-03-02 03:47:04.889	NewBlock 118, Txs: 0, Rows: 0
+2025-03-02 03:47:18.751	NewBlock 119, Txs: 0, Rows: 0
+2025-03-02 03:47:31.374	NewBlock 120, Txs: 0, Rows: 0
+2025-03-02 03:47:53.350	NewBlock 121, Txs: 0, Rows: 0
+2025-03-02 03:48:02.893	NewBlock 122, Txs: 0, Rows: 0
+2025-03-02 03:48:27.463	NewBlock 123, Txs: 0, Rows: 0
+2025-03-02 03:48:34.725	NewBlock 124, Txs: 0, Rows: 0
+2025-03-02 03:48:51.445	NewBlock 125, Txs: 0, Rows: 0
+2025-03-02 03:49:05.618	NewBlock 126, Txs: 0, Rows: 0
+2025-03-02 03:49:05.986	Rolled back to block 125 successfully
+2025-03-02 03:49:06.007	NewBlock 126, Txs: 0, Rows: 0

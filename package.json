@@ -1,0 +1,18 @@
+{
+  "name": "dist-ledger",
+  "version": "1.0.0",
+  "description": "Supply Chain Management using MultiChain",
+  "main": "src/relay/relay_node.js",
+  "type": "module",
+  "scripts": {
+    "start": "node relay/relay.js"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-rate-limit": "^7.5.0",
+    "morgan": "^1.10.0"
+  }
+}
