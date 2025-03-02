@@ -393,3 +393,41 @@ Using RdRand as an additional entropy source
 2025-03-02 15:49:52 UpdateTip:            new best=0056ff167cf547f26f50123cfc4591ee4e57eeb3cf8192cef9d3f694da8d8aa4  height=115  log2_work=14.857981  tx=361  date=2025-03-02 15:49:52 progress=1.000000  cache=0
 2025-03-02 15:50:10 UpdateTip:            new best=005d02504f65f3b4ea084bf21c1ef2157f07a5581f8c67b1c9d3092b7c12c210  height=116  log2_work=14.870365  tx=362  date=2025-03-02 15:50:09 progress=1.000000  cache=0
 2025-03-02 15:50:18 UpdateTip:            new best=00a64c51dc25047ee122a8cf7b69190ba20b4a7cb59562cb042266c2fa9fe02e  height=117  log2_work=14.882643  tx=363  date=2025-03-02 15:50:17 progress=1.000000  cache=0
+2025-03-02 15:57:51 UpdateTip:            new best=00029cac6936fc666b02d1743d61a3a8c62e1531c7954cfd8ef7e4f7fc242e9e  height=118  log2_work=14.894818  tx=386  date=2025-03-02 15:57:50 progress=1.000000  cache=0
+2025-03-02 15:58:00 UpdateTip:            new best=00a82b19742149354602722dea9e0e1346959f31ea49f2433e6a652541f52c68  height=119  log2_work=14.906891  tx=387  date=2025-03-02 15:58:00 progress=1.000000  cache=0
+2025-03-02 15:58:15 UpdateTip:            new best=00be89cda698dae1ed8491339a533f0e3c150c5d1f0a80fe30f28edf26fac9bd  height=120  log2_work=14.918863  tx=388  date=2025-03-02 15:58:14 progress=1.000000  cache=0
+2025-03-02 15:58:18 UpdateTip:            new best=00f179402ee6c830ef92ba91759839e28a106ffb3d21f1473a0378a4f5dce45b  height=121  log2_work=14.930737  tx=389  date=2025-03-02 15:58:17 progress=1.000000  cache=0
+2025-03-02 15:58:25 UpdateTip:            new best=0002dd4329240ff12b44ad6d5009940ba90ee3a0ebe032fdaf43c013403235f1  height=122  log2_work=14.942515  tx=390  date=2025-03-02 15:58:24 progress=1.000000  cache=0
+2025-03-02 15:58:31 UpdateTip:            new best=0090315def87af2926df06699ab7e19532863092c8245435ecfb6184ce81f974  height=123  log2_work=14.954196  tx=391  date=2025-03-02 15:58:31 progress=1.000000  cache=0
+2025-03-02 15:58:35 UpdateTip:            new best=00d2d97de8870cba774f054fe093bf17aab632fd0d1f3e389342ba70ed74d69a  height=124  log2_work=14.965784  tx=392  date=2025-03-02 15:58:34 progress=1.000000  cache=0
+2025-03-02 15:58:49 UpdateTip:            new best=007336dc1c2148644ccc73f5d2ee1ee5212c4b098e3fd435176c2be87d4d5ca2  height=125  log2_work=14.97728  tx=393  date=2025-03-02 15:58:48 progress=1.000000  cache=0
+2025-03-02 15:58:53 UpdateTip:            new best=0056b3cedf05ca0b6a56119e7ca2d4854ecb09cf36dc3c54533db3a54a513786  height=126  log2_work=14.988685  tx=394  date=2025-03-02 15:58:53 progress=1.000000  cache=0
+2025-03-02 15:59:00 UpdateTip:            new best=00e92c0b2554672a86900319b9607b0dc6b30e068768ef010fcd8bfe30308ce7  height=127  log2_work=15  tx=395  date=2025-03-02 15:58:59 progress=1.000000  cache=0
+2025-03-02 15:59:13 UpdateTip:            new best=00dd4bf7d57abc0e6efc1fc9726682dee1a7c27eaa5da503aa9ca5fc46282028  height=128  log2_work=15.011227  tx=396  date=2025-03-02 15:59:13 progress=1.000000  cache=0
+2025-03-02 16:07:57 UpdateTip:            new best=004d11f5d6c0ef9c4739311b6dc7d48ead1e49f643ac8533f81fd89f48a4c9cf  height=129  log2_work=15.022368  tx=419  date=2025-03-02 16:07:57 progress=1.000000  cache=0
+2025-03-02 16:08:00 UpdateTip:            new best=00476ca87161c5b93c321e1e0902e9701b02b8fee295c1d3a3c1ee45618a35a4  height=130  log2_work=15.033423  tx=420  date=2025-03-02 16:08:00 progress=1.000000  cache=0
+2025-03-02 16:08:07 UpdateTip:            new best=00c5deac455b5353e7fdce86f1cf5c84c6ade889113d0ef75c644c0d6b734f8a  height=131  log2_work=15.044394  tx=421  date=2025-03-02 16:08:07 progress=1.000000  cache=0
+2025-03-02 16:08:17 UpdateTip:            new best=005d4a7882a9ca1816c3ce09fb694b5a2e210ab5fd696e9b4adacb02b2711a68  height=132  log2_work=15.055282  tx=422  date=2025-03-02 16:08:17 progress=1.000000  cache=0
+2025-03-02 16:08:28 UpdateTip:            new best=00913158bc7f6cce9910c34e774b062b4fb98b6770bec3e4f1cbc3a7172ec003  height=133  log2_work=15.066089  tx=423  date=2025-03-02 16:08:28 progress=1.000000  cache=0
+2025-03-02 16:08:28 Accepted header for block 002160f99e00db05d0636cd09554b160ab4a2b57f1a5f0467ea43c297555cc09 found on alternative chain at height 133
+2025-03-02 16:08:41 UpdateTip:            new best=0091c84ad2dca6e565966f3e06e3c63638bd68be67d7eff8e172605ed9bd093b  height=134  log2_work=15.076816  tx=424  date=2025-03-02 16:08:41 progress=1.000000  cache=0
+2025-03-02 16:08:52 UpdateTip:            new best=0059553a63473330629d8f19acc3103b44b6121362b0c632f85a245c0383cb7f  height=135  log2_work=15.087463  tx=425  date=2025-03-02 16:08:52 progress=1.000000  cache=0
+2025-03-02 16:09:01 UpdateTip:            new best=007c373d5e88d76f2a59700ff265b30cb4ac45cae9f5bcaf256ba266637d9348  height=136  log2_work=15.098032  tx=426  date=2025-03-02 16:09:01 progress=1.000000  cache=0
+2025-03-02 16:09:13 UpdateTip:            new best=001f3d51bd19065eece67b89492527604020caa01dfc2704b10e8a356c5c6031  height=137  log2_work=15.108524  tx=427  date=2025-03-02 16:09:13 progress=1.000000  cache=0
+2025-03-02 16:09:13 Accepted header for block 008eb77f3bbee33f045ae7ee2e3743097d6e13a51c5a6354427180e3a5b23119 found on alternative chain at height 137
+2025-03-02 16:09:18 UpdateTip:            new best=0047eaec4b5e36809d902dee8a8b19d5b62d37a7dd3216fd126945078b079940  height=138  log2_work=15.118941  tx=428  date=2025-03-02 16:09:17 progress=1.000000  cache=0
+2025-03-02 16:09:18 Accepted header for block 004a3854c72ece64bd912b40c1c5ba9fe1faffe78bdc36e36d7a219ffbb51c40 found on alternative chain at height 138
+2025-03-02 16:09:26 Accepted header for block 000c1fc100d4a8308641a25d7f406a099842310bd6a9b628f9309dd2b5eb508b found on alternative chain at height 139
+2025-03-02 16:09:26 Tx not accepted in resurrection after block: 1fd35aba24273a9250e01b8821eec499331d3cfdab9d8e5b68bea8d5a9803d73
+2025-03-02 16:09:26 UpdateTip:            new best=001f3d51bd19065eece67b89492527604020caa01dfc2704b10e8a356c5c6031  height=137  log2_work=15.108524  tx=427  date=2025-03-02 16:09:13 progress=1.000000  cache=0
+2025-03-02 16:09:26 Tx not accepted in resurrection after block: 143fe79d88e6f3df2472ac8ed45729ef09b7b5103582d4661095ffba88a4af04
+2025-03-02 16:09:26 UpdateTip:            new best=007c373d5e88d76f2a59700ff265b30cb4ac45cae9f5bcaf256ba266637d9348  height=136  log2_work=15.098032  tx=426  date=2025-03-02 16:09:01 progress=1.000000  cache=0
+2025-03-02 16:09:26 UpdateTip:            new best=008eb77f3bbee33f045ae7ee2e3743097d6e13a51c5a6354427180e3a5b23119  height=137  log2_work=15.108524  tx=427  date=2025-03-02 16:09:13 progress=1.000000  cache=0
+2025-03-02 16:09:26 UpdateTip:            new best=004a3854c72ece64bd912b40c1c5ba9fe1faffe78bdc36e36d7a219ffbb51c40  height=138  log2_work=15.118941  tx=428  date=2025-03-02 16:09:17 progress=1.000000  cache=0
+2025-03-02 16:09:26 UpdateTip:            new best=000c1fc100d4a8308641a25d7f406a099842310bd6a9b628f9309dd2b5eb508b  height=139  log2_work=15.129283  tx=429  date=2025-03-02 16:09:25 progress=1.000000  cache=0
+2025-03-02 16:17:51 UpdateTip:            new best=00edcb80967c116be6a7782172f05e3b0547100c17701d0b8d359af151268167  height=140  log2_work=15.139551  tx=452  date=2025-03-02 16:17:50 progress=1.000000  cache=0
+2025-03-02 16:17:55 UpdateTip:            new best=000ce4a600dc87060d52509ed4ff6db75e0d60d7b75967cc9ace4335d1f4f63f  height=141  log2_work=15.149747  tx=453  date=2025-03-02 16:17:54 progress=1.000000  cache=0
+2025-03-02 16:17:58 UpdateTip:            new best=00c643a1a799431c052fe5a8f6b0003effa837f542fcff100623b191e81e2e46  height=142  log2_work=15.159871  tx=454  date=2025-03-02 16:17:58 progress=1.000000  cache=0
+2025-03-02 16:18:12 UpdateTip:            new best=00e47cc12924fbf5a6195e2f1a28ad7b1be674b9c0168144646d4a76dbd027b0  height=143  log2_work=15.169925  tx=455  date=2025-03-02 16:18:11 progress=1.000000  cache=0
+2025-03-02 16:18:24 UpdateTip:            new best=00cf47a270747f19503eb0d7a2d0a56df3ff0e83a6078a25dfc133e52b259434  height=144  log2_work=15.179909  tx=456  date=2025-03-02 16:18:23 progress=1.000000  cache=0
+2025-03-02 16:18:27 UpdateTip:            new best=00e77a2a5041058d849313e67465329532af5babb89c23ab53d5f0d5c147347f  height=145  log2_work=15.189825  tx=457  date=2025-03-02 16:18:27 progress=1.000000  cache=0
