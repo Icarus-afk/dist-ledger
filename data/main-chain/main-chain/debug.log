@@ -1,6 +1,6 @@
 Using RdSeed as additional entropy source
 Using RdRand as an additional entropy source
-2025-03-01 20:21:26 
+2025-03-02 15:01:02 
 
 
 
@@ -20,608 +20,655 @@ Using RdRand as an additional entropy source
 
 
 
-2025-03-01 20:21:26 MultiChain version build 2.3.1, Community Edition, protocol 20013 (Oct 30 2022)
-2025-03-01 20:21:26 Using BerkeleyDB version Berkeley DB 4.8.30: (April  9, 2010)
-2025-03-01 20:21:26 Default data directory /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain
-2025-03-01 20:21:26 Using data directory /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain
-2025-03-01 20:21:26 Using config file /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain/main-chain.conf
-2025-03-01 20:21:26 Using at most 125 connections (1024 file descriptors available)
-2025-03-01 20:21:26 Using 8 threads for script verification
-2025-03-01 20:21:26 Using wallet wallet.dat
-2025-03-01 20:21:26 init message: Verifying wallet...
-2025-03-01 20:21:26 Wallet file doesn't exist. New file will be created with version 3.
-2025-03-01 20:21:26 HTTP: creating work queue of depth 16
-2025-03-01 20:21:26 HTTP: starting 4 worker threads
-2025-03-01 20:21:26 init message: Initializing multichain...
-2025-03-01 20:21:26 nFileVersion = 0
-2025-03-01 20:21:26 Keys: 0 plaintext, 0 encrypted, 0 w/ metadata, 0 total
-2025-03-01 20:21:26 mchn: Default key is not found - creating new... 
-2025-03-01 20:21:26 keypool added key 1, size=1
-2025-03-01 20:21:26 keypool added key 2, size=2
-2025-03-01 20:21:26 mchn: Parameter set is new, THIS IS GENESIS NODE - looking for genesis block...
-2025-03-01 20:21:26 mchn: Genesis block found
-2025-03-01 20:21:26 mchn: Parameter set is valid - initializing blockchain parameters...
-2025-03-01 20:21:26 Wallet mode: 00100103
-2025-03-01 20:21:26 Node paused state is set to 00000000
-2025-03-01 20:21:26 Bound to [::]:7745
-2025-03-01 20:21:26 Bound to 0.0.0.0:7745
-2025-03-01 20:21:26 Filter initialization completed
-2025-03-01 20:21:26 Setting banned transaction list:    0 transactions
-2025-03-01 20:21:26 init message: Loading block index...
-2025-03-01 20:21:26 Opening LevelDB in /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain/blocks/index
-2025-03-01 20:21:26 Opened LevelDB successfully
-2025-03-01 20:21:26 Opening LevelDB in /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain/chainstate
-2025-03-01 20:21:26 Opened LevelDB successfully
-2025-03-01 20:21:26 nFileVersion = 100000
-2025-03-01 20:21:26 Keys: 2 plaintext, 0 encrypted, 2 w/ metadata, 2 total
-2025-03-01 20:21:26 LoadBlockIndexDB: last block file = 0
-2025-03-01 20:21:26 LoadBlockIndexDB: last block file info: CBlockFileInfo(blocks=0, size=0, heights=0...0, time=1970-01-01...1970-01-01)
-2025-03-01 20:21:26 Checking all blk files are present...
-2025-03-01 20:21:26 LoadBlockIndexDB(): transaction index disabled
-2025-03-01 20:21:26 Initializing databases...
-2025-03-01 20:21:26 Pre-allocating up to position 0x1000000 in blk00000.dat
-2025-03-01 20:21:26 New stream. TxID: 7ab51894a9d6cb0f65b0334f42508168559294d8a4f236fe02aaa74a8cc6c16c, StreamRef: 0-81-49516, Name: root
-2025-03-01 20:21:26 UpdateTip:            new best=00c15dbce9e838846e3ff1965be360d7f8fba1520e95bb0a67fe162d26564a39  height=0  log2_work=8  tx=1  date=2025-03-01 20:21:26 progress=1.000000  cache=0
-2025-03-01 20:21:26 init message: Verifying blocks...
-2025-03-01 20:21:26  block index              66ms
-2025-03-01 20:21:26 MultiChain protocol version: 20013
-2025-03-01 20:21:26 init message: Loading wallet...
-2025-03-01 20:21:26 nFileVersion = 100000
-2025-03-01 20:21:26 Keys: 2 plaintext, 0 encrypted, 2 w/ metadata, 2 total
-2025-03-01 20:21:26  wallet                    0ms
-2025-03-01 20:21:26 mapBlockIndex.size() = 1
-2025-03-01 20:21:26 nBestHeight = 0
-2025-03-01 20:21:26 setKeyPool.size() = 1
-2025-03-01 20:21:26 oldWallet.size() = 0
-2025-03-01 20:21:26 mapWallet.size() = 1
-2025-03-01 20:21:26 mapAddressBook.size() = 1
-2025-03-01 20:21:26 init message: Loading addresses...
-2025-03-01 20:21:26 Invalid or missing peers.dat; recreating
-2025-03-01 20:21:26 Loaded 0 addresses from peers.dat  0ms
-2025-03-01 20:21:26 AddLocal(192.168.0.102:7745,1)
-2025-03-01 20:21:26 Discover: IPv4 wlp0s20f3: 192.168.0.102
-2025-03-01 20:21:26 AddLocal(172.18.0.1:7745,1)
-2025-03-01 20:21:26 Discover: IPv4 br-745edfe8f712: 172.18.0.1
-2025-03-01 20:21:26 AddLocal(172.17.0.1:7745,1)
-2025-03-01 20:21:26 Discover: IPv4 docker0: 172.17.0.1
-2025-03-01 20:21:26 AddLocal([fe80::f6fe:1be2:2ed8:20dc]:7745,1)
-2025-03-01 20:21:26 Discover: IPv6 wlp0s20f3: fe80::f6fe:1be2:2ed8:20dc
-2025-03-01 20:21:26 dnsseed thread start
-2025-03-01 20:21:26 Loading addresses from DNS seeds (could take a while)
-2025-03-01 20:21:26 0 addresses found from DNS seeds
-2025-03-01 20:21:26 dnsseed thread exit
-2025-03-01 20:21:26 addcon thread start
-2025-03-01 20:21:26 msghand thread start
-2025-03-01 20:21:26 net thread start
-2025-03-01 20:21:26 opencon thread start
-2025-03-01 20:21:26 gmsghand thread start
-2025-03-01 20:21:26 dmsghand thread start
-2025-03-01 20:21:26 tmsghand thread start
-2025-03-01 20:21:26 omsghand thread start
-2025-03-01 20:21:26 dumpaddr thread start
-2025-03-01 20:21:26 MultiChainMiner started
-2025-03-01 20:21:26 init message: Reaccepting unconfirmed wallet transactions...
-2025-03-01 20:21:26 init message: Done loading
-2025-03-01 20:21:26 Node started
-2025-03-01 20:21:26 MultiChainMiner: Block Found - 0001385f7ab297bcd6aa4412971b50b02ee3fecc7d175a14f49e20d783f729f9, prev: 00c15dbce9e838846e3ff1965be360d7f8fba1520e95bb0a67fe162d26564a39, height: 1, txs: 1
-2025-03-01 20:21:26 Pre-allocating up to position 0x100000 in rev00000.dat
-2025-03-01 20:21:26 UpdateTip:            new best=0001385f7ab297bcd6aa4412971b50b02ee3fecc7d175a14f49e20d783f729f9  height=1  log2_work=9  tx=2  date=2025-03-01 20:21:27 progress=1.000000  cache=0
-2025-03-01 20:21:26 MultiChainMiner: Block Found - 0057a3bfd234b5690978dcc2306af6ffdfc921fbbc8da89333d52288269e79e9, prev: 0001385f7ab297bcd6aa4412971b50b02ee3fecc7d175a14f49e20d783f729f9, height: 2, txs: 1
-2025-03-01 20:21:26 UpdateTip:            new best=0057a3bfd234b5690978dcc2306af6ffdfc921fbbc8da89333d52288269e79e9  height=2  log2_work=9.5849625  tx=3  date=2025-03-01 20:21:28 progress=1.000000  cache=0
-2025-03-01 20:21:35 mchn: Granting mine,admin permission(s) to address 127oTTNZqdYdaANpJgqENwFavWtojPEGDt4GE6 (0-4294967295)
-2025-03-01 20:21:35 CommitTransaction: 87b718cabf45609995bc32eb0e3fbb5df7f7b29ceff0f4c69e56c7cbccff88ea, vin: 1, vout: 3
-2025-03-01 20:21:40 MultiChainMiner terminated
-2025-03-01 20:21:40 MultiChainMiner started
-2025-03-01 20:21:40 CommitTransaction: 732e4f9268159108e8c34d781e23df8873dd2aa3b56dd15b5de612489a062492, vin: 1, vout: 2
-2025-03-01 20:21:40 New stream. TxID: 732e4f9268159108e8c34d781e23df8873dd2aa3b56dd15b5de612489a062492, unconfirmed, Name: sidechain_merkle_roots
-2025-03-01 20:21:40 CommitTransaction: c4b71545166bd85dec720aef8d253450bc7943ff2e919783a923b7914dcb9019, vin: 1, vout: 2
-2025-03-01 20:21:40 New stream. TxID: c4b71545166bd85dec720aef8d253450bc7943ff2e919783a923b7914dcb9019, unconfirmed, Name: cross_chain_verifications
-2025-03-01 20:21:41 wtxs: AddExplorerTx  Error: 6
-2025-03-01 20:21:41 wtxs: AddExplorerTx  Error: 6
-2025-03-01 20:21:41 wtxs: AddExplorerTx  Error: 6
-2025-03-01 20:21:41 wtxs: AddExplorerTx  Error: 6
-2025-03-01 20:21:45 MultiChainMiner terminated
-2025-03-01 20:21:45 MultiChainMiner started
-2025-03-01 20:22:00 mchn: Sending full parameter set to 192.168.0.102:34728
-2025-03-01 20:22:00 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=-1, us=192.168.0.102:7745, peer=1
-2025-03-01 20:22:00 Added time data, samples 2, offset +0 (+0 minutes)
-2025-03-01 20:22:00 disconnecting peer=1
-2025-03-01 20:22:01 mchn: Sending minimal parameter set to 192.168.0.102:34734
-2025-03-01 20:22:01 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=192.168.0.102:7745, peer=2
-2025-03-01 20:22:01 mchn: Parameter set from peer=2 verified
-2025-03-01 20:22:01 mchn: Synced with node 2 on block 2 - requesting mempool
-2025-03-01 20:22:02 mchn: mempool request from node 2 on block 2 - start pushing txs
-2025-03-01 20:22:02 mchn: pushed 3 inv records to queue
-2025-03-01 20:22:02 mchn: Sending minimal parameter set to 172.17.0.1:7755
-2025-03-01 20:22:02 disconnecting peer=2
-2025-03-01 20:22:02 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=2, us=192.168.0.102:52290, peer=3
-2025-03-01 20:22:02 Added time data, samples 3, offset -1 (+0 minutes)
-2025-03-01 20:22:02 mchn: Parameter set from peer=3 verified
-2025-03-01 20:22:02 mchn: mempool request from node 3 on block 2 - start pushing txs
-2025-03-01 20:22:02 mchn: pushed 3 inv records to queue
-2025-03-01 20:22:02 mchn: Synced with node 3 on block 2 - requesting mempool
-2025-03-01 20:22:07 MultiChainMiner: Block Found - 004c3cc9d60131517c3d2119a55b24cbec9ba2a1a311b8d87c6b1858b6c6e39a, prev: 0057a3bfd234b5690978dcc2306af6ffdfc921fbbc8da89333d52288269e79e9, height: 3, txs: 4
-2025-03-01 20:22:07 New stream. TxID: 732e4f9268159108e8c34d781e23df8873dd2aa3b56dd15b5de612489a062492, StreamRef: 3-559-9362, Name: sidechain_merkle_roots
-2025-03-01 20:22:07 New stream. TxID: c4b71545166bd85dec720aef8d253450bc7943ff2e919783a923b7914dcb9019, StreamRef: 3-797-36889, Name: cross_chain_verifications
-2025-03-01 20:22:07 UpdateTip:            new best=004c3cc9d60131517c3d2119a55b24cbec9ba2a1a311b8d87c6b1858b6c6e39a  height=3  log2_work=10  tx=7  date=2025-03-01 20:22:07 progress=1.000000  cache=0
-2025-03-01 20:22:17 mchn: Sending full parameter set to 192.168.0.102:42894
-2025-03-01 20:22:17 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=-1, us=192.168.0.102:7745, peer=4
-2025-03-01 20:22:17 disconnecting peer=4
-2025-03-01 20:22:18 mchn: Sending minimal parameter set to 192.168.0.102:42904
-2025-03-01 20:22:18 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=192.168.0.102:7745, peer=5
-2025-03-01 20:22:18 mchn: Parameter set from peer=5 verified
-2025-03-01 20:22:18 mchn: Sending minimal parameter set to 172.17.0.1:7765
-2025-03-01 20:22:18 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=192.168.0.102:56364, peer=6
-2025-03-01 20:22:18 mchn: Synced with node 5 on block 3 - requesting mempool
-2025-03-01 20:22:18 mchn: Parameter set from peer=6 verified
-2025-03-01 20:22:18 mchn: Synced with node 6 on block 3 - requesting mempool
-2025-03-01 20:22:19 disconnecting peer=5
-2025-03-01 20:22:19 mchn: mempool request from node 6 on block 3 - start pushing txs
-2025-03-01 20:22:19 mchn: pushed 0 inv records to queue
-2025-03-01 20:22:19 mchn: Sending minimal parameter set to 192.168.0.102:7765
-2025-03-01 20:22:19 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=3, us=192.168.0.102:35952, peer=7
-2025-03-01 20:22:19 mchn: Parameter set from peer=7 verified
-2025-03-01 20:22:19 mchn: In sync with 7 on block 3 - start pushing txs
-2025-03-01 20:22:19 mchn: pushed 0 inv records to queue
-2025-03-01 20:22:19 mchn: Synced with node 7 on block 3 - requesting mempool
-2025-03-01 20:22:19 mchn: pushed 0 inv records to queue
-2025-03-01 20:22:25 MultiChainMiner: Block Found - 001aedb9148fc1aa82a4a1f280f1a0d4308c91e8ed0c4af6b70076fd96ef5b0b, prev: 004c3cc9d60131517c3d2119a55b24cbec9ba2a1a311b8d87c6b1858b6c6e39a, height: 4, txs: 1
-2025-03-01 20:22:25 UpdateTip:            new best=001aedb9148fc1aa82a4a1f280f1a0d4308c91e8ed0c4af6b70076fd96ef5b0b  height=4  log2_work=10.321928  tx=8  date=2025-03-01 20:22:25 progress=1.000000  cache=0
-2025-03-01 20:22:34 mchn: Sending full parameter set to 192.168.0.102:39954
-2025-03-01 20:22:34 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=-1, us=192.168.0.102:7745, peer=8
-2025-03-01 20:22:34 disconnecting peer=8
-2025-03-01 20:22:35 mchn: Sending minimal parameter set to 192.168.0.102:39962
-2025-03-01 20:22:35 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=192.168.0.102:7745, peer=9
-2025-03-01 20:22:35 mchn: Parameter set from peer=9 verified
-2025-03-01 20:22:35 mchn: Sending minimal parameter set to 172.17.0.1:7775
-2025-03-01 20:22:35 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=192.168.0.102:47896, peer=10
-2025-03-01 20:22:35 mchn: Synced with node 9 on block 4 - requesting mempool
-2025-03-01 20:22:35 mchn: Parameter set from peer=10 verified
-2025-03-01 20:22:35 mchn: Synced with node 10 on block 4 - requesting mempool
-2025-03-01 20:22:36 disconnecting peer=9
-2025-03-01 20:22:36 mchn: mempool request from node 10 on block 4 - start pushing txs
-2025-03-01 20:22:36 mchn: pushed 0 inv records to queue
-2025-03-01 20:22:41 MultiChainMiner: Block Found - 006845be87c034b7132d57638c12a6768719e80ff0bd111d80572febcf19ac6d, prev: 001aedb9148fc1aa82a4a1f280f1a0d4308c91e8ed0c4af6b70076fd96ef5b0b, height: 5, txs: 1
-2025-03-01 20:22:41 UpdateTip:            new best=006845be87c034b7132d57638c12a6768719e80ff0bd111d80572febcf19ac6d  height=5  log2_work=10.584963  tx=9  date=2025-03-01 20:22:41 progress=1.000000  cache=0
-2025-03-01 20:22:52 mchn: Granting connect,send,receive,mine,admin permission(s) to address 15GzS4nAXLEBCu1mjeWxXXdA4AyrkjptWtZPKe (0-4294967295)
-2025-03-01 20:22:52 CommitTransaction: 7190271b9d62a57b005d6f64ff8c98188c4692841e21f55816d6acedf21e90fb, vin: 1, vout: 3
-2025-03-01 20:22:54 MultiChainMiner terminated
-2025-03-01 20:22:54 MultiChainMiner started
-2025-03-01 20:23:03 mchn: Granting connect,send,receive,mine,admin permission(s) to address 185x2hxM9TTKWLhGWH95tibyQgvxtSJY6UTqGt (0-4294967295)
-2025-03-01 20:23:03 CommitTransaction: 9ee7ae0a9ed8faff98b0c898875ac067607d823fa5704ca5ff9423ba1d5d18bd, vin: 1, vout: 3
-2025-03-01 20:23:05 MultiChainMiner terminated
-2025-03-01 20:23:05 MultiChainMiner started
-2025-03-01 20:23:14 mchn: Granting connect,send,receive,mine,admin permission(s) to address 1ArsWWe1KeRo7gK5uLbJfaAi6J4KEWiMSdfWdg (0-4294967295)
-2025-03-01 20:23:14 CommitTransaction: c17ef73f374992ad5f4077bf5e3fe5ea116a6edf0145a4186f167228f5dbf575, vin: 1, vout: 3
-2025-03-01 20:23:16 MultiChainMiner terminated
-2025-03-01 20:23:16 MultiChainMiner started
-2025-03-01 20:23:23 mchn: Sending minimal parameter set to 192.168.0.102:37596
-2025-03-01 20:23:23 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=5, us=192.168.0.102:7745, peer=11
-2025-03-01 20:23:23 mchn: Parameter set from peer=11 verified
-2025-03-01 20:23:23 mchn: Sending minimal parameter set to 192.168.0.102:37600
-2025-03-01 20:23:23 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=5, us=192.168.0.102:7745, peer=12
-2025-03-01 20:23:24 disconnecting peer=11
-2025-03-01 20:23:24 mchn: Parameter set from peer=12 verified
-2025-03-01 20:23:24 mchn: mempool request from node 12 on block 5 - start pushing txs
-2025-03-01 20:23:24 mchn: pushed 3 inv records to queue
-2025-03-01 20:23:24 mchn: Sending minimal parameter set to 192.168.0.102:37606
-2025-03-01 20:23:24 disconnecting peer=12
-2025-03-01 20:23:24 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=5, us=192.168.0.102:7745, peer=13
-2025-03-01 20:23:24 mchn: Parameter set from peer=13 verified
-2025-03-01 20:23:24 mchn: In sync with 13 on block 5 - start pushing txs
-2025-03-01 20:23:24 mchn: pushed 3 inv records to queue
-2025-03-01 20:23:24 mchn: Synced with node 13 on block 5 - requesting mempool
-2025-03-01 20:23:24 socket recv error Connection reset by peer (104)
-2025-03-01 20:23:24 disconnecting peer=13
-2025-03-01 20:23:29 MultiChainMiner: Block Found - 00bcf9a947ec257c27442debde055e250b5c040ff2609477144278f9014396fc, prev: 006845be87c034b7132d57638c12a6768719e80ff0bd111d80572febcf19ac6d, height: 6, txs: 4
-2025-03-01 20:23:29 UpdateTip:            new best=00bcf9a947ec257c27442debde055e250b5c040ff2609477144278f9014396fc  height=6  log2_work=10.807355  tx=13  date=2025-03-01 20:23:29 progress=1.000000  cache=0
-2025-03-01 20:23:38 MultiChainMiner: Block Found - 00ffa242d61870b416aa8813d024c884ac267fc51691a9b42b932a91e5d58f1a, prev: 00bcf9a947ec257c27442debde055e250b5c040ff2609477144278f9014396fc, height: 7, txs: 1
-2025-03-01 20:23:38 UpdateTip:            new best=00ffa242d61870b416aa8813d024c884ac267fc51691a9b42b932a91e5d58f1a  height=7  log2_work=11  tx=14  date=2025-03-01 20:23:38 progress=1.000000  cache=0
-2025-03-01 20:24:01 UpdateTip:            new best=00794cc63cc459daef88eed8ed258475caf8d9e073eaae84f9d2c926c61867a0  height=8  log2_work=11.169925  tx=15  date=2025-03-01 20:24:00 progress=1.000000  cache=0
-2025-03-01 20:24:01 Accepted header for block 00f9138d9ec91b7ca494c55a7ea15876756e86c03fbfbf52c6d01a9ae16ff780 found on alternative chain at height 8
-2025-03-01 20:24:13 Accepted header for block 0047329f821185de56171c5bf6c24680c84c51a2c21f97e699993ab30c4da0dd found on alternative chain at height 9
-2025-03-01 20:24:13 Tx not accepted in resurrection after block: 79b71bca305aa756de7e2b86367099d747a96463c119110d5fed45e7aa438c1c
-2025-03-01 20:24:13 UpdateTip:            new best=00ffa242d61870b416aa8813d024c884ac267fc51691a9b42b932a91e5d58f1a  height=7  log2_work=11  tx=14  date=2025-03-01 20:23:38 progress=1.000000  cache=0
-2025-03-01 20:24:13 UpdateTip:            new best=00f9138d9ec91b7ca494c55a7ea15876756e86c03fbfbf52c6d01a9ae16ff780  height=8  log2_work=11.169925  tx=15  date=2025-03-01 20:24:00 progress=1.000000  cache=0
-2025-03-01 20:24:13 UpdateTip:            new best=0047329f821185de56171c5bf6c24680c84c51a2c21f97e699993ab30c4da0dd  height=9  log2_work=11.321928  tx=16  date=2025-03-01 20:24:12 progress=1.000000  cache=0
-2025-03-01 20:24:33 MultiChainMiner: Block Found - 007d918b46369d0cdcd5567c124eb841cdb63e32e1e87ac79e429816c8034942, prev: 0047329f821185de56171c5bf6c24680c84c51a2c21f97e699993ab30c4da0dd, height: 10, txs: 1
-2025-03-01 20:24:33 UpdateTip:            new best=007d918b46369d0cdcd5567c124eb841cdb63e32e1e87ac79e429816c8034942  height=10  log2_work=11.459432  tx=17  date=2025-03-01 20:24:33 progress=1.000000  cache=0
-2025-03-01 20:24:46 MultiChainMiner: Block Found - 0032f038c94d049d15b5ab6553ab6dbb0f04d0017c1df168b3369fdf0b94e1f8, prev: 007d918b46369d0cdcd5567c124eb841cdb63e32e1e87ac79e429816c8034942, height: 11, txs: 1
-2025-03-01 20:24:46 UpdateTip:            new best=0032f038c94d049d15b5ab6553ab6dbb0f04d0017c1df168b3369fdf0b94e1f8  height=11  log2_work=11.584963  tx=18  date=2025-03-01 20:24:46 progress=1.000000  cache=0
-2025-03-01 20:25:04 MultiChainMiner: Block Found - 001905bb6b6d3c8b8b3d3d5a93aefeb154e40925298d15d3c1a99af06018fc7c, prev: 0032f038c94d049d15b5ab6553ab6dbb0f04d0017c1df168b3369fdf0b94e1f8, height: 12, txs: 1
-2025-03-01 20:25:04 UpdateTip:            new best=001905bb6b6d3c8b8b3d3d5a93aefeb154e40925298d15d3c1a99af06018fc7c  height=12  log2_work=11.70044  tx=19  date=2025-03-01 20:25:04 progress=1.000000  cache=0
-2025-03-01 20:25:09 UpdateTip:            new best=00065c95fdc3355c607b48c73632e4cee96150f07f98c6c78e41a60e8ce6314a  height=13  log2_work=11.807355  tx=20  date=2025-03-01 20:25:09 progress=1.000000  cache=0
-2025-03-01 20:25:15 MultiChainMiner: Block Found - 004734b58cd845104526056b9d2bc0b9955c5d1130ef42a22e0761a39c4bade5, prev: 00065c95fdc3355c607b48c73632e4cee96150f07f98c6c78e41a60e8ce6314a, height: 14, txs: 1
-2025-03-01 20:25:15 UpdateTip:            new best=004734b58cd845104526056b9d2bc0b9955c5d1130ef42a22e0761a39c4bade5  height=14  log2_work=11.906891  tx=21  date=2025-03-01 20:25:15 progress=1.000000  cache=0
-2025-03-01 20:25:30 MultiChainMiner: Block Found - 00fa90b4192f7ca9a1d7e4a9e333f2479b9ac6da522096ca8f96bf691709fe3b, prev: 004734b58cd845104526056b9d2bc0b9955c5d1130ef42a22e0761a39c4bade5, height: 15, txs: 1
-2025-03-01 20:25:30 UpdateTip:            new best=00fa90b4192f7ca9a1d7e4a9e333f2479b9ac6da522096ca8f96bf691709fe3b  height=15  log2_work=12  tx=22  date=2025-03-01 20:25:30 progress=1.000000  cache=0
-2025-03-01 20:25:47 MultiChainMiner: Block Found - 0049d8fb4e6360d8e0d111a5bb333991be0975c53d32e17e9410300508e99eff, prev: 00fa90b4192f7ca9a1d7e4a9e333f2479b9ac6da522096ca8f96bf691709fe3b, height: 16, txs: 1
-2025-03-01 20:25:47 UpdateTip:            new best=0049d8fb4e6360d8e0d111a5bb333991be0975c53d32e17e9410300508e99eff  height=16  log2_work=12.087463  tx=23  date=2025-03-01 20:25:47 progress=1.000000  cache=0
-2025-03-01 20:26:06 MultiChainMiner: Block Found - 000e78414203bcd5e43b45bc26d4ac794f963ba2db5481d8e0c0e778cbaaf193, prev: 0049d8fb4e6360d8e0d111a5bb333991be0975c53d32e17e9410300508e99eff, height: 17, txs: 1
-2025-03-01 20:26:06 UpdateTip:            new best=000e78414203bcd5e43b45bc26d4ac794f963ba2db5481d8e0c0e778cbaaf193  height=17  log2_work=12.169925  tx=24  date=2025-03-01 20:26:06 progress=1.000000  cache=0
-2025-03-01 20:26:06 Accepted header for block 0018b0b4dbdff2fe5892bcda7090d19e3cf54880da7811f08bade36a294c8813 found on alternative chain at height 17
-2025-03-01 20:26:29 MultiChainMiner: Block Found - 00c3dadf1cdbae57b87e6662c5894023874372bea41a30681059b0b0230d2b05, prev: 000e78414203bcd5e43b45bc26d4ac794f963ba2db5481d8e0c0e778cbaaf193, height: 18, txs: 1
-2025-03-01 20:26:29 UpdateTip:            new best=00c3dadf1cdbae57b87e6662c5894023874372bea41a30681059b0b0230d2b05  height=18  log2_work=12.247928  tx=25  date=2025-03-01 20:26:29 progress=1.000000  cache=0
-2025-03-01 20:26:38 MultiChainMiner: Block Found - 00b6b9c3d9b8fda384eaf2e57aa307d38367ea2e9e9a85b4151f064aa8800bfa, prev: 00c3dadf1cdbae57b87e6662c5894023874372bea41a30681059b0b0230d2b05, height: 19, txs: 1
-2025-03-01 20:26:38 UpdateTip:            new best=00b6b9c3d9b8fda384eaf2e57aa307d38367ea2e9e9a85b4151f064aa8800bfa  height=19  log2_work=12.321928  tx=26  date=2025-03-01 20:26:38 progress=1.000000  cache=0
-2025-03-01 20:26:56 MultiChainMiner: Block Found - 00f022af3d60eed0277a3914fb2bd5638d9c9c6402af759134921706e507d195, prev: 00b6b9c3d9b8fda384eaf2e57aa307d38367ea2e9e9a85b4151f064aa8800bfa, height: 20, txs: 1
-2025-03-01 20:26:56 UpdateTip:            new best=00f022af3d60eed0277a3914fb2bd5638d9c9c6402af759134921706e507d195  height=20  log2_work=12.392317  tx=27  date=2025-03-01 20:26:56 progress=1.000000  cache=0
-2025-03-01 20:27:11 MultiChainMiner: Block Found - 00db3a82e356b1e50778fd73119535756d9232dbed85fe882aab35296d449c68, prev: 00f022af3d60eed0277a3914fb2bd5638d9c9c6402af759134921706e507d195, height: 21, txs: 1
-2025-03-01 20:27:11 UpdateTip:            new best=00db3a82e356b1e50778fd73119535756d9232dbed85fe882aab35296d449c68  height=21  log2_work=12.459432  tx=28  date=2025-03-01 20:27:11 progress=1.000000  cache=0
-2025-03-01 20:27:29 UpdateTip:            new best=0076af76b5a3813ffb4b56565842906c2e953c74cadf8e59a393f169f0c334ef  height=22  log2_work=12.523562  tx=29  date=2025-03-01 20:27:29 progress=1.000000  cache=0
-2025-03-01 20:27:39 MultiChainMiner: Block Found - 001c39d9e06e35ee6ee8242daa84cda2bc4ef8cc7a6087d54a973da9e1e03a8d, prev: 0076af76b5a3813ffb4b56565842906c2e953c74cadf8e59a393f169f0c334ef, height: 23, txs: 1
-2025-03-01 20:27:39 UpdateTip:            new best=001c39d9e06e35ee6ee8242daa84cda2bc4ef8cc7a6087d54a973da9e1e03a8d  height=23  log2_work=12.584963  tx=30  date=2025-03-01 20:27:39 progress=1.000000  cache=0
-2025-03-01 20:27:59 UpdateTip:            new best=004a6bc888f71a92c932128946b69ca60315cf313a0112c662697c1086616263  height=24  log2_work=12.643856  tx=31  date=2025-03-01 20:27:58 progress=1.000000  cache=0
-2025-03-01 20:28:06 MultiChainMiner: Block Found - 00da75a1058784e5fcbb602687652149d3fe0ae348577303b328c63b6a5c8cf5, prev: 004a6bc888f71a92c932128946b69ca60315cf313a0112c662697c1086616263, height: 25, txs: 1
-2025-03-01 20:28:06 UpdateTip:            new best=00da75a1058784e5fcbb602687652149d3fe0ae348577303b328c63b6a5c8cf5  height=25  log2_work=12.70044  tx=32  date=2025-03-01 20:28:06 progress=1.000000  cache=0
-2025-03-01 20:28:20 MultiChainMiner: Block Found - 009e499ee12d4b50082b4c3ef5520c22b6ee194d40e65a948d91de2111c5c0fe, prev: 00da75a1058784e5fcbb602687652149d3fe0ae348577303b328c63b6a5c8cf5, height: 26, txs: 1
-2025-03-01 20:28:20 UpdateTip:            new best=009e499ee12d4b50082b4c3ef5520c22b6ee194d40e65a948d91de2111c5c0fe  height=26  log2_work=12.754888  tx=33  date=2025-03-01 20:28:20 progress=1.000000  cache=0
-2025-03-01 20:28:20 Accepted header for block 0012731d3a80bb123e1d7a9699fe8f8a6cabee2a960560a717ccd7b34c96d1c8 found on alternative chain at height 26
-2025-03-01 20:28:42 MultiChainMiner: Block Found - 007a29c1233b889f3689f4905d1da6936a12a51e9bb27682bc6ed8c95ffcb7ad, prev: 009e499ee12d4b50082b4c3ef5520c22b6ee194d40e65a948d91de2111c5c0fe, height: 27, txs: 1
-2025-03-01 20:28:42 UpdateTip:            new best=007a29c1233b889f3689f4905d1da6936a12a51e9bb27682bc6ed8c95ffcb7ad  height=27  log2_work=12.807355  tx=34  date=2025-03-01 20:28:42 progress=1.000000  cache=0
-2025-03-01 20:28:56 MultiChainMiner: Block Found - 00552f3300fde63cf4219cb4ac7ec0a11ec70a2b0cc702ffe9b9896c6db2b69f, prev: 007a29c1233b889f3689f4905d1da6936a12a51e9bb27682bc6ed8c95ffcb7ad, height: 28, txs: 1
-2025-03-01 20:28:56 UpdateTip:            new best=00552f3300fde63cf4219cb4ac7ec0a11ec70a2b0cc702ffe9b9896c6db2b69f  height=28  log2_work=12.857981  tx=35  date=2025-03-01 20:28:55 progress=1.000000  cache=0
-2025-03-01 20:28:56 Accepted header for block 007055605bb614dad40d1051128c0fa431459ee8cb07534ef5da879fa4c5c790 found on alternative chain at height 28
-2025-03-01 20:29:12 MultiChainMiner: Block Found - 00b47450daf7a4c047f49ac78abb4faf38e82a4bfae48f3e54223d97513cf650, prev: 00552f3300fde63cf4219cb4ac7ec0a11ec70a2b0cc702ffe9b9896c6db2b69f, height: 29, txs: 1
-2025-03-01 20:29:12 UpdateTip:            new best=00b47450daf7a4c047f49ac78abb4faf38e82a4bfae48f3e54223d97513cf650  height=29  log2_work=12.906891  tx=36  date=2025-03-01 20:29:12 progress=1.000000  cache=0
-2025-03-01 20:29:23 MultiChainMiner: Block Found - 000e943dbda942396b693b79bc07939277dcc167442254880f28961f5d710cc2, prev: 00b47450daf7a4c047f49ac78abb4faf38e82a4bfae48f3e54223d97513cf650, height: 30, txs: 1
-2025-03-01 20:29:23 UpdateTip:            new best=000e943dbda942396b693b79bc07939277dcc167442254880f28961f5d710cc2  height=30  log2_work=12.954196  tx=37  date=2025-03-01 20:29:23 progress=1.000000  cache=0
-2025-03-01 20:29:41 MultiChainMiner: Block Found - 00ff02ce0cc95ef3c2521d8b7130900b1b1ff108a1c0001bc96238aecc2f53e4, prev: 000e943dbda942396b693b79bc07939277dcc167442254880f28961f5d710cc2, height: 31, txs: 1
-2025-03-01 20:29:41 UpdateTip:            new best=00ff02ce0cc95ef3c2521d8b7130900b1b1ff108a1c0001bc96238aecc2f53e4  height=31  log2_work=13  tx=38  date=2025-03-01 20:29:41 progress=1.000000  cache=0
-2025-03-01 20:29:53 MultiChainMiner: Block Found - 0066f1af6ee14a2a270ce2f1d40bf9523d169390f20a2945c395e1ebba35ccd4, prev: 00ff02ce0cc95ef3c2521d8b7130900b1b1ff108a1c0001bc96238aecc2f53e4, height: 32, txs: 1
-2025-03-01 20:29:53 UpdateTip:            new best=0066f1af6ee14a2a270ce2f1d40bf9523d169390f20a2945c395e1ebba35ccd4  height=32  log2_work=13.044394  tx=39  date=2025-03-01 20:29:53 progress=1.000000  cache=0
-2025-03-01 20:30:11 UpdateTip:            new best=001f325b8c97cecbe04be0c99547d5c8ddc6f018be8f00f989092f0ebca892ac  height=33  log2_work=13.087463  tx=40  date=2025-03-01 20:30:11 progress=1.000000  cache=0
-2025-03-01 20:30:23 MultiChainMiner: Block Found - 006b156298c7f0e4e818213734a187f2a30b6c7eedf80e1e7d0437e12dfe8b7d, prev: 001f325b8c97cecbe04be0c99547d5c8ddc6f018be8f00f989092f0ebca892ac, height: 34, txs: 1
-2025-03-01 20:30:23 UpdateTip:            new best=006b156298c7f0e4e818213734a187f2a30b6c7eedf80e1e7d0437e12dfe8b7d  height=34  log2_work=13.129283  tx=41  date=2025-03-01 20:30:23 progress=1.000000  cache=0
-2025-03-01 20:30:23 Accepted header for block 005c25ee69b2fe4404579f6945164d5d53ab20fdf3ecfcacffd4c7dbf0f62df3 found on alternative chain at height 34
-2025-03-01 20:30:39 UpdateTip:            new best=008bf88e7baa9bf5459d35635472db4967f2e406d9582391d01c59d924d85e75  height=35  log2_work=13.169925  tx=42  date=2025-03-01 20:30:39 progress=1.000000  cache=0
-2025-03-01 20:30:54 MultiChainMiner: Block Found - 00d9f34ef7409a4782deeb6da8176bd28eff34ee671e9db28ae92bd68d7cce88, prev: 008bf88e7baa9bf5459d35635472db4967f2e406d9582391d01c59d924d85e75, height: 36, txs: 1
-2025-03-01 20:30:54 UpdateTip:            new best=00d9f34ef7409a4782deeb6da8176bd28eff34ee671e9db28ae92bd68d7cce88  height=36  log2_work=13.209453  tx=43  date=2025-03-01 20:30:54 progress=1.000000  cache=0
-2025-03-01 20:31:08 UpdateTip:            new best=003f88a954c32d68f30780168bf70d25218b88e221c9e2d23f8d569851be9e8a  height=37  log2_work=13.247928  tx=44  date=2025-03-01 20:31:07 progress=1.000000  cache=0
-2025-03-01 20:31:21 UpdateTip:            new best=00b71fa95b896cf6c762b057a8de547fc57bf7829a18ef716ae4d647dbb25ee3  height=38  log2_work=13.285402  tx=45  date=2025-03-01 20:31:20 progress=1.000000  cache=0
-2025-03-01 20:31:38 MultiChainMiner: Block Found - 005ebe24dab464c30bfc6898bfdc169c6b99bcdb98eff5fe2087ffc5de98a163, prev: 00b71fa95b896cf6c762b057a8de547fc57bf7829a18ef716ae4d647dbb25ee3, height: 39, txs: 1
-2025-03-01 20:31:38 UpdateTip:            new best=005ebe24dab464c30bfc6898bfdc169c6b99bcdb98eff5fe2087ffc5de98a163  height=39  log2_work=13.321928  tx=46  date=2025-03-01 20:31:38 progress=1.000000  cache=0
-2025-03-01 20:31:51 MultiChainMiner: Block Found - 0072224208141a483af1645fa9904d39beb6e67682b2081d6739a2c367009ffc, prev: 005ebe24dab464c30bfc6898bfdc169c6b99bcdb98eff5fe2087ffc5de98a163, height: 40, txs: 1
-2025-03-01 20:31:51 UpdateTip:            new best=0072224208141a483af1645fa9904d39beb6e67682b2081d6739a2c367009ffc  height=40  log2_work=13.357552  tx=47  date=2025-03-01 20:31:51 progress=1.000000  cache=0
-2025-03-01 20:32:10 MultiChainMiner: Block Found - 00cafb4d087cf2e8125839281c7ca69b89612a9cb200c527fdc356f41ee41131, prev: 0072224208141a483af1645fa9904d39beb6e67682b2081d6739a2c367009ffc, height: 41, txs: 1
-2025-03-01 20:32:10 UpdateTip:            new best=00cafb4d087cf2e8125839281c7ca69b89612a9cb200c527fdc356f41ee41131  height=41  log2_work=13.392317  tx=48  date=2025-03-01 20:32:10 progress=1.000000  cache=0
-2025-03-01 20:32:21 UpdateTip:            new best=004ed243b77cdf2a8b03b422c3ed17138da14a4e5749beeae7d1ffccb10630c1  height=42  log2_work=13.426265  tx=49  date=2025-03-01 20:32:21 progress=1.000000  cache=0
-2025-03-01 20:32:34 UpdateTip:            new best=00d3b5b46e498f219d4e8547d6344cfa13dce06f12fe769fe1fe2aba3ea0e537  height=43  log2_work=13.459432  tx=50  date=2025-03-01 20:32:34 progress=1.000000  cache=0
-2025-03-01 20:32:48 MultiChainMiner: Block Found - 00c7baac4dc2c1a1f35f1fc0b5fde7868aef5cf27300f4b137c5e5d3f40de671, prev: 00d3b5b46e498f219d4e8547d6344cfa13dce06f12fe769fe1fe2aba3ea0e537, height: 44, txs: 1
-2025-03-01 20:32:48 UpdateTip:            new best=00c7baac4dc2c1a1f35f1fc0b5fde7868aef5cf27300f4b137c5e5d3f40de671  height=44  log2_work=13.491853  tx=51  date=2025-03-01 20:32:48 progress=1.000000  cache=0
-2025-03-01 20:33:10 MultiChainMiner: Block Found - 00a519ca69185655c1dfa34ebdc3f53b6b090518815398aa7ab7a048671b857c, prev: 00c7baac4dc2c1a1f35f1fc0b5fde7868aef5cf27300f4b137c5e5d3f40de671, height: 45, txs: 1
-2025-03-01 20:33:10 UpdateTip:            new best=00a519ca69185655c1dfa34ebdc3f53b6b090518815398aa7ab7a048671b857c  height=45  log2_work=13.523562  tx=52  date=2025-03-01 20:33:10 progress=1.000000  cache=0
-2025-03-01 20:33:27 MultiChainMiner: Block Found - 00e4947e0ac78f1e26f42860456119b2a59b22154fbba115b951dff9c5da57e7, prev: 00a519ca69185655c1dfa34ebdc3f53b6b090518815398aa7ab7a048671b857c, height: 46, txs: 1
-2025-03-01 20:33:27 UpdateTip:            new best=00e4947e0ac78f1e26f42860456119b2a59b22154fbba115b951dff9c5da57e7  height=46  log2_work=13.554589  tx=53  date=2025-03-01 20:33:27 progress=1.000000  cache=0
-2025-03-01 20:33:33 MultiChainMiner: Block Found - 008f25fbde3ee5252ccc71bec3d567eec8da35b63238c6ba0159f7d7732c435b, prev: 00e4947e0ac78f1e26f42860456119b2a59b22154fbba115b951dff9c5da57e7, height: 47, txs: 1
-2025-03-01 20:33:34 UpdateTip:            new best=008f25fbde3ee5252ccc71bec3d567eec8da35b63238c6ba0159f7d7732c435b  height=47  log2_work=13.584963  tx=54  date=2025-03-01 20:33:33 progress=1.000000  cache=0
-2025-03-01 20:33:51 UpdateTip:            new best=00f9e5c7120ed7ed978a3503eca7d4d040aee96d5572576a5be8c30c0fc79de8  height=48  log2_work=13.61471  tx=55  date=2025-03-01 20:33:51 progress=1.000000  cache=0
-2025-03-01 20:34:05 UpdateTip:            new best=008c675588c8cf30484991487000341952e29207b892e71d52f3fb584766976c  height=49  log2_work=13.643856  tx=56  date=2025-03-01 20:34:04 progress=1.000000  cache=0
-2025-03-01 20:34:20 UpdateTip:            new best=0053beaf6cb3167171634f978d0b83a16a5db87ed8ee1a0e4dab56e598cd9870  height=50  log2_work=13.672425  tx=57  date=2025-03-01 20:34:20 progress=1.000000  cache=0
-2025-03-01 20:34:33 MultiChainMiner: Block Found - 00f99dd7ac3387fc30cc1001fea10b5d09b5dc9c3b0bf559b70c91145359129b, prev: 0053beaf6cb3167171634f978d0b83a16a5db87ed8ee1a0e4dab56e598cd9870, height: 51, txs: 1
-2025-03-01 20:34:33 UpdateTip:            new best=00f99dd7ac3387fc30cc1001fea10b5d09b5dc9c3b0bf559b70c91145359129b  height=51  log2_work=13.70044  tx=58  date=2025-03-01 20:34:33 progress=1.000000  cache=0
-2025-03-01 20:34:55 MultiChainMiner: Block Found - 005e9fbbe6a5682ff0fb119871d94cfdd5ab55c8375793e1985ba28ff48f1b4e, prev: 00f99dd7ac3387fc30cc1001fea10b5d09b5dc9c3b0bf559b70c91145359129b, height: 52, txs: 1
-2025-03-01 20:34:55 UpdateTip:            new best=005e9fbbe6a5682ff0fb119871d94cfdd5ab55c8375793e1985ba28ff48f1b4e  height=52  log2_work=13.72792  tx=59  date=2025-03-01 20:34:55 progress=1.000000  cache=0
-2025-03-01 20:35:03 MultiChainMiner: Block Found - 004c84954281de46b036559e48ba229ba9dc36f36d2da0a9cecb18c9242230d7, prev: 005e9fbbe6a5682ff0fb119871d94cfdd5ab55c8375793e1985ba28ff48f1b4e, height: 53, txs: 1
-2025-03-01 20:35:03 UpdateTip:            new best=004c84954281de46b036559e48ba229ba9dc36f36d2da0a9cecb18c9242230d7  height=53  log2_work=13.754888  tx=60  date=2025-03-01 20:35:03 progress=1.000000  cache=0
-2025-03-01 20:35:17 UpdateTip:            new best=00a1b62b433191b5cde039eea2fae3af9fb7ad35c94c3a7e3e02acec688e2849  height=54  log2_work=13.78136  tx=61  date=2025-03-01 20:35:17 progress=1.000000  cache=0
-2025-03-01 20:35:36 MultiChainMiner: Block Found - 00e3e54cb93f6d1aa19e23fb289cf395e8ca6e62d4139667124edb96bed91728, prev: 00a1b62b433191b5cde039eea2fae3af9fb7ad35c94c3a7e3e02acec688e2849, height: 55, txs: 1
-2025-03-01 20:35:36 UpdateTip:            new best=00e3e54cb93f6d1aa19e23fb289cf395e8ca6e62d4139667124edb96bed91728  height=55  log2_work=13.807355  tx=62  date=2025-03-01 20:35:36 progress=1.000000  cache=0
-2025-03-01 20:35:50 MultiChainMiner: Block Found - 008c3c2c5a04237c487ad2f0df15cff3ea147616d7133f99f1b62faab836d52a, prev: 00e3e54cb93f6d1aa19e23fb289cf395e8ca6e62d4139667124edb96bed91728, height: 56, txs: 1
-2025-03-01 20:35:50 UpdateTip:            new best=008c3c2c5a04237c487ad2f0df15cff3ea147616d7133f99f1b62faab836d52a  height=56  log2_work=13.83289  tx=63  date=2025-03-01 20:35:50 progress=1.000000  cache=0
-2025-03-01 20:36:09 MultiChainMiner: Block Found - 00c0b046d25f432c9567c1bb81d4441265efe9adf860f58e1c397eac646e69f6, prev: 008c3c2c5a04237c487ad2f0df15cff3ea147616d7133f99f1b62faab836d52a, height: 57, txs: 1
-2025-03-01 20:36:09 UpdateTip:            new best=00c0b046d25f432c9567c1bb81d4441265efe9adf860f58e1c397eac646e69f6  height=57  log2_work=13.857981  tx=64  date=2025-03-01 20:36:09 progress=1.000000  cache=0
-2025-03-01 20:36:09 Accepted header for block 00329a3cad476d7bdc703d3592622dc785508a9fd1f4b7858c53ecf41a7fb64b found on alternative chain at height 57
-2025-03-01 20:36:20 Accepted header for block 006ccf397696251f3ea910c715d128841589f28cac11e6d6fc20b34a0c73ec93 found on alternative chain at height 58
-2025-03-01 20:36:20 Tx not accepted in resurrection after block: 4f9266221141a29a7bb69a7c0d270df12ed119a9ad8a99287fc14fbc2e6a23f5
-2025-03-01 20:36:20 UpdateTip:            new best=008c3c2c5a04237c487ad2f0df15cff3ea147616d7133f99f1b62faab836d52a  height=56  log2_work=13.83289  tx=63  date=2025-03-01 20:35:50 progress=1.000000  cache=0
-2025-03-01 20:36:20 UpdateTip:            new best=00329a3cad476d7bdc703d3592622dc785508a9fd1f4b7858c53ecf41a7fb64b  height=57  log2_work=13.857981  tx=64  date=2025-03-01 20:36:09 progress=1.000000  cache=0
-2025-03-01 20:36:20 UpdateTip:            new best=006ccf397696251f3ea910c715d128841589f28cac11e6d6fc20b34a0c73ec93  height=58  log2_work=13.882643  tx=65  date=2025-03-01 20:36:20 progress=1.000000  cache=0
-2025-03-01 20:36:20 Accepted header for block 00bb5ac187baa0247c3fcdcd45ff21b068c967382c456cc877bba85a27577b23 found on alternative chain at height 58
-2025-03-01 20:36:40 MultiChainMiner: Block Found - 00c71b549f00bda7c9b7fc5cb30fd8f07f8ef791d6f23fac7095cbc0e0768054, prev: 006ccf397696251f3ea910c715d128841589f28cac11e6d6fc20b34a0c73ec93, height: 59, txs: 1
-2025-03-01 20:36:40 UpdateTip:            new best=00c71b549f00bda7c9b7fc5cb30fd8f07f8ef791d6f23fac7095cbc0e0768054  height=59  log2_work=13.906891  tx=66  date=2025-03-01 20:36:40 progress=1.000000  cache=0
-2025-03-01 20:36:40 Accepted header for block 00b825c3263ee5a41e8576b392f011dfdfaeb53bd305659ef1647d45ca44d622 found on alternative chain at height 59
-2025-03-01 20:36:40 Tx not accepted in resurrection after block: 8aa70f0f5ca1f2ec606b1b28321f086e35e99b1fe9defa90f3f4bbafc761eabf
-2025-03-01 20:36:40 UpdateTip:            new best=006ccf397696251f3ea910c715d128841589f28cac11e6d6fc20b34a0c73ec93  height=58  log2_work=13.882643  tx=65  date=2025-03-01 20:36:20 progress=1.000000  cache=0
-2025-03-01 20:36:40 UpdateTip:            new best=00b825c3263ee5a41e8576b392f011dfdfaeb53bd305659ef1647d45ca44d622  height=59  log2_work=13.906891  tx=66  date=2025-03-01 20:36:40 progress=1.000000  cache=0
-2025-03-01 20:36:50 Accepted header for block 00af0ba8d485955c307f07a63d9b48db4ab698876d27c4dcc042539bfa38c91c found on alternative chain at height 60
-2025-03-01 20:36:50 Tx not accepted in resurrection after block: e93a581eabc104d22aa450e112d42c274e118be88b82eb05d2e98867e1da6ca5
-2025-03-01 20:36:50 UpdateTip:            new best=006ccf397696251f3ea910c715d128841589f28cac11e6d6fc20b34a0c73ec93  height=58  log2_work=13.882643  tx=65  date=2025-03-01 20:36:20 progress=1.000000  cache=0
-2025-03-01 20:36:50 UpdateTip:            new best=00c71b549f00bda7c9b7fc5cb30fd8f07f8ef791d6f23fac7095cbc0e0768054  height=59  log2_work=13.906891  tx=66  date=2025-03-01 20:36:40 progress=1.000000  cache=0
-2025-03-01 20:36:50 UpdateTip:            new best=00af0ba8d485955c307f07a63d9b48db4ab698876d27c4dcc042539bfa38c91c  height=60  log2_work=13.930737  tx=67  date=2025-03-01 20:36:50 progress=1.000000  cache=0
-2025-03-01 20:44:22 keypool added key 3, size=2
-2025-03-01 20:44:22 keypool added key 4, size=2
-2025-03-01 20:44:26 CommitTransaction: e84d080a22106a2fd3430523ed94056c288e0611cb9ae9d71b64155e59dbe2f3, vin: 1, vout: 2
-2025-03-01 20:44:46 UpdateTip:            new best=00439fa11972c2a2a598c4a2bcf6c48aeef1967e8b70d08d82fbeafd14c983f3  height=61  log2_work=13.954196  tx=69  date=2025-03-01 20:44:45 progress=1.000000  cache=0
-2025-03-01 20:44:52 UpdateTip:            new best=001f9c901530251ae748baff546c916bfdff040f9ede56e30ad76bc7cc95c0cb  height=62  log2_work=13.97728  tx=70  date=2025-03-01 20:44:51 progress=1.000000  cache=0
-2025-03-01 20:44:58 UpdateTip:            new best=004c034bd8664ee20078ec26b9a238a1dd8648f1434026907890ad653934942e  height=63  log2_work=14  tx=71  date=2025-03-01 20:44:57 progress=1.000000  cache=0
-2025-03-01 20:45:06 UpdateTip:            new best=008ec62a39ece4d83307b6baab4a0dc0a7c4493a68838d57d72921bf5d757c32  height=64  log2_work=14.022368  tx=72  date=2025-03-01 20:45:06 progress=1.000000  cache=0
-2025-03-01 20:45:11 keypool added key 5, size=2
-2025-03-01 20:45:11 keypool added key 6, size=2
-2025-03-01 20:45:16 CommitTransaction: 021e0a7ed3a66bec8956a65ed584ac300ed46d087f3d60a2e9291f3db2b4f649, vin: 1, vout: 2
-2025-03-01 20:45:17 UpdateTip:            new best=00b169308fbc4a36f2a29153660b3e5095a9616d48b469779105bc4b2cc3a46e  height=65  log2_work=14.044394  tx=74  date=2025-03-01 20:45:17 progress=1.000000  cache=0
-2025-03-01 20:45:21 MultiChainMiner: Block Found - 001bb7d822c568300541004cff0fd89898bb51a1d8672773024c1fa6d7629c8c, prev: 00b169308fbc4a36f2a29153660b3e5095a9616d48b469779105bc4b2cc3a46e, height: 66, txs: 1
-2025-03-01 20:45:22 UpdateTip:            new best=001bb7d822c568300541004cff0fd89898bb51a1d8672773024c1fa6d7629c8c  height=66  log2_work=14.066089  tx=75  date=2025-03-01 20:45:21 progress=1.000000  cache=0
-2025-03-01 20:45:26 UpdateTip:            new best=009fd797148d99cbaf73814f0ebb4ac66ad1ee003d90f0a9b4efa5f0e8bbe3ed  height=67  log2_work=14.087463  tx=76  date=2025-03-01 20:45:26 progress=1.000000  cache=0
-2025-03-01 20:45:32 UpdateTip:            new best=00e88d5c5b7cdec661e45355b1fe1f37094cc7df5c0dfbdb279b4eaa686e5ac7  height=68  log2_work=14.108524  tx=77  date=2025-03-01 20:45:31 progress=1.000000  cache=0
-2025-03-01 20:45:42 MultiChainMiner: Block Found - 00e81942cc06207114e046c72f073cca0a27bc86a8cb36d2ae7370da91065ef7, prev: 00e88d5c5b7cdec661e45355b1fe1f37094cc7df5c0dfbdb279b4eaa686e5ac7, height: 69, txs: 1
-2025-03-01 20:45:42 UpdateTip:            new best=00e81942cc06207114e046c72f073cca0a27bc86a8cb36d2ae7370da91065ef7  height=69  log2_work=14.129283  tx=78  date=2025-03-01 20:45:42 progress=1.000000  cache=0
-2025-03-01 20:45:50 UpdateTip:            new best=003d33449a978e30b94f6e04b0600add5a68f1728dc6e7fcebd8340bc291c1bd  height=70  log2_work=14.149747  tx=79  date=2025-03-01 20:45:50 progress=1.000000  cache=0
-2025-03-01 20:45:56 UpdateTip:            new best=0083d92942f88c890ba03c6e33dd3cf7d24353707d2f052cd4e3bd4ba38e043e  height=71  log2_work=14.169925  tx=80  date=2025-03-01 20:45:56 progress=1.000000  cache=0
-2025-03-01 20:46:04 keypool added key 7, size=2
-2025-03-01 20:46:04 keypool added key 8, size=2
-2025-03-01 20:46:19 UpdateTip:            new best=00d07df07a69d664aec302a38f217bb2325db4763f8face46ebea05fa251af5d  height=72  log2_work=14.189825  tx=81  date=2025-03-01 20:46:19 progress=1.000000  cache=0
-2025-03-01 20:46:43 MultiChainMiner: Block Found - 000d31281a04b9d6d11204743f05f224b5ec75e29eec1508f1444b87d0537fee, prev: 00d07df07a69d664aec302a38f217bb2325db4763f8face46ebea05fa251af5d, height: 73, txs: 1
-2025-03-01 20:46:43 UpdateTip:            new best=000d31281a04b9d6d11204743f05f224b5ec75e29eec1508f1444b87d0537fee  height=73  log2_work=14.209453  tx=82  date=2025-03-01 20:46:43 progress=1.000000  cache=0
-2025-03-01 20:47:10 UpdateTip:            new best=00f50c6a31d4fd4ad27d536aeaf252bd5a016c31e1df7606b0068b14cbb700bc  height=74  log2_work=14.228819  tx=83  date=2025-03-01 20:47:09 progress=1.000000  cache=0
-2025-03-01 20:47:28 UpdateTip:            new best=00ccca2dd238c542bf208024088e797776e7370565f48b8de24086c1c15cd959  height=75  log2_work=14.247928  tx=84  date=2025-03-01 20:47:27 progress=1.000000  cache=0
-2025-03-01 20:47:44 UpdateTip:            new best=00932d5ae7ccfd125f3c222499e283d47506cfa71758ec52c5674b8967ac91ee  height=76  log2_work=14.266787  tx=85  date=2025-03-01 20:47:44 progress=1.000000  cache=0
-2025-03-01 20:47:50 UpdateTip:            new best=003f328ab6a595fc83bf4f6ef1d92dffc80b85b49db6fc8d6c416602c101cdb1  height=77  log2_work=14.285402  tx=86  date=2025-03-01 20:47:49 progress=1.000000  cache=0
-2025-03-01 20:48:02 MultiChainMiner: Block Found - 00adf1dc7e1ea6e60a5fce7282562186247d1000ee643db23f26d77a6b4622b3, prev: 003f328ab6a595fc83bf4f6ef1d92dffc80b85b49db6fc8d6c416602c101cdb1, height: 78, txs: 1
-2025-03-01 20:48:02 UpdateTip:            new best=00adf1dc7e1ea6e60a5fce7282562186247d1000ee643db23f26d77a6b4622b3  height=78  log2_work=14.303781  tx=87  date=2025-03-01 20:48:02 progress=1.000000  cache=0
-2025-03-01 20:48:03 Accepted header for block 0001c41f5170c4f326483395ba91029b4b0cfb2a43a07c3d471256c8dc37a930 found on alternative chain at height 78
-2025-03-01 20:48:03 Tx not accepted in resurrection after block: 4994aeb950d76c34c0ef4556980f8dfa34ef9771b4c8ed01af6866cac4f2bd8f
-2025-03-01 20:48:03 UpdateTip:            new best=003f328ab6a595fc83bf4f6ef1d92dffc80b85b49db6fc8d6c416602c101cdb1  height=77  log2_work=14.285402  tx=86  date=2025-03-01 20:47:49 progress=1.000000  cache=0
-2025-03-01 20:48:03 UpdateTip:            new best=0001c41f5170c4f326483395ba91029b4b0cfb2a43a07c3d471256c8dc37a930  height=78  log2_work=14.303781  tx=87  date=2025-03-01 20:48:02 progress=1.000000  cache=0
-2025-03-01 20:48:15 UpdateTip:            new best=009dbf7a0fe529cd764198ea3a1bd67d1f60c277246434a7f1702a8ce348f812  height=79  log2_work=14.321928  tx=88  date=2025-03-01 20:48:14 progress=1.000000  cache=0
-2025-03-01 20:48:29 keypool added key 9, size=2
-2025-03-01 20:48:30 UpdateTip:            new best=003ae27b6b217b5e3ee2dc8daf2aaa7c2030b9c356dd107354f9523b276b9174  height=80  log2_work=14.33985  tx=89  date=2025-03-01 20:48:30 progress=1.000000  cache=0
-2025-03-01 20:48:43 UpdateTip:            new best=0058be04c5c25fc24dcdf266a02c60370189c18766ef5c919a5b58d8196197c2  height=81  log2_work=14.357552  tx=90  date=2025-03-01 20:48:42 progress=1.000000  cache=0
-2025-03-01 20:49:04 MultiChainMiner: Block Found - 008afbb3a4df149b002f98868de81007f51e4cb9be675660385a20edb1aaabaf, prev: 0058be04c5c25fc24dcdf266a02c60370189c18766ef5c919a5b58d8196197c2, height: 82, txs: 1
-2025-03-01 20:49:04 UpdateTip:            new best=008afbb3a4df149b002f98868de81007f51e4cb9be675660385a20edb1aaabaf  height=82  log2_work=14.375039  tx=91  date=2025-03-01 20:49:04 progress=1.000000  cache=0
-2025-03-01 20:49:18 UpdateTip:            new best=00bb56f837c3e81950bf2fc2ef37533b6f73928bcf3bc6263a4a8c122eef02ec  height=83  log2_work=14.392317  tx=92  date=2025-03-01 20:49:17 progress=1.000000  cache=0
-2025-03-01 20:49:35 UpdateTip:            new best=005ab8483702dbaf5e188b2b59a15cb560b9c82dc49d9dd6a8daba74c1cbf7f8  height=84  log2_work=14.409391  tx=93  date=2025-03-01 20:49:35 progress=1.000000  cache=0
-2025-03-01 20:49:35 Accepted header for block 004e2813e77b4dfbffae28602397049fe758e75d33a7cb544ec0928fa1fd4e5e found on alternative chain at height 84
-2025-03-01 20:49:45 MultiChainMiner: Block Found - 0028623720821de8e48717c160c9bd9cf6a504535f79489574540789de703852, prev: 005ab8483702dbaf5e188b2b59a15cb560b9c82dc49d9dd6a8daba74c1cbf7f8, height: 85, txs: 1
-2025-03-01 20:49:45 UpdateTip:            new best=0028623720821de8e48717c160c9bd9cf6a504535f79489574540789de703852  height=85  log2_work=14.426265  tx=94  date=2025-03-01 20:49:45 progress=1.000000  cache=0
-2025-03-01 20:51:42 keypool added key 10, size=2
-2025-03-01 20:51:42 keypool added key 11, size=2
-2025-03-01 20:51:47 keypool added key 12, size=2
-2025-03-01 21:39:55 CommitTransaction: 90ae21e7ac810ed6b52433544b868448a1d313887891e46e82655bee646dee43, vin: 1, vout: 2
-2025-03-01 21:39:56 CommitTransaction: 9695eef83b1300c307b25739b0f841f644d6389c21233c7b53d8ddb297350459, vin: 1, vout: 2
-2025-03-01 21:39:56 CommitTransaction: acfca3916b4ccafa05c76545db3836f0332a32f5bd7d8e2cd587f1b87500bc02, vin: 1, vout: 2
-2025-03-01 21:39:57 CommitTransaction: f0acd0999a4ebcb27f167c70d9e0252cfac744d86b21c739aa2145e1889a0f23, vin: 1, vout: 2
-2025-03-01 21:39:57 CommitTransaction: eaa555106dff735747061c445f6f2289bf9c4d54ff5df4143c4d756146bd9e0f, vin: 1, vout: 2
-2025-03-01 21:39:58 CommitTransaction: a3f634fe08eaa8cd76259566ce29765be4d7472db641336db7c099c3864cd0a4, vin: 1, vout: 2
-2025-03-01 21:39:58 CommitTransaction: 005164e5a252c697cc17441f392baa4a5d12af842ad918c398cbb5497d442a49, vin: 1, vout: 2
-2025-03-01 21:39:58 CommitTransaction: b62ec9183c456fab803103a2ab7457bcec6e0143335380edb4752f2d26e66aca, vin: 1, vout: 2
-2025-03-01 21:39:59 CommitTransaction: 1cf5e9976086b063e4bfbad85e18fdb31bfbe6719dc08833569d7bd7c967ebb8, vin: 1, vout: 2
-2025-03-01 21:39:59 CommitTransaction: 1eaeb8d9093416a245d9b34338b2140ae07eb612591f9db0faf0a3e61ba90fa2, vin: 1, vout: 2
-2025-03-01 21:40:00 CommitTransaction: 501c7f6967169104adfa39cd22d352bf86d428301f1f1cc66b82bf06d8733f88, vin: 1, vout: 2
-2025-03-01 21:40:00 CommitTransaction: 96a50c8282bafae9ce89fb52d242ecf96bfd24399d536f3c2a1293a41c47334b, vin: 1, vout: 2
-2025-03-01 21:40:01 CommitTransaction: d8c72ebc05cf9dffb5b28aca5866681d42088caf4a96066039e090b6d701f69a, vin: 1, vout: 2
-2025-03-01 21:40:01 CommitTransaction: cb80518657e1782a7d15d59ce827851ebdc0f8507dd4c62894884f33e2dc234c, vin: 1, vout: 2
-2025-03-01 21:40:01 CommitTransaction: c91d8e4da8ad4af93d0949be32e90a326f3f4b95605c6db37c4a7b91327eb8aa, vin: 1, vout: 2
-2025-03-01 21:40:02 CommitTransaction: cf7dd4a8b906f9907eebe7a4891cfbca50c3804463ec54a86be287e06bbaccc3, vin: 1, vout: 2
-2025-03-01 21:40:02 CommitTransaction: 6333ca5b1b82661da4896169d714a9e194b7159e765e2cab28ab0a1b1cc53f88, vin: 1, vout: 2
-2025-03-01 21:40:03 CommitTransaction: 501e422725de7cf27a4d43675ffc5a33411aac1d77f932b1cf83483b4efbb765, vin: 1, vout: 2
-2025-03-01 21:40:03 CommitTransaction: d64c1387fd8bf27a266789eaa2a98a2badb623853e150252efae441dacaac7fc, vin: 1, vout: 2
-2025-03-01 21:40:04 CommitTransaction: affa76f4fc7709cc07dcbb509f4c5c25a30290ce4cb6b322e3880567bc4dc06e, vin: 1, vout: 2
-2025-03-01 21:40:04 CommitTransaction: c51282136d39038f1209d3bf989443e4832a1bd6d1f7cc37254e8e0e269610e4, vin: 1, vout: 2
-2025-03-01 21:40:04 CommitTransaction: 9b41740579cc567902464e69499cd40eeccaca5353395e759e9b37576048f78d, vin: 1, vout: 2
-2025-03-01 21:40:05 CommitTransaction: b66279df4ac05bf68614849f25d04b3a74fe93a7b346199e32308d07496b64c5, vin: 1, vout: 2
-2025-03-01 21:40:05 CommitTransaction: d4a8565539524a12f6ada6ef6b8220f14ad419907097d2e1ff6fd1c82189fbd2, vin: 1, vout: 2
-2025-03-01 21:40:06 CommitTransaction: dcee9038f2e7a4fda739228ea758b976122ef4a6488fb784edfd71c5c544e286, vin: 1, vout: 2
-2025-03-01 21:40:06 CommitTransaction: c7e8b94779c6495430c0be2eea45417e0c749ca3d3e3142b4eaa0340b5eedc75, vin: 1, vout: 2
-2025-03-01 21:40:07 CommitTransaction: 48a59072d045a884d1a6eab85fa5879bdc3a3bf123215a160fb4d870022c2ce2, vin: 1, vout: 2
-2025-03-01 21:40:07 CommitTransaction: 6e1c7fe45a6f97460ac670cce224f5a3d7de20d06a9694ea11a68c0c4cb020c6, vin: 1, vout: 2
-2025-03-01 21:40:07 CommitTransaction: f604d05dd80922280b12c2721e1529fb84996d8406c53e3cb06a6d15a6acf14b, vin: 1, vout: 2
-2025-03-01 21:40:08 CommitTransaction: 86cecd56f9bf22b3ab39bb5cba2e1607fa828fcdfd141c7434348822ca74af3b, vin: 1, vout: 2
-2025-03-01 21:40:08 CommitTransaction: 7de523eba1ed52a6c0875649f27f1c1cd591f0beaa3a6bc591e7fef10d0ddc0f, vin: 1, vout: 2
-2025-03-01 21:40:09 CommitTransaction: d4b27a362c38aabd9f8b0ac7a133c281bd23cdd63455ec8736cbbe910413191b, vin: 1, vout: 2
-2025-03-01 21:40:09 CommitTransaction: 45608e420e004892e03b47c2bc8c9f3bd29f413ce7cdf7fc9bbf80e4e5418e11, vin: 1, vout: 2
-2025-03-01 21:40:10 CommitTransaction: 8eb3452dee52e57c396148132754aec730481a11c18acef8692f73b16c665839, vin: 1, vout: 2
-2025-03-01 21:40:10 CommitTransaction: bc79cc8f81fc46baee474da85f5672154a44b865f18692bf6e0f5c918436bd8d, vin: 1, vout: 2
-2025-03-01 21:40:10 CommitTransaction: c9686232643c0a3cba04661d366e5bb6cf528106e17e69961d26df27a459d43f, vin: 1, vout: 2
-2025-03-01 21:40:11 CommitTransaction: f069b7dcd88e9bf81863712aa0513883d748bb2779f5e97f2fe4358bc43b219c, vin: 1, vout: 2
-2025-03-01 21:40:11 CommitTransaction: db96955d7a6c9c92d5a1b254322d1e86da34231a75906aa207f1745fcf339aec, vin: 1, vout: 2
-2025-03-01 21:40:11 UpdateTip:            new best=006fee641d10bae63da9c796af7934f18193ce5947ffc14bd249e9465687cde5  height=86  log2_work=14.442943  tx=130  date=2025-03-01 21:40:11 progress=1.000000  cache=0
-2025-03-01 21:40:12 CommitTransaction: e6330b1df6310ef738958e1ca876513542d64549a501b6e3d4fa8e4f4b78ef9f, vin: 1, vout: 2
-2025-03-01 21:40:12 CommitTransaction: e8ef51ce1d83133128e776ef2ef663b38789bed1dd4ebeeb6901887d62144b5b, vin: 1, vout: 2
-2025-03-01 21:40:13 CommitTransaction: cbdabf9e4f12d34c6ae853e702e825655365d25a323f468d7376eabe5f0fda91, vin: 1, vout: 2
-2025-03-01 21:40:13 CommitTransaction: db4291d9c19dae74c9d37fc3f0d2c9730290b4b299c1e2e0d3fddaa6d9e0c755, vin: 1, vout: 2
-2025-03-01 21:40:13 CommitTransaction: 569ff462d9fed7e6734d3256e25edbe2af261d116d12a65626d559f15fb29a21, vin: 1, vout: 2
-2025-03-01 21:40:14 CommitTransaction: 00ab10d413f8b5ac336423112d42335dcceff848069f34013b9e0d268d036e84, vin: 1, vout: 2
-2025-03-01 21:40:14 CommitTransaction: 127986478e0eaabff59200f6f37a1172392d51e71d57050f66a208247fb80f1c, vin: 1, vout: 2
-2025-03-01 21:40:15 CommitTransaction: ed39580d50f6c645822457c7399d7f37d0cae7f1cd3ad042b6072959096451d4, vin: 1, vout: 2
-2025-03-01 21:40:15 CommitTransaction: 5b272592f3aecb598a4dccef3668632e4aaeecc12436c406667e1d8b7b2cd9c4, vin: 1, vout: 2
-2025-03-01 21:40:16 CommitTransaction: 9d55bf4b20bd09d76e7a51329c687476a9b0400a1d8ce74512119611e3f95061, vin: 1, vout: 2
-2025-03-01 21:40:16 CommitTransaction: 6276fd77e905a192be010935ae458880aadd50408a3863209d6c7dea72c78140, vin: 1, vout: 2
-2025-03-01 21:40:16 CommitTransaction: b683815f01b8d582023b9770640621b49c94393f7ca18c7c67fa7ffe0f941251, vin: 1, vout: 2
-2025-03-01 21:40:17 CommitTransaction: db174b205ecdf6eabe48f3fc6089af6445cdfaf5a4bd991e4d5f822b17aa163f, vin: 1, vout: 2
-2025-03-01 21:40:17 CommitTransaction: 37bebcfc98d24005d0eba76c9929a4c4d8e69dac0da5ea4f3f3c5c0b1ff7da6b, vin: 1, vout: 2
-2025-03-01 21:40:18 CommitTransaction: 68d633d85fe81d7a608f76c8f309911ff593b283af855c25df3d56daa5dd4e92, vin: 1, vout: 2
-2025-03-01 21:40:18 CommitTransaction: 8f00b63d852bbcbe52aa124219473c729ea7251a8d43b5f8a9d65b37b00fb5ff, vin: 1, vout: 2
-2025-03-01 21:40:19 CommitTransaction: 309f47e1cfa73f8465d720d05535d2e7ab098007e1d72f3e2951d9635d57ad15, vin: 1, vout: 2
-2025-03-01 21:40:19 CommitTransaction: a91bc0bc60c719a85bdd2d7f9022289d0ec1ee01cd6cccfd32344b178522494d, vin: 1, vout: 2
-2025-03-01 21:40:19 CommitTransaction: 08878aa0ec2a41d4519aa42540d982211233c8f56de24f6f29166803ee73eb6e, vin: 1, vout: 2
-2025-03-01 21:40:20 CommitTransaction: 9bcddae2d43104220fe79dfc2c4cc6ea1b69d15576cdf6d161ec6037ecdf86bf, vin: 1, vout: 2
-2025-03-01 21:40:20 CommitTransaction: 2f9cb6eaf7a00ee9513c069178c7fe60c33eb9ea28392e79ded8258950ca7ea9, vin: 1, vout: 2
-2025-03-01 21:40:21 CommitTransaction: f09e38d3e5d66a2897c765b5c90379f6369c186fc9bd8964e06bce9ea12b8f34, vin: 1, vout: 2
-2025-03-01 21:40:21 UpdateTip:            new best=00f533f0986072db5b1334d9472f50c1a52ff80e2678cab559a611f4c9dc95a1  height=87  log2_work=14.459432  tx=154  date=2025-03-01 21:40:21 progress=1.000000  cache=0
-2025-03-01 21:40:21 CommitTransaction: 0a8a35f23fa3603038a220f4f5f48e609d75904306014b7ea50334729c7942d7, vin: 1, vout: 2
-2025-03-01 21:40:22 CommitTransaction: b19baa108fbac46797d59796c22da4beecaddf333eb5d279e47365dccd83d3c5, vin: 1, vout: 2
-2025-03-01 21:40:22 CommitTransaction: 513ddcc674a8e8e7ae8b793943ad41cefb0d7d9594cc85beaacbbb0fbbddd545, vin: 1, vout: 2
-2025-03-01 21:40:22 CommitTransaction: 40f01bf461d6c662dae0348f78978d248360b59c780698fc3403de3f8b7545ff, vin: 1, vout: 2
-2025-03-01 21:40:23 CommitTransaction: 05391ac3147ee86695c6c71faf77274d7d15ccf21082472211821bf88de84108, vin: 1, vout: 2
-2025-03-01 21:40:23 CommitTransaction: 6b1c787dfb5256eb8769ed48e45c0b56bb8e5fe2aa56d23b9133fc92c7221274, vin: 1, vout: 2
-2025-03-01 21:40:24 CommitTransaction: 2970116fd5533348adf4a5180dd75eef925beb42211c518f21d62631f2232009, vin: 1, vout: 2
-2025-03-01 21:40:24 CommitTransaction: ba47bbb433c16d88e31abee33c13d0f66ec2ac7a69043846a2f03ffd0c7c8b0a, vin: 1, vout: 2
-2025-03-01 21:40:25 CommitTransaction: 3567bdb151c3deb39fe3aca6e4eec20f263cbca90723064897e854f6f47743d1, vin: 1, vout: 2
-2025-03-01 21:40:25 CommitTransaction: 626aad73efd9f58a02035fdd43c956b7c4bca717e5adf409f7cdf9b38cf84029, vin: 1, vout: 2
-2025-03-01 21:40:26 CommitTransaction: 01084e7e983a2263a3f84a0391468108a07ee9420b2c7375cf53f528d5d7aae5, vin: 1, vout: 2
-2025-03-01 21:40:26 CommitTransaction: a37fc00712ca8307dacfa5964c805e31e24accfb43c7fd7debce70a0cfb35143, vin: 1, vout: 2
-2025-03-01 21:40:26 CommitTransaction: c40ccccd3ecd24ca120f7446842730b2fa685a642db9fec7c0daae93b4003e6e, vin: 1, vout: 2
-2025-03-01 21:40:27 UpdateTip:            new best=0025802f365415b7a1a201d54751e15fcedbabb1b65edc889a77c026ae8b34f6  height=88  log2_work=14.475733  tx=168  date=2025-03-01 21:40:26 progress=1.000000  cache=0
-2025-03-01 21:40:27 CommitTransaction: 0d32d4647dff71784c096aff41250a2c9e7c7921abcfc58a18d3ae529de728e6, vin: 1, vout: 2
-2025-03-01 21:40:27 CommitTransaction: 78ddfa57c615e4530624fcb7c431ea304727a8a0286ccfc0addf0ccaa82e1d27, vin: 1, vout: 2
-2025-03-01 21:40:28 CommitTransaction: 758bbaecf594ae7c9320aba75928d1e850b7f3fbcc02afca227c0124fa87c4cb, vin: 1, vout: 2
-2025-03-01 21:40:28 CommitTransaction: b5977998f22aeeb0884d410c00013226dfe4f4a03afc1313d4964e8ba046c88b, vin: 1, vout: 2
-2025-03-01 21:40:29 CommitTransaction: bebddf8d4b5e45c5b17bd1985f926634bbc9ac5a0258ba31edae87acdb0f2e94, vin: 1, vout: 2
-2025-03-01 21:40:29 CommitTransaction: 5ff00328327919dff5bb2deadcbceee7e15de8a70c61ce47af1c777a253d6656, vin: 1, vout: 2
-2025-03-01 21:40:30 CommitTransaction: dbbf5ebcb883abede0459d4ff513a4b871e7683660ae07f0d6478edcff5efffe, vin: 1, vout: 2
-2025-03-01 21:40:30 CommitTransaction: fd369cd248c36760294c691a1f1e31b7f415d060076f01e540dd43fe11f24e22, vin: 1, vout: 2
-2025-03-01 21:40:30 CommitTransaction: 09e172229b64a625dc6d30c2755dca8c5575ed38c1f3fb18737e3671e742ab91, vin: 1, vout: 2
-2025-03-01 21:40:31 CommitTransaction: 7fa9771c1ea06d5d5e35d2dea971c894b506efdef6ed8aa18fd60ed43252f43e, vin: 1, vout: 2
-2025-03-01 21:40:31 CommitTransaction: dc122c9505c6f954958daf3269885b33494af8d54cc357336995bc48431b8480, vin: 1, vout: 2
-2025-03-01 21:40:32 CommitTransaction: 43c0eaf1d1c6f404766547b265c977711ef465e98ea131c4388c56981a0cfd8b, vin: 1, vout: 2
-2025-03-01 21:40:32 CommitTransaction: 6fb838d08128b0c3e926d83cfc3dd19f0872fd6296052814e953cef9599c1a4a, vin: 1, vout: 2
-2025-03-01 21:40:33 CommitTransaction: 9f42bace5520b50ebf9f4df54a143a6c558b3df1f8807d39e4688662c934a937, vin: 1, vout: 2
-2025-03-01 21:40:33 CommitTransaction: 2a8aa34a8b657dc6eaf478e9804b65fefba2060d616db523310750e832fbe1fc, vin: 1, vout: 2
-2025-03-01 21:40:33 CommitTransaction: 580042014df7099349323b9608a69c9f224bb0eb5e4f2be9a1cc83ed442aefc6, vin: 1, vout: 2
-2025-03-01 21:40:34 MultiChainMiner: Block Found - 0089419be5e346a1353d36a278403b3432da65e10edf21854dbfff79b721fc24, prev: 0025802f365415b7a1a201d54751e15fcedbabb1b65edc889a77c026ae8b34f6, height: 89, txs: 19
-2025-03-01 21:40:34 UpdateTip:            new best=0089419be5e346a1353d36a278403b3432da65e10edf21854dbfff79b721fc24  height=89  log2_work=14.491853  tx=187  date=2025-03-01 21:40:34 progress=1.000000  cache=0
-2025-03-01 21:40:34 CommitTransaction: 6443f6cb681b5a60f4ffaaaa8fa3a59690f46e6a89465482c5e8bf5c32f00745, vin: 1, vout: 2
-2025-03-01 21:40:34 CommitTransaction: d05f5ae113f76732d6984e2104a4f60b21ddf64dfcb82d3c916c916178c0395c, vin: 1, vout: 2
-2025-03-01 21:40:35 CommitTransaction: 9a955e36690d783522e0b69dd840ce9ebdbfda8ad1e242b4aaa04d2f20d2cc75, vin: 1, vout: 2
-2025-03-01 21:40:35 CommitTransaction: 1f0c5510dcffbade5e5e6dcd76fd16c52f6f854ecd118208f50016121616fa30, vin: 1, vout: 2
-2025-03-01 21:40:36 CommitTransaction: 8fc2401d2875c909e7efc60623e09c9e0ae011859158d6b8642b58313fe158e0, vin: 1, vout: 2
-2025-03-01 21:40:36 CommitTransaction: 9176e600260f098726533e18250d4a7e4d21d4853f751d2f928646c0022deef2, vin: 1, vout: 2
-2025-03-01 21:40:36 CommitTransaction: 6d6540d32ce7debdaced870d8af53b6c4a50bebb72d9596cb7a59e98badbcc88, vin: 1, vout: 2
-2025-03-01 21:40:37 CommitTransaction: f294d8834a49eb18f632e3780486e033054daf3b41876faed14b4fe364c6cac0, vin: 1, vout: 2
-2025-03-01 21:40:37 CommitTransaction: 01345407b9a5c2c249e26f8f72937e7964c1e907d80e4d460a53cdf8ee19818d, vin: 1, vout: 2
-2025-03-01 21:40:38 CommitTransaction: c22b6b3f2d8c5fc5106a6b266c55c09c82e16137955c450b1176cfb57341b628, vin: 1, vout: 2
-2025-03-01 21:40:38 CommitTransaction: a1283c3e9cf75b9dda18efdee63ebbc764b0c5c6bcafcc2a0a29d79cddec552a, vin: 1, vout: 2
-2025-03-01 21:40:39 UpdateTip:            new best=009719645ec53c007ea266d91a599c318ed0184159dbe91f25e7c0720ee8d999  height=90  log2_work=14.507795  tx=198  date=2025-03-01 21:40:38 progress=1.000000  cache=0
-2025-03-01 21:40:39 CommitTransaction: a5b9640761369bb772e482595f97c041c3327297bcec843f52aed2eb892bd2d6, vin: 1, vout: 2
-2025-03-01 21:40:39 CommitTransaction: a1fb04ba7951c6120e4f02cab48e4be4503a91e34c1f8a8901173b4875afdc50, vin: 1, vout: 2
-2025-03-01 21:40:40 CommitTransaction: 5bc97d0a4ca5ce20d8d2c580ab421a7f326191c8173b3fae92310d9ce4b5b6b9, vin: 1, vout: 2
-2025-03-01 21:40:40 CommitTransaction: ee6ed6587358a92e389b38546b066f621ca0ffe2fbac098d3014f451ef6bf5bc, vin: 1, vout: 2
-2025-03-01 21:40:40 CommitTransaction: acc275f3bb1a33c6f9eccd7bb98a0fa25c7a50e8481c134d70f356e821958181, vin: 1, vout: 2
-2025-03-01 21:40:41 CommitTransaction: f224fb5e5c98e2d8dd99dc45aba28b194654f74231e4469735c66902617324c2, vin: 1, vout: 2
-2025-03-01 21:40:41 CommitTransaction: e4a3b06189589ac2608c590c7f9eb721acbb9049cd68f91a24b21782f6403a8c, vin: 1, vout: 2
-2025-03-01 21:40:42 CommitTransaction: 6125f389d90d451d65d2976851bc697597222c1f2f7427b21f4d7340c501e8a0, vin: 1, vout: 2
-2025-03-01 21:40:42 CommitTransaction: cb8e96073cbdcbf4726177078195141a68d2e572fbe37d840b56fe7797ae7655, vin: 1, vout: 2
-2025-03-01 21:40:43 CommitTransaction: 4fdc46aa55670754c07f69cfd4b75e3090ddce9c6eca429161e2066a66f7d656, vin: 1, vout: 2
-2025-03-01 21:40:43 CommitTransaction: 5177ba3a0e1778b3dc28917c24b15d508a562857e6db07a6f3351b727291f7d8, vin: 1, vout: 2
-2025-03-01 21:40:43 CommitTransaction: 65ce48480c3b9537a3da3477ac1ba2285332af12dd425db940a39868affc81ce, vin: 1, vout: 2
-2025-03-01 21:40:44 CommitTransaction: f740d8d4225222fa6fdfe735e1555418292f263200dc33689a076268f3c15a77, vin: 1, vout: 2
-2025-03-01 21:40:44 UpdateTip:            new best=00243bdc2dd8a451a17270c665a64ed202e8745cde9e441511b96e88951daeb9  height=91  log2_work=14.523562  tx=211  date=2025-03-01 21:40:44 progress=1.000000  cache=0
-2025-03-01 21:40:44 CommitTransaction: 0c6be87a671ea30549333fb9ebc57942b68815439cdf7f684dc5a9bfd7277d6f, vin: 1, vout: 2
-2025-03-01 21:40:45 CommitTransaction: 29c6b0c5bdf8a06f8ba929426194098e23638fc1bb9c9d299ab2734bf6b232ae, vin: 1, vout: 2
-2025-03-01 21:40:45 CommitTransaction: b94beebf708acb5e2bb6beef53d2797b1cac70a9ba238f054aca213811635f20, vin: 1, vout: 2
-2025-03-01 21:40:46 CommitTransaction: e26576b29861e303bc6e54c4d2276c235918ee13a1242e3d9637441c28eab64d, vin: 1, vout: 2
-2025-03-01 21:40:46 CommitTransaction: 482eb9e60ce751e6c5ff1f43f73604ea4a132d157be96d4a7763729ac51cc329, vin: 1, vout: 2
-2025-03-01 21:40:47 CommitTransaction: 3a921b5b4208873a8df8168bc64fe8bcc90ce9f5bf24502765f9d71b3bb54cf9, vin: 1, vout: 2
-2025-03-01 21:40:47 CommitTransaction: d9a915e795a083baac6e92d1aad9a5053b6eaf348a5fa10b3fe33e4d865c4a4b, vin: 1, vout: 2
-2025-03-01 21:40:47 CommitTransaction: 167daeada3c5fb113031974140c48b16f213dacbe0c965b4e816a126eb48d816, vin: 1, vout: 2
-2025-03-01 21:40:48 CommitTransaction: d6846c968147e0004ed95095144e2d6228a3dc6eff36fb7ec18d54d6587bee36, vin: 1, vout: 2
-2025-03-01 21:40:48 CommitTransaction: dc3674b875db633b1e6b967abb6121774b088b95edb106e8e6c931e95320aa25, vin: 1, vout: 2
-2025-03-01 21:40:49 CommitTransaction: f3e45c542adbc4ab5c2886e97f5f9a5dd264eecc17e08d651a904761c413c5b3, vin: 1, vout: 2
-2025-03-01 21:40:49 CommitTransaction: f7dee7ffa5b10a7e60d719288a64a926f5aa154b97fe63396544a7051a879b00, vin: 1, vout: 2
-2025-03-01 21:40:50 CommitTransaction: 626977b3fd256ad3c74b227841f6622beeafb56fac23d14712b1b421e47c8e5c, vin: 1, vout: 2
-2025-03-01 21:40:50 CommitTransaction: 3cef0ede04d2c569d7750473ad89d1c3d4f9539b9ac64adfd1d76150776f99d0, vin: 1, vout: 2
-2025-03-01 21:40:51 CommitTransaction: a47496d74d979373a12a4ca0d04adf5517af36417e6360632f3879fe7847d928, vin: 1, vout: 2
-2025-03-01 21:40:51 CommitTransaction: 4e283613ecad77a2573b4e9c58477664bc4d2dd7f7d3d66727df0fa67f41896b, vin: 1, vout: 2
-2025-03-01 21:40:51 CommitTransaction: 5f287287637e54e2f3ef5a8e04e0aef339c131e0814942a9e0bc3c6fcb184f3f, vin: 1, vout: 2
-2025-03-01 21:40:52 CommitTransaction: 6a999087bcdfccb6203c8abfd1a045589de2e8eeb9b7ec26deb1d6c2988a4db9, vin: 1, vout: 2
-2025-03-01 21:40:52 CommitTransaction: 765aba49fbc313a953aa0b6d5630451ee8d960212dadefaec28b040c592aca5d, vin: 1, vout: 2
-2025-03-01 21:40:53 CommitTransaction: 9d4974e6847d75b1ffe3a4dc5df1add4b3bc767cca295693af4640c8e2b1551d, vin: 1, vout: 2
-2025-03-01 21:40:53 CommitTransaction: 6e162be634fa14b6320f8d736bc64a52a8f7bf27ca7359bf893a59f87e5bed7f, vin: 1, vout: 2
-2025-03-01 21:40:54 CommitTransaction: 0be213303f772dcc86287d22186396598b155a6e6c97aaa30ee400fc984f1df5, vin: 1, vout: 2
-2025-03-01 21:40:54 CommitTransaction: fbf91f80650e8ffe2e4f43666ba4c4cc8c4ab1799f9c3e46e44a36aeb102bb1b, vin: 1, vout: 2
-2025-03-01 21:40:54 UpdateTip:            new best=004fdc4de8c6114a6f10544e547276b1fec931dd225fa33e86a2307d215c1c96  height=92  log2_work=14.539159  tx=235  date=2025-03-01 21:40:54 progress=1.000000  cache=0
-2025-03-01 21:40:54 CommitTransaction: 888fcc81a6e5f1f77f7c75ca9e294b8cd5497c5e4e2c16507533e80d2689e01e, vin: 1, vout: 2
-2025-03-01 21:40:55 CommitTransaction: 3caa239e7b190751d7cd90ab085159fb90628f97ce3e066f3155829ba049c3b2, vin: 1, vout: 2
-2025-03-01 21:40:55 CommitTransaction: 6f10be5446c937f761eae74019bf8441ef9cdf944278bf3ac728a00ecff716c0, vin: 1, vout: 2
-2025-03-01 21:40:56 CommitTransaction: 1b49fd9628281889af91fe06efcfcbb14980b4f63d74ba13fc0c5ea842cc4552, vin: 1, vout: 2
-2025-03-01 21:40:56 CommitTransaction: 4388314d2d7b5e6420e514ae8587ffd64ed35c701261c5fb2706f62d1e9c5cfd, vin: 1, vout: 2
-2025-03-01 21:40:57 CommitTransaction: 61fa90fc7b1b04528408da19c2322c88ce56193541aeeb78dd94327a38c78ad2, vin: 1, vout: 2
-2025-03-01 21:40:57 CommitTransaction: fdc77a45832ce118aade5de1166aac1e95a23eebcc3f6aae77a96a8c20a10e33, vin: 1, vout: 2
-2025-03-01 21:40:58 UpdateTip:            new best=0021406dce32f945241c8b2b4a482405644eea91ec6eaf3ea5b8dd404af3d15a  height=93  log2_work=14.554589  tx=243  date=2025-03-01 21:40:57 progress=1.000000  cache=0
-2025-03-01 21:40:58 CommitTransaction: bb9ca689834aea5643deab4d72e5b17861314b756d41638603d312dcc62544cb, vin: 1, vout: 2
-2025-03-01 21:40:58 CommitTransaction: f878d75d0879a4401a299efa3f7e527bc762efe7797b20a72795127aaff215cd, vin: 1, vout: 2
-2025-03-01 21:40:59 CommitTransaction: 59786a0ce7ccc3a3831355120118ba52d3f3f815e6bf7c2ef03b31b9577381be, vin: 1, vout: 2
-2025-03-01 21:40:59 CommitTransaction: 8eaf4201ca7e356b89ba6d9632f89f194047aaa5789eaa0b80fc025fdeb9e51e, vin: 1, vout: 2
-2025-03-01 21:40:59 CommitTransaction: e36185dedda62c485bf7afb93c170ada97a4d480321edccbd5553cbaff1b6aa4, vin: 1, vout: 2
-2025-03-01 21:41:00 CommitTransaction: c016dcb63f748881316d5375a39137beec710b1c77a008bf845168d43221d2d0, vin: 1, vout: 2
-2025-03-01 21:41:00 CommitTransaction: 741a897ef3267cb785fb7e5c9abc0f3ee23615ef0888e4c73366b39875001a8b, vin: 1, vout: 2
-2025-03-01 21:41:01 CommitTransaction: 09d56c0b91d1f89faee067c06f32e43f8148b23b67e58b041e08258e627e81eb, vin: 1, vout: 2
-2025-03-01 21:41:01 CommitTransaction: 63cf16edcfde29db5c9d1d29f1cbfd6a53177deea4ec91c7964166584f781f9e, vin: 1, vout: 2
-2025-03-01 21:41:02 CommitTransaction: d87a3516f1aa62e12d3fdb585dc0d84ac9c65246aa7e4c34242ba923c7f0388f, vin: 1, vout: 2
-2025-03-01 21:41:02 CommitTransaction: 6aeb93429ffbf638dfa06f946a9adc8fd0de8ecc3f2c0c6b11f4146708f8780a, vin: 1, vout: 2
-2025-03-01 21:41:02 CommitTransaction: 3046e74b8f5fe2edbdf1e6323a4684488300f9282f24b569265232f0a493590f, vin: 1, vout: 2
-2025-03-01 21:41:03 CommitTransaction: 413ccbbc297f16b6c7e6d559f29b607a086b066d86a7c0cc419e43caae924724, vin: 1, vout: 2
-2025-03-01 21:41:03 UpdateTip:            new best=00dccf4d7437c727dc9d2ca4a3e1436e1531e44cf961d0d15e6b98342499b8dd  height=94  log2_work=14.569856  tx=257  date=2025-03-01 21:41:03 progress=1.000000  cache=0
-2025-03-01 21:41:03 CommitTransaction: c0d7fc430dbd309c47f6d845daad9afc130ee3f069d693ca0da922c44b2bb7ef, vin: 1, vout: 2
-2025-03-01 21:41:04 CommitTransaction: e7a0ccade270cf198993dc0bb3b53869abc4d499a34e967e1d47e9850a972cba, vin: 1, vout: 2
-2025-03-01 21:41:04 CommitTransaction: c913974d6176a10dd58b7f7542a93f373e013c4e2c6cfde429af1b397ca07cd3, vin: 1, vout: 2
-2025-03-01 21:41:05 CommitTransaction: 66afe8c1e3e49d365832f253b23b9bd9a89c7ee33cbbb40b9f7b557118ae74a7, vin: 1, vout: 2
-2025-03-01 21:41:05 CommitTransaction: 82cd669c54457cb18ee407702cbee3b757e1266c633eebefbfa0b9ac66dd5a5f, vin: 1, vout: 2
-2025-03-01 21:41:05 CommitTransaction: 9e9beeae0aeba92077c7249a781e119519aefca064bcb87f20b61768a8eda8ca, vin: 1, vout: 2
-2025-03-01 21:41:06 CommitTransaction: 8486d5cbbca0bf70a33f47c79eadebbee3f0ab1761b4075c02dde1a9e471935a, vin: 1, vout: 2
-2025-03-01 21:41:06 CommitTransaction: 8b667cee16633ada0b8cd2224b4a52bf274e396265171115c39e7be90838b71b, vin: 1, vout: 2
-2025-03-01 21:41:07 CommitTransaction: 2bd5898928867fba41303adc4385d20a0eaa5020e81cfbe296efabdf571567ca, vin: 1, vout: 2
-2025-03-01 21:41:07 CommitTransaction: 7b1b163d0166069b22e71f21b4f97312bc618fb25f401d0e6273fe67ea85043a, vin: 1, vout: 2
-2025-03-01 21:41:08 CommitTransaction: b653f989183a5b025cd730ff48d585342399307ffb3af65f3822b4ec1bb2427d, vin: 1, vout: 2
-2025-03-01 21:41:08 MultiChainMiner: Block Found - 00efaadb960bd2a63edaa6b29eb99714b180ed0d650af679e5f579c5e30cf67b, prev: 00dccf4d7437c727dc9d2ca4a3e1436e1531e44cf961d0d15e6b98342499b8dd, height: 95, txs: 14
-2025-03-01 21:41:08 UpdateTip:            new best=00efaadb960bd2a63edaa6b29eb99714b180ed0d650af679e5f579c5e30cf67b  height=95  log2_work=14.584963  tx=271  date=2025-03-01 21:41:08 progress=1.000000  cache=0
-2025-03-01 21:41:08 CommitTransaction: 22a3ace26208cfe7a84a654aab8dde15b9e624138c75c71dbe23078aa7ce5d22, vin: 1, vout: 2
-2025-03-01 21:41:09 CommitTransaction: bb5a0ccb798d3a87d2638b23ef58050d865dbe78f775e49fd9530512422c58a9, vin: 1, vout: 2
-2025-03-01 21:41:15 WARNING: Unlocking wallet after failure: method: {"method":"liststreamitems","id":"90249140-1740865275"}, error: {"result":null,"error":{"code":-708,"message":"Stream with this name not found: product_registry"},"id":"90249140-1740865275"}
-
-2025-03-01 21:41:23 UpdateTip:            new best=002acd2b9eb0057f3a56cc4cd066b886ddbc68d0c1e178da53e5eef7f4489faf  height=96  log2_work=14.599913  tx=274  date=2025-03-01 21:41:23 progress=1.000000  cache=0
-2025-03-01 21:41:36 MultiChainMiner: Block Found - 002ed854bd5a1285a31a1664c0d8385182e8b8cac036d4cab9220badb27099cf, prev: 002acd2b9eb0057f3a56cc4cd066b886ddbc68d0c1e178da53e5eef7f4489faf, height: 97, txs: 1
-2025-03-01 21:41:37 UpdateTip:            new best=002ed854bd5a1285a31a1664c0d8385182e8b8cac036d4cab9220badb27099cf  height=97  log2_work=14.61471  tx=275  date=2025-03-01 21:41:36 progress=1.000000  cache=0
-2025-03-01 21:42:04 UpdateTip:            new best=00f7be2de683623f89152950d8a724ab97a95546fd588d20f1e08f54ab18db51  height=98  log2_work=14.629357  tx=276  date=2025-03-01 21:42:03 progress=1.000000  cache=0
-2025-03-01 21:42:24 UpdateTip:            new best=006da800eb082f3a007b7bbb967859b097c4b43c41ccf17e29a13037c7005756  height=99  log2_work=14.643856  tx=277  date=2025-03-01 21:42:23 progress=1.000000  cache=0
-2025-03-01 21:42:43 MultiChainMiner: Block Found - 0009c267464d9a3fd96a2c72dff915fd4db32595f75a81239aeffa6b785a07a5, prev: 006da800eb082f3a007b7bbb967859b097c4b43c41ccf17e29a13037c7005756, height: 100, txs: 1
-2025-03-01 21:42:43 UpdateTip:            new best=0009c267464d9a3fd96a2c72dff915fd4db32595f75a81239aeffa6b785a07a5  height=100  log2_work=14.658211  tx=278  date=2025-03-01 21:42:43 progress=1.000000  cache=0
-2025-03-01 21:42:58 UpdateTip:            new best=0057032919fb4253fbeddaed5db14df017be63d29cc5c49baf9b5108e1b1468f  height=101  log2_work=14.672425  tx=279  date=2025-03-01 21:42:57 progress=1.000000  cache=0
-2025-03-01 21:42:58 Accepted header for block 00dcea2386dbc77fc7e22ede79c28bd0eb2f58dad0a6b0c6a9ddf25ee2e666d0 found on alternative chain at height 101
-2025-03-01 21:43:07 MultiChainMiner: Block Found - 00c3ea3be1af20dcf063d9d1fc489c4ebe712f5e4e84a91ffce214d5d335dd3c, prev: 0057032919fb4253fbeddaed5db14df017be63d29cc5c49baf9b5108e1b1468f, height: 102, txs: 1
-2025-03-01 21:43:07 UpdateTip:            new best=00c3ea3be1af20dcf063d9d1fc489c4ebe712f5e4e84a91ffce214d5d335dd3c  height=102  log2_work=14.686501  tx=280  date=2025-03-01 21:43:07 progress=1.000000  cache=0
-2025-03-01 21:43:30 UpdateTip:            new best=000f5e7d912537fe67a3b45967797ff874e91db6853327fd8b06279551c2fd63  height=103  log2_work=14.70044  tx=281  date=2025-03-01 21:43:29 progress=1.000000  cache=0
-2025-03-01 21:43:34 UpdateTip:            new best=00a615bbda080bfbeff9801cb250e8abf81a945ffd1ada93d6c7bd3553e8628a  height=104  log2_work=14.714246  tx=282  date=2025-03-01 21:43:34 progress=1.000000  cache=0
-2025-03-01 21:43:52 UpdateTip:            new best=00bf26deb3b828799ca55ce77e518caadbcfc922e6cc7f4d0a89d94848464099  height=105  log2_work=14.72792  tx=283  date=2025-03-01 21:43:51 progress=1.000000  cache=0
-2025-03-01 21:44:00 UpdateTip:            new best=0082441bc7e4fb8774c8c35c6b2542b940f39a6d4da9ac62790b78347bebffc0  height=106  log2_work=14.741467  tx=284  date=2025-03-01 21:44:00 progress=1.000000  cache=0
-2025-03-01 21:44:15 MultiChainMiner: Block Found - 0003fef39ac08062172cbc9fdac0123657043d4d9aa6d453c7872550110619a7, prev: 0082441bc7e4fb8774c8c35c6b2542b940f39a6d4da9ac62790b78347bebffc0, height: 107, txs: 1
-2025-03-01 21:44:15 UpdateTip:            new best=0003fef39ac08062172cbc9fdac0123657043d4d9aa6d453c7872550110619a7  height=107  log2_work=14.754888  tx=285  date=2025-03-01 21:44:15 progress=1.000000  cache=0
-2025-03-01 21:44:34 UpdateTip:            new best=00d5f2908cef51eb872c5d8d4b49931b85c8568376715d594b68ac96d90fce5c  height=108  log2_work=14.768184  tx=286  date=2025-03-01 21:44:33 progress=1.000000  cache=0
-2025-03-01 21:44:49 MultiChainMiner: Block Found - 00e97ee69d53956dd8812ee211ddd7b09146e6d3be1ddefd703a6decd3877f11, prev: 00d5f2908cef51eb872c5d8d4b49931b85c8568376715d594b68ac96d90fce5c, height: 109, txs: 1
-2025-03-01 21:44:49 UpdateTip:            new best=00e97ee69d53956dd8812ee211ddd7b09146e6d3be1ddefd703a6decd3877f11  height=109  log2_work=14.78136  tx=287  date=2025-03-01 21:44:49 progress=1.000000  cache=0
-2025-03-01 21:44:50 UpdateTip:            new best=003cbd4e27695f5f003b8eb0ce63a03eed26d73e238bea91186d50adfb9557d3  height=110  log2_work=14.794416  tx=288  date=2025-03-01 21:44:50 progress=1.000000  cache=0
-2025-03-01 21:45:11 MultiChainMiner: Block Found - 00822fd290e357d65012c235cb8eec3ae06ee229509a993330e7bc2085e6ea9b, prev: 003cbd4e27695f5f003b8eb0ce63a03eed26d73e238bea91186d50adfb9557d3, height: 111, txs: 1
-2025-03-01 21:45:11 UpdateTip:            new best=00822fd290e357d65012c235cb8eec3ae06ee229509a993330e7bc2085e6ea9b  height=111  log2_work=14.807355  tx=289  date=2025-03-01 21:45:11 progress=1.000000  cache=0
-2025-03-01 21:45:12 Accepted header for block 00dbb4d4bf07823c77b9a76ad9c22ed41235777ed98b9b4a303f69643142307e found on alternative chain at height 111
-2025-03-01 21:45:12 Tx not accepted in resurrection after block: d27f8caee89a6c5bad1ac235f12ba0b78d43b82a0ed50db53a03da1dcb2b7c57
-2025-03-01 21:45:12 UpdateTip:            new best=003cbd4e27695f5f003b8eb0ce63a03eed26d73e238bea91186d50adfb9557d3  height=110  log2_work=14.794416  tx=288  date=2025-03-01 21:44:50 progress=1.000000  cache=0
-2025-03-01 21:45:12 UpdateTip:            new best=00dbb4d4bf07823c77b9a76ad9c22ed41235777ed98b9b4a303f69643142307e  height=111  log2_work=14.807355  tx=289  date=2025-03-01 21:45:11 progress=1.000000  cache=0
-2025-03-01 21:45:31 MultiChainMiner: Block Found - 00f829e00eae08f36286814e8fee8a670c7e7b9bb5c632d1f34b1a9725f95100, prev: 00dbb4d4bf07823c77b9a76ad9c22ed41235777ed98b9b4a303f69643142307e, height: 112, txs: 1
-2025-03-01 21:45:31 UpdateTip:            new best=00f829e00eae08f36286814e8fee8a670c7e7b9bb5c632d1f34b1a9725f95100  height=112  log2_work=14.820179  tx=290  date=2025-03-01 21:45:31 progress=1.000000  cache=0
-2025-03-01 21:45:52 UpdateTip:            new best=005c23e3aef3a5f805cc4c774d75e960705f907f938e7eeefbe9cd9ce25ab090  height=113  log2_work=14.83289  tx=291  date=2025-03-01 21:45:51 progress=1.000000  cache=0
-2025-03-01 21:46:11 UpdateTip:            new best=007aa303e93164b8575b92a727861dc4fbaa7d8e8fb1451fc3c440e568e21e29  height=114  log2_work=14.84549  tx=292  date=2025-03-01 21:46:11 progress=1.000000  cache=0
-2025-03-01 21:46:16 CommitTransaction: 61891bf7d8fc43b4c0bc5f7fa29ce84571dc555435f23b111fa3bc192a36826f, vin: 1, vout: 2
-2025-03-01 21:46:16 CommitTransaction: cbcba1ad32f245cea84cb49fcc0d0ceac388b36785705eb5e60362270a71d1b9, vin: 1, vout: 2
-2025-03-01 21:46:17 CommitTransaction: 8817c225a23613637ca03744731fa21be7b0dfecefa3231b5f7858babc8a970b, vin: 1, vout: 2
-2025-03-01 21:46:17 CommitTransaction: fa33173623a67288e82befba426f69587d18c78384a63f90446fd73bb3178cb5, vin: 1, vout: 2
-2025-03-01 21:46:17 CommitTransaction: 2218375961cf608ae36f0e16a744f658a3dcb1185503c88e5f4f619fe218dd77, vin: 1, vout: 2
-2025-03-01 21:46:18 CommitTransaction: d762f376af98165e6d5de8a075dda48d964df616c4e7b9cf38ea18a52433085a, vin: 1, vout: 2
-2025-03-01 21:46:18 CommitTransaction: 6344a3860fdd9a729331d7cc6f7f3a0fb6b5b7e4e9953dd6ceafd369d8de748a, vin: 1, vout: 2
-2025-03-01 21:46:19 CommitTransaction: e455766312bf841d3ede42e973d957bfb6e942e41233c0af219cbe7fb939dc8f, vin: 1, vout: 2
-2025-03-01 21:46:19 CommitTransaction: bad92dfc953628ebb3cfa993647fe7c28cdecbdb1202d6a56a0ba8c7b63bf81b, vin: 1, vout: 2
-2025-03-01 21:46:20 CommitTransaction: 2961ad62d7924476b7bac9db64441a7fdb5abb56d2c416f8a0a07439f7e84312, vin: 1, vout: 2
-2025-03-01 21:46:20 CommitTransaction: b67c0d717034232ac548e88019a90e79de985cb63e3916f034f4c987973a8570, vin: 1, vout: 2
-2025-03-01 21:46:20 CommitTransaction: b3162a96635e529932fabe32457e5e33736cd3ce17e70a4df105872a3d71de49, vin: 1, vout: 2
-2025-03-01 21:46:21 MultiChainMiner: Block Found - 00019a6d07599e8e9f6fb718df609565be86a858ec079f35a45d168cabb28168, prev: 007aa303e93164b8575b92a727861dc4fbaa7d8e8fb1451fc3c440e568e21e29, height: 115, txs: 13
-2025-03-01 21:46:21 UpdateTip:            new best=00019a6d07599e8e9f6fb718df609565be86a858ec079f35a45d168cabb28168  height=115  log2_work=14.857981  tx=305  date=2025-03-01 21:46:21 progress=1.000000  cache=0
-2025-03-01 21:46:21 CommitTransaction: 36433055a569b42fe4273764d9873b07dbe07c8e9e2945d2b6e7de4178d9cb79, vin: 1, vout: 2
-2025-03-01 21:46:21 CommitTransaction: 7ee7c36950a1065eb1d6018211989a92a2e71276546ab73a791323614c9b43e3, vin: 1, vout: 2
-2025-03-01 21:46:22 CommitTransaction: 02b3f9a7fec9d3436cee6a7469ffd2556740464aaf5657d3f68f6859749d5f1e, vin: 1, vout: 2
-2025-03-01 21:46:22 CommitTransaction: a19abfd1b33df1ab7aa0db512919cd1906f487cd0319b97eae89a98bbc0322f2, vin: 1, vout: 2
-2025-03-01 21:46:23 CommitTransaction: f41bc66a8fda5a076b41ee74fe7f49454527c3c31d3a73b9d92eaf751bd1c2c8, vin: 1, vout: 2
-2025-03-01 21:46:23 CommitTransaction: b9477ace1e8d2d7b168a1895088c0dea6fe76140dd0e0ff99e54976bd1a7ff84, vin: 1, vout: 2
-2025-03-01 21:46:33 UpdateTip:            new best=00c7c4f9dc913889049604653fb44a512fb12f827b3c32154db3bb8b61bce290  height=116  log2_work=14.870365  tx=312  date=2025-03-01 21:46:32 progress=1.000000  cache=0
-2025-03-01 21:46:54 UpdateTip:            new best=001a88276637aa1ce95fe20ceeb9bbc62ed64cd7614e122f2b5e68bbcd61c0ad  height=117  log2_work=14.882643  tx=313  date=2025-03-01 21:46:54 progress=1.000000  cache=0
-2025-03-01 21:47:04 UpdateTip:            new best=0090b768c60af1803ed67a7ee04976b7705a0e70ee0792e897b867ee2e300a0e  height=118  log2_work=14.894818  tx=314  date=2025-03-01 21:47:04 progress=1.000000  cache=0
-2025-03-01 21:47:19 UpdateTip:            new best=006ff58a302f8c42f99a19ec1bbbe30c47e667ce81a5d699cb37b0d25dac8274  height=119  log2_work=14.906891  tx=315  date=2025-03-01 21:47:18 progress=1.000000  cache=0
-2025-03-01 21:47:31 UpdateTip:            new best=00d8612e8adb7ae2ec82335e2dca7ce507a82a29c256c5423bb4a478c26a730d  height=120  log2_work=14.918863  tx=316  date=2025-03-01 21:47:30 progress=1.000000  cache=0
-2025-03-01 21:47:53 UpdateTip:            new best=0000a2747ea1f6705d0d809003f362f4079a9f70c53b0f2e0cb5684392c89dbb  height=121  log2_work=14.930737  tx=317  date=2025-03-01 21:47:52 progress=1.000000  cache=0
-2025-03-01 21:48:02 MultiChainMiner: Block Found - 00e6fe6eb86f88b48f9431d3ad5d9ea003c97e0b88fceb2dfdf44b7627fda67d, prev: 0000a2747ea1f6705d0d809003f362f4079a9f70c53b0f2e0cb5684392c89dbb, height: 122, txs: 1
-2025-03-01 21:48:02 UpdateTip:            new best=00e6fe6eb86f88b48f9431d3ad5d9ea003c97e0b88fceb2dfdf44b7627fda67d  height=122  log2_work=14.942515  tx=318  date=2025-03-01 21:48:02 progress=1.000000  cache=0
-2025-03-01 21:48:27 UpdateTip:            new best=00b675f952eed086410a4c3c51e4f784e8382c6f11b2d920af2ed8138c9075c7  height=123  log2_work=14.954196  tx=319  date=2025-03-01 21:48:27 progress=1.000000  cache=0
-2025-03-01 21:48:35 UpdateTip:            new best=00577a7a1b7039c225b0589ef01cfe96b2de2a81d86f4947c6ab7a8acbf3ed0f  height=124  log2_work=14.965784  tx=320  date=2025-03-01 21:48:34 progress=1.000000  cache=0
-2025-03-01 21:48:50 MultiChainMiner: Block Found - 002ebf83a4af3c5e453ba6009ca01a0ef5865ccffa51600822ceb36729c85eae, prev: 00577a7a1b7039c225b0589ef01cfe96b2de2a81d86f4947c6ab7a8acbf3ed0f, height: 125, txs: 1
-2025-03-01 21:48:51 UpdateTip:            new best=002ebf83a4af3c5e453ba6009ca01a0ef5865ccffa51600822ceb36729c85eae  height=125  log2_work=14.97728  tx=321  date=2025-03-01 21:48:50 progress=1.000000  cache=0
-2025-03-01 21:49:05 UpdateTip:            new best=00bf2b01b36fd13558f024e2d5b51d1e8ebad28b3bd4bea03136c209d3802c0b  height=126  log2_work=14.988685  tx=322  date=2025-03-01 21:49:05 progress=1.000000  cache=0
-2025-03-01 21:49:05 Accepted header for block 00751522ef307ac648731d8b129cbb4184b3f19dde9452128bd652d06914f2b8 found on alternative chain at height 126
+2025-03-02 15:01:02 MultiChain version build 2.3.1, Community Edition, protocol 20013 (Oct 30 2022)
+2025-03-02 15:01:02 Using BerkeleyDB version Berkeley DB 4.8.30: (April  9, 2010)
+2025-03-02 15:01:02 Default data directory /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain
+2025-03-02 15:01:02 Using data directory /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain
+2025-03-02 15:01:02 Using config file /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain/main-chain.conf
+2025-03-02 15:01:02 Using at most 125 connections (1024 file descriptors available)
+2025-03-02 15:01:02 Using 8 threads for script verification
+2025-03-02 15:01:02 Using wallet wallet.dat
+2025-03-02 15:01:02 init message: Verifying wallet...
+2025-03-02 15:01:02 Wallet file doesn't exist. New file will be created with version 3.
+2025-03-02 15:01:02 HTTP: creating work queue of depth 16
+2025-03-02 15:01:02 HTTP: starting 4 worker threads
+2025-03-02 15:01:02 init message: Initializing multichain...
+2025-03-02 15:01:02 nFileVersion = 0
+2025-03-02 15:01:02 Keys: 0 plaintext, 0 encrypted, 0 w/ metadata, 0 total
+2025-03-02 15:01:02 mchn: Default key is not found - creating new... 
+2025-03-02 15:01:02 keypool added key 1, size=1
+2025-03-02 15:01:02 keypool added key 2, size=2
+2025-03-02 15:01:02 mchn: Parameter set is new, THIS IS GENESIS NODE - looking for genesis block...
+2025-03-02 15:01:02 mchn: Genesis block found
+2025-03-02 15:01:02 mchn: Parameter set is valid - initializing blockchain parameters...
+2025-03-02 15:01:02 Wallet mode: 00100103
+2025-03-02 15:01:02 Node paused state is set to 00000000
+2025-03-02 15:01:02 Bound to [::]:7745
+2025-03-02 15:01:02 Bound to 0.0.0.0:7745
+2025-03-02 15:01:02 Filter initialization completed
+2025-03-02 15:01:02 Setting banned transaction list:    0 transactions
+2025-03-02 15:01:02 init message: Loading block index...
+2025-03-02 15:01:02 Opening LevelDB in /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain/blocks/index
+2025-03-02 15:01:02 Opened LevelDB successfully
+2025-03-02 15:01:02 Opening LevelDB in /home/lothrok/Documents/projects/dist-ledger/data/main-chain/main-chain/chainstate
+2025-03-02 15:01:02 Opened LevelDB successfully
+2025-03-02 15:01:02 nFileVersion = 100000
+2025-03-02 15:01:02 Keys: 2 plaintext, 0 encrypted, 2 w/ metadata, 2 total
+2025-03-02 15:01:02 LoadBlockIndexDB: last block file = 0
+2025-03-02 15:01:02 LoadBlockIndexDB: last block file info: CBlockFileInfo(blocks=0, size=0, heights=0...0, time=1970-01-01...1970-01-01)
+2025-03-02 15:01:02 Checking all blk files are present...
+2025-03-02 15:01:02 LoadBlockIndexDB(): transaction index disabled
+2025-03-02 15:01:02 Initializing databases...
+2025-03-02 15:01:02 Pre-allocating up to position 0x1000000 in blk00000.dat
+2025-03-02 15:01:02 New stream. TxID: c78b5939f8bb643698e28fe3344ee4bf5d8063b301380f2dd61856dcb6090004, StreamRef: 0-81-4, Name: root
+2025-03-02 15:01:02 UpdateTip:            new best=008a8f2e52dbccb224a9e7a5690e7773dcb5f4474e33a95f7f8852f57abf215e  height=0  log2_work=8  tx=1  date=2025-03-02 15:01:02 progress=1.000000  cache=0
+2025-03-02 15:01:02 init message: Verifying blocks...
+2025-03-02 15:01:02  block index              67ms
+2025-03-02 15:01:02 MultiChain protocol version: 20013
+2025-03-02 15:01:02 init message: Loading wallet...
+2025-03-02 15:01:02 nFileVersion = 100000
+2025-03-02 15:01:02 Keys: 2 plaintext, 0 encrypted, 2 w/ metadata, 2 total
+2025-03-02 15:01:02  wallet                    1ms
+2025-03-02 15:01:02 mapBlockIndex.size() = 1
+2025-03-02 15:01:02 nBestHeight = 0
+2025-03-02 15:01:02 setKeyPool.size() = 1
+2025-03-02 15:01:02 oldWallet.size() = 0
+2025-03-02 15:01:02 mapWallet.size() = 1
+2025-03-02 15:01:02 mapAddressBook.size() = 1
+2025-03-02 15:01:02 init message: Loading addresses...
+2025-03-02 15:01:02 Invalid or missing peers.dat; recreating
+2025-03-02 15:01:02 Loaded 0 addresses from peers.dat  0ms
+2025-03-02 15:01:02 AddLocal(192.168.0.102:7745,1)
+2025-03-02 15:01:02 Discover: IPv4 wlp0s20f3: 192.168.0.102
+2025-03-02 15:01:02 AddLocal(172.18.0.1:7745,1)
+2025-03-02 15:01:02 Discover: IPv4 br-745edfe8f712: 172.18.0.1
+2025-03-02 15:01:02 AddLocal(172.17.0.1:7745,1)
+2025-03-02 15:01:02 Discover: IPv4 docker0: 172.17.0.1
+2025-03-02 15:01:02 AddLocal([fe80::f6fe:1be2:2ed8:20dc]:7745,1)
+2025-03-02 15:01:02 Discover: IPv6 wlp0s20f3: fe80::f6fe:1be2:2ed8:20dc
+2025-03-02 15:01:02 dnsseed thread start
+2025-03-02 15:01:02 Loading addresses from DNS seeds (could take a while)
+2025-03-02 15:01:02 0 addresses found from DNS seeds
+2025-03-02 15:01:02 dnsseed thread exit
+2025-03-02 15:01:02 net thread start
+2025-03-02 15:01:02 opencon thread start
+2025-03-02 15:01:02 addcon thread start
+2025-03-02 15:01:02 msghand thread start
+2025-03-02 15:01:02 dmsghand thread start
+2025-03-02 15:01:02 gmsghand thread start
+2025-03-02 15:01:02 tmsghand thread start
+2025-03-02 15:01:02 omsghand thread start
+2025-03-02 15:01:02 dumpaddr thread start
+2025-03-02 15:01:02 init message: Reaccepting unconfirmed wallet transactions...
+2025-03-02 15:01:02 MultiChainMiner started
+2025-03-02 15:01:02 init message: Done loading
+2025-03-02 15:01:02 Node started
+2025-03-02 15:01:02 MultiChainMiner: Block Found - 00bbe3ed6cd0c9bb95f7a08be9dcd40a530075382d4ac3ec7a1921ba77952b3e, prev: 008a8f2e52dbccb224a9e7a5690e7773dcb5f4474e33a95f7f8852f57abf215e, height: 1, txs: 1
+2025-03-02 15:01:02 Pre-allocating up to position 0x100000 in rev00000.dat
+2025-03-02 15:01:02 UpdateTip:            new best=00bbe3ed6cd0c9bb95f7a08be9dcd40a530075382d4ac3ec7a1921ba77952b3e  height=1  log2_work=9  tx=2  date=2025-03-02 15:01:03 progress=1.000000  cache=0
+2025-03-02 15:01:02 MultiChainMiner: Block Found - 0084f3ca5d9a549cb4f8eb5f625d9baab2c7bd8ea855844170976741015cfc8e, prev: 00bbe3ed6cd0c9bb95f7a08be9dcd40a530075382d4ac3ec7a1921ba77952b3e, height: 2, txs: 1
+2025-03-02 15:01:02 UpdateTip:            new best=0084f3ca5d9a549cb4f8eb5f625d9baab2c7bd8ea855844170976741015cfc8e  height=2  log2_work=9.5849625  tx=3  date=2025-03-02 15:01:04 progress=1.000000  cache=0
+2025-03-02 15:01:18 mchn: Granting connect,send,receive,create,issue,admin permission(s) to address 1ZWaSXzNmXDPjZnyUqsY1r3znMS5uHLxWbETvD (0-4294967295)
+2025-03-02 15:01:18 CommitTransaction: 42119292ac28f49f65aa5e52b08360fdc7b7030cd22d91e11671c8e789898473, vin: 1, vout: 3
+2025-03-02 15:01:18 mchn: Granting mine permission(s) to address 1ZWaSXzNmXDPjZnyUqsY1r3znMS5uHLxWbETvD (0-4294967295)
+2025-03-02 15:01:18 CommitTransaction: c45409ea95236c848055d9eec07bc4cd139c93e4f12d17ece0d8c98dc23298eb, vin: 1, vout: 3
+2025-03-02 15:01:19 MultiChainMiner terminated
+2025-03-02 15:01:19 MultiChainMiner started
+2025-03-02 15:01:20 MultiChainMiner terminated
+2025-03-02 15:01:20 MultiChainMiner started
+2025-03-02 15:01:21 CommitTransaction: aa5d1ca7a31c339b9b17badba3dd71f6e2bd3ad7fd34cfce4672c241b97edbe1, vin: 1, vout: 2
+2025-03-02 15:01:21 New stream. TxID: aa5d1ca7a31c339b9b17badba3dd71f6e2bd3ad7fd34cfce4672c241b97edbe1, unconfirmed, Name: sidechain_merkle_roots
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 CommitTransaction: bc13115e529049de6969e6c24901cab6a4f31894800624103b0024ad26c80212, vin: 1, vout: 2
+2025-03-02 15:01:22 New stream. TxID: bc13115e529049de6969e6c24901cab6a4f31894800624103b0024ad26c80212, unconfirmed, Name: cross_chain_verifications
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 CommitTransaction: aea613dc9e2fa454cde779f1b575fbcb8f11bab0a35f2ede5f87caa982e912da, vin: 1, vout: 2
+2025-03-02 15:01:22 New stream. TxID: aea613dc9e2fa454cde779f1b575fbcb8f11bab0a35f2ede5f87caa982e912da, unconfirmed, Name: transaction_requests
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 CommitTransaction: 6450ba8c7137d2b9dd735667889b12bbe92d89bf8071aba0bc4b0f6d39d55560, vin: 1, vout: 2
+2025-03-02 15:01:22 New stream. TxID: 6450ba8c7137d2b9dd735667889b12bbe92d89bf8071aba0bc4b0f6d39d55560, unconfirmed, Name: transaction_proofs
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:22 wtxs: AddExplorerTx  Error: 6
+2025-03-02 15:01:25 MultiChainMiner terminated
+2025-03-02 15:01:25 MultiChainMiner started
+2025-03-02 15:01:45 MultiChainMiner: Block Found - 00ce23edc43f2ff3a7a83a11d8f3688b04edab9cdf1b6b473182ebbae1a2ee3c, prev: 0084f3ca5d9a549cb4f8eb5f625d9baab2c7bd8ea855844170976741015cfc8e, height: 3, txs: 7
+2025-03-02 15:01:45 New stream. TxID: aa5d1ca7a31c339b9b17badba3dd71f6e2bd3ad7fd34cfce4672c241b97edbe1, StreamRef: 3-873-56289, Name: sidechain_merkle_roots
+2025-03-02 15:01:45 New stream. TxID: bc13115e529049de6969e6c24901cab6a4f31894800624103b0024ad26c80212, StreamRef: 3-1110-530, Name: cross_chain_verifications
+2025-03-02 15:01:45 New stream. TxID: aea613dc9e2fa454cde779f1b575fbcb8f11bab0a35f2ede5f87caa982e912da, StreamRef: 3-1350-4826, Name: transaction_requests
+2025-03-02 15:01:45 New stream. TxID: 6450ba8c7137d2b9dd735667889b12bbe92d89bf8071aba0bc4b0f6d39d55560, StreamRef: 3-1585-21856, Name: transaction_proofs
+2025-03-02 15:01:45 UpdateTip:            new best=00ce23edc43f2ff3a7a83a11d8f3688b04edab9cdf1b6b473182ebbae1a2ee3c  height=3  log2_work=10  tx=10  date=2025-03-02 15:01:45 progress=1.000000  cache=0
+2025-03-02 15:01:53 mchn: Sending full parameter set to 127.0.0.1:46432
+2025-03-02 15:01:53 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=-1, us=127.0.0.1:7745, peer=1
+2025-03-02 15:01:53 Added time data, samples 2, offset +0 (+0 minutes)
+2025-03-02 15:01:53 disconnecting peer=1
+2025-03-02 15:01:54 mchn: Sending minimal parameter set to 127.0.0.1:46434
+2025-03-02 15:01:54 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=127.0.0.1:7745, peer=2
+2025-03-02 15:01:54 mchn: Parameter set from peer=2 verified
+2025-03-02 15:01:54 mchn: Synced with node 2 on block 3 - requesting mempool
+2025-03-02 15:01:54 mchn: Sending minimal parameter set to 192.168.0.102:37430
+2025-03-02 15:01:54 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=172.17.0.1:7745, peer=3
+2025-03-02 15:01:54 Added time data, samples 3, offset +0 (+0 minutes)
+2025-03-02 15:01:54 mchn: Parameter set from peer=3 verified
+2025-03-02 15:01:54 mchn: Sending minimal parameter set to 172.17.0.1:7755
+2025-03-02 15:01:54 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=3, us=192.168.0.102:35786, peer=4
+2025-03-02 15:01:54 Added time data, samples 4, offset +0 (+0 minutes)
+2025-03-02 15:01:55 disconnecting peer=2
+2025-03-02 15:01:55 mchn: In sync with 3 on block 3 - start pushing txs
+2025-03-02 15:01:55 mchn: pushed 0 inv records to queue
+2025-03-02 15:01:55 mchn: Synced with node 3 on block 3 - requesting mempool
+2025-03-02 15:01:55 mchn: Parameter set from peer=4 verified
+2025-03-02 15:01:55 mchn: pushed 0 inv records to queue
+2025-03-02 15:01:55 mchn: In sync with 4 on block 3 - start pushing txs
+2025-03-02 15:01:55 mchn: pushed 0 inv records to queue
+2025-03-02 15:01:55 mchn: Synced with node 4 on block 3 - requesting mempool
+2025-03-02 15:01:55 mchn: pushed 0 inv records to queue
+2025-03-02 15:01:55 mchn: Sending minimal parameter set to 127.0.0.1:46446
+2025-03-02 15:01:55 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=3, us=127.0.0.1:7745, peer=5
+2025-03-02 15:01:56 mchn: Parameter set from peer=5 verified
+2025-03-02 15:01:56 mchn: mempool request from node 5 on block 3 - start pushing txs
+2025-03-02 15:01:56 mchn: pushed 0 inv records to queue
+2025-03-02 15:01:56 mchn: Synced with node 5 on block 3 - requesting mempool
+2025-03-02 15:02:04 mchn: Granting connect permission(s) to address 1YS8XDnGMUeU5pQmSZfiFFcPFfh9c9kKV5Bwog (0-4294967295)
+2025-03-02 15:02:04 CommitTransaction: 79cd388c46d09f1daa0e95d0609e3f88ecae287a1ffa19ee563ee7aeaaba8af4, vin: 1, vout: 2
+2025-03-02 15:02:07 MultiChainMiner: Block Found - 00830468ac7c3824ed76eb89fe5a0d6f90f73f1623a018caf1584f38723412b0, prev: 00ce23edc43f2ff3a7a83a11d8f3688b04edab9cdf1b6b473182ebbae1a2ee3c, height: 4, txs: 2
+2025-03-02 15:02:07 UpdateTip:            new best=00830468ac7c3824ed76eb89fe5a0d6f90f73f1623a018caf1584f38723412b0  height=4  log2_work=10.321928  tx=12  date=2025-03-02 15:02:07 progress=1.000000  cache=0
+2025-03-02 15:02:23 MultiChainMiner: Block Found - 00d7e4b1d9fc438d8bcc91f9e75558a6a787623a2019a698e7248232e6f8c16f, prev: 00830468ac7c3824ed76eb89fe5a0d6f90f73f1623a018caf1584f38723412b0, height: 5, txs: 1
+2025-03-02 15:02:23 UpdateTip:            new best=00d7e4b1d9fc438d8bcc91f9e75558a6a787623a2019a698e7248232e6f8c16f  height=5  log2_work=10.584963  tx=13  date=2025-03-02 15:02:23 progress=1.000000  cache=0
+2025-03-02 15:02:26 mchn: Sending full parameter set to 127.0.0.1:53264
+2025-03-02 15:02:26 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=-1, us=127.0.0.1:7745, peer=6
+2025-03-02 15:02:26 disconnecting peer=6
+2025-03-02 15:02:26 mchn: Sending minimal parameter set to 127.0.0.1:53274
+2025-03-02 15:02:26 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=127.0.0.1:7745, peer=7
+2025-03-02 15:02:26 mchn: Parameter set from peer=7 verified
+2025-03-02 15:02:27 mchn: Sending minimal parameter set to 172.17.0.1:7765
+2025-03-02 15:02:27 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=0, us=192.168.0.102:55842, peer=8
+2025-03-02 15:02:27 mchn: Synced with node 7 on block 5 - requesting mempool
+2025-03-02 15:02:27 mchn: Parameter set from peer=8 verified
+2025-03-02 15:02:27 mchn: Synced with node 8 on block 5 - requesting mempool
+2025-03-02 15:02:27 mchn: Sending minimal parameter set to 192.168.0.102:41010
+2025-03-02 15:02:27 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=2, us=172.17.0.1:7745, peer=9
+2025-03-02 15:02:27 mchn: mempool request from node 7 on block 5 - start pushing txs
+2025-03-02 15:02:27 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:27 disconnecting peer=7
+2025-03-02 15:02:27 mchn: mempool request from node 8 on block 5 - start pushing txs
+2025-03-02 15:02:27 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:27 mchn: Parameter set from peer=9 verified
+2025-03-02 15:02:27 mchn: Sending minimal parameter set to 127.0.0.1:7765
+2025-03-02 15:02:27 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=5, us=127.0.0.1:53108, peer=10
+2025-03-02 15:02:27 mchn: In sync with 9 on block 5 - start pushing txs
+2025-03-02 15:02:27 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:27 mchn: Synced with node 9 on block 5 - requesting mempool
+2025-03-02 15:02:27 mchn: Parameter set from peer=10 verified
+2025-03-02 15:02:27 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:28 mchn: In sync with 10 on block 5 - start pushing txs
+2025-03-02 15:02:28 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:28 mchn: Synced with node 10 on block 5 - requesting mempool
+2025-03-02 15:02:28 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:29 mchn: Sending minimal parameter set to 127.0.0.1:58022
+2025-03-02 15:02:29 receive version message: /MultiChain:0.2.0.13/: version 70002, blocks=5, us=127.0.0.1:7745, peer=11
+2025-03-02 15:02:29 mchn: Parameter set from peer=11 verified
+2025-03-02 15:02:30 mchn: mempool request from node 11 on block 5 - start pushing txs
+2025-03-02 15:02:30 mchn: pushed 0 inv records to queue
+2025-03-02 15:02:30 mchn: Synced with node 11 on block 5 - requesting mempool
+2025-03-02 15:02:36 mchn: Granting connect permission(s) to address 1ZPcmtWDtdn7MNpBVRg2Aadhetb8yxYyRLDfrd (0-4294967295)
+2025-03-02 15:02:36 CommitTransaction: 12aeb601e6f1e7caa0516727209ed90b62846840dac81a5e6c73d42def3f8a10, vin: 1, vout: 2
+2025-03-02 15:02:37 MultiChainMiner: Block Found - 0009fdacac2e2c60931f10e7eb3f124ffe9eb18967ba7031c8a8d7ab7edf4f8d, prev: 00d7e4b1d9fc438d8bcc91f9e75558a6a787623a2019a698e7248232e6f8c16f, height: 6, txs: 2
+2025-03-02 15:02:37 UpdateTip:            new best=0009fdacac2e2c60931f10e7eb3f124ffe9eb18967ba7031c8a8d7ab7edf4f8d  height=6  log2_work=10.807355  tx=15  date=2025-03-02 15:02:37 progress=1.000000  cache=0
+2025-03-02 15:02:46 MultiChainMiner: Block Found - 00579644143adb4e62ddba42a3fbf9f0d4f32e7af97bda0619a0541688f2bafd, prev: 0009fdacac2e2c60931f10e7eb3f124ffe9eb18967ba7031c8a8d7ab7edf4f8d, height: 7, txs: 1
+2025-03-02 15:02:46 UpdateTip:            new best=00579644143adb4e62ddba42a3fbf9f0d4f32e7af97bda0619a0541688f2bafd  height=7  log2_work=11  tx=16  date=2025-03-02 15:02:46 progress=1.000000  cache=0
+2025-03-02 15:02:52 mchn: Granting send,receive,create permission(s) to address 1YS8XDnGMUeU5pQmSZfiFFcPFfh9c9kKV5Bwog (0-4294967295)
+2025-03-02 15:02:52 CommitTransaction: 53e33e7c128ef8ec2812961a64330bd913f57a37215f1ff712f6dd7e1292cd1d, vin: 1, vout: 2
+2025-03-02 15:02:52 mchn: Granting mine permission(s) to address 1YS8XDnGMUeU5pQmSZfiFFcPFfh9c9kKV5Bwog (0-4294967295)
+2025-03-02 15:02:52 CommitTransaction: 5aea3b27e3ab5e9f9a68877fe4deb0b079be493cb6fdff6755564905e262e4eb, vin: 1, vout: 3
+2025-03-02 15:02:53 mchn: Granting send,receive,create permission(s) to address 1ZPcmtWDtdn7MNpBVRg2Aadhetb8yxYyRLDfrd (0-4294967295)
+2025-03-02 15:02:53 CommitTransaction: 393c2fb0fbb5a096cb21b80676999944cf5fd77ca60109b4b5278f20a994cc54, vin: 1, vout: 2
+2025-03-02 15:02:53 mchn: Granting mine permission(s) to address 1ZPcmtWDtdn7MNpBVRg2Aadhetb8yxYyRLDfrd (0-4294967295)
+2025-03-02 15:02:53 CommitTransaction: ea3e4c862bc9321c80de0267206e3d36b9dc0b788c57c3c2356070ba6c1e88ab, vin: 1, vout: 3
+2025-03-02 15:02:57 MultiChainMiner terminated
+2025-03-02 15:02:57 MultiChainMiner started
+2025-03-02 15:03:15 MultiChainMiner: Block Found - 009f3d9af7778e79d1ceb5e5354f70342dd172cf61f961795682e23d32027536, prev: 00579644143adb4e62ddba42a3fbf9f0d4f32e7af97bda0619a0541688f2bafd, height: 8, txs: 5
+2025-03-02 15:03:15 UpdateTip:            new best=009f3d9af7778e79d1ceb5e5354f70342dd172cf61f961795682e23d32027536  height=8  log2_work=11.169925  tx=21  date=2025-03-02 15:03:15 progress=1.000000  cache=0
+2025-03-02 15:03:32 MultiChainMiner: Block Found - 00e231ab28f6668e6d90624c65017711cfaf0e63490545f9d2b25a226ac93047, prev: 009f3d9af7778e79d1ceb5e5354f70342dd172cf61f961795682e23d32027536, height: 9, txs: 1
+2025-03-02 15:03:32 UpdateTip:            new best=00e231ab28f6668e6d90624c65017711cfaf0e63490545f9d2b25a226ac93047  height=9  log2_work=11.321928  tx=22  date=2025-03-02 15:03:32 progress=1.000000  cache=0
+2025-03-02 15:03:48 MultiChainMiner: Block Found - 00c943ae1fca227f529eabb3e1bf65f174b71bf60371baa1d6d29af51ed35fc7, prev: 00e231ab28f6668e6d90624c65017711cfaf0e63490545f9d2b25a226ac93047, height: 10, txs: 1
+2025-03-02 15:03:48 UpdateTip:            new best=00c943ae1fca227f529eabb3e1bf65f174b71bf60371baa1d6d29af51ed35fc7  height=10  log2_work=11.459432  tx=23  date=2025-03-02 15:03:48 progress=1.000000  cache=0
+2025-03-02 15:04:00 UpdateTip:            new best=00019d69a930c633e9091eef9ca4bc9a2e30cc88962c8c6a332ef299a872fd1b  height=11  log2_work=11.584963  tx=24  date=2025-03-02 15:03:59 progress=1.000000  cache=0
+2025-03-02 15:04:20 MultiChainMiner: Block Found - 00007fbf48fcb66b055864fd1c7345a4924c39222a23dc7a14662a3f78f478d2, prev: 00019d69a930c633e9091eef9ca4bc9a2e30cc88962c8c6a332ef299a872fd1b, height: 12, txs: 1
+2025-03-02 15:04:20 UpdateTip:            new best=00007fbf48fcb66b055864fd1c7345a4924c39222a23dc7a14662a3f78f478d2  height=12  log2_work=11.70044  tx=25  date=2025-03-02 15:04:20 progress=1.000000  cache=0
+2025-03-02 15:04:34 MultiChainMiner: Block Found - 00dc633f3eff9ac471cc068e2a55c72995fe217b91a8affcc312baf62a605eb1, prev: 00007fbf48fcb66b055864fd1c7345a4924c39222a23dc7a14662a3f78f478d2, height: 13, txs: 1
+2025-03-02 15:04:34 UpdateTip:            new best=00dc633f3eff9ac471cc068e2a55c72995fe217b91a8affcc312baf62a605eb1  height=13  log2_work=11.807355  tx=26  date=2025-03-02 15:04:34 progress=1.000000  cache=0
+2025-03-02 15:04:40 MultiChainMiner: Block Found - 00bf112b7f527a18c74106e1d2cb4ea9ecb223e26bad91b6abffed7522a565da, prev: 00dc633f3eff9ac471cc068e2a55c72995fe217b91a8affcc312baf62a605eb1, height: 14, txs: 1
+2025-03-02 15:04:40 UpdateTip:            new best=00bf112b7f527a18c74106e1d2cb4ea9ecb223e26bad91b6abffed7522a565da  height=14  log2_work=11.906891  tx=27  date=2025-03-02 15:04:40 progress=1.000000  cache=0
+2025-03-02 15:05:00 UpdateTip:            new best=00e65325739f01b803d87c1e2b425f2eae42e4fa4cc89bf0b4355917277238fd  height=15  log2_work=12  tx=28  date=2025-03-02 15:04:59 progress=1.000000  cache=0
+2025-03-02 15:05:13 UpdateTip:            new best=00455a13399f9455062e06cba106bc540bd468e565cad96cb8ee6c242cc19e41  height=16  log2_work=12.087463  tx=29  date=2025-03-02 15:05:12 progress=1.000000  cache=0
+2025-03-02 15:05:33 MultiChainMiner: Block Found - 007d90e4ea87c27a96df87d62d8f64f3bcd91b2162aa6eb8bb37e2a7ef0f7591, prev: 00455a13399f9455062e06cba106bc540bd468e565cad96cb8ee6c242cc19e41, height: 17, txs: 1
+2025-03-02 15:05:33 UpdateTip:            new best=007d90e4ea87c27a96df87d62d8f64f3bcd91b2162aa6eb8bb37e2a7ef0f7591  height=17  log2_work=12.169925  tx=30  date=2025-03-02 15:05:33 progress=1.000000  cache=0
+2025-03-02 15:05:44 UpdateTip:            new best=002c1f17774bcca9f2dc37a1510322445e9446b99aa8d6e5939dcee073a00e7a  height=18  log2_work=12.247928  tx=31  date=2025-03-02 15:05:43 progress=1.000000  cache=0
+2025-03-02 15:05:57 UpdateTip:            new best=00b78b3d9a3e420679393678059130b7c2f0f29b684fb05ed50c4cf731565a2c  height=19  log2_work=12.321928  tx=32  date=2025-03-02 15:05:57 progress=1.000000  cache=0
+2025-03-02 15:06:12 MultiChainMiner: Block Found - 00aa3ebcc1255dbc606005601408ad86a0153af3fcc9b62b7756f538103ed3d4, prev: 00b78b3d9a3e420679393678059130b7c2f0f29b684fb05ed50c4cf731565a2c, height: 20, txs: 1
+2025-03-02 15:06:12 UpdateTip:            new best=00aa3ebcc1255dbc606005601408ad86a0153af3fcc9b62b7756f538103ed3d4  height=20  log2_work=12.392317  tx=33  date=2025-03-02 15:06:12 progress=1.000000  cache=0
+2025-03-02 15:06:13 Accepted header for block 009432439980c43eacf38d50d585b67995b4488f9eab05a7a530b4346b79556f found on alternative chain at height 20
+2025-03-02 15:06:27 Accepted header for block 000a2ab8633b710e4948c4e6552c84414147c2b7b673c32c5db0bb9daa9127b3 found on alternative chain at height 21
+2025-03-02 15:06:27 Tx not accepted in resurrection after block: 2011e46e1db584d15f92f8b83202a1b4bdac8a7517e4126d49485925c44dd147
+2025-03-02 15:06:27 UpdateTip:            new best=00b78b3d9a3e420679393678059130b7c2f0f29b684fb05ed50c4cf731565a2c  height=19  log2_work=12.321928  tx=32  date=2025-03-02 15:05:57 progress=1.000000  cache=0
+2025-03-02 15:06:28 UpdateTip:            new best=009432439980c43eacf38d50d585b67995b4488f9eab05a7a530b4346b79556f  height=20  log2_work=12.392317  tx=33  date=2025-03-02 15:06:13 progress=1.000000  cache=0
+2025-03-02 15:06:28 UpdateTip:            new best=000a2ab8633b710e4948c4e6552c84414147c2b7b673c32c5db0bb9daa9127b3  height=21  log2_work=12.459432  tx=34  date=2025-03-02 15:06:27 progress=1.000000  cache=0
+2025-03-02 15:06:41 UpdateTip:            new best=00bf6f86d664de7808458b7e0367f941d2f6d7ff83f5d8a535281bda707caad0  height=22  log2_work=12.523562  tx=35  date=2025-03-02 15:06:41 progress=1.000000  cache=0
+2025-03-02 15:07:07 MultiChainMiner: Block Found - 00b1faee369c471a32b7cc158cd8bd65758943a70b92a8fa19d5633fba9fcce2, prev: 00bf6f86d664de7808458b7e0367f941d2f6d7ff83f5d8a535281bda707caad0, height: 23, txs: 1
+2025-03-02 15:07:07 UpdateTip:            new best=00b1faee369c471a32b7cc158cd8bd65758943a70b92a8fa19d5633fba9fcce2  height=23  log2_work=12.584963  tx=36  date=2025-03-02 15:07:07 progress=1.000000  cache=0
+2025-03-02 15:07:08 Accepted header for block 00b253e8deaf154c9b191f07187837f3028062007d33ebc95f248f62a953cec1 found on alternative chain at height 23
+2025-03-02 15:07:15 Accepted header for block 006d19ba1ba9a534d1b1fb7c600200ed89daffefacf95678b04a46a599fda69c found on alternative chain at height 24
+2025-03-02 15:07:15 Tx not accepted in resurrection after block: 8e7c1096d7fc19925249534d698837fa0f359d6706163df62ea98393860445a6
+2025-03-02 15:07:15 UpdateTip:            new best=00bf6f86d664de7808458b7e0367f941d2f6d7ff83f5d8a535281bda707caad0  height=22  log2_work=12.523562  tx=35  date=2025-03-02 15:06:41 progress=1.000000  cache=0
+2025-03-02 15:07:15 UpdateTip:            new best=00b253e8deaf154c9b191f07187837f3028062007d33ebc95f248f62a953cec1  height=23  log2_work=12.584963  tx=36  date=2025-03-02 15:07:08 progress=1.000000  cache=0
+2025-03-02 15:07:15 UpdateTip:            new best=006d19ba1ba9a534d1b1fb7c600200ed89daffefacf95678b04a46a599fda69c  height=24  log2_work=12.643856  tx=37  date=2025-03-02 15:07:14 progress=1.000000  cache=0
+2025-03-02 15:07:28 UpdateTip:            new best=00e744480f9d84ca46ab4429e6f69728c58b51004b807cf66990827f15c9ef30  height=25  log2_work=12.70044  tx=38  date=2025-03-02 15:07:28 progress=1.000000  cache=0
+2025-03-02 15:07:40 UpdateTip:            new best=00af9ab3b7dc2b9af8f9fcec476476e674568606501312667c8c4fc5de49e996  height=26  log2_work=12.754888  tx=39  date=2025-03-02 15:07:40 progress=1.000000  cache=0
+2025-03-02 15:08:00 MultiChainMiner: Block Found - 00cd5e78cb77a9236180358b3f491e6459115c31c22a379c5e267f99d9d69e97, prev: 00af9ab3b7dc2b9af8f9fcec476476e674568606501312667c8c4fc5de49e996, height: 27, txs: 1
+2025-03-02 15:08:00 UpdateTip:            new best=00cd5e78cb77a9236180358b3f491e6459115c31c22a379c5e267f99d9d69e97  height=27  log2_work=12.807355  tx=40  date=2025-03-02 15:08:00 progress=1.000000  cache=0
+2025-03-02 15:08:17 UpdateTip:            new best=001136c23621c08ba8fd85d8f8aef1b638eb98ed016dee89f65e567a6dc59792  height=28  log2_work=12.857981  tx=41  date=2025-03-02 15:08:16 progress=1.000000  cache=0
+2025-03-02 15:08:38 MultiChainMiner: Block Found - 0039f381880a179b943e8e66a560cd950c3cca2cf086c5be061c28fd22facd1b, prev: 001136c23621c08ba8fd85d8f8aef1b638eb98ed016dee89f65e567a6dc59792, height: 29, txs: 1
+2025-03-02 15:08:38 UpdateTip:            new best=0039f381880a179b943e8e66a560cd950c3cca2cf086c5be061c28fd22facd1b  height=29  log2_work=12.906891  tx=42  date=2025-03-02 15:08:38 progress=1.000000  cache=0
+2025-03-02 15:08:47 MultiChainMiner: Block Found - 001c7d9b6514a6dd4d68aaada40324b3c22c89977761e540e92d1e3741345bad, prev: 0039f381880a179b943e8e66a560cd950c3cca2cf086c5be061c28fd22facd1b, height: 30, txs: 1
+2025-03-02 15:08:47 UpdateTip:            new best=001c7d9b6514a6dd4d68aaada40324b3c22c89977761e540e92d1e3741345bad  height=30  log2_work=12.954196  tx=43  date=2025-03-02 15:08:47 progress=1.000000  cache=0
+2025-03-02 15:08:58 MultiChainMiner: Block Found - 007cd63df6f8925ff47040f3e6409b8118e292d55e5f6c4046edbc1d8238737c, prev: 001c7d9b6514a6dd4d68aaada40324b3c22c89977761e540e92d1e3741345bad, height: 31, txs: 1
+2025-03-02 15:08:58 UpdateTip:            new best=007cd63df6f8925ff47040f3e6409b8118e292d55e5f6c4046edbc1d8238737c  height=31  log2_work=13  tx=44  date=2025-03-02 15:08:58 progress=1.000000  cache=0
+2025-03-02 15:09:16 UpdateTip:            new best=00b73e79c08284433446bfdd7fafc209139c1184a58329ae0dc6644124bc004d  height=32  log2_work=13.044394  tx=45  date=2025-03-02 15:09:16 progress=1.000000  cache=0
+2025-03-02 15:09:38 UpdateTip:            new best=00fad62650b32ac518741864e59fdda6e1a1faba2d2d0f3a034a4c9fc59fbaa8  height=33  log2_work=13.087463  tx=46  date=2025-03-02 15:09:38 progress=1.000000  cache=0
+2025-03-02 15:09:53 UpdateTip:            new best=00e3128a2d5d3255e605e5f90d402925db7574cfbb050d6807ee4f7a900b9020  height=34  log2_work=13.129283  tx=47  date=2025-03-02 15:09:52 progress=1.000000  cache=0
+2025-03-02 15:10:04 MultiChainMiner: Block Found - 00af66e7b9265ea5a3b9cc4689edd8e26ddc1cab1932c543ad2f01af663655d0, prev: 00e3128a2d5d3255e605e5f90d402925db7574cfbb050d6807ee4f7a900b9020, height: 35, txs: 1
+2025-03-02 15:10:04 UpdateTip:            new best=00af66e7b9265ea5a3b9cc4689edd8e26ddc1cab1932c543ad2f01af663655d0  height=35  log2_work=13.169925  tx=48  date=2025-03-02 15:10:04 progress=1.000000  cache=0
+2025-03-02 15:10:14 MultiChainMiner: Block Found - 00716e5f0dee83802915ba5fcf969eaf38b006b276ef0f832748259071c92f23, prev: 00af66e7b9265ea5a3b9cc4689edd8e26ddc1cab1932c543ad2f01af663655d0, height: 36, txs: 1
+2025-03-02 15:10:14 UpdateTip:            new best=00716e5f0dee83802915ba5fcf969eaf38b006b276ef0f832748259071c92f23  height=36  log2_work=13.209453  tx=49  date=2025-03-02 15:10:14 progress=1.000000  cache=0
+2025-03-02 15:10:14 Accepted header for block 00f63badcc248121ac64142db538be59a4b23b4308e5fd53dd3f3bc5b6d95404 found on alternative chain at height 36
+2025-03-02 15:10:40 MultiChainMiner: Block Found - 0058c77041d5e8d11f3be455b55abf2eac9b02d7b9ef3c998b50414281eb7bf0, prev: 00716e5f0dee83802915ba5fcf969eaf38b006b276ef0f832748259071c92f23, height: 37, txs: 1
+2025-03-02 15:10:40 UpdateTip:            new best=0058c77041d5e8d11f3be455b55abf2eac9b02d7b9ef3c998b50414281eb7bf0  height=37  log2_work=13.247928  tx=50  date=2025-03-02 15:10:40 progress=1.000000  cache=0
+2025-03-02 15:10:45 MultiChainMiner: Block Found - 00b41393ba9340b5aff0281a0390e83fa4818db7740fb02c0ea6d8513c518742, prev: 0058c77041d5e8d11f3be455b55abf2eac9b02d7b9ef3c998b50414281eb7bf0, height: 38, txs: 1
+2025-03-02 15:10:45 UpdateTip:            new best=00b41393ba9340b5aff0281a0390e83fa4818db7740fb02c0ea6d8513c518742  height=38  log2_work=13.285402  tx=51  date=2025-03-02 15:10:45 progress=1.000000  cache=0
+2025-03-02 15:11:05 UpdateTip:            new best=001fc7221554dbc89f65f98e5360b9d2baa4f07ecf557afda214aae88822febb  height=39  log2_work=13.321928  tx=52  date=2025-03-02 15:11:05 progress=1.000000  cache=0
+2025-03-02 15:11:17 UpdateTip:            new best=000ad1d0e4f6d6a6961b75e7bd1a4d65ebda40952f31ca53b2db48654f4f76dd  height=40  log2_work=13.357552  tx=53  date=2025-03-02 15:11:16 progress=1.000000  cache=0
+2025-03-02 15:11:40 MultiChainMiner: Block Found - 00ce0d07baac7d496a202209bf26e0d95984fa75eb61e535a4840869b90f7f30, prev: 000ad1d0e4f6d6a6961b75e7bd1a4d65ebda40952f31ca53b2db48654f4f76dd, height: 41, txs: 1
+2025-03-02 15:11:40 UpdateTip:            new best=00ce0d07baac7d496a202209bf26e0d95984fa75eb61e535a4840869b90f7f30  height=41  log2_work=13.392317  tx=54  date=2025-03-02 15:11:40 progress=1.000000  cache=0
+2025-03-02 15:11:50 UpdateTip:            new best=00649c43dfc29783e3f8e9ec869454ea07f03a77aad68a4c41598f8bde12ddf1  height=42  log2_work=13.426265  tx=55  date=2025-03-02 15:11:49 progress=1.000000  cache=0
+2025-03-02 15:12:02 UpdateTip:            new best=006326b65f2450989fbe2fb599809cbefd3d8063f4d2355ef5b1432a68138ca9  height=43  log2_work=13.459432  tx=56  date=2025-03-02 15:12:01 progress=1.000000  cache=0
+2025-03-02 15:12:26 UpdateTip:            new best=001ede758d0fa74dbdaaa742e81979764ff28dda753298852e689d6987b0ff8d  height=44  log2_work=13.491853  tx=57  date=2025-03-02 15:12:26 progress=1.000000  cache=0
+2025-03-02 15:12:32 UpdateTip:            new best=007b1f2a6759b8dad65396712feb8500d0a5c3a5d9c884206f5c1b0893c5bdfc  height=45  log2_work=13.523562  tx=58  date=2025-03-02 15:12:31 progress=1.000000  cache=0
+2025-03-02 15:12:52 UpdateTip:            new best=00b3c47a3c2326dde03533e4e416710917048113797f649722bd8cb4e8f86e34  height=46  log2_work=13.554589  tx=59  date=2025-03-02 15:12:51 progress=1.000000  cache=0
+2025-03-02 15:13:01 CommitTransaction: 89b0a58567815119e6f043f20ab15475ec21031a07b874c4fa7a0a3df5cd0bda, vin: 1, vout: 2
+2025-03-02 15:13:01 New stream. TxID: 89b0a58567815119e6f043f20ab15475ec21031a07b874c4fa7a0a3df5cd0bda, unconfirmed, Name: product_registry
+2025-03-02 15:13:03 CommitTransaction: 14e1ba2c23b02bc13a4a89e8c6d63ed7e668c4c7ea7b357683b8de2029d6bbf5, vin: 1, vout: 2
+2025-03-02 15:13:03 New stream. TxID: 14e1ba2c23b02bc13a4a89e8c6d63ed7e668c4c7ea7b357683b8de2029d6bbf5, unconfirmed, Name: product_history
+2025-03-02 15:13:04 CommitTransaction: 7b1a1cb16a6c1f6f8b5a7349aea2985d9737d079b5f218aa05f93535a60b84f1, vin: 1, vout: 2
+2025-03-02 15:13:04 New stream. TxID: 7b1a1cb16a6c1f6f8b5a7349aea2985d9737d079b5f218aa05f93535a60b84f1, unconfirmed, Name: cross_chain_transfers
+2025-03-02 15:13:05 CommitTransaction: 3396338fa0444b9241deb42ead121806731eb5d78a03867fb300f68f80237bef, vin: 1, vout: 2
+2025-03-02 15:13:05 New stream. TxID: 3396338fa0444b9241deb42ead121806731eb5d78a03867fb300f68f80237bef, unconfirmed, Name: business_rules
+2025-03-02 15:13:06 CommitTransaction: c81bb9bf272b2a82633ddeef0121b871d5cb30d5e1113de2adcad15220cd0616, vin: 1, vout: 2
+2025-03-02 15:13:06 New stream. TxID: c81bb9bf272b2a82633ddeef0121b871d5cb30d5e1113de2adcad15220cd0616, unconfirmed, Name: rule_executions
+2025-03-02 15:13:08 CommitTransaction: c852c49d5904b141335917511fa5c81db642a8e1a07963eeef712a81f1b19e0f, vin: 1, vout: 2
+2025-03-02 15:13:08 New stream. TxID: c852c49d5904b141335917511fa5c81db642a8e1a07963eeef712a81f1b19e0f, unconfirmed, Name: block_verifications
+2025-03-02 15:13:09 CommitTransaction: 613bbb055b0fc3b9ea129eb26d71710e0adc65a9bb5074a992f59279b84ada4e, vin: 1, vout: 2
+2025-03-02 15:13:09 New stream. TxID: 613bbb055b0fc3b9ea129eb26d71710e0adc65a9bb5074a992f59279b84ada4e, unconfirmed, Name: notifications
+2025-03-02 15:13:20 New stream. TxID: 89b0a58567815119e6f043f20ab15475ec21031a07b874c4fa7a0a3df5cd0bda, StreamRef: 47-266-3034, Name: product_registry
+2025-03-02 15:13:20 New stream. TxID: 14e1ba2c23b02bc13a4a89e8c6d63ed7e668c4c7ea7b357683b8de2029d6bbf5, StreamRef: 47-497-48117, Name: product_history
+2025-03-02 15:13:20 New stream. TxID: 7b1a1cb16a6c1f6f8b5a7349aea2985d9737d079b5f218aa05f93535a60b84f1, StreamRef: 47-728-34033, Name: cross_chain_transfers
+2025-03-02 15:13:20 New stream. TxID: 3396338fa0444b9241deb42ead121806731eb5d78a03867fb300f68f80237bef, StreamRef: 47-964-31727, Name: business_rules
+2025-03-02 15:13:20 New stream. TxID: c81bb9bf272b2a82633ddeef0121b871d5cb30d5e1113de2adcad15220cd0616, StreamRef: 47-1194-1558, Name: rule_executions
+2025-03-02 15:13:20 New stream. TxID: c852c49d5904b141335917511fa5c81db642a8e1a07963eeef712a81f1b19e0f, StreamRef: 47-1425-40463, Name: block_verifications
+2025-03-02 15:13:20 New stream. TxID: 613bbb055b0fc3b9ea129eb26d71710e0adc65a9bb5074a992f59279b84ada4e, StreamRef: 47-1660-55886, Name: notifications
+2025-03-02 15:13:20 UpdateTip:            new best=005dd4553bbe04c68b7577939ea56c2ac137379bc9190f7f7d8075d3e326276d  height=47  log2_work=13.584963  tx=67  date=2025-03-02 15:13:20 progress=1.000000  cache=0
+2025-03-02 15:13:28 UpdateTip:            new best=004737789f072a7b68a5eb689b70bbfc9deefa6ac6f2c764af93f9ea8bb06d2a  height=48  log2_work=13.61471  tx=68  date=2025-03-02 15:13:27 progress=1.000000  cache=0
+2025-03-02 15:13:37 UpdateTip:            new best=00ee0fcf4a430fee9f71698c8d6a1c1ad9cced6765a8c7a1648d1b723016cf1b  height=49  log2_work=13.643856  tx=69  date=2025-03-02 15:13:37 progress=1.000000  cache=0
+2025-03-02 15:13:55 UpdateTip:            new best=000503cb089a8ff95808dd6150363ca0b8d7fecc68b803ccdb4018a795882209  height=50  log2_work=13.672425  tx=70  date=2025-03-02 15:13:54 progress=1.000000  cache=0
+2025-03-02 15:14:05 UpdateTip:            new best=001fc78e02e95902bbef4c1b4783e2ea5b6ac97673f5495ae7dc86f8d0442eea  height=51  log2_work=13.70044  tx=71  date=2025-03-02 15:14:04 progress=1.000000  cache=0
+2025-03-02 15:14:29 MultiChainMiner: Block Found - 0009bf6bc8760e7bebab3f0e89ba62f15eee598f6bbb90c2171f97ee7db26a44, prev: 001fc78e02e95902bbef4c1b4783e2ea5b6ac97673f5495ae7dc86f8d0442eea, height: 52, txs: 1
+2025-03-02 15:14:29 UpdateTip:            new best=0009bf6bc8760e7bebab3f0e89ba62f15eee598f6bbb90c2171f97ee7db26a44  height=52  log2_work=13.72792  tx=72  date=2025-03-02 15:14:29 progress=1.000000  cache=0
+2025-03-02 15:14:32 keypool added key 3, size=2
+2025-03-02 15:14:34 CommitTransaction: 5329ae54034cd22eafe7d7e91d2271805780c4c0a70373db3e358aad89c14485, vin: 1, vout: 2
+2025-03-02 15:14:35 CommitTransaction: 4405afaf2c25552c5ba61d946d8345812462dae0053cf8be4536f3d6da58b011, vin: 1, vout: 2
+2025-03-02 15:14:38 UpdateTip:            new best=0016ab554149938385f0f6748f516f830f08033564d22001dfec073c43d8006b  height=53  log2_work=13.754888  tx=75  date=2025-03-02 15:14:38 progress=1.000000  cache=0
+2025-03-02 15:14:52 MultiChainMiner: Block Found - 00419719e5764581935651098d9db11376b8768a6a09ea553ecd1e2b4e1ad62d, prev: 0016ab554149938385f0f6748f516f830f08033564d22001dfec073c43d8006b, height: 54, txs: 1
+2025-03-02 15:14:52 UpdateTip:            new best=00419719e5764581935651098d9db11376b8768a6a09ea553ecd1e2b4e1ad62d  height=54  log2_work=13.78136  tx=76  date=2025-03-02 15:14:52 progress=1.000000  cache=0
+2025-03-02 15:15:07 UpdateTip:            new best=001a3dda9391adbda32fe0ec2ab8b00cdcbf14e7a02249d5fda29046664f8cd1  height=55  log2_work=13.807355  tx=77  date=2025-03-02 15:15:06 progress=1.000000  cache=0
+2025-03-02 15:15:24 MultiChainMiner: Block Found - 00770bb3097077d9d7e7007b1e82273b1ca77d29c2e3f10c3cbb69d1c614246d, prev: 001a3dda9391adbda32fe0ec2ab8b00cdcbf14e7a02249d5fda29046664f8cd1, height: 56, txs: 1
+2025-03-02 15:15:24 UpdateTip:            new best=00770bb3097077d9d7e7007b1e82273b1ca77d29c2e3f10c3cbb69d1c614246d  height=56  log2_work=13.83289  tx=78  date=2025-03-02 15:15:24 progress=1.000000  cache=0
+2025-03-02 15:15:38 UpdateTip:            new best=00bb2b65babfd914c1126c401d2ae70381443227ccfb2a32500337ef19e122fc  height=57  log2_work=13.857981  tx=79  date=2025-03-02 15:15:37 progress=1.000000  cache=0
+2025-03-02 15:15:53 UpdateTip:            new best=0027ea2bbb690ead01af6f50785e33dd8374cf7752c9eca2c2be5968ec092210  height=58  log2_work=13.882643  tx=80  date=2025-03-02 15:15:53 progress=1.000000  cache=0
+2025-03-02 15:15:54 Accepted header for block 0079b63e3ddd628dd7927e2bb6a898f0f9fe69a878801294d35e851515b4f773 found on alternative chain at height 58
+2025-03-02 15:16:12 MultiChainMiner: Block Found - 0012fa42ab842150f0b9926f7525989b9c2a905a0b0c055680eb82d4e4a91b9e, prev: 0027ea2bbb690ead01af6f50785e33dd8374cf7752c9eca2c2be5968ec092210, height: 59, txs: 1
+2025-03-02 15:16:12 UpdateTip:            new best=0012fa42ab842150f0b9926f7525989b9c2a905a0b0c055680eb82d4e4a91b9e  height=59  log2_work=13.906891  tx=81  date=2025-03-02 15:16:12 progress=1.000000  cache=0
+2025-03-02 15:16:24 MultiChainMiner: Block Found - 0076cb133d1fb8313e714d3c111553d470a9f02b778d27067ecb74e657fda556, prev: 0012fa42ab842150f0b9926f7525989b9c2a905a0b0c055680eb82d4e4a91b9e, height: 60, txs: 1
+2025-03-02 15:16:24 UpdateTip:            new best=0076cb133d1fb8313e714d3c111553d470a9f02b778d27067ecb74e657fda556  height=60  log2_work=13.930737  tx=82  date=2025-03-02 15:16:24 progress=1.000000  cache=0
+2025-03-02 15:16:41 UpdateTip:            new best=00daf4998048cead2de2d14084b858e477c341a18ed86ee090a5059b042b079d  height=61  log2_work=13.954196  tx=83  date=2025-03-02 15:16:40 progress=1.000000  cache=0
+2025-03-02 15:16:54 MultiChainMiner: Block Found - 0051b8eade13c257211b83e4e3ade45dd07ad9772daac392e9db1542dbc37ac5, prev: 00daf4998048cead2de2d14084b858e477c341a18ed86ee090a5059b042b079d, height: 62, txs: 1
+2025-03-02 15:16:54 UpdateTip:            new best=0051b8eade13c257211b83e4e3ade45dd07ad9772daac392e9db1542dbc37ac5  height=62  log2_work=13.97728  tx=84  date=2025-03-02 15:16:54 progress=1.000000  cache=0
+2025-03-02 15:16:54 Accepted header for block 008cd9e129b828c2b1fbde4cc61404c317384d97addadc3eecbe0b9a97d854b8 found on alternative chain at height 62
+2025-03-02 15:17:06 Accepted header for block 00da95258142b1d5c478c7de9cfbe42582efba15a9c5b170e68b81b6e5745ab3 found on alternative chain at height 63
+2025-03-02 15:17:06 Tx not accepted in resurrection after block: 3626cfe5043a62ea4e2dfa8d082020ec24c987cf3b66b66c012d39e14a5c582f
+2025-03-02 15:17:06 UpdateTip:            new best=00daf4998048cead2de2d14084b858e477c341a18ed86ee090a5059b042b079d  height=61  log2_work=13.954196  tx=83  date=2025-03-02 15:16:40 progress=1.000000  cache=0
+2025-03-02 15:17:06 UpdateTip:            new best=008cd9e129b828c2b1fbde4cc61404c317384d97addadc3eecbe0b9a97d854b8  height=62  log2_work=13.97728  tx=84  date=2025-03-02 15:16:53 progress=1.000000  cache=0
+2025-03-02 15:17:06 UpdateTip:            new best=00da95258142b1d5c478c7de9cfbe42582efba15a9c5b170e68b81b6e5745ab3  height=63  log2_work=14  tx=85  date=2025-03-02 15:17:06 progress=1.000000  cache=0
+2025-03-02 15:23:31 CommitTransaction: 006bc0b6085eb16c8233bbb094f474a43fdf09e7a18d912e9ac14408225ba4a3, vin: 1, vout: 2
+2025-03-02 15:23:32 CommitTransaction: 9805c4dd8fe7afc8ba58409e966413b000c149722ab7e2d0ca4a53e9afbd6d36, vin: 1, vout: 2
+2025-03-02 15:23:32 CommitTransaction: be4bb6190ade26ec204ecf059c2dba4c643881f1da77e9fbc9bc3ff1e0d1390d, vin: 1, vout: 2
+2025-03-02 15:23:33 CommitTransaction: 4669a7f3daa3e3846df841807a212f95776fb71663fb0741d71706950d40df79, vin: 1, vout: 2
+2025-03-02 15:23:33 CommitTransaction: a1bc2377aa2300d085ba16522a4a4a1e434157eade9e337a8290ecb3b8d6fadd, vin: 1, vout: 2
+2025-03-02 15:23:33 CommitTransaction: 3dc8800693fced7095e325edc8dfb82900767a2acb6cea081c437b2a8d5b1f81, vin: 1, vout: 2
+2025-03-02 15:23:34 CommitTransaction: 54afdc5cc0eb91f82f4720fd0100a64111eafe75542c4d103f83fc3c33f3702e, vin: 1, vout: 2
+2025-03-02 15:23:34 CommitTransaction: c3ec322564b7bb0b680b984b56c3468953bb5217e3b15aef0933730f5b4a9c16, vin: 1, vout: 2
+2025-03-02 15:23:34 CommitTransaction: e080f6d5aa5f3ae17908c5003a538887ccf05410334cc5019d074502f975e2ee, vin: 1, vout: 2
+2025-03-02 15:23:34 CommitTransaction: 454640fa4e0693a0eac17372f3ebc0db052784ae715578668b81038dba52d345, vin: 1, vout: 2
+2025-03-02 15:23:35 CommitTransaction: 8db720246f7aabf7b0859c9b104622e2a6fa7f32607fe56bd9a819fe839e25f1, vin: 1, vout: 2
+2025-03-02 15:23:35 CommitTransaction: 83e0db36862ac28cde135802a856a964f27d246cc6e96d137244ab96db06e988, vin: 1, vout: 2
+2025-03-02 15:23:35 CommitTransaction: d37eed15c9ae152ff54149be364b6b2fe22ba8482c0a19a7e1521b6c24c4dd86, vin: 1, vout: 2
+2025-03-02 15:23:36 CommitTransaction: e642f6b034fca3e9eb25afd33c2559d883be39d1e96b4db1842681af02969f77, vin: 1, vout: 2
+2025-03-02 15:23:36 CommitTransaction: 6a5dc92bbfb28f82145c05b09509059f170d2a8c2e13627de2b23c1ecc3886e8, vin: 1, vout: 2
+2025-03-02 15:23:37 CommitTransaction: c7ed498d2243cd8bbd44ab2f671927fd81c225acd1c644695a7dfca1882756da, vin: 1, vout: 2
+2025-03-02 15:23:37 CommitTransaction: f2f25af97a70e274f6325e488e0034feba10cc96b92d94089eba54742564d1db, vin: 1, vout: 2
+2025-03-02 15:23:37 CommitTransaction: 5298e187f18e9fd19496a3c769eaf31528996787af01ecadc14886dc9aff6e5e, vin: 1, vout: 2
+2025-03-02 15:23:38 CommitTransaction: beba2b38f7be7ae06d4a7f2704f369c56aaa605e77ac4d002bbb51faa518dcc1, vin: 1, vout: 2
+2025-03-02 15:23:38 CommitTransaction: 0c43a45e127c2cb75050f734e9fb4f56d7c6470ff9e0ffee2e8ae00139b4af1c, vin: 1, vout: 2
+2025-03-02 15:23:38 CommitTransaction: 220e4356fe75b8aca75be86363baf261b6c369375b2f2bd43f8955516faa4d96, vin: 1, vout: 2
+2025-03-02 15:23:38 CommitTransaction: 7a6d65b5979a5fc4b57ebd164db41e6527e01a2a36691dcebbbf869714a931ac, vin: 1, vout: 2
+2025-03-02 15:23:39 CommitTransaction: f7380cd5b3b71d18c29423527cbb43955de0c4c72f11af04e899cf01f480cb0d, vin: 1, vout: 2
+2025-03-02 15:23:39 CommitTransaction: 3c09d44d017a0f27ee4f06f6b46b9b9c692df18f0b32cfb580c29bf9614723f4, vin: 1, vout: 2
+2025-03-02 15:23:39 CommitTransaction: 252e3ec0bebc076b0a4d70dec278230c4362d8f0ea40e16e80042238f0ec0013, vin: 1, vout: 2
+2025-03-02 15:23:40 CommitTransaction: b1b83fc625b24cd7d0e0017ca53c14eff72958daa0393fb0aee0271503ed815f, vin: 1, vout: 2
+2025-03-02 15:23:40 CommitTransaction: 46a41f38b65490c3c888afadf818710c4fe2fc3af7a6babdc0e6d647f31b1ce2, vin: 1, vout: 2
+2025-03-02 15:23:40 CommitTransaction: 14f43a0743833c2c5c18a978c60a9f0009441308f51dc5a29668b6f6fcf6eb0a, vin: 1, vout: 2
+2025-03-02 15:23:41 CommitTransaction: 1a8d9b175b176e30ac60b175b5f1565c084bc5b7caf90acdd2836ad2ec31b65e, vin: 1, vout: 2
+2025-03-02 15:23:41 CommitTransaction: 2d35e6e03575fd677a0ffb091475d77a81597d420e726c23f84ecfad5c075cfd, vin: 1, vout: 2
+2025-03-02 15:23:41 CommitTransaction: 64ce37fe64f063d8adfb330393a33a816150dd216199b3dab8bbb71b69594e08, vin: 1, vout: 2
+2025-03-02 15:23:42 CommitTransaction: cccc358ab1d1cd67bf8872c499cce8cb1808a9a06a05f9a9735d7ba1544a9250, vin: 1, vout: 2
+2025-03-02 15:23:42 CommitTransaction: 53a2f1495fca4d0bf1de2bbb7fc2b2ca573c0619c306f5978106dfb5736b610f, vin: 1, vout: 2
+2025-03-02 15:23:42 CommitTransaction: 8885c0826259ef65f57a16065ab85badf0a88d226b0f275c47050f9dc397d8e9, vin: 1, vout: 2
+2025-03-02 15:23:42 CommitTransaction: f6dae9ebbd0f9e0e524ef1da95a09f52ba6d572bfcb0fb9b23cbbffea41ab724, vin: 1, vout: 2
+2025-03-02 15:23:43 CommitTransaction: 0ba2380286e3318633f73e3ef230a81e7008849d5a7f11ca8f1c90dfa6570f67, vin: 1, vout: 2
+2025-03-02 15:23:43 CommitTransaction: 7d512c71b62fdfc5f24cd2b7115d25a87e0c9f29c8eac83eec27ac66bb12a1c0, vin: 1, vout: 2
+2025-03-02 15:23:44 CommitTransaction: 83e51a70447764461da5e06212fe4a19977b27373c9fd3b0ddce53b85924a708, vin: 1, vout: 2
+2025-03-02 15:23:44 CommitTransaction: 5ee8e44e78ed2bc5535cd16d453d0bc745e6ad396002ee4da2efb2bbeb605b8c, vin: 1, vout: 2
+2025-03-02 15:23:44 CommitTransaction: b5eb660f2244ebdaf0cbde22fc0a45fb95714077174ebdea10e816aae3aa76a1, vin: 1, vout: 2
+2025-03-02 15:23:45 CommitTransaction: 75c2b67512c3c79fce2eb0168f9a386b7d8acc850e92209b5f06decc73955443, vin: 1, vout: 2
+2025-03-02 15:23:45 CommitTransaction: 98f6c6a045f72521e08edc502519eac3eca592f2b2a1bb0434ac7fa7f626c198, vin: 1, vout: 2
+2025-03-02 15:23:45 CommitTransaction: 080c1132bddb409ca6c4970c5ee6f721549cda118a0366adf341146102401ba5, vin: 1, vout: 2
+2025-03-02 15:23:45 MultiChainMiner: Block Found - 00bfea4f3525de8d607d008365e2040cad941274f9561075698e47e25e73168d, prev: 00da95258142b1d5c478c7de9cfbe42582efba15a9c5b170e68b81b6e5745ab3, height: 64, txs: 44
+2025-03-02 15:23:45 UpdateTip:            new best=00bfea4f3525de8d607d008365e2040cad941274f9561075698e47e25e73168d  height=64  log2_work=14.022368  tx=129  date=2025-03-02 15:23:45 progress=1.000000  cache=0
+2025-03-02 15:23:46 CommitTransaction: 59cb2e278ff04a3891040fa90e38d794a0c4f8ca234cbd3f3214ef61f415f636, vin: 1, vout: 2
+2025-03-02 15:23:46 CommitTransaction: d51b885dec2649472a200edab1e23ac7d4515ea4c793ad77ed6bec8ec1b792e0, vin: 1, vout: 2
+2025-03-02 15:23:46 CommitTransaction: e6042c296263a87b45bf049f70543bdde9595f1dfafbeca496dd689dbc1bcebd, vin: 1, vout: 2
+2025-03-02 15:23:47 CommitTransaction: e4f22e09ad0d779c7a79c2b9effbed1eead934089b3178ea7c49c4141adcf4b1, vin: 1, vout: 2
+2025-03-02 15:23:52 UpdateTip:            new best=00a685b2443b3daa2ae39b7151a3d4d06f3be8b9684755c6071ed3a6e0748402  height=65  log2_work=14.044394  tx=134  date=2025-03-02 15:23:52 progress=1.000000  cache=0
+2025-03-02 15:24:03 UpdateTip:            new best=003efb2eeb33584989310e5907c20d8fdfde42c450aa52b522ffbb80a4c759b2  height=66  log2_work=14.066089  tx=135  date=2025-03-02 15:24:03 progress=1.000000  cache=0
+2025-03-02 15:24:10 UpdateTip:            new best=0012ed74ceb0191cf4d3af59e89e23a73776470d1447836dba72fcfb7f1fe610  height=67  log2_work=14.087463  tx=136  date=2025-03-02 15:24:10 progress=1.000000  cache=0
+2025-03-02 15:24:10 Accepted header for block 001c1ff64c0116017836ea946444eb4efdf52fba103c795c4e2e76a37c651493 found on alternative chain at height 67
+2025-03-02 15:24:18 Accepted header for block 00b3036d5d29c942ef07e8e837e0d83fae3864803020baa62a3ef60d84a185ae found on alternative chain at height 68
+2025-03-02 15:24:18 Tx not accepted in resurrection after block: 6cc97d7ed0e6aa1fd3001ecf693f25fd539b680d9d3fdaf9bc375afc818a4bb3
+2025-03-02 15:24:18 UpdateTip:            new best=003efb2eeb33584989310e5907c20d8fdfde42c450aa52b522ffbb80a4c759b2  height=66  log2_work=14.066089  tx=135  date=2025-03-02 15:24:03 progress=1.000000  cache=0
+2025-03-02 15:24:18 UpdateTip:            new best=001c1ff64c0116017836ea946444eb4efdf52fba103c795c4e2e76a37c651493  height=67  log2_work=14.087463  tx=136  date=2025-03-02 15:24:10 progress=1.000000  cache=0
+2025-03-02 15:24:18 UpdateTip:            new best=00b3036d5d29c942ef07e8e837e0d83fae3864803020baa62a3ef60d84a185ae  height=68  log2_work=14.108524  tx=137  date=2025-03-02 15:24:17 progress=1.000000  cache=0
+2025-03-02 15:24:23 UpdateTip:            new best=0056d7f8700570092c03071d450d80e2f08dcc560e88dd7949817a484fe51ed7  height=69  log2_work=14.129283  tx=138  date=2025-03-02 15:24:23 progress=1.000000  cache=0
+2025-03-02 15:24:31 UpdateTip:            new best=004f30cef4e33b623e85d59b6a8869211053a6688cb595f00f9075415bb52271  height=70  log2_work=14.149747  tx=139  date=2025-03-02 15:24:30 progress=1.000000  cache=0
+2025-03-02 15:24:34 UpdateTip:            new best=00d5d1a5863ae5461319060ecb6915ad419ec06d547241969cf1e3797486e43c  height=71  log2_work=14.169925  tx=140  date=2025-03-02 15:24:34 progress=1.000000  cache=0
+2025-03-02 15:24:39 MultiChainMiner: Block Found - 003a196d6154931c9e2f06625e7e9d52eef1fe842732ac2051caba99c258adbb, prev: 00d5d1a5863ae5461319060ecb6915ad419ec06d547241969cf1e3797486e43c, height: 72, txs: 1
+2025-03-02 15:24:39 UpdateTip:            new best=003a196d6154931c9e2f06625e7e9d52eef1fe842732ac2051caba99c258adbb  height=72  log2_work=14.189825  tx=141  date=2025-03-02 15:24:39 progress=1.000000  cache=0
+2025-03-02 15:24:45 UpdateTip:            new best=006842333d8795f1048e51f540b8156387e70b89b0fe1a11b04fac666d5c7899  height=73  log2_work=14.209453  tx=142  date=2025-03-02 15:24:45 progress=1.000000  cache=0
+2025-03-02 15:24:53 MultiChainMiner: Block Found - 003c2d5c11439a1ec4b0989f19b3317258923785d0d34cf09421eebfac6b829f, prev: 006842333d8795f1048e51f540b8156387e70b89b0fe1a11b04fac666d5c7899, height: 74, txs: 1
+2025-03-02 15:24:53 UpdateTip:            new best=003c2d5c11439a1ec4b0989f19b3317258923785d0d34cf09421eebfac6b829f  height=74  log2_work=14.228819  tx=143  date=2025-03-02 15:24:53 progress=1.000000  cache=0
+2025-03-02 15:25:11 MultiChainMiner: Block Found - 00fb8a4c065960f043246e7f04b680e48fe0295e9739667b8a46cfcaa6085498, prev: 003c2d5c11439a1ec4b0989f19b3317258923785d0d34cf09421eebfac6b829f, height: 75, txs: 1
+2025-03-02 15:25:11 UpdateTip:            new best=00fb8a4c065960f043246e7f04b680e48fe0295e9739667b8a46cfcaa6085498  height=75  log2_work=14.247928  tx=144  date=2025-03-02 15:25:11 progress=1.000000  cache=0
+2025-03-02 15:32:45 CommitTransaction: e553b6361f6724c5a0832758e84ceec9ce1abace17630462aec0c3faea773e97, vin: 1, vout: 2
+2025-03-02 15:32:45 New stream. TxID: e553b6361f6724c5a0832758e84ceec9ce1abace17630462aec0c3faea773e97, unconfirmed, Name: transaction_verifications
+2025-03-02 15:32:46 CommitTransaction: 82a7777a4febcfe3b4d74a46a20ee18268ae4d96c94dfd9953bcde2f60b08f06, vin: 1, vout: 2
+2025-03-02 15:32:46 New stream. TxID: 82a7777a4febcfe3b4d74a46a20ee18268ae4d96c94dfd9953bcde2f60b08f06, unconfirmed, Name: product_events
+2025-03-02 15:32:59 MultiChainMiner: Block Found - 0004401ba0d98a684ae620326ef427ee42fcee6b02c57ac3d10b1c511878d800, prev: 00fb8a4c065960f043246e7f04b680e48fe0295e9739667b8a46cfcaa6085498, height: 76, txs: 3
+2025-03-02 15:32:59 New stream. TxID: e553b6361f6724c5a0832758e84ceec9ce1abace17630462aec0c3faea773e97, StreamRef: 76-266-16023, Name: transaction_verifications
+2025-03-02 15:32:59 New stream. TxID: 82a7777a4febcfe3b4d74a46a20ee18268ae4d96c94dfd9953bcde2f60b08f06, StreamRef: 76-507-36614, Name: product_events
+2025-03-02 15:32:59 UpdateTip:            new best=0004401ba0d98a684ae620326ef427ee42fcee6b02c57ac3d10b1c511878d800  height=76  log2_work=14.266787  tx=147  date=2025-03-02 15:32:59 progress=1.000000  cache=0
+2025-03-02 15:33:03 CommitTransaction: 94f3ac25deb33cadc5ed6eab2cf6f643311aeb9a113eb9d64f68ebe060677f49, vin: 1, vout: 2
+2025-03-02 15:33:03 CommitTransaction: 922d6eba04e54983deef4bd59f528153af3a1402292f2fb3481bc26a8242aa89, vin: 1, vout: 2
+2025-03-02 15:33:04 CommitTransaction: 53d991fe4c2c949d60be613dcafa2e9491888da15318e85ff5ca173edf465387, vin: 1, vout: 2
+2025-03-02 15:33:04 CommitTransaction: 07045953fbf2fceb0788a5e45256d870cf971b115d49f3135506e27f69c409a4, vin: 1, vout: 2
+2025-03-02 15:33:04 CommitTransaction: 9e022b59389fe91b5d87aa650ded32b2ceb317ed4ce9b7e7a1a21fed55041685, vin: 1, vout: 2
+2025-03-02 15:33:05 CommitTransaction: dfe82df3f1a58f38f98f6a4faba7d3ad9071bfa65e38711c3b963c6c6fdc6879, vin: 1, vout: 2
+2025-03-02 15:33:05 CommitTransaction: 03fa03c0a057dbe1d23f0be3e67c9be7564c6e69cae79afe13eaff0e2489c02d, vin: 1, vout: 2
+2025-03-02 15:33:05 CommitTransaction: 8b81d51846e7fcb4e1a7beef1341e74f5d76beb9e9bc4cd5c348aedf31f3580b, vin: 1, vout: 2
+2025-03-02 15:33:06 CommitTransaction: 73d379190e3b4719226f8e78273b5917235489df5364fc07fc85c18a2a64dabf, vin: 1, vout: 2
+2025-03-02 15:33:06 UpdateTip:            new best=00ed5a48cc2ceab1fbb7b22bfe52bf52a39bbcb6e8ad839da367f9c1fba474c1  height=77  log2_work=14.285402  tx=155  date=2025-03-02 15:33:06 progress=1.000000  cache=0
+2025-03-02 15:33:06 CommitTransaction: 18ae96e886cab157cc65779428dbe57ba21fb1232ba6f60c3aaa5aa0f908f04c, vin: 1, vout: 2
+2025-03-02 15:33:06 CommitTransaction: 59c154736b627be34691a9b5fa132dbf02ef1ac3ba9e77d3713a76f485b54265, vin: 1, vout: 2
+2025-03-02 15:33:07 CommitTransaction: b027c59a8cf2c045c19d4404e727b0a653b333e4f9b0457de03308fb16cf5993, vin: 1, vout: 2
+2025-03-02 15:33:07 CommitTransaction: f36ac3ef985b97f33d78d95253eaa3c030fc7af85fb432c0287706bce9703e07, vin: 1, vout: 2
+2025-03-02 15:33:07 CommitTransaction: 2fe9eeddb4e888391a991f014bd34a02f49ed3c0b6a65335d7e4258b64b058e5, vin: 1, vout: 2
+2025-03-02 15:33:08 CommitTransaction: 2f105e2d15494e5d0432a1490c666e69cd27f02c7f8045900be1f6e30ba37b80, vin: 1, vout: 2
+2025-03-02 15:33:08 CommitTransaction: 8eb575530ff943d4df01fb9cc33840def4cf3f8010458e88a5ed4832ecf0a3fc, vin: 1, vout: 2
+2025-03-02 15:33:08 CommitTransaction: 14c5fa4b542a1265ca7cd1cbd3db9fc221df263556d8483812ba8e26c6c2c8a6, vin: 1, vout: 2
+2025-03-02 15:33:09 CommitTransaction: 0d2f8c1b984f42010253d460f43f0526ba7ff34905b4d5f29cca086194fd5b16, vin: 1, vout: 2
+2025-03-02 15:33:09 CommitTransaction: 64efdd7c11cfd6d4230c3475ac7ec1b5920b9b700b72643e852bcd5a4ba564ea, vin: 1, vout: 2
+2025-03-02 15:33:09 CommitTransaction: 8af284c6b7d9c63354e2511d4c8aabaf98c4a165767fbbe2e8b5e294d1a25141, vin: 1, vout: 2
+2025-03-02 15:33:10 CommitTransaction: b1f0935e9decb2bf5035e8aab4a90aec1897029429f0bfb72238bc41a104e16d, vin: 1, vout: 2
+2025-03-02 15:33:10 CommitTransaction: bfe304c7af0ae0f46b7d3d4d08403d7e9b3c6fec3539597186455ff0353ed043, vin: 1, vout: 2
+2025-03-02 15:33:10 CommitTransaction: 726676ed208fbffbff3544dab34ffa36cdad4a930cb52045d75725724c973d96, vin: 1, vout: 2
+2025-03-02 15:33:11 UpdateTip:            new best=00cbdced94e71a68c6c1c958afcd9b66dd4b805ad9ed615b453f252b8a1995d8  height=78  log2_work=14.303781  tx=169  date=2025-03-02 15:33:10 progress=1.000000  cache=0
+2025-03-02 15:33:11 CommitTransaction: 79f7ac16ede13c57671d5dce19e170975cc9c3bde6d2742c54281dd1dac4130c, vin: 1, vout: 2
+2025-03-02 15:33:11 CommitTransaction: ff1b7f87c154969a14c8bbfaa11667b0ac654ee220a5101b453e0d6c74444682, vin: 1, vout: 2
+2025-03-02 15:33:11 CommitTransaction: 53f92314b8f8879bdb1d6f8bb894bae7da9fbce6b40cf460f6993f04b3e0df52, vin: 1, vout: 2
+2025-03-02 15:33:11 CommitTransaction: f66be42451db937e490232757609a9d0d266b74c7676962685056760db2b525f, vin: 1, vout: 2
+2025-03-02 15:33:11 CommitTransaction: e01b8c574cd963b75fe85e1c88f8c2d9bc4cdafb35d3f548653c6988116a95eb, vin: 1, vout: 2
+2025-03-02 15:33:11 CommitTransaction: 76d1aa3327c03e02a476c204f7a08f4b44d73d1ec38fd22636f7bf18d1919c04, vin: 1, vout: 2
+2025-03-02 15:33:11 CommitTransaction: fce1419f9b1fa7e94735e4b28cc6a45495b23534aebf4903a50ab5bbef3f00c5, vin: 1, vout: 2
+2025-03-02 15:33:12 CommitTransaction: 4efa2fe0e2d51fed58aeb4fc4418fa211f9228a17b59e39a5d0576bdf45fa919, vin: 1, vout: 2
+2025-03-02 15:33:12 CommitTransaction: 44448cdbbe002e228a7a9e5141b92b3e1418c4da49838032478f327052367c16, vin: 1, vout: 2
+2025-03-02 15:33:12 CommitTransaction: a2119ac7a97b6c592b4fb2eda23c28091cc8c16ac3220c8120d981bf21a0b17b, vin: 1, vout: 2
+2025-03-02 15:33:13 CommitTransaction: d4d61dcb05daf9d85f2220c4c5f3ad96e21f36e10d8ecbabc67ac110550cb3d4, vin: 1, vout: 2
+2025-03-02 15:33:13 CommitTransaction: d131f19cb8d050d54d027d1d8311f7447b881b5403b75daabca7b68d3fa0783a, vin: 1, vout: 2
+2025-03-02 15:33:13 CommitTransaction: 52bcb89f23efe7ed8bc4097049063217e2ff6b1a431e29729b6e0b0e6488f4b3, vin: 1, vout: 2
+2025-03-02 15:33:14 CommitTransaction: 480a29867ee423856226b3d389c809149e4bb42b2d393fe471751464a976d3c7, vin: 1, vout: 2
+2025-03-02 15:33:14 CommitTransaction: 9f50dbdda59ef670bbbbc390acd23287206b0f5da1d397fc8b035a2f35f668bf, vin: 1, vout: 2
+2025-03-02 15:33:14 CommitTransaction: bc97dc8f86aea852eafabe047a0c8f9eda214cdc9f4a29a50ca3e65f7375ac9d, vin: 1, vout: 2
+2025-03-02 15:33:14 MultiChainMiner: Block Found - 003cc7a74db6184a2081ceed2c2eb61eed06a844fe8330afc3e535a0f48436ac, prev: 00cbdced94e71a68c6c1c958afcd9b66dd4b805ad9ed615b453f252b8a1995d8, height: 79, txs: 20
+2025-03-02 15:33:15 UpdateTip:            new best=003cc7a74db6184a2081ceed2c2eb61eed06a844fe8330afc3e535a0f48436ac  height=79  log2_work=14.321928  tx=189  date=2025-03-02 15:33:14 progress=1.000000  cache=0
+2025-03-02 15:33:15 CommitTransaction: 50cb83c868dfade6be32af9af099721742af7ad7860ff057ec0a48336fa5635b, vin: 1, vout: 2
+2025-03-02 15:33:15 CommitTransaction: 6180663c27746b3ad455114ab049ce657f935118a7254f2574462c06f978750f, vin: 1, vout: 2
+2025-03-02 15:33:15 CommitTransaction: d1f7804ba51edf245f940402538ab64b888f0ebdabfce35d18d56784f5418e02, vin: 1, vout: 2
+2025-03-02 15:33:16 CommitTransaction: 5dca2bc19e4ba69e27e446f4e1f8c1530587f849780ad7b785bd80f98b1464f7, vin: 1, vout: 2
+2025-03-02 15:33:16 CommitTransaction: 74426d7613fa20cd5cd34451c56de771101f06fcd43a85fc36dea09c52a6c2f7, vin: 1, vout: 2
+2025-03-02 15:33:16 CommitTransaction: 7124444b13fd30b6e780c691aa0705e7e64c6f1c4632a40cdcbf3cc8ed3d91d3, vin: 1, vout: 2
+2025-03-02 15:33:17 CommitTransaction: ddb5698c4f7ec6d41aee0de47502aa61ee3334f75667aae9690131b60a9ecf59, vin: 1, vout: 2
+2025-03-02 15:33:17 CommitTransaction: 7dfd9af541275ae185dd47608f9fe3d06937561fd79bbb2ae46bb4c0e3f728cf, vin: 1, vout: 2
+2025-03-02 15:33:17 CommitTransaction: a4df14fca44c73f073ee3b17919086ab19436e2827d9282a80b8b8ddcea8798c, vin: 1, vout: 2
+2025-03-02 15:33:18 CommitTransaction: 2b55361a846ab706b37a93d0b2335ec4e6aff9598be1990a66cf7b7a87be302b, vin: 1, vout: 2
+2025-03-02 15:33:18 CommitTransaction: a1b5ffda14bfe5551b42f2c6adf8c68e70fd72c32fc88c0589493514e12e7499, vin: 1, vout: 2
+2025-03-02 15:33:24 MultiChainMiner: Block Found - 00bfbb8b14c841b55500eecb7563bce78f205285aca2918f7cc585206dff2b56, prev: 003cc7a74db6184a2081ceed2c2eb61eed06a844fe8330afc3e535a0f48436ac, height: 80, txs: 12
+2025-03-02 15:33:24 UpdateTip:            new best=00bfbb8b14c841b55500eecb7563bce78f205285aca2918f7cc585206dff2b56  height=80  log2_work=14.33985  tx=201  date=2025-03-02 15:33:24 progress=1.000000  cache=0
+2025-03-02 15:33:36 UpdateTip:            new best=00ad7ad8c16965eb2d0d2e9545e4ead67de79bd76f939e3315ccb70c26b42c91  height=81  log2_work=14.357552  tx=202  date=2025-03-02 15:33:36 progress=1.000000  cache=0
+2025-03-02 15:33:42 MultiChainMiner: Block Found - 00a2558399793c380e9a57a2ee892f2a99a8c3a3695c62cc95ba557271e8701b, prev: 00ad7ad8c16965eb2d0d2e9545e4ead67de79bd76f939e3315ccb70c26b42c91, height: 82, txs: 1
+2025-03-02 15:33:42 UpdateTip:            new best=00a2558399793c380e9a57a2ee892f2a99a8c3a3695c62cc95ba557271e8701b  height=82  log2_work=14.375039  tx=203  date=2025-03-02 15:33:42 progress=1.000000  cache=0
+2025-03-02 15:33:48 MultiChainMiner: Block Found - 00426e082195fc0747b68f30df5ed91db05d0d1e9176150f47d9262ccfa4ca53, prev: 00a2558399793c380e9a57a2ee892f2a99a8c3a3695c62cc95ba557271e8701b, height: 83, txs: 1
+2025-03-02 15:33:48 UpdateTip:            new best=00426e082195fc0747b68f30df5ed91db05d0d1e9176150f47d9262ccfa4ca53  height=83  log2_work=14.392317  tx=204  date=2025-03-02 15:33:48 progress=1.000000  cache=0
+2025-03-02 15:33:54 MultiChainMiner: Block Found - 00f0614fd130601eca7da10c18da4e621ab29f1f5ec298b39c39a109707cfcad, prev: 00426e082195fc0747b68f30df5ed91db05d0d1e9176150f47d9262ccfa4ca53, height: 84, txs: 1
+2025-03-02 15:33:54 UpdateTip:            new best=00f0614fd130601eca7da10c18da4e621ab29f1f5ec298b39c39a109707cfcad  height=84  log2_work=14.409391  tx=205  date=2025-03-02 15:33:54 progress=1.000000  cache=0
+2025-03-02 15:34:01 MultiChainMiner: Block Found - 006c8898749e346c0244b23af3e6ae203df50aa6b86b6d80ce4fb0ffd68a1e0b, prev: 00f0614fd130601eca7da10c18da4e621ab29f1f5ec298b39c39a109707cfcad, height: 85, txs: 1
+2025-03-02 15:34:01 UpdateTip:            new best=006c8898749e346c0244b23af3e6ae203df50aa6b86b6d80ce4fb0ffd68a1e0b  height=85  log2_work=14.426265  tx=206  date=2025-03-02 15:34:01 progress=1.000000  cache=0
+2025-03-02 15:34:07 MultiChainMiner: Block Found - 00b03cd07437cd22a70432671fb7a2101df41187196770e71853753f5e057bbb, prev: 006c8898749e346c0244b23af3e6ae203df50aa6b86b6d80ce4fb0ffd68a1e0b, height: 86, txs: 1
+2025-03-02 15:34:07 UpdateTip:            new best=00b03cd07437cd22a70432671fb7a2101df41187196770e71853753f5e057bbb  height=86  log2_work=14.442943  tx=207  date=2025-03-02 15:34:07 progress=1.000000  cache=0
+2025-03-02 15:34:27 UpdateTip:            new best=00d60f44a8d3e1900e848c16e9b54abef1a205d304b2a1a7090827ff407514c5  height=87  log2_work=14.459432  tx=208  date=2025-03-02 15:34:26 progress=1.000000  cache=0
+2025-03-02 15:34:47 MultiChainMiner: Block Found - 00319cb4ba599b96ac49a360e418621bc980aa7d3a92c6a10fca1a357865ceeb, prev: 00d60f44a8d3e1900e848c16e9b54abef1a205d304b2a1a7090827ff407514c5, height: 88, txs: 1
+2025-03-02 15:34:47 UpdateTip:            new best=00319cb4ba599b96ac49a360e418621bc980aa7d3a92c6a10fca1a357865ceeb  height=88  log2_work=14.475733  tx=209  date=2025-03-02 15:34:47 progress=1.000000  cache=0
+2025-03-02 15:34:48 Accepted header for block 00cbd3adb8b4c4d05d88353fdd70fdd0c6f7070d1bc5dcbabe7ca85b1adf992f found on alternative chain at height 88
+2025-03-02 15:35:10 Accepted header for block 00d401b3701e0183036f1c2e2e6b20ac80bccd11867c63992ae0357262507348 found on alternative chain at height 89
+2025-03-02 15:35:10 Tx not accepted in resurrection after block: 82c35c5aad59a9dd363006567143a0ddd27e8171f79323b337849a9d848f266d
+2025-03-02 15:35:10 UpdateTip:            new best=00d60f44a8d3e1900e848c16e9b54abef1a205d304b2a1a7090827ff407514c5  height=87  log2_work=14.459432  tx=208  date=2025-03-02 15:34:26 progress=1.000000  cache=0
+2025-03-02 15:35:10 UpdateTip:            new best=00cbd3adb8b4c4d05d88353fdd70fdd0c6f7070d1bc5dcbabe7ca85b1adf992f  height=88  log2_work=14.475733  tx=209  date=2025-03-02 15:34:47 progress=1.000000  cache=0
+2025-03-02 15:35:10 UpdateTip:            new best=00d401b3701e0183036f1c2e2e6b20ac80bccd11867c63992ae0357262507348  height=89  log2_work=14.491853  tx=210  date=2025-03-02 15:35:09 progress=1.000000  cache=0
+2025-03-02 15:35:35 UpdateTip:            new best=0061b318c644644a072eefd8341891ee51ea1caa14e0f3b5b8bc1403289c1a12  height=90  log2_work=14.507795  tx=211  date=2025-03-02 15:35:35 progress=1.000000  cache=0
+2025-03-02 15:43:11 CommitTransaction: f2ffafa23f8608a0b7d86a53739dd49b8280ffefbeb817d741f4097d334c60a2, vin: 1, vout: 2
+2025-03-02 15:43:11 CommitTransaction: 8f9cde2b27c35273b211e69dc2025a6c0c0093798c4d145c7ce455b66ad13b1a, vin: 1, vout: 2
+2025-03-02 15:43:12 CommitTransaction: f6202de706d4408229f370c3878e8963c5363c680daf5ee9be55ac907cd565dc, vin: 1, vout: 2
+2025-03-02 15:43:12 CommitTransaction: 6e9250ca17d6c4eb251b395b12e33ecf3d3a9aa7a052f6b556db88e67bb7cadd, vin: 1, vout: 2
+2025-03-02 15:43:12 CommitTransaction: c9524709af3b4bff355e8f6c974e8bd1f2437d95afe50e2c72db2dbce573a0cf, vin: 1, vout: 2
+2025-03-02 15:43:13 CommitTransaction: fc1fb8c33bca8a20bfbdf9050929278b787a68f6ea22b25c7b443a77343c4d46, vin: 1, vout: 2
+2025-03-02 15:43:13 CommitTransaction: 33e3849f6fb2c2378881211d951584e4eb503ab4831f6ae05d6fdad942016519, vin: 1, vout: 2
+2025-03-02 15:43:13 CommitTransaction: e81f45d66eb269ee30dea76dea438527ed467557babefba86e26d0ca2c51c25d, vin: 1, vout: 2
+2025-03-02 15:43:14 CommitTransaction: 0be6f3d326b6c58573e6dc731dc636fb0237c2db23e7a3c36651cfb01fc4f170, vin: 1, vout: 2
+2025-03-02 15:43:14 CommitTransaction: 14860fa7835cd5a11c16465875499c394c0b138486c439474b749743cb1673d1, vin: 1, vout: 2
+2025-03-02 15:43:14 CommitTransaction: d069ee819f9beebd6905770abb05d4f4e0caec2e8bb90260e63452b5c6ef23cf, vin: 1, vout: 2
+2025-03-02 15:43:15 CommitTransaction: 9f84cdfd2d454fff877c151f935f48bbae1eb862efa95a40997352bc1b4a725e, vin: 1, vout: 2
+2025-03-02 15:43:15 CommitTransaction: b390cc6499ecc25151a7a12a0c921fdb4241a624218ebcdca07279d226b5d3a6, vin: 1, vout: 2
+2025-03-02 15:43:15 CommitTransaction: 1f7471da7cc413964794b94022e2e9507c66d50bf63aafac1d309b3ca3cff4a9, vin: 1, vout: 2
+2025-03-02 15:43:16 CommitTransaction: 341fc1605017c77bbc6efa19af57c1be732323c17e7e3599e6bd4688c7786d8a, vin: 1, vout: 2
+2025-03-02 15:43:16 CommitTransaction: 642a1f8ff240dc5da9d727a5c79c8cc9d0f5c2934833dc02da81dfbae1c621ba, vin: 1, vout: 2
+2025-03-02 15:43:16 CommitTransaction: d615c6aaa111fed65371d3a7f155425fa55f39789b6695d7bde331b86f393c25, vin: 1, vout: 2
+2025-03-02 15:43:17 CommitTransaction: 87d11560a273f0eeffbdf8f0eceb71667a6ac3d70df8639f4e1aba06f4ba35b2, vin: 1, vout: 2
+2025-03-02 15:43:17 CommitTransaction: b4c0d88d5450a1ec4b285abb26ce35cbd5b6c75303c2df19cb6bbc90852e49ad, vin: 1, vout: 2
+2025-03-02 15:43:17 CommitTransaction: de7ba71836f43d391efb2aa86f731c9d16b840527151b905075f0efde5582ecc, vin: 1, vout: 2
+2025-03-02 15:43:18 CommitTransaction: 0332aac4a641350c2a56f6e50950efa2912cdea4c044f2d4f780ec012a067f86, vin: 1, vout: 2
+2025-03-02 15:43:18 CommitTransaction: 2aff52fd34fe8057aa9aa709ebf4498a951f0a8e2b870bcb620c2223d342ab73, vin: 1, vout: 2
+2025-03-02 15:43:27 UpdateTip:            new best=00d8db6d5bda7c236b88b70981a078f4289bf67ada047c2e1e22e2b53a40128f  height=91  log2_work=14.523562  tx=234  date=2025-03-02 15:43:27 progress=1.000000  cache=0
+2025-03-02 15:43:31 MultiChainMiner: Block Found - 008fc7b0aad2a1b31287eb9d7c19d58ffd0ef6c1daa6b5e70d5d489af5411464, prev: 00d8db6d5bda7c236b88b70981a078f4289bf67ada047c2e1e22e2b53a40128f, height: 92, txs: 1
+2025-03-02 15:43:31 UpdateTip:            new best=008fc7b0aad2a1b31287eb9d7c19d58ffd0ef6c1daa6b5e70d5d489af5411464  height=92  log2_work=14.539159  tx=235  date=2025-03-02 15:43:31 progress=1.000000  cache=0
+2025-03-02 15:43:38 UpdateTip:            new best=00fb2f7c61bf53cac80fd8bfada74496e495758f42be7799c7203af59b8bd020  height=93  log2_work=14.554589  tx=236  date=2025-03-02 15:43:37 progress=1.000000  cache=0
+2025-03-02 15:43:43 UpdateTip:            new best=0009f46eb1936d87b0403160e08a13465ff869267c1ab1ebc8a5b5c6f307eaeb  height=94  log2_work=14.569856  tx=237  date=2025-03-02 15:43:43 progress=1.000000  cache=0
+2025-03-02 15:43:51 MultiChainMiner: Block Found - 00c0342ab52422762f2ee844a69ef20238dcc3bbf335c39a143fca1e7e2bfeaa, prev: 0009f46eb1936d87b0403160e08a13465ff869267c1ab1ebc8a5b5c6f307eaeb, height: 95, txs: 1
+2025-03-02 15:43:51 UpdateTip:            new best=00c0342ab52422762f2ee844a69ef20238dcc3bbf335c39a143fca1e7e2bfeaa  height=95  log2_work=14.584963  tx=238  date=2025-03-02 15:43:51 progress=1.000000  cache=0
+2025-03-02 15:43:56 UpdateTip:            new best=00283f206d43637a159ebacfb4c2fd66b158ce4d7958a92fdeacf33203c0dc18  height=96  log2_work=14.599913  tx=239  date=2025-03-02 15:43:55 progress=1.000000  cache=0
+2025-03-02 15:44:02 UpdateTip:            new best=00d539bfc36a1ae513a2607ded403c7759d8f1f1de9ad465dae7f56fb5489ebb  height=97  log2_work=14.61471  tx=240  date=2025-03-02 15:44:02 progress=1.000000  cache=0
+2025-03-02 15:44:05 MultiChainMiner: Block Found - 00c232fb8947906ae9557e3ce6bd1f7c4e8192181f50c1f4da9e1019354e62ca, prev: 00d539bfc36a1ae513a2607ded403c7759d8f1f1de9ad465dae7f56fb5489ebb, height: 98, txs: 1
+2025-03-02 15:44:06 UpdateTip:            new best=00c232fb8947906ae9557e3ce6bd1f7c4e8192181f50c1f4da9e1019354e62ca  height=98  log2_work=14.629357  tx=241  date=2025-03-02 15:44:05 progress=1.000000  cache=0
+2025-03-02 15:44:11 MultiChainMiner: Block Found - 00fa172990fc18918de8a821c494a9fca6bab7985ac5c196b3552bd27d2a5b4d, prev: 00c232fb8947906ae9557e3ce6bd1f7c4e8192181f50c1f4da9e1019354e62ca, height: 99, txs: 1
+2025-03-02 15:44:11 UpdateTip:            new best=00fa172990fc18918de8a821c494a9fca6bab7985ac5c196b3552bd27d2a5b4d  height=99  log2_work=14.643856  tx=242  date=2025-03-02 15:44:11 progress=1.000000  cache=0
+2025-03-02 15:44:23 MultiChainMiner: Block Found - 003c8b172a63ed322de7324f0ff5193bd9b77aaf4207dab81d5dc20933704243, prev: 00fa172990fc18918de8a821c494a9fca6bab7985ac5c196b3552bd27d2a5b4d, height: 100, txs: 1
+2025-03-02 15:44:23 UpdateTip:            new best=003c8b172a63ed322de7324f0ff5193bd9b77aaf4207dab81d5dc20933704243  height=100  log2_work=14.658211  tx=243  date=2025-03-02 15:44:23 progress=1.000000  cache=0
+2025-03-02 15:44:29 UpdateTip:            new best=007857a1b51d83be45a5c13f5997c6e5b1c23786eed2f993ea316bb1341417c2  height=101  log2_work=14.672425  tx=244  date=2025-03-02 15:44:29 progress=1.000000  cache=0
+2025-03-02 15:46:58 CommitTransaction: 04559f3b6e904c225c51fce18882d9b605f439edf05f62de4526cf88fb0ee677, vin: 1, vout: 2
+2025-03-02 15:46:58 CommitTransaction: 4d6322c14d649a4060efaf035f53f627692bbcd229903258ab9c52e891336ab5, vin: 1, vout: 2
+2025-03-02 15:46:58 CommitTransaction: daaf032d1b528e122affaca5060f62671a374386ba910b0085ea18eff9cefe6c, vin: 1, vout: 2
+2025-03-02 15:46:59 CommitTransaction: 228c8a15cf285f487004740070782d8a872ea28677d0c0b70973782124dbd2a5, vin: 1, vout: 2
+2025-03-02 15:46:59 CommitTransaction: cb209aecfe1dd5dfffec2ec583af37527a1e96f3e1de506ecac5cb5322ac7421, vin: 1, vout: 2
+2025-03-02 15:46:59 CommitTransaction: ce11c0dd9947b4a24b183626e65e5103dd4f561c2f521003e080961150745c00, vin: 1, vout: 2
+2025-03-02 15:47:00 CommitTransaction: 29fe68ee64d5cd2d8126d9912af7064d136ec5d0b864035e9b65ce95d51f8578, vin: 1, vout: 2
+2025-03-02 15:47:00 CommitTransaction: 52d494189a45c651ee56a6f2cd618d56101fabc1214e0aacf2fa45a088a9d550, vin: 1, vout: 2
+2025-03-02 15:47:00 CommitTransaction: 4c1bb3cbdc6db7ac184b8b399175c9809a617fa949acf12ac5174eb616e59b2d, vin: 1, vout: 2
+2025-03-02 15:47:01 CommitTransaction: 68980252dd5cdc23e448c282843f78a7bf2b8165410a460f2ea69556ee927da6, vin: 1, vout: 2
+2025-03-02 15:47:01 CommitTransaction: 18fd4946c9894a3ce93bfd37d0a152158420e04bbf351e2bd7ef149e156eb4fa, vin: 1, vout: 2
+2025-03-02 15:47:01 CommitTransaction: 71508844e37ff2e43ad8b72e5e64186f725c048b7b8316b743cd81c197420986, vin: 1, vout: 2
+2025-03-02 15:47:02 CommitTransaction: 54a945f4c877e67598ff3f0b6fd91196d9ce847a03ea972b39c6cf0aa6829152, vin: 1, vout: 2
+2025-03-02 15:47:02 CommitTransaction: d721484b5d53dfd6278c18a002cdc49d1b92c4f3367cb131de0a48ac774dc5b3, vin: 1, vout: 2
+2025-03-02 15:47:02 CommitTransaction: 301cd759634cb928bb2e28dc28e1d5e9fcea34cf8d661cce4823e08c7747c5c4, vin: 1, vout: 2
+2025-03-02 15:47:03 CommitTransaction: 265a6f05a41c79dbb1a6bba0268ff0817f0736277e9f7e714c65a19dfc8b3432, vin: 1, vout: 2
+2025-03-02 15:47:03 CommitTransaction: 667620cc488a61b0ea4dac240bbf26ae5fea1ff6379defa0a9b792877b62f424, vin: 1, vout: 2
+2025-03-02 15:47:03 CommitTransaction: daaab9bd0c4fab3661ccaa770e34200661159cff467077bc216fb5a8c5586912, vin: 1, vout: 2
+2025-03-02 15:47:04 CommitTransaction: 47562faa2455ece010e20fcdd6d1727d76df08607c89f3ba26c430cd4f5002b8, vin: 1, vout: 2
+2025-03-02 15:47:04 CommitTransaction: c28074957cdeb7c9c202c5e837ab9643dfa284c19ea3d742d9f9952a1ecfe37e, vin: 1, vout: 2
+2025-03-02 15:47:04 CommitTransaction: 60532e2538588f87dff14188612f4da34131a911927728da8b05d733877a8e53, vin: 1, vout: 2
+2025-03-02 15:47:05 CommitTransaction: b99970d29662e808997d48abc94829b2deec27329fff6fa49cd8612ff734deda, vin: 1, vout: 2
+2025-03-02 15:47:05 CommitTransaction: 52d99b0b02fbc18552a16cdf0e127be5749b61d679c36cfe1114ef434bba5dc2, vin: 1, vout: 2
+2025-03-02 15:47:05 CommitTransaction: 40382f75333699c1655fede09fbb9dd4197cea2f152a492a72922ee62223d377, vin: 1, vout: 2
+2025-03-02 15:47:05 CommitTransaction: fc8c9aded17c77adfdd762125da4809ab8f35204eda8c140a49ec59e6da2b7ae, vin: 1, vout: 2
+2025-03-02 15:47:05 CommitTransaction: 94a32ccf0d31e797d46affd24b52955c56c246d087f1b971c281a829b3d1300e, vin: 1, vout: 2
+2025-03-02 15:47:06 CommitTransaction: 3b17ca73fe8e93cace46f8b4da7cdb5d9a1a1ee76927146ad1b1309f034d49c4, vin: 1, vout: 2
+2025-03-02 15:47:06 CommitTransaction: 43a1dbe748bbcf73814f67402b1192137e925a0f5043dc5268f73792364621bb, vin: 1, vout: 2
+2025-03-02 15:47:06 CommitTransaction: 02d5b83fbac97bec303edb92ada50fb7f3fc4282f302de7e5b5a5c39203e59be, vin: 1, vout: 2
+2025-03-02 15:47:06 CommitTransaction: 123279582aa00c55f2a9a40f696c7d563b728395ee26454d3a37796f63a1e66a, vin: 1, vout: 2
+2025-03-02 15:47:06 CommitTransaction: a244268a2fc07684e56cb33fe0b3e45f13a72609843def53534343f1f129943f, vin: 1, vout: 2
+2025-03-02 15:47:06 CommitTransaction: 9d19f8d73ea7d3046b45e864cb0f78db59034c658e2a0451cf3ed440099b9b64, vin: 1, vout: 2
+2025-03-02 15:47:07 CommitTransaction: b80ddd74261247359efcedd8366fe55343e1c7f857146d01017eeddcf41c4abe, vin: 1, vout: 2
+2025-03-02 15:47:07 CommitTransaction: 4d25bae95b8d5cae6771d7b8ebfb1632e9e8285f026b966168e6142b811f7cc8, vin: 1, vout: 2
+2025-03-02 15:47:07 CommitTransaction: 023e8bbd85340a91a88571ca5a20e82d024b3ea9d2ed4e90b0294b26f197b1dd, vin: 1, vout: 2
+2025-03-02 15:47:08 CommitTransaction: ecab99cb2e92fc3aa7d789295077bf3fc405a8b286567a7d3bd9704a0f7d7906, vin: 1, vout: 2
+2025-03-02 15:47:08 CommitTransaction: 9a5567d6def68585d767aa91ddec8adcd97a9cebf0228bd1834c1746dcff73b5, vin: 1, vout: 2
+2025-03-02 15:47:08 CommitTransaction: e7edb478e7382e4a5b4c920141e8f5dc4a6b7f65f21911eb8be53829b35cb3dd, vin: 1, vout: 2
+2025-03-02 15:47:09 CommitTransaction: dc2f8a4009c5fa21e20dc941ef71e8b9d9120baf04448fce6ec35b1bbd2e4d38, vin: 1, vout: 2
+2025-03-02 15:47:09 CommitTransaction: 61a022e1407daaf997c63a47d617f1a715dde3e2ca222cf8cc99b8287eaa0f2c, vin: 1, vout: 2
+2025-03-02 15:47:09 CommitTransaction: 143354b932ca753527ef6150b447c0f6c23e2cdc325b55c0840309d551b729c0, vin: 1, vout: 2
+2025-03-02 15:47:10 CommitTransaction: cb205ce74cadc79542bac4efdfa54ccb5da284479a82ff26b6c629d376b1efad, vin: 1, vout: 2
+2025-03-02 15:47:10 CommitTransaction: 4f01661d540bd4c76091b82ef50945a91e9bfeda39763dc31ead090e56f736e3, vin: 1, vout: 2
+2025-03-02 15:47:10 CommitTransaction: f8bbcc8a3417f0b8c1ab4362b80ef9e1712bc721682acfdc71dbf42cb3c550d6, vin: 1, vout: 2
+2025-03-02 15:47:11 CommitTransaction: 8b89a9c7b6d47ab542f4aa5c02efea9c80bee8d24c4c3d397c16704b08b836af, vin: 1, vout: 2
+2025-03-02 15:47:11 CommitTransaction: 90d963807fac6d663778bd5030fb40a4b48965b901769be455664291d26d59ef, vin: 1, vout: 2
+2025-03-02 15:47:11 CommitTransaction: 892e5b771bc215a4d52e93e8fdcbcfed42b4372eb537633350fda1ecd33f5c90, vin: 1, vout: 2
+2025-03-02 15:47:12 CommitTransaction: c3bacbfc81ea3946339cf7240133fe94885b9b7442857d0347da9b526bc03b25, vin: 1, vout: 2
+2025-03-02 15:47:12 CommitTransaction: 403d99a3a48c1d175babdb302859a18d5952eb801b55bb28c1fa83149dbd4b47, vin: 1, vout: 2
+2025-03-02 15:47:12 CommitTransaction: f8bf6ea6aebc5a30369199ad9f0340a07c0878edf2c43fa651543b1e8952fd6e, vin: 1, vout: 2
+2025-03-02 15:47:13 CommitTransaction: b200ab1b99506d5c1b6c15f1cadc23a1dd464d6bc6a135b8983782b98257ebec, vin: 1, vout: 2
+2025-03-02 15:47:19 UpdateTip:            new best=00c3a14e728a5a3165fad5154a5bfcfce20baf84e65412c1b5ffc1d0bca87f5e  height=102  log2_work=14.686501  tx=296  date=2025-03-02 15:47:18 progress=1.000000  cache=0
+2025-03-02 15:47:28 MultiChainMiner: Block Found - 00ececfacac30757611d6c7ba6eb06c0f10ec7e894c9a05ddbd3f102b349f47a, prev: 00c3a14e728a5a3165fad5154a5bfcfce20baf84e65412c1b5ffc1d0bca87f5e, height: 103, txs: 1
+2025-03-02 15:47:28 UpdateTip:            new best=00ececfacac30757611d6c7ba6eb06c0f10ec7e894c9a05ddbd3f102b349f47a  height=103  log2_work=14.70044  tx=297  date=2025-03-02 15:47:28 progress=1.000000  cache=0
+2025-03-02 15:47:29 CommitTransaction: 7b15594a84bb785987940f06ce05bd1581ed5351b86d3f1454637204fb4334df, vin: 1, vout: 2
+2025-03-02 15:47:29 CommitTransaction: 1f2bf9f28dc38c5d3b003948472664266aeb85f08f37410b4788457a65efb50a, vin: 1, vout: 2
+2025-03-02 15:47:30 CommitTransaction: a8e67301901a0f036b698cea584cd4c1e5f95c319387f8a9c2da43d8fde9a180, vin: 1, vout: 2
+2025-03-02 15:47:30 CommitTransaction: bc739939210fdaff8172ede88e5b55edbe37b1adc3e5a0f7abcd9d0844a7a830, vin: 1, vout: 2
+2025-03-02 15:47:31 CommitTransaction: 1f3c17690e3ee03f0ec5d2f4005f675c6b65661b3eada202f1ea419c6c9813c2, vin: 1, vout: 2
+2025-03-02 15:47:31 CommitTransaction: 1198f8884fcad8a57f1fc6379e9b7867da9f1c5a1d409a49bf801eee06b0ebac, vin: 1, vout: 2
+2025-03-02 15:47:31 CommitTransaction: 446850ceab1fa761ef134e637a0afaf9f14eb884e88dbec9595e5200174e2514, vin: 1, vout: 2
+2025-03-02 15:47:31 MultiChainMiner: Block Found - 006d534adfe267ae46b9e6568249989c47b895c13dc338b7a622ec0c581ad3a2, prev: 00ececfacac30757611d6c7ba6eb06c0f10ec7e894c9a05ddbd3f102b349f47a, height: 104, txs: 8
+2025-03-02 15:47:32 UpdateTip:            new best=006d534adfe267ae46b9e6568249989c47b895c13dc338b7a622ec0c581ad3a2  height=104  log2_work=14.714246  tx=305  date=2025-03-02 15:47:31 progress=1.000000  cache=0
+2025-03-02 15:47:32 CommitTransaction: 973f9ee345cb79b0fd20d3724f6a18009156b87646105975332ac9b4eed5e525, vin: 1, vout: 2
+2025-03-02 15:47:32 CommitTransaction: 43e0c991363a017014a26db1359c23d39d70c3bcaf37eee7adf26affc40db873, vin: 1, vout: 2
+2025-03-02 15:47:32 CommitTransaction: 271cb0c42644533c5a80a77eb8e6bd70414ac8cfe051bd2e6a5d5c7091b31894, vin: 1, vout: 2
+2025-03-02 15:47:33 CommitTransaction: a52b0459a5afac1d52e0662953be241eb6912e4d0c4d9ed7883a2ae1c56706cd, vin: 1, vout: 2
+2025-03-02 15:47:33 CommitTransaction: 50061f6d5a6baeccac72681b753c711c6e9420368f046ca9ea44d59f176520a8, vin: 1, vout: 2
+2025-03-02 15:47:33 CommitTransaction: 170a27a0daaf48699624ccc504c54fe3b938feb4b0f085995bce888450cf2978, vin: 1, vout: 2
+2025-03-02 15:47:34 CommitTransaction: 454126d53b1bd7e956662b43d34d14aa8a064f8828e4036a6c8ae46a0ac59e64, vin: 1, vout: 2
+2025-03-02 15:47:34 CommitTransaction: dc713eeff63034992563112fb22e53fc9c921fa8dfb0f37a7eaa062ee451e34a, vin: 1, vout: 2
+2025-03-02 15:47:34 CommitTransaction: 26f6c99981dfbafdd10ac81e0a4333e79f49958a347fa8fbb0b07883874892bc, vin: 1, vout: 2
+2025-03-02 15:47:35 CommitTransaction: 735442866b92cfba1449635c66f4f06ac9cbb2c1fbb4126c86216bc302c5b1ca, vin: 1, vout: 2
+2025-03-02 15:47:35 CommitTransaction: fadb6c7d0ace3dc532470411f93b951a62c4d287cd285922ac7fb8789e5ee691, vin: 1, vout: 2
+2025-03-02 15:47:35 CommitTransaction: 0ee6727677df0e2cb4f6cb95d490a7de2b98d9553795080dda614731e190a69e, vin: 1, vout: 2
+2025-03-02 15:47:36 CommitTransaction: b4f3fdf9a1a9116d9a738cedccd651d153b696e8b19273845cc0b22756a1dd25, vin: 1, vout: 2
+2025-03-02 15:47:36 CommitTransaction: 59f2ef047c1653a7cbb6a8b4c4d3bc5f2f74b73b93f7502baba8c09dff97ad39, vin: 1, vout: 2
+2025-03-02 15:47:36 UpdateTip:            new best=0031fa4cf530062b53ff2ac8fa4975647f1ec20193eb9f356d83738c6f722d29  height=105  log2_work=14.72792  tx=317  date=2025-03-02 15:47:36 progress=1.000000  cache=0
+2025-03-02 15:47:36 CommitTransaction: e71aca34e755ab79f9a7b02867e47662012b83adb9515749fdf4419ac7aa0033, vin: 1, vout: 2
+2025-03-02 15:47:37 CommitTransaction: e25c0786966d0ff294ed657e2201f54b13d6d0f66edbe3a3a32b9a5dacd35824, vin: 1, vout: 2
+2025-03-02 15:47:37 CommitTransaction: 98120d9a1fb217d8ddddde9fae333e46b86c624df2c531c8bee63ccdb04f90aa, vin: 1, vout: 2
+2025-03-02 15:47:37 CommitTransaction: f6ca7f698e394ddf59a6e16df46b06e462be9284bc1a465ffb22e35d11ec6a49, vin: 1, vout: 2
+2025-03-02 15:47:37 CommitTransaction: 9b04f819f17600ff66b2c682d0e4d7baa8dd907a160076a060768c2407decb67, vin: 1, vout: 2
+2025-03-02 15:47:37 CommitTransaction: 1cb556974bb25feda00ae6082dea2badc4ced6958f44f81bad2e9099f65a7fe1, vin: 1, vout: 2
+2025-03-02 15:47:37 CommitTransaction: fba4f1e3c0a5a00231d2f251699b73c2f891a2dfc9b366b2c63b7ec9b2a81414, vin: 1, vout: 2
+2025-03-02 15:47:38 CommitTransaction: c9b38a15fe98cc25ec3ee10a3241c6b0cda997b58977fcf4e19bc651abcff03f, vin: 1, vout: 2
+2025-03-02 15:47:38 CommitTransaction: 688f85fe798bd657c3d80e1ffff6f75d34918f92cf2de3f71a15aa2df1371361, vin: 1, vout: 2
+2025-03-02 15:47:38 CommitTransaction: a55d89a0d4568e893cf47b880cb4eb7bdf2544487e0bbded8fa5808ee93aaf5d, vin: 1, vout: 2
+2025-03-02 15:47:38 CommitTransaction: 4920a45119e55e693dedb1e45f107762d97d381914fc7d49fcea22d4c8acec37, vin: 1, vout: 2
+2025-03-02 15:47:38 CommitTransaction: 8b34272a8ff2ca2f8951770d60e82313dca720107183508407929dc95fcd6a64, vin: 1, vout: 2
+2025-03-02 15:47:38 CommitTransaction: fe30bdd6eb2c782f838bc049abb2c3c2feb47d3caad86145fadd745886fea8af, vin: 1, vout: 2
+2025-03-02 15:47:39 CommitTransaction: b6fce514b62735c137cb63187ab18c4ec7306ac799fb70a929de6581fe89ec89, vin: 1, vout: 2
+2025-03-02 15:47:39 CommitTransaction: 48c0859dd1bf1f9c4eb0332500c93c5e5a13a0258075605b4a37629784c8697a, vin: 1, vout: 2
+2025-03-02 15:47:39 CommitTransaction: 3fabdf2b750c381d5b36fd65b0db03a0c8a4e5342628a5d3c4bbf29cc4cde28a, vin: 1, vout: 2
+2025-03-02 15:47:40 CommitTransaction: 44f407d69d2d4b91fce61fe041ea86dcc28ffaa5865198466afa47874498ab4d, vin: 1, vout: 2
+2025-03-02 15:47:40 CommitTransaction: 45d75a39a64a2ef871c9f3f4e40c2f256d522f5f70148f22fa3dc366f89e70f6, vin: 1, vout: 2
+2025-03-02 15:47:40 CommitTransaction: 2d8ffb906b8ba5f3e70167aa2565d19f5e061a6af949dc782cbdf3e6f5d53832, vin: 1, vout: 2
+2025-03-02 15:47:41 CommitTransaction: fb46db64ffc4a833c1b584843a6dfd1c8d200c800fd8e185d531b6cf1acbcd85, vin: 1, vout: 2
+2025-03-02 15:47:41 CommitTransaction: 9a6823c8f096656cffc3f8595a6a3804874c17bb90eced177c449fc3f4646709, vin: 1, vout: 2
+2025-03-02 15:47:41 MultiChainMiner: Block Found - 006d2f9437b0886d507081f075b61f67d7efb7b1ba85f51b97b6cd1a4eed6208, prev: 0031fa4cf530062b53ff2ac8fa4975647f1ec20193eb9f356d83738c6f722d29, height: 106, txs: 25
+2025-03-02 15:47:41 UpdateTip:            new best=006d2f9437b0886d507081f075b61f67d7efb7b1ba85f51b97b6cd1a4eed6208  height=106  log2_work=14.741467  tx=342  date=2025-03-02 15:47:41 progress=1.000000  cache=0
+2025-03-02 15:47:41 CommitTransaction: 5438101e6afd96d8bd3effc323b3f9258f3c10830ecb89c99436f261bdd5df64, vin: 1, vout: 2
+2025-03-02 15:47:42 CommitTransaction: 92096ec97886d864dae1c430201f5d53d37065e0717cb3eae7fa3ab13d452685, vin: 1, vout: 2
+2025-03-02 15:47:42 CommitTransaction: 376e1255ef9c4ab8cf030f774264b7381b8931c9c52c378f3ef8649ebdcb62fc, vin: 1, vout: 2
+2025-03-02 15:47:42 CommitTransaction: f824dbb3d7aae4ac7b236b10d6dc474ac9dd61ab943a995fb6619f1eac01ee54, vin: 1, vout: 2
+2025-03-02 15:47:43 CommitTransaction: 199039c623c5c0a04184d25c5fff60c062fabed2e2dff39de747428c367fd1c0, vin: 1, vout: 2
+2025-03-02 15:47:43 CommitTransaction: cfbfb562efd26f6a84018d0c8d2ab8743a0d9c5817fe22a0037f1e451df66d86, vin: 1, vout: 2
+2025-03-02 15:47:43 CommitTransaction: bcc25f82a62ea859df620b879a8ddce55813059aad5dc7faabfd23fafc62e301, vin: 1, vout: 2
+2025-03-02 15:47:44 CommitTransaction: b3fd4237bf83fd4acae592529c53e10f2cbdb730df9e02e68197985fe5d81bc3, vin: 1, vout: 2
+2025-03-02 15:47:44 CommitTransaction: aeeb593085c362870425f8577167264848b30377fc990de7886cd83af04f3ce9, vin: 1, vout: 2
+2025-03-02 15:47:44 CommitTransaction: 6277805bf4778b8ec9fd6c48f7f1b83a148852f18c52b89d820057ebaefb8938, vin: 1, vout: 2
+2025-03-02 15:47:55 UpdateTip:            new best=0069252216d4e46161ed1f4b66df539cbf4739817010424eda30d95d3e5de7c1  height=107  log2_work=14.754888  tx=353  date=2025-03-02 15:47:55 progress=1.000000  cache=0
+2025-03-02 15:48:01 MultiChainMiner: Block Found - 00a22b0c7bb16bede78a5e44312ce57a99c8f009b8ab733215e026645725a6f2, prev: 0069252216d4e46161ed1f4b66df539cbf4739817010424eda30d95d3e5de7c1, height: 108, txs: 1
+2025-03-02 15:48:01 UpdateTip:            new best=00a22b0c7bb16bede78a5e44312ce57a99c8f009b8ab733215e026645725a6f2  height=108  log2_work=14.768184  tx=354  date=2025-03-02 15:48:01 progress=1.000000  cache=0
+2025-03-02 15:48:07 UpdateTip:            new best=004f94a2fdbd73cd8f31405058fffb0f85a545c6e67c7922ecd7a4e0795fee0f  height=109  log2_work=14.78136  tx=355  date=2025-03-02 15:48:07 progress=1.000000  cache=0
+2025-03-02 15:48:12 UpdateTip:            new best=00761f3b7766765bfa75952689b817c37fcdda4fad196ded8251395f93779832  height=110  log2_work=14.794416  tx=356  date=2025-03-02 15:48:11 progress=1.000000  cache=0
+2025-03-02 15:48:34 UpdateTip:            new best=00109c8ab5c1b8b07ad258d1f757f20c9a310fbe7f2c3c1f468155a053effc0f  height=111  log2_work=14.807355  tx=357  date=2025-03-02 15:48:33 progress=1.000000  cache=0
+2025-03-02 15:48:57 MultiChainMiner: Block Found - 00f77a95ea6c8cfa84ddf74fe41c1617868e9fd3a0fff8038f538346184c6405, prev: 00109c8ab5c1b8b07ad258d1f757f20c9a310fbe7f2c3c1f468155a053effc0f, height: 112, txs: 1
+2025-03-02 15:48:57 UpdateTip:            new best=00f77a95ea6c8cfa84ddf74fe41c1617868e9fd3a0fff8038f538346184c6405  height=112  log2_work=14.820179  tx=358  date=2025-03-02 15:48:57 progress=1.000000  cache=0
+2025-03-02 15:49:19 MultiChainMiner: Block Found - 0096579836da7dbe193d92b15fd8e33159b6da7c3818024fa21bbfb4ba5d5a92, prev: 00f77a95ea6c8cfa84ddf74fe41c1617868e9fd3a0fff8038f538346184c6405, height: 113, txs: 1
+2025-03-02 15:49:20 UpdateTip:            new best=0096579836da7dbe193d92b15fd8e33159b6da7c3818024fa21bbfb4ba5d5a92  height=113  log2_work=14.83289  tx=359  date=2025-03-02 15:49:19 progress=1.000000  cache=0
+2025-03-02 15:49:20 Accepted header for block 00795e5d700bee46358e19fad8698c6fa6380d3bd2721b3a4c0301054302f7d8 found on alternative chain at height 113
+2025-03-02 15:49:42 MultiChainMiner: Block Found - 00eeea299028b84064c0e0936ccdccc4729281420186f8e15f7263658695bdb8, prev: 0096579836da7dbe193d92b15fd8e33159b6da7c3818024fa21bbfb4ba5d5a92, height: 114, txs: 1
+2025-03-02 15:49:42 UpdateTip:            new best=00eeea299028b84064c0e0936ccdccc4729281420186f8e15f7263658695bdb8  height=114  log2_work=14.84549  tx=360  date=2025-03-02 15:49:42 progress=1.000000  cache=0
+2025-03-02 15:49:52 MultiChainMiner: Block Found - 0056ff167cf547f26f50123cfc4591ee4e57eeb3cf8192cef9d3f694da8d8aa4, prev: 00eeea299028b84064c0e0936ccdccc4729281420186f8e15f7263658695bdb8, height: 115, txs: 1
+2025-03-02 15:49:52 UpdateTip:            new best=0056ff167cf547f26f50123cfc4591ee4e57eeb3cf8192cef9d3f694da8d8aa4  height=115  log2_work=14.857981  tx=361  date=2025-03-02 15:49:52 progress=1.000000  cache=0
+2025-03-02 15:50:09 MultiChainMiner: Block Found - 005d02504f65f3b4ea084bf21c1ef2157f07a5581f8c67b1c9d3092b7c12c210, prev: 0056ff167cf547f26f50123cfc4591ee4e57eeb3cf8192cef9d3f694da8d8aa4, height: 116, txs: 1
+2025-03-02 15:50:09 UpdateTip:            new best=005d02504f65f3b4ea084bf21c1ef2157f07a5581f8c67b1c9d3092b7c12c210  height=116  log2_work=14.870365  tx=362  date=2025-03-02 15:50:09 progress=1.000000  cache=0
+2025-03-02 15:50:18 UpdateTip:            new best=00a64c51dc25047ee122a8cf7b69190ba20b4a7cb59562cb042266c2fa9fe02e  height=117  log2_work=14.882643  tx=363  date=2025-03-02 15:50:17 progress=1.000000  cache=0

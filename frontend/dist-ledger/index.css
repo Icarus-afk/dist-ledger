@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-white hover:bg-sidebarHover rounded transition-colors;
+  }
+  
+  .sidebar-link-active {
+    @apply text-white bg-sidebarHover;
+  }
+  
+  .form-input {
+    @apply w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400;
+  }
+  
+  .btn {
+    @apply px-4 py-2 rounded font-medium transition-colors flex items-center justify-center gap-1;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+  
+  .btn-distributor {
+    @apply bg-distributor text-white hover:bg-blue-700;
+  }
+  
+  .btn-retailer {
+    @apply bg-retailer text-white hover:bg-green-700;
+  }
+  
+  .btn-main {
+    @apply bg-main text-white hover:bg-purple-700;
+  }
+  
+  .card {
+    @apply bg-white rounded-md shadow mb-5 overflow-hidden;
+  }
+  
+  .card-header {
+    @apply px-4 py-3 font-bold border-b-2 border-cardBorder flex justify-between items-center;
+  }
+  
+  .card-body {
+    @apply p-4;
+  }
+}

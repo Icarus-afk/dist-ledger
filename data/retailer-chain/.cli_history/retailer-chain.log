@@ -1,1524 +1,425 @@
-2025-03-02 02:21:35.502	getaddresses
-2025-03-02 02:21:35.843	grant 1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR mine,admin
-2025-03-02 02:21:37.244	getaddresses
-2025-03-02 02:21:37.354	generate 1
-2025-03-02 02:21:37.459	generatetoaddress 1 1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR
-2025-03-02 02:21:37.565	setgenerate true 1
-2025-03-02 02:21:40.472	create stream retailer_transactions '{"restrict":"write"}'
-2025-03-02 02:21:40.580	create stream merkle_roots '{"restrict":"write"}'
-2025-03-02 02:21:41.151	subscribe retailer_transactions
-2025-03-02 02:21:41.277	subscribe merkle_roots
-2025-03-02 02:21:42.746	getaddresses
-2025-03-02 02:21:42.853	generate 1
-2025-03-02 02:21:42.961	generatetoaddress 1 1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR
-2025-03-02 02:21:43.069	setgenerate true 1
-2025-03-02 02:21:48.112	getblockcount
-2025-03-02 02:21:48.454	setruntimeparam anyone-can-connect=true
-2025-03-02 02:21:48.822	getblockcount
-2025-03-02 02:21:49.166	setruntimeparam anyone-can-connect=true
-2025-03-02 02:22:48.858	grant 1JFv4ikd4xhNTtnYkQw6LEp85Kqx9ZSxbiS4ao connect,send,receive,mine,admin
-2025-03-02 02:22:48.969	getaddresses
-2025-03-02 02:22:49.079	generate 1
-2025-03-02 02:22:49.186	generatetoaddress 1 1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR
-2025-03-02 02:22:49.294	setgenerate true 1
-2025-03-02 02:22:59.899	grant 1JAgKnG6DSjHCCnnmwY9XTHoFcifTDeBp7vpmW connect,send,receive,mine,admin
-2025-03-02 02:23:00.009	getaddresses
-2025-03-02 02:23:00.116	generate 1
-2025-03-02 02:23:00.225	generatetoaddress 1 1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR
-2025-03-02 02:23:00.331	setgenerate true 1
-2025-03-02 02:23:10.940	grant 1YRcNcVeaefJcnc5agcLrbRhnQFrLrcKHhMJNR connect,send,receive,mine,admin
-2025-03-02 02:23:11.047	getaddresses
-2025-03-02 02:23:11.159	generate 1
-2025-03-02 02:23:11.265	generatetoaddress 1 1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR
-2025-03-02 02:23:11.372	setgenerate true 1
-2025-03-02 02:23:34.541	setruntimeparam anyone-can-connect=false
-2025-03-02 02:23:34.874	getpeerinfo
-2025-03-02 02:23:35.209	getpeerinfo
-2025-03-02 02:25:16.478	getpeerinfo
-2025-03-02 02:25:16.812	getpeerinfo
-2025-03-02 02:35:19.915	getblockcount
-2025-03-02 02:35:21.022	getpeerinfo
-2025-03-02 02:35:21.137	getpeerinfo
-2025-03-02 02:35:21.914	getmempoolinfo
-2025-03-02 02:35:22.022	getblockcount
-2025-03-02 02:35:22.135	getblockhash 54
-2025-03-02 02:35:22.242	getblock 00685f5593db13badb1985a13531fa3ad0894a933194f7a9f3f4293801c69427
-2025-03-02 02:35:34.020	getblockcount
-2025-03-02 02:35:35.137	getpeerinfo
-2025-03-02 02:35:35.247	getpeerinfo
-2025-03-02 02:35:36.020	getmempoolinfo
-2025-03-02 02:35:36.134	getblockcount
-2025-03-02 02:35:36.240	getblockhash 55
-2025-03-02 02:35:36.347	getblock 006362ef77230df8baafb2750e782537bcb6e169cbbd18656fd46b78eb362ea7
-2025-03-02 02:35:48.115	getblockcount
-2025-03-02 02:35:49.228	getpeerinfo
-2025-03-02 02:35:49.338	getpeerinfo
-2025-03-02 02:35:50.116	getmempoolinfo
-2025-03-02 02:35:50.231	getblockcount
-2025-03-02 02:35:50.340	getblockhash 55
-2025-03-02 02:35:50.448	getblock 006362ef77230df8baafb2750e782537bcb6e169cbbd18656fd46b78eb362ea7
-2025-03-02 02:36:02.199	getblockcount
-2025-03-02 02:36:03.301	getpeerinfo
-2025-03-02 02:36:03.412	getpeerinfo
-2025-03-02 02:36:04.190	getmempoolinfo
-2025-03-02 02:36:04.306	getblockcount
-2025-03-02 02:36:04.415	getblockhash 57
-2025-03-02 02:36:04.522	getblock 00bb544e2152b64fde64198b2c2573288ec984981c45a9dbec528edc95a664e0
-2025-03-02 02:36:16.288	getblockcount
-2025-03-02 02:36:17.389	getpeerinfo
-2025-03-02 02:36:17.499	getpeerinfo
-2025-03-02 02:36:18.274	getmempoolinfo
-2025-03-02 02:36:18.387	getblockcount
-2025-03-02 02:36:18.493	getblockhash 58
-2025-03-02 02:36:18.600	getblock 000fce9da5cdeace725ca0fcab7d35bcb004a76203d4dbd49266faab9f2f0935
-2025-03-02 02:36:30.375	getblockcount
-2025-03-02 02:36:31.481	getpeerinfo
-2025-03-02 02:36:31.589	getpeerinfo
-2025-03-02 02:36:32.367	getmempoolinfo
-2025-03-02 02:36:32.478	getblockcount
-2025-03-02 02:36:32.586	getblockhash 59
-2025-03-02 02:36:32.700	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:36:44.470	getblockcount
-2025-03-02 02:36:45.582	getpeerinfo
-2025-03-02 02:36:45.699	getpeerinfo
-2025-03-02 02:36:46.502	getmempoolinfo
-2025-03-02 02:36:46.610	getblockcount
-2025-03-02 02:36:46.722	getblockhash 59
-2025-03-02 02:36:46.831	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:36:58.594	getblockcount
-2025-03-02 02:36:59.687	getpeerinfo
-2025-03-02 02:36:59.794	getpeerinfo
-2025-03-02 02:37:00.563	getmempoolinfo
-2025-03-02 02:37:00.673	getblockcount
-2025-03-02 02:37:00.785	getblockhash 59
-2025-03-02 02:37:00.904	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:37:12.721	getblockcount
-2025-03-02 02:37:13.828	getpeerinfo
-2025-03-02 02:37:13.938	getpeerinfo
-2025-03-02 02:37:14.712	getmempoolinfo
-2025-03-02 02:37:14.822	getblockcount
-2025-03-02 02:37:14.928	getblockhash 59
-2025-03-02 02:37:15.044	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:37:26.815	getblockcount
-2025-03-02 02:37:27.923	getpeerinfo
-2025-03-02 02:37:28.036	getpeerinfo
-2025-03-02 02:37:28.818	getmempoolinfo
-2025-03-02 02:37:28.925	getblockcount
-2025-03-02 02:37:29.037	getblockhash 59
-2025-03-02 02:37:29.148	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:37:40.922	getblockcount
-2025-03-02 02:37:42.022	getpeerinfo
-2025-03-02 02:37:42.137	getpeerinfo
-2025-03-02 02:37:42.908	getmempoolinfo
-2025-03-02 02:37:43.016	getblockcount
-2025-03-02 02:37:43.123	getblockhash 59
-2025-03-02 02:37:43.239	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:37:54.999	getblockcount
-2025-03-02 02:37:56.104	getpeerinfo
-2025-03-02 02:37:56.220	getpeerinfo
-2025-03-02 02:37:56.983	getmempoolinfo
-2025-03-02 02:37:57.093	getblockcount
-2025-03-02 02:37:57.200	getblockhash 59
-2025-03-02 02:37:57.307	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:38:09.107	getblockcount
-2025-03-02 02:38:10.218	getpeerinfo
-2025-03-02 02:38:10.333	getpeerinfo
-2025-03-02 02:38:11.116	getmempoolinfo
-2025-03-02 02:38:11.225	getblockcount
-2025-03-02 02:38:11.337	getblockhash 59
-2025-03-02 02:38:11.448	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:38:23.204	getblockcount
-2025-03-02 02:38:24.320	getpeerinfo
-2025-03-02 02:38:24.431	getpeerinfo
-2025-03-02 02:38:25.199	getmempoolinfo
-2025-03-02 02:38:25.310	getblockcount
-2025-03-02 02:38:25.417	getblockhash 59
-2025-03-02 02:38:25.524	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:38:37.300	getblockcount
-2025-03-02 02:38:38.403	getpeerinfo
-2025-03-02 02:38:38.516	getpeerinfo
-2025-03-02 02:38:39.327	getmempoolinfo
-2025-03-02 02:38:39.440	getblockcount
-2025-03-02 02:38:39.550	getblockhash 59
-2025-03-02 02:38:39.664	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:38:51.484	getblockcount
-2025-03-02 02:38:52.610	getpeerinfo
-2025-03-02 02:38:52.722	getpeerinfo
-2025-03-02 02:38:53.506	getmempoolinfo
-2025-03-02 02:38:53.615	getblockcount
-2025-03-02 02:38:53.723	getblockhash 59
-2025-03-02 02:38:53.843	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:39:05.779	getblockcount
-2025-03-02 02:39:06.909	getpeerinfo
-2025-03-02 02:39:07.028	getpeerinfo
-2025-03-02 02:39:07.878	getmempoolinfo
-2025-03-02 02:39:07.994	getblockcount
-2025-03-02 02:39:08.101	getblockhash 59
-2025-03-02 02:39:08.214	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:39:20.015	getblockcount
-2025-03-02 02:39:21.124	getpeerinfo
-2025-03-02 02:39:21.232	getpeerinfo
-2025-03-02 02:39:22.019	getmempoolinfo
-2025-03-02 02:39:22.128	getblockcount
-2025-03-02 02:39:22.236	getblockhash 59
-2025-03-02 02:39:22.349	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:39:34.525	getblockcount
-2025-03-02 02:39:35.662	getpeerinfo
-2025-03-02 02:39:35.771	getpeerinfo
-2025-03-02 02:39:36.583	getmempoolinfo
-2025-03-02 02:39:36.696	getblockcount
-2025-03-02 02:39:36.812	getblockhash 59
-2025-03-02 02:39:36.946	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:39:48.830	getblockcount
-2025-03-02 02:39:49.933	getpeerinfo
-2025-03-02 02:39:50.042	getpeerinfo
-2025-03-02 02:39:50.819	getmempoolinfo
-2025-03-02 02:39:50.935	getblockcount
-2025-03-02 02:39:51.041	getblockhash 59
-2025-03-02 02:39:51.151	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:40:02.977	getblockcount
-2025-03-02 02:40:04.095	getpeerinfo
-2025-03-02 02:40:04.208	getpeerinfo
-2025-03-02 02:40:04.983	getmempoolinfo
-2025-03-02 02:40:05.095	getblockcount
-2025-03-02 02:40:05.205	getblockhash 59
-2025-03-02 02:40:05.319	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:40:17.437	getblockcount
-2025-03-02 02:40:18.614	getpeerinfo
-2025-03-02 02:40:18.729	getpeerinfo
-2025-03-02 02:40:19.562	getmempoolinfo
-2025-03-02 02:40:19.693	getblockcount
-2025-03-02 02:40:19.814	getblockhash 59
-2025-03-02 02:40:19.942	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:40:32.029	getblockcount
-2025-03-02 02:40:33.174	getpeerinfo
-2025-03-02 02:40:33.293	getpeerinfo
-2025-03-02 02:40:34.094	getmempoolinfo
-2025-03-02 02:40:34.202	getblockcount
-2025-03-02 02:40:34.311	getblockhash 59
-2025-03-02 02:40:34.420	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:40:46.481	getblockcount
-2025-03-02 02:40:47.613	getpeerinfo
-2025-03-02 02:40:47.726	getpeerinfo
-2025-03-02 02:40:48.508	getmempoolinfo
-2025-03-02 02:40:48.620	getblockcount
-2025-03-02 02:40:48.727	getblockhash 59
-2025-03-02 02:40:48.833	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:41:00.615	getblockcount
-2025-03-02 02:41:01.745	getpeerinfo
-2025-03-02 02:41:01.857	getpeerinfo
-2025-03-02 02:41:02.648	getmempoolinfo
-2025-03-02 02:41:02.756	getblockcount
-2025-03-02 02:41:02.862	getblockhash 59
-2025-03-02 02:41:02.972	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:41:14.779	getblockcount
-2025-03-02 02:41:15.907	getpeerinfo
-2025-03-02 02:41:16.022	getpeerinfo
-2025-03-02 02:41:16.820	getmempoolinfo
-2025-03-02 02:41:16.937	getblockcount
-2025-03-02 02:41:17.049	getblockhash 59
-2025-03-02 02:41:17.156	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:41:29.091	getblockcount
-2025-03-02 02:41:30.265	getpeerinfo
-2025-03-02 02:41:30.380	getpeerinfo
-2025-03-02 02:41:31.208	getmempoolinfo
-2025-03-02 02:41:31.317	getblockcount
-2025-03-02 02:41:31.429	getblockhash 59
-2025-03-02 02:41:31.536	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:41:47.948	getblockcount
-2025-03-02 02:41:58.590	getpeerinfo
-2025-03-02 02:41:58.705	getpeerinfo
-2025-03-02 02:42:09.766	getpeerinfo
-2025-03-02 02:42:09.881	getpeerinfo
-2025-03-02 02:42:28.900	getblockcount
-2025-03-02 02:42:30.007	getpeerinfo
-2025-03-02 02:42:30.117	getpeerinfo
-2025-03-02 02:42:30.951	getmempoolinfo
-2025-03-02 02:42:31.062	getblockcount
-2025-03-02 02:42:31.170	getblockhash 59
-2025-03-02 02:42:31.282	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
-2025-03-02 02:44:21.406	getblockcount
-2025-03-02 02:44:21.519	getnewaddress
-2025-03-02 02:44:21.672	generate 1
-2025-03-02 02:44:21.780	getinfo
-2025-03-02 02:44:23.346	getaddresses
-2025-03-02 02:44:23.466	getnewaddress
-2025-03-02 02:44:23.603	getaddressbalances '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:44:23.718	send '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"' '"1aAQ6aRDKkZuhcy4n2in2byHwnJbVBJjo94nvF"' 1
-2025-03-02 02:44:23.838	generate 1
-2025-03-02 02:44:23.947	gettransaction
-2025-03-02 02:44:24.065	getaddressbalances '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:44:24.175	getaddressbalances '"1aAQ6aRDKkZuhcy4n2in2byHwnJbVBJjo94nvF"'
-2025-03-02 02:44:25.805	liststreams
-2025-03-02 02:44:25.920	liststreams
-2025-03-02 02:44:26.035	publish retailer_transactions test_key 7b22746573745f64617461223a2253747265616d20746573742061742031373430383631383635222c2276616c7565223a3132337d
-2025-03-02 02:44:26.152	generate 1
-2025-03-02 02:44:26.259	liststreamitems retailer_transactions
-2025-03-02 02:44:32.647	getblockcount
-2025-03-02 02:44:38.105	getblockcount
-2025-03-02 02:45:11.109	getblockcount
-2025-03-02 02:45:11.218	getnewaddress
-2025-03-02 02:45:11.360	generate 1
-2025-03-02 02:45:11.475	getinfo
-2025-03-02 02:45:13.038	getaddresses
-2025-03-02 02:45:13.169	getnewaddress
-2025-03-02 02:45:13.318	getaddressbalances '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:45:13.447	send '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"' '"15q7aGnrwDvXrcFw9t4DBQAzCUn3qGTUrTRgCu"' 1
-2025-03-02 02:45:13.573	generate 1
-2025-03-02 02:45:13.690	gettransaction
-2025-03-02 02:45:13.815	getaddressbalances '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:45:13.931	getaddressbalances '"15q7aGnrwDvXrcFw9t4DBQAzCUn3qGTUrTRgCu"'
-2025-03-02 02:45:15.637	liststreams
-2025-03-02 02:45:15.745	liststreams
-2025-03-02 02:45:15.865	publish retailer_transactions test_key 7b22746573745f64617461223a2253747265616d20746573742061742031373430383631393135222c2276616c7565223a3132337d
-2025-03-02 02:45:15.985	generate 1
-2025-03-02 02:45:16.095	liststreamitems retailer_transactions
-2025-03-02 02:45:22.345	getblockcount
-2025-03-02 02:45:27.799	getblockcount
-2025-03-02 02:46:03.709	getblockcount
-2025-03-02 02:46:03.818	getnewaddress
-2025-03-02 02:46:03.960	generate 1
-2025-03-02 02:46:04.069	getinfo
-2025-03-02 02:48:28.627	getblockcount
-2025-03-02 02:48:28.736	getnewaddress
-2025-03-02 02:48:28.865	getaddresses
-2025-03-02 02:48:28.977	generatetoaddress 1 '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:48:29.083	getinfo
-2025-03-02 02:50:38.296	getaddresses
-2025-03-02 02:50:38.404	getnewaddress
-2025-03-02 02:50:38.534	getaddressbalances '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:50:38.649	send '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"' '"143ZNDVzpY97oxXTHfJ9iAymgK4vG7wVS4CjJL"' 1
-2025-03-02 02:50:38.763	getaddresses
-2025-03-02 02:50:38.874	generatetoaddress 1 '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:50:38.984	gettransaction
-2025-03-02 02:50:39.097	getaddressbalances '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"'
-2025-03-02 02:50:39.207	getaddressbalances '"143ZNDVzpY97oxXTHfJ9iAymgK4vG7wVS4CjJL"'
-2025-03-02 02:51:36.544	getblockcount
-2025-03-02 02:51:36.660	getnewaddress
-2025-03-02 02:51:36.802	getaddresses
-2025-03-02 02:51:36.914	getnewaddress
-2025-03-02 02:51:37.054	send '"1FmpYUKY4mNNFcWzKQazkEvVzieVkhRt8GUYyR"' '"1PHiMuVxtLanw2GJ7uwv78bM4NAkipPucce9dV"' 0.01
-2025-03-02 02:51:42.172	getinfo
-2025-03-02 03:00:43.147	getblockcount
-2025-03-02 03:00:43.258	getblockhash 83
-2025-03-02 03:00:44.499	getmempoolinfo
-2025-03-02 03:00:44.619	listwallettransactions 3
-2025-03-02 03:00:45.190	getpeerinfo
-2025-03-02 03:00:45.301	getpeerinfo
-2025-03-02 03:00:45.749	liststreamitems retailer_transactions 1
-2025-03-02 03:00:49.562	getblockcount
-2025-03-02 03:00:49.675	getblockhash 83
-2025-03-02 03:00:50.904	getmempoolinfo
-2025-03-02 03:00:51.022	listwallettransactions 3
-2025-03-02 03:00:51.611	getpeerinfo
-2025-03-02 03:00:51.727	getpeerinfo
-2025-03-02 03:00:52.176	liststreamitems retailer_transactions 1
-2025-03-02 03:00:55.961	getblockcount
-2025-03-02 03:00:56.069	getblockhash 83
-2025-03-02 03:00:57.335	getmempoolinfo
-2025-03-02 03:00:57.448	listwallettransactions 3
-2025-03-02 03:00:58.027	getpeerinfo
-2025-03-02 03:00:58.137	getpeerinfo
-2025-03-02 03:00:58.586	liststreamitems retailer_transactions 1
-2025-03-02 03:01:02.371	getblockcount
-2025-03-02 03:01:02.489	getblockhash 83
-2025-03-02 03:01:03.719	getmempoolinfo
-2025-03-02 03:01:03.845	listwallettransactions 3
-2025-03-02 03:01:04.425	getpeerinfo
-2025-03-02 03:01:04.536	getpeerinfo
-2025-03-02 03:01:04.989	liststreamitems retailer_transactions 1
-2025-03-02 03:01:08.781	getblockcount
-2025-03-02 03:01:08.892	getblockhash 83
-2025-03-02 03:01:10.154	getmempoolinfo
-2025-03-02 03:01:10.274	listwallettransactions 3
-2025-03-02 03:01:10.843	getpeerinfo
-2025-03-02 03:01:10.955	getpeerinfo
-2025-03-02 03:01:11.402	liststreamitems retailer_transactions 1
-2025-03-02 03:01:15.181	getblockcount
-2025-03-02 03:01:15.289	getblockhash 83
-2025-03-02 03:01:16.525	getmempoolinfo
-2025-03-02 03:01:16.638	listwallettransactions 3
-2025-03-02 03:01:17.214	getpeerinfo
-2025-03-02 03:01:17.327	getpeerinfo
-2025-03-02 03:01:17.770	liststreamitems retailer_transactions 1
-2025-03-02 03:01:21.564	getblockcount
-2025-03-02 03:01:21.678	getblockhash 83
-2025-03-02 03:01:22.943	getmempoolinfo
-2025-03-02 03:01:23.056	listwallettransactions 3
-2025-03-02 03:01:23.672	getpeerinfo
-2025-03-02 03:01:23.785	getpeerinfo
-2025-03-02 03:01:24.230	liststreamitems retailer_transactions 1
-2025-03-02 03:01:28.027	getblockcount
-2025-03-02 03:01:28.144	getblockhash 83
-2025-03-02 03:01:29.451	getmempoolinfo
-2025-03-02 03:01:29.572	listwallettransactions 3
-2025-03-02 03:01:30.197	getpeerinfo
-2025-03-02 03:01:30.312	getpeerinfo
-2025-03-02 03:01:30.792	liststreamitems retailer_transactions 1
-2025-03-02 03:01:34.607	getblockcount
-2025-03-02 03:01:34.720	getblockhash 83
-2025-03-02 03:01:36.228	getmempoolinfo
-2025-03-02 03:01:36.386	listwallettransactions 3
-2025-03-02 03:01:37.119	getpeerinfo
-2025-03-02 03:01:37.243	getpeerinfo
-2025-03-02 03:01:37.708	liststreamitems retailer_transactions 1
-2025-03-02 03:01:41.510	getblockcount
-2025-03-02 03:01:41.618	getblockhash 83
-2025-03-02 03:01:42.872	getmempoolinfo
-2025-03-02 03:01:42.993	listwallettransactions 3
-2025-03-02 03:01:43.609	getpeerinfo
-2025-03-02 03:01:43.725	getpeerinfo
-2025-03-02 03:01:44.193	liststreamitems retailer_transactions 1
-2025-03-02 03:01:50.528	getblockcount
-2025-03-02 03:01:50.641	getblockhash 83
-2025-03-02 03:01:51.881	getmempoolinfo
-2025-03-02 03:01:51.995	listwallettransactions 3
-2025-03-02 03:01:52.585	getpeerinfo
-2025-03-02 03:01:52.696	getpeerinfo
-2025-03-02 03:01:53.142	liststreamitems retailer_transactions 1
-2025-03-02 03:01:55.433	getblockcount
-2025-03-02 03:01:55.542	getblockhash 83
-2025-03-02 03:01:57.518	getblockcount
-2025-03-02 03:01:57.627	getblockhash 83
-2025-03-02 03:01:58.880	getmempoolinfo
-2025-03-02 03:01:58.993	listwallettransactions 3
-2025-03-02 03:01:59.573	getpeerinfo
-2025-03-02 03:01:59.683	getpeerinfo
-2025-03-02 03:02:00.127	liststreamitems retailer_transactions 1
-2025-03-02 03:02:03.916	getblockcount
-2025-03-02 03:02:04.027	getblockhash 83
-2025-03-02 03:02:05.260	getmempoolinfo
-2025-03-02 03:02:05.373	listwallettransactions 3
-2025-03-02 03:02:05.964	getpeerinfo
-2025-03-02 03:02:06.075	getpeerinfo
-2025-03-02 03:02:06.526	liststreamitems retailer_transactions 1
-2025-03-02 03:02:10.310	getblockcount
-2025-03-02 03:02:10.422	getblockhash 83
-2025-03-02 03:02:11.669	getmempoolinfo
-2025-03-02 03:02:11.791	listwallettransactions 3
-2025-03-02 03:02:12.395	getpeerinfo
-2025-03-02 03:02:12.512	getpeerinfo
-2025-03-02 03:02:12.963	liststreamitems retailer_transactions 1
-2025-03-02 03:02:16.767	getblockcount
-2025-03-02 03:02:16.875	getblockhash 83
-2025-03-02 03:02:18.205	getmempoolinfo
-2025-03-02 03:02:18.383	listwallettransactions 3
-2025-03-02 03:02:19.252	getpeerinfo
-2025-03-02 03:02:19.380	getpeerinfo
-2025-03-02 03:02:19.897	liststreamitems retailer_transactions 1
-2025-03-02 03:02:23.696	getblockcount
-2025-03-02 03:02:23.813	getblockhash 83
-2025-03-02 03:02:25.098	getmempoolinfo
-2025-03-02 03:02:25.210	listwallettransactions 3
-2025-03-02 03:02:25.803	getpeerinfo
-2025-03-02 03:02:25.919	getpeerinfo
-2025-03-02 03:02:26.368	liststreamitems retailer_transactions 1
-2025-03-02 03:02:30.175	getblockcount
-2025-03-02 03:02:30.283	getblockhash 83
-2025-03-02 03:02:31.540	getmempoolinfo
-2025-03-02 03:02:31.654	listwallettransactions 3
-2025-03-02 03:02:32.238	getpeerinfo
-2025-03-02 03:02:32.354	getpeerinfo
-2025-03-02 03:02:32.817	liststreamitems retailer_transactions 1
-2025-03-02 03:02:36.608	getblockcount
-2025-03-02 03:02:36.727	getblockhash 83
-2025-03-02 03:02:37.963	getmempoolinfo
-2025-03-02 03:02:38.084	listwallettransactions 3
-2025-03-02 03:02:38.671	getpeerinfo
-2025-03-02 03:02:38.785	getpeerinfo
-2025-03-02 03:02:39.229	liststreamitems retailer_transactions 1
-2025-03-02 03:02:43.026	getblockcount
-2025-03-02 03:02:43.135	getblockhash 83
-2025-03-02 03:02:44.377	getmempoolinfo
-2025-03-02 03:02:44.508	listwallettransactions 3
-2025-03-02 03:02:45.314	getpeerinfo
-2025-03-02 03:02:45.439	getpeerinfo
-2025-03-02 03:02:45.955	liststreamitems retailer_transactions 1
-2025-03-02 03:02:54.315	getblockcount
-2025-03-02 03:02:54.425	getblockhash 83
-2025-03-02 03:02:55.663	getmempoolinfo
-2025-03-02 03:02:55.776	listwallettransactions 3
-2025-03-02 03:02:56.357	getpeerinfo
-2025-03-02 03:02:56.468	getpeerinfo
-2025-03-02 03:02:56.913	liststreamitems retailer_transactions 1
-2025-03-02 03:03:01.068	getblockcount
-2025-03-02 03:03:01.176	getblockhash 83
-2025-03-02 03:03:02.431	getmempoolinfo
-2025-03-02 03:03:02.542	listwallettransactions 3
-2025-03-02 03:03:03.126	getpeerinfo
-2025-03-02 03:03:03.242	getpeerinfo
-2025-03-02 03:03:03.697	liststreamitems retailer_transactions 1
-2025-03-02 03:03:07.898	getblockcount
-2025-03-02 03:03:08.009	getblockhash 83
-2025-03-02 03:03:09.406	getmempoolinfo
-2025-03-02 03:03:09.516	listwallettransactions 3
-2025-03-02 03:03:10.109	getpeerinfo
-2025-03-02 03:03:10.223	getpeerinfo
-2025-03-02 03:03:10.670	liststreamitems retailer_transactions 1
-2025-03-02 03:03:14.793	getblockcount
-2025-03-02 03:03:14.910	getblockhash 83
-2025-03-02 03:03:16.161	getmempoolinfo
-2025-03-02 03:03:16.292	listwallettransactions 3
-2025-03-02 03:03:16.906	getpeerinfo
-2025-03-02 03:03:17.019	getpeerinfo
-2025-03-02 03:03:17.482	liststreamitems retailer_transactions 1
-2025-03-02 03:03:21.635	getblockcount
-2025-03-02 03:03:21.748	getblockhash 83
-2025-03-02 03:03:23.065	getmempoolinfo
-2025-03-02 03:03:23.186	listwallettransactions 3
-2025-03-02 03:03:23.790	getpeerinfo
-2025-03-02 03:03:23.921	getpeerinfo
-2025-03-02 03:03:24.386	liststreamitems retailer_transactions 1
-2025-03-02 03:03:28.551	getblockcount
-2025-03-02 03:03:28.662	getblockhash 83
-2025-03-02 03:03:29.921	getmempoolinfo
-2025-03-02 03:03:30.046	listwallettransactions 3
-2025-03-02 03:03:30.645	getpeerinfo
-2025-03-02 03:03:30.761	getpeerinfo
-2025-03-02 03:03:31.222	liststreamitems retailer_transactions 1
-2025-03-02 03:03:35.386	getblockcount
-2025-03-02 03:03:35.497	getblockhash 83
-2025-03-02 03:03:36.767	getmempoolinfo
-2025-03-02 03:03:36.879	listwallettransactions 3
-2025-03-02 03:03:37.597	getpeerinfo
-2025-03-02 03:03:37.731	getpeerinfo
-2025-03-02 03:03:38.306	liststreamitems retailer_transactions 1
-2025-03-02 03:03:42.448	getblockcount
-2025-03-02 03:03:42.561	getblockhash 83
-2025-03-02 03:03:43.800	getmempoolinfo
-2025-03-02 03:03:43.922	listwallettransactions 3
-2025-03-02 03:03:44.504	getpeerinfo
-2025-03-02 03:03:44.615	getpeerinfo
-2025-03-02 03:03:45.073	liststreamitems retailer_transactions 1
-2025-03-02 03:03:49.244	getblockcount
-2025-03-02 03:03:49.369	getblockhash 83
-2025-03-02 03:03:50.637	getmempoolinfo
-2025-03-02 03:03:50.750	listwallettransactions 3
-2025-03-02 03:03:51.359	getpeerinfo
-2025-03-02 03:03:51.473	getpeerinfo
-2025-03-02 03:03:51.951	liststreamitems retailer_transactions 1
-2025-03-02 03:03:56.111	getblockcount
-2025-03-02 03:03:56.222	getblockhash 83
-2025-03-02 03:03:57.486	getmempoolinfo
-2025-03-02 03:03:57.598	listwallettransactions 3
-2025-03-02 03:03:58.192	getpeerinfo
-2025-03-02 03:03:58.307	getpeerinfo
-2025-03-02 03:03:58.772	liststreamitems retailer_transactions 1
-2025-03-02 03:04:02.924	getblockcount
-2025-03-02 03:04:03.033	getblockhash 83
-2025-03-02 03:04:04.284	getmempoolinfo
-2025-03-02 03:04:04.407	listwallettransactions 3
-2025-03-02 03:04:04.969	getpeerinfo
-2025-03-02 03:04:05.082	getpeerinfo
-2025-03-02 03:04:05.538	liststreamitems retailer_transactions 1
-2025-03-02 03:04:09.957	getblockcount
-2025-03-02 03:04:10.099	getblockhash 83
-2025-03-02 03:04:11.461	getmempoolinfo
-2025-03-02 03:04:11.582	listwallettransactions 3
-2025-03-02 03:04:12.185	getpeerinfo
-2025-03-02 03:04:12.296	getpeerinfo
-2025-03-02 03:04:12.778	liststreamitems retailer_transactions 1
-2025-03-02 03:04:17.083	getblockcount
-2025-03-02 03:04:17.195	getblockhash 83
-2025-03-02 03:04:18.477	getmempoolinfo
-2025-03-02 03:04:18.594	listwallettransactions 3
-2025-03-02 03:04:19.234	getpeerinfo
-2025-03-02 03:04:19.352	getpeerinfo
-2025-03-02 03:04:19.825	liststreamitems retailer_transactions 1
-2025-03-02 03:04:24.121	getblockcount
-2025-03-02 03:04:24.231	getblockhash 83
-2025-03-02 03:04:25.484	getmempoolinfo
-2025-03-02 03:04:25.598	listwallettransactions 3
-2025-03-02 03:04:26.179	getpeerinfo
-2025-03-02 03:04:26.295	getpeerinfo
-2025-03-02 03:04:26.764	liststreamitems retailer_transactions 1
-2025-03-02 03:04:30.947	getblockcount
-2025-03-02 03:04:31.061	getblockhash 83
-2025-03-02 03:04:32.312	getmempoolinfo
-2025-03-02 03:04:32.426	listwallettransactions 3
-2025-03-02 03:04:33.012	getpeerinfo
-2025-03-02 03:04:33.129	getpeerinfo
-2025-03-02 03:04:33.599	liststreamitems retailer_transactions 1
-2025-03-02 03:04:37.945	getblockcount
-2025-03-02 03:04:38.060	getblockhash 83
-2025-03-02 03:04:39.587	getmempoolinfo
-2025-03-02 03:04:39.775	listwallettransactions 3
-2025-03-02 03:04:42.927	getblockcount
-2025-03-02 03:04:43.040	getblockhash 83
-2025-03-02 03:04:44.279	getmempoolinfo
-2025-03-02 03:04:44.393	listwallettransactions 3
-2025-03-02 03:04:44.979	getpeerinfo
-2025-03-02 03:04:45.096	getpeerinfo
-2025-03-02 03:04:45.559	liststreamitems retailer_transactions 1
-2025-03-02 03:04:49.674	getblockcount
-2025-03-02 03:04:49.783	getblockhash 83
-2025-03-02 03:04:51.036	getmempoolinfo
-2025-03-02 03:04:51.160	listwallettransactions 3
-2025-03-02 03:04:51.726	getpeerinfo
-2025-03-02 03:04:51.842	getpeerinfo
-2025-03-02 03:04:52.287	liststreamitems retailer_transactions 1
-2025-03-02 03:04:56.410	getblockcount
-2025-03-02 03:04:56.518	getblockhash 83
-2025-03-02 03:04:57.804	getmempoolinfo
-2025-03-02 03:04:57.918	listwallettransactions 3
-2025-03-02 03:04:58.484	getpeerinfo
-2025-03-02 03:04:58.601	getpeerinfo
-2025-03-02 03:04:59.055	liststreamitems retailer_transactions 1
-2025-03-02 03:05:03.205	getblockcount
-2025-03-02 03:05:03.316	getblockhash 83
-2025-03-02 03:05:04.588	getmempoolinfo
-2025-03-02 03:05:04.701	listwallettransactions 3
-2025-03-02 03:05:05.289	getpeerinfo
-2025-03-02 03:05:05.399	getpeerinfo
-2025-03-02 03:05:05.850	liststreamitems retailer_transactions 1
-2025-03-02 03:05:09.994	getblockcount
-2025-03-02 03:05:10.101	getblockhash 83
-2025-03-02 03:05:11.359	getmempoolinfo
-2025-03-02 03:05:11.484	listwallettransactions 3
-2025-03-02 03:05:12.059	getpeerinfo
-2025-03-02 03:05:12.170	getpeerinfo
-2025-03-02 03:05:12.630	liststreamitems retailer_transactions 1
-2025-03-02 03:05:16.764	getblockcount
-2025-03-02 03:05:16.879	getblockhash 83
-2025-03-02 03:05:18.147	getmempoolinfo
-2025-03-02 03:05:18.275	listwallettransactions 3
-2025-03-02 03:05:18.858	getpeerinfo
-2025-03-02 03:05:18.969	getpeerinfo
-2025-03-02 03:05:19.417	liststreamitems retailer_transactions 1
-2025-03-02 03:05:23.596	getblockcount
-2025-03-02 03:05:23.708	getblockhash 83
-2025-03-02 03:05:24.960	getmempoolinfo
-2025-03-02 03:05:25.074	listwallettransactions 3
-2025-03-02 03:05:25.679	getpeerinfo
-2025-03-02 03:05:25.794	getpeerinfo
-2025-03-02 03:05:26.244	liststreamitems retailer_transactions 1
-2025-03-02 03:05:30.393	getblockcount
-2025-03-02 03:05:30.503	getblockhash 83
-2025-03-02 03:05:31.759	getmempoolinfo
-2025-03-02 03:05:31.872	listwallettransactions 3
-2025-03-02 03:05:32.460	getpeerinfo
-2025-03-02 03:05:32.572	getpeerinfo
-2025-03-02 03:05:33.032	liststreamitems retailer_transactions 1
-2025-03-02 03:05:37.190	getblockcount
-2025-03-02 03:05:37.299	getblockhash 83
-2025-03-02 03:05:38.567	getmempoolinfo
-2025-03-02 03:05:38.694	listwallettransactions 3
-2025-03-02 03:05:39.290	getpeerinfo
-2025-03-02 03:05:39.410	getpeerinfo
-2025-03-02 03:05:39.867	liststreamitems retailer_transactions 1
-2025-03-02 03:05:44.029	getblockcount
-2025-03-02 03:05:44.139	getblockhash 83
-2025-03-02 03:05:45.402	getmempoolinfo
-2025-03-02 03:05:45.528	listwallettransactions 3
-2025-03-02 03:05:46.113	getpeerinfo
-2025-03-02 03:05:46.225	getpeerinfo
-2025-03-02 03:05:46.666	liststreamitems retailer_transactions 1
-2025-03-02 03:05:50.839	getblockcount
-2025-03-02 03:05:50.974	getblockhash 83
-2025-03-02 03:05:52.316	getmempoolinfo
-2025-03-02 03:05:52.440	listwallettransactions 3
-2025-03-02 03:05:53.014	getpeerinfo
-2025-03-02 03:05:53.129	getpeerinfo
-2025-03-02 03:05:53.595	liststreamitems retailer_transactions 1
-2025-03-02 03:05:57.842	getblockcount
-2025-03-02 03:05:57.952	getblockhash 83
-2025-03-02 03:05:59.237	getmempoolinfo
-2025-03-02 03:05:59.350	listwallettransactions 3
-2025-03-02 03:05:59.939	getpeerinfo
-2025-03-02 03:06:00.049	getpeerinfo
-2025-03-02 03:06:00.510	liststreamitems retailer_transactions 1
-2025-03-02 03:06:04.686	getblockcount
-2025-03-02 03:06:04.798	getblockhash 83
-2025-03-02 03:06:06.069	getmempoolinfo
-2025-03-02 03:06:06.195	listwallettransactions 3
-2025-03-02 03:06:06.806	getpeerinfo
-2025-03-02 03:06:06.918	getpeerinfo
-2025-03-02 03:06:07.427	liststreamitems retailer_transactions 1
-2025-03-02 03:06:11.685	getblockcount
-2025-03-02 03:06:11.797	getblockhash 83
-2025-03-02 03:06:13.406	getmempoolinfo
-2025-03-02 03:06:13.570	listwallettransactions 3
-2025-03-02 03:06:14.181	getpeerinfo
-2025-03-02 03:06:14.307	getpeerinfo
-2025-03-02 03:06:14.773	liststreamitems retailer_transactions 1
-2025-03-02 03:06:18.957	getblockcount
-2025-03-02 03:06:19.070	getblockhash 83
-2025-03-02 03:06:20.332	getmempoolinfo
-2025-03-02 03:06:20.482	listwallettransactions 3
-2025-03-02 03:06:21.107	getpeerinfo
-2025-03-02 03:06:21.217	getpeerinfo
-2025-03-02 03:06:21.674	liststreamitems retailer_transactions 1
-2025-03-02 03:06:25.865	getblockcount
-2025-03-02 03:06:25.974	getblockhash 83
-2025-03-02 03:06:27.280	getmempoolinfo
-2025-03-02 03:06:27.390	listwallettransactions 3
-2025-03-02 03:06:28.005	getpeerinfo
-2025-03-02 03:06:28.118	getpeerinfo
-2025-03-02 03:06:28.572	liststreamitems retailer_transactions 1
-2025-03-02 03:06:32.775	getblockcount
-2025-03-02 03:06:32.889	getblockhash 83
-2025-03-02 03:06:34.206	getmempoolinfo
-2025-03-02 03:06:34.347	listwallettransactions 3
-2025-03-02 03:06:34.992	getpeerinfo
-2025-03-02 03:06:35.106	getpeerinfo
-2025-03-02 03:06:35.607	liststreamitems retailer_transactions 1
-2025-03-02 03:06:39.924	getblockcount
-2025-03-02 03:06:40.041	getblockhash 83
-2025-03-02 03:06:41.357	getmempoolinfo
-2025-03-02 03:06:41.475	listwallettransactions 3
-2025-03-02 03:06:42.123	getpeerinfo
-2025-03-02 03:06:42.245	getpeerinfo
-2025-03-02 03:06:42.698	liststreamitems retailer_transactions 1
-2025-03-02 03:06:46.883	getblockcount
-2025-03-02 03:06:46.992	getblockhash 83
-2025-03-02 03:06:48.252	getmempoolinfo
-2025-03-02 03:06:48.367	listwallettransactions 3
-2025-03-02 03:06:48.983	getpeerinfo
-2025-03-02 03:06:49.099	getpeerinfo
-2025-03-02 03:06:49.549	liststreamitems retailer_transactions 1
-2025-03-02 03:06:53.714	getblockcount
-2025-03-02 03:06:53.832	getblockhash 83
-2025-03-02 03:06:55.097	getmempoolinfo
-2025-03-02 03:06:55.216	listwallettransactions 3
-2025-03-02 03:06:55.800	getpeerinfo
-2025-03-02 03:06:55.912	getpeerinfo
-2025-03-02 03:06:56.382	liststreamitems retailer_transactions 1
-2025-03-02 03:07:00.723	getblockcount
-2025-03-02 03:07:00.857	getblockhash 83
-2025-03-02 03:07:02.141	getmempoolinfo
-2025-03-02 03:07:02.262	listwallettransactions 3
-2025-03-02 03:07:02.862	getpeerinfo
-2025-03-02 03:07:02.980	getpeerinfo
-2025-03-02 03:07:03.440	liststreamitems retailer_transactions 1
-2025-03-02 03:07:07.549	getblockcount
-2025-03-02 03:07:07.658	getblockhash 83
-2025-03-02 03:07:08.898	getmempoolinfo
-2025-03-02 03:07:09.023	listwallettransactions 3
-2025-03-02 03:07:09.653	getpeerinfo
-2025-03-02 03:07:09.771	getpeerinfo
-2025-03-02 03:07:10.264	liststreamitems retailer_transactions 1
-2025-03-02 03:07:14.476	getblockcount
-2025-03-02 03:07:14.589	getblockhash 83
-2025-03-02 03:07:15.901	getmempoolinfo
-2025-03-02 03:07:16.027	listwallettransactions 3
-2025-03-02 03:07:16.677	getpeerinfo
-2025-03-02 03:07:16.810	getpeerinfo
-2025-03-02 03:07:17.307	liststreamitems retailer_transactions 1
-2025-03-02 03:07:21.832	getblockcount
-2025-03-02 03:07:21.961	getblockhash 83
-2025-03-02 03:07:23.322	getmempoolinfo
-2025-03-02 03:07:23.442	listwallettransactions 3
-2025-03-02 03:07:24.072	getpeerinfo
-2025-03-02 03:07:24.192	getpeerinfo
-2025-03-02 03:07:24.705	liststreamitems retailer_transactions 1
-2025-03-02 03:07:28.851	getblockcount
-2025-03-02 03:07:28.962	getblockhash 83
-2025-03-02 03:07:30.192	getmempoolinfo
-2025-03-02 03:07:30.313	listwallettransactions 3
-2025-03-02 03:07:30.886	getpeerinfo
-2025-03-02 03:07:31.001	getpeerinfo
-2025-03-02 03:07:31.519	liststreamitems retailer_transactions 1
-2025-03-02 03:07:35.685	getblockcount
-2025-03-02 03:07:35.799	getblockhash 83
-2025-03-02 03:07:37.057	getmempoolinfo
-2025-03-02 03:07:37.173	listwallettransactions 3
-2025-03-02 03:07:37.761	getpeerinfo
-2025-03-02 03:07:37.872	getpeerinfo
-2025-03-02 03:07:38.332	liststreamitems retailer_transactions 1
-2025-03-02 03:07:42.470	getblockcount
-2025-03-02 03:07:42.579	getblockhash 83
-2025-03-02 03:07:44.082	getmempoolinfo
-2025-03-02 03:07:44.238	listwallettransactions 3
-2025-03-02 03:07:44.942	getpeerinfo
-2025-03-02 03:07:45.076	getpeerinfo
-2025-03-02 03:07:45.570	liststreamitems retailer_transactions 1
-2025-03-02 03:07:49.774	getblockcount
-2025-03-02 03:07:49.893	getblockhash 83
-2025-03-02 03:07:51.153	getmempoolinfo
-2025-03-02 03:07:51.266	listwallettransactions 3
-2025-03-02 03:07:51.866	getpeerinfo
-2025-03-02 03:07:51.977	getpeerinfo
-2025-03-02 03:07:52.437	liststreamitems retailer_transactions 1
-2025-03-02 03:07:56.942	getblockcount
-2025-03-02 03:07:57.062	getblockhash 83
-2025-03-02 03:07:58.332	getmempoolinfo
-2025-03-02 03:07:58.454	listwallettransactions 3
-2025-03-02 03:07:59.064	getpeerinfo
-2025-03-02 03:07:59.195	getpeerinfo
-2025-03-02 03:07:59.733	liststreamitems retailer_transactions 1
-2025-03-02 03:08:03.941	getblockcount
-2025-03-02 03:08:04.050	getblockhash 83
-2025-03-02 03:08:05.323	getmempoolinfo
-2025-03-02 03:08:05.437	listwallettransactions 3
-2025-03-02 03:08:06.007	getpeerinfo
-2025-03-02 03:08:06.117	getpeerinfo
-2025-03-02 03:08:06.583	liststreamitems retailer_transactions 1
-2025-03-02 03:08:10.716	getblockcount
-2025-03-02 03:08:10.839	getblockhash 83
-2025-03-02 03:08:12.159	getmempoolinfo
-2025-03-02 03:08:12.274	listwallettransactions 3
-2025-03-02 03:08:12.878	getpeerinfo
-2025-03-02 03:08:12.990	getpeerinfo
-2025-03-02 03:08:13.449	liststreamitems retailer_transactions 1
-2025-03-02 03:08:17.632	getblockcount
-2025-03-02 03:08:17.745	getblockhash 83
-2025-03-02 03:08:18.994	getmempoolinfo
-2025-03-02 03:08:19.106	listwallettransactions 3
-2025-03-02 03:08:19.697	getpeerinfo
-2025-03-02 03:08:19.811	getpeerinfo
-2025-03-02 03:08:20.253	liststreamitems retailer_transactions 1
-2025-03-02 03:08:24.531	getblockcount
-2025-03-02 03:08:24.652	getblockhash 83
-2025-03-02 03:08:25.901	getmempoolinfo
-2025-03-02 03:08:26.016	listwallettransactions 3
-2025-03-02 03:08:26.616	getpeerinfo
-2025-03-02 03:08:26.757	getpeerinfo
-2025-03-02 03:08:27.213	liststreamitems retailer_transactions 1
-2025-03-02 03:08:31.384	getblockcount
-2025-03-02 03:08:31.501	getblockhash 83
-2025-03-02 03:08:32.776	getmempoolinfo
-2025-03-02 03:08:32.901	listwallettransactions 3
-2025-03-02 03:08:33.514	getpeerinfo
-2025-03-02 03:08:33.640	getpeerinfo
-2025-03-02 03:08:34.126	liststreamitems retailer_transactions 1
-2025-03-02 03:08:38.281	getblockcount
-2025-03-02 03:08:38.395	getblockhash 83
-2025-03-02 03:08:39.655	getmempoolinfo
-2025-03-02 03:08:39.774	listwallettransactions 3
-2025-03-02 03:08:40.354	getpeerinfo
-2025-03-02 03:08:40.483	getpeerinfo
-2025-03-02 03:08:40.971	liststreamitems retailer_transactions 1
-2025-03-02 03:08:45.598	getblockcount
-2025-03-02 03:08:45.710	getblockhash 83
-2025-03-02 03:08:46.967	getmempoolinfo
-2025-03-02 03:08:47.076	listwallettransactions 3
-2025-03-02 03:08:47.680	getpeerinfo
-2025-03-02 03:08:47.790	getpeerinfo
-2025-03-02 03:08:48.272	liststreamitems retailer_transactions 1
-2025-03-02 03:08:52.502	getblockcount
-2025-03-02 03:08:52.614	getblockhash 83
-2025-03-02 03:08:53.898	getmempoolinfo
-2025-03-02 03:08:54.023	listwallettransactions 3
-2025-03-02 03:08:54.617	getpeerinfo
-2025-03-02 03:08:54.744	getpeerinfo
-2025-03-02 03:08:55.222	liststreamitems retailer_transactions 1
-2025-03-02 03:08:59.947	getblockcount
-2025-03-02 03:09:00.060	getblockhash 83
-2025-03-02 03:09:01.372	getmempoolinfo
-2025-03-02 03:09:01.492	listwallettransactions 3
-2025-03-02 03:09:02.102	getpeerinfo
-2025-03-02 03:09:02.217	getpeerinfo
-2025-03-02 03:09:02.706	liststreamitems retailer_transactions 1
-2025-03-02 03:09:07.356	getblockcount
-2025-03-02 03:09:07.471	getblockhash 83
-2025-03-02 03:09:08.765	getmempoolinfo
-2025-03-02 03:09:08.879	listwallettransactions 3
-2025-03-02 03:09:09.451	getpeerinfo
-2025-03-02 03:09:09.563	getpeerinfo
-2025-03-02 03:09:10.009	liststreamitems retailer_transactions 1
-2025-03-02 03:09:14.149	getblockcount
-2025-03-02 03:09:14.262	getblockhash 83
-2025-03-02 03:09:15.546	getmempoolinfo
-2025-03-02 03:09:15.685	listwallettransactions 3
-2025-03-02 03:09:16.301	getpeerinfo
-2025-03-02 03:09:16.423	getpeerinfo
-2025-03-02 03:09:16.892	liststreamitems retailer_transactions 1
-2025-03-02 03:09:21.282	getblockcount
-2025-03-02 03:09:21.393	getblockhash 83
-2025-03-02 03:09:22.683	getmempoolinfo
-2025-03-02 03:09:22.813	listwallettransactions 3
-2025-03-02 03:09:23.416	getpeerinfo
-2025-03-02 03:09:23.539	getpeerinfo
-2025-03-02 03:09:23.998	liststreamitems retailer_transactions 1
-2025-03-02 03:09:28.548	getblockcount
-2025-03-02 03:09:28.686	getblockhash 83
-2025-03-02 03:09:30.039	getmempoolinfo
-2025-03-02 03:09:30.159	listwallettransactions 3
-2025-03-02 03:09:30.759	getpeerinfo
-2025-03-02 03:09:30.886	getpeerinfo
-2025-03-02 03:09:33.903	getblockcount
-2025-03-02 03:09:34.019	getblockhash 83
-2025-03-02 03:09:35.331	getmempoolinfo
-2025-03-02 03:09:35.458	listwallettransactions 3
-2025-03-02 03:09:36.061	getpeerinfo
-2025-03-02 03:09:36.185	getpeerinfo
-2025-03-02 03:09:36.667	liststreamitems retailer_transactions 1
-2025-03-02 03:09:41.341	getblockcount
-2025-03-02 03:09:41.476	getblockhash 83
-2025-03-02 03:09:42.929	getmempoolinfo
-2025-03-02 03:09:43.064	listwallettransactions 3
-2025-03-02 03:09:43.750	getpeerinfo
-2025-03-02 03:09:43.879	getpeerinfo
-2025-03-02 03:09:44.409	liststreamitems retailer_transactions 1
-2025-03-02 03:14:15.687	getblockcount
-2025-03-02 03:14:15.827	getblockhash 83
-2025-03-02 03:14:17.277	getmempoolinfo
-2025-03-02 03:14:17.403	listwallettransactions 3
-2025-03-02 03:14:18.085	getpeerinfo
-2025-03-02 03:14:18.224	getpeerinfo
-2025-03-02 03:14:18.805	liststreamitems retailer_transactions 1
-2025-03-02 03:14:23.363	getblockcount
-2025-03-02 03:14:23.499	getblockhash 83
-2025-03-02 03:14:24.987	getmempoolinfo
-2025-03-02 03:14:25.116	listwallettransactions 3
-2025-03-02 03:14:25.812	getpeerinfo
-2025-03-02 03:14:25.946	getpeerinfo
-2025-03-02 03:14:26.530	liststreamitems retailer_transactions 1
-2025-03-02 03:14:31.338	getblockcount
-2025-03-02 03:14:31.462	getblockhash 83
-2025-03-02 03:14:32.864	getmempoolinfo
-2025-03-02 03:14:33.004	listwallettransactions 3
-2025-03-02 03:14:33.651	getpeerinfo
-2025-03-02 03:14:33.778	getpeerinfo
-2025-03-02 03:14:34.310	liststreamitems retailer_transactions 1
-2025-03-02 03:14:39.263	getblockcount
-2025-03-02 03:14:39.394	getblockhash 83
-2025-03-02 03:14:40.773	getmempoolinfo
-2025-03-02 03:14:40.898	listwallettransactions 3
-2025-03-02 03:14:41.563	getpeerinfo
-2025-03-02 03:14:41.696	getpeerinfo
-2025-03-02 03:14:42.233	liststreamitems retailer_transactions 1
-2025-03-02 03:14:48.538	getblockcount
-2025-03-02 03:14:48.729	getblockhash 83
-2025-03-02 03:14:50.804	getmempoolinfo
-2025-03-02 03:14:50.962	listwallettransactions 3
-2025-03-02 03:14:51.740	getpeerinfo
-2025-03-02 03:14:51.889	getpeerinfo
-2025-03-02 03:14:52.433	liststreamitems retailer_transactions 1
-2025-03-02 03:14:58.575	getblockcount
-2025-03-02 03:14:58.712	getblockhash 83
-2025-03-02 03:15:00.249	getmempoolinfo
-2025-03-02 03:15:00.388	listwallettransactions 3
-2025-03-02 03:15:01.210	getpeerinfo
-2025-03-02 03:15:01.363	getpeerinfo
-2025-03-02 03:15:01.944	liststreamitems retailer_transactions 1
-2025-03-02 03:15:07.399	getblockcount
-2025-03-02 03:15:07.549	getblockhash 83
-2025-03-02 03:15:09.260	getmempoolinfo
-2025-03-02 03:15:09.446	listwallettransactions 3
-2025-03-02 03:15:10.255	getpeerinfo
-2025-03-02 03:15:10.416	getpeerinfo
-2025-03-02 03:15:11.120	liststreamitems retailer_transactions 1
-2025-03-02 03:15:16.460	getblockcount
-2025-03-02 03:15:16.593	getblockhash 83
-2025-03-02 03:15:18.089	getmempoolinfo
-2025-03-02 03:15:18.218	listwallettransactions 3
-2025-03-02 03:15:18.910	getpeerinfo
-2025-03-02 03:15:19.047	getpeerinfo
-2025-03-02 03:15:19.603	liststreamitems retailer_transactions 1
-2025-03-02 03:15:24.180	getblockcount
-2025-03-02 03:15:24.301	getblockhash 83
-2025-03-02 03:15:26.115	getmempoolinfo
-2025-03-02 03:15:26.273	listwallettransactions 3
-2025-03-02 03:15:27.150	getpeerinfo
-2025-03-02 03:15:27.305	getpeerinfo
-2025-03-02 03:15:27.930	liststreamitems retailer_transactions 1
-2025-03-02 03:15:32.809	getblockcount
-2025-03-02 03:15:32.929	getblockhash 83
-2025-03-02 03:15:34.339	getmempoolinfo
-2025-03-02 03:15:34.465	listwallettransactions 3
-2025-03-02 03:15:35.158	getpeerinfo
-2025-03-02 03:15:35.290	getpeerinfo
-2025-03-02 03:15:35.906	liststreamitems retailer_transactions 1
-2025-03-02 03:15:41.718	getblockcount
-2025-03-02 03:15:41.844	getblockhash 83
-2025-03-02 03:15:43.394	getmempoolinfo
-2025-03-02 03:15:43.547	listwallettransactions 3
-2025-03-02 03:15:44.344	getpeerinfo
-2025-03-02 03:15:44.490	getpeerinfo
-2025-03-02 03:15:45.105	liststreamitems retailer_transactions 1
-2025-03-02 03:15:50.377	getblockcount
-2025-03-02 03:15:50.505	getblockhash 83
-2025-03-02 03:15:51.993	getmempoolinfo
-2025-03-02 03:15:52.131	listwallettransactions 3
-2025-03-02 03:15:52.788	getpeerinfo
-2025-03-02 03:15:52.920	getpeerinfo
-2025-03-02 03:15:53.458	liststreamitems retailer_transactions 1
-2025-03-02 03:15:57.909	getblockcount
-2025-03-02 03:15:58.029	getblockhash 83
-2025-03-02 03:15:59.310	getmempoolinfo
-2025-03-02 03:15:59.425	listwallettransactions 3
-2025-03-02 03:16:00.017	getpeerinfo
-2025-03-02 03:16:00.133	getpeerinfo
-2025-03-02 03:16:00.622	liststreamitems retailer_transactions 1
-2025-03-02 03:16:05.485	getblockcount
-2025-03-02 03:16:05.656	getblockhash 83
-2025-03-02 03:16:07.509	getmempoolinfo
-2025-03-02 03:16:07.681	listwallettransactions 3
-2025-03-02 03:16:08.462	getpeerinfo
-2025-03-02 03:16:08.606	getpeerinfo
-2025-03-02 03:16:09.195	liststreamitems retailer_transactions 1
-2025-03-02 03:16:13.529	getblockcount
-2025-03-02 03:16:13.646	getblockhash 83
-2025-03-02 03:16:14.914	getmempoolinfo
-2025-03-02 03:16:15.031	listwallettransactions 3
-2025-03-02 03:16:15.628	getpeerinfo
-2025-03-02 03:16:15.747	getpeerinfo
-2025-03-02 03:16:16.228	liststreamitems retailer_transactions 1
-2025-03-02 03:16:20.582	getblockcount
-2025-03-02 03:16:20.698	getblockhash 83
-2025-03-02 03:16:22.210	getmempoolinfo
-2025-03-02 03:16:22.341	listwallettransactions 3
-2025-03-02 03:16:23.028	getpeerinfo
-2025-03-02 03:16:23.160	getpeerinfo
-2025-03-02 03:16:23.721	liststreamitems retailer_transactions 1
-2025-03-02 03:16:28.978	getblockcount
-2025-03-02 03:16:29.116	getblockhash 83
-2025-03-02 03:16:30.679	getmempoolinfo
-2025-03-02 03:16:30.815	listwallettransactions 3
-2025-03-02 03:16:31.486	getpeerinfo
-2025-03-02 03:16:31.628	getpeerinfo
-2025-03-02 03:16:32.177	liststreamitems retailer_transactions 1
-2025-03-02 03:16:37.269	getblockcount
-2025-03-02 03:16:37.401	getblockhash 83
-2025-03-02 03:16:38.996	getmempoolinfo
-2025-03-02 03:16:39.130	listwallettransactions 3
-2025-03-02 03:16:39.948	getpeerinfo
-2025-03-02 03:16:40.136	getpeerinfo
-2025-03-02 03:16:40.775	liststreamitems retailer_transactions 1
-2025-03-02 03:16:45.725	getblockcount
-2025-03-02 03:16:45.848	getblockhash 83
-2025-03-02 03:16:47.331	getmempoolinfo
-2025-03-02 03:16:50.089	getblockcount
-2025-03-02 03:16:50.202	getblockhash 83
-2025-03-02 03:16:50.318	getpeerinfo
-2025-03-02 03:16:50.936	getmempoolinfo
-2025-03-02 03:16:51.047	listwallettransactions 1
-2025-03-02 03:16:51.161	liststreamitems retailer_transactions 1
-2025-03-02 03:16:56.757	getblockcount
-2025-03-02 03:16:56.874	getblockhash 83
-2025-03-02 03:16:56.987	getpeerinfo
-2025-03-02 03:16:57.575	getmempoolinfo
-2025-03-02 03:16:57.695	listwallettransactions 1
-2025-03-02 03:16:57.822	liststreamitems retailer_transactions 1
-2025-03-02 03:17:03.374	getblockcount
-2025-03-02 03:17:03.485	getblockhash 83
-2025-03-02 03:17:03.597	getpeerinfo
-2025-03-02 03:17:04.161	getmempoolinfo
-2025-03-02 03:17:04.276	listwallettransactions 1
-2025-03-02 03:17:04.394	liststreamitems retailer_transactions 1
-2025-03-02 03:17:09.965	getblockcount
-2025-03-02 03:17:10.087	getblockhash 83
-2025-03-02 03:17:10.203	getpeerinfo
-2025-03-02 03:17:10.813	getmempoolinfo
-2025-03-02 03:17:10.939	listwallettransactions 1
-2025-03-02 03:17:11.060	liststreamitems retailer_transactions 1
-2025-03-02 03:17:16.584	getblockcount
-2025-03-02 03:17:16.693	getblockhash 83
-2025-03-02 03:17:16.808	getpeerinfo
-2025-03-02 03:17:17.623	getmempoolinfo
-2025-03-02 03:17:17.760	listwallettransactions 1
-2025-03-02 03:17:17.951	liststreamitems retailer_transactions 1
-2025-03-02 03:17:23.958	getblockcount
-2025-03-02 03:17:24.071	getblockhash 83
-2025-03-02 03:17:24.185	getpeerinfo
-2025-03-02 03:17:24.743	getmempoolinfo
-2025-03-02 03:17:24.863	listwallettransactions 1
-2025-03-02 03:17:24.979	liststreamitems retailer_transactions 1
-2025-03-02 03:17:30.741	getblockcount
-2025-03-02 03:17:30.852	getblockhash 83
-2025-03-02 03:17:30.974	getpeerinfo
-2025-03-02 03:17:31.603	getmempoolinfo
-2025-03-02 03:17:31.713	listwallettransactions 1
-2025-03-02 03:17:31.826	liststreamitems retailer_transactions 1
-2025-03-02 03:17:37.490	getblockcount
-2025-03-02 03:17:37.603	getblockhash 83
-2025-03-02 03:17:37.717	getpeerinfo
-2025-03-02 03:17:38.646	getmempoolinfo
-2025-03-02 03:17:38.773	listwallettransactions 1
-2025-03-02 03:17:38.900	liststreamitems retailer_transactions 1
-2025-03-02 03:17:44.593	getblockcount
-2025-03-02 03:17:44.703	getblockhash 83
-2025-03-02 03:17:44.818	getpeerinfo
-2025-03-02 03:17:45.409	getmempoolinfo
-2025-03-02 03:17:45.523	listwallettransactions 1
-2025-03-02 03:17:45.638	liststreamitems retailer_transactions 1
-2025-03-02 03:17:51.204	getblockcount
-2025-03-02 03:17:51.315	getblockhash 83
-2025-03-02 03:17:51.434	getpeerinfo
-2025-03-02 03:17:52.010	getmempoolinfo
-2025-03-02 03:17:52.123	listwallettransactions 1
-2025-03-02 03:17:52.238	liststreamitems retailer_transactions 1
-2025-03-02 03:17:58.051	getblockcount
-2025-03-02 03:17:58.175	getblockhash 83
-2025-03-02 03:17:58.315	getpeerinfo
-2025-03-02 03:17:59.201	getmempoolinfo
-2025-03-02 03:17:59.328	listwallettransactions 1
-2025-03-02 03:17:59.471	liststreamitems retailer_transactions 1
-2025-03-02 03:18:06.081	getblockcount
-2025-03-02 03:18:06.197	getblockhash 83
-2025-03-02 03:18:06.319	getpeerinfo
-2025-03-02 03:18:06.953	getmempoolinfo
-2025-03-02 03:18:07.071	listwallettransactions 1
-2025-03-02 03:18:07.187	liststreamitems retailer_transactions 1
-2025-03-02 03:18:13.059	getblockcount
-2025-03-02 03:18:13.181	getblockhash 83
-2025-03-02 03:18:13.312	getpeerinfo
-2025-03-02 03:18:14.000	getmempoolinfo
-2025-03-02 03:18:14.109	listwallettransactions 1
-2025-03-02 03:18:14.231	liststreamitems retailer_transactions 1
-2025-03-02 03:18:18.562	getblockcount
-2025-03-02 03:18:18.674	getblockhash 83
-2025-03-02 03:18:18.788	getpeerinfo
-2025-03-02 03:18:19.369	getmempoolinfo
-2025-03-02 03:18:19.480	listwallettransactions 1
-2025-03-02 03:18:19.600	liststreamitems retailer_transactions 1
-2025-03-02 03:18:25.117	getblockcount
-2025-03-02 03:18:25.227	getblockhash 83
-2025-03-02 03:18:25.342	getpeerinfo
-2025-03-02 03:18:25.918	getmempoolinfo
-2025-03-02 03:18:26.032	listwallettransactions 1
-2025-03-02 03:18:26.156	liststreamitems retailer_transactions 1
-2025-03-02 03:18:31.680	getblockcount
-2025-03-02 03:18:31.791	getblockhash 83
-2025-03-02 03:18:31.905	getpeerinfo
-2025-03-02 03:18:32.484	getmempoolinfo
-2025-03-02 03:18:32.608	listwallettransactions 1
-2025-03-02 03:18:32.728	liststreamitems retailer_transactions 1
-2025-03-02 03:18:38.768	getblockcount
-2025-03-02 03:18:38.960	getblockhash 83
-2025-03-02 03:18:39.200	getpeerinfo
-2025-03-02 03:18:40.365	getmempoolinfo
-2025-03-02 03:18:40.580	listwallettransactions 1
-2025-03-02 03:18:40.770	liststreamitems retailer_transactions 1
-2025-03-02 03:18:46.493	getblockcount
-2025-03-02 03:18:46.605	getblockhash 83
-2025-03-02 03:18:46.717	getpeerinfo
-2025-03-02 03:18:47.265	getmempoolinfo
-2025-03-02 03:18:47.383	listwallettransactions 1
-2025-03-02 03:18:47.495	liststreamitems retailer_transactions 1
-2025-03-02 03:18:53.026	getblockcount
-2025-03-02 03:18:53.140	getblockhash 83
-2025-03-02 03:18:53.258	getpeerinfo
-2025-03-02 03:18:53.850	getmempoolinfo
-2025-03-02 03:18:53.965	listwallettransactions 1
-2025-03-02 03:18:54.081	liststreamitems retailer_transactions 1
-2025-03-02 03:18:59.566	getblockcount
-2025-03-02 03:18:59.675	getblockhash 83
-2025-03-02 03:18:59.789	getpeerinfo
-2025-03-02 03:19:00.339	getmempoolinfo
-2025-03-02 03:19:00.450	listwallettransactions 1
-2025-03-02 03:19:00.569	liststreamitems retailer_transactions 1
-2025-03-02 03:19:06.180	getblockcount
-2025-03-02 03:19:06.292	getblockhash 83
-2025-03-02 03:19:06.406	getpeerinfo
-2025-03-02 03:19:06.951	getmempoolinfo
-2025-03-02 03:19:07.061	listwallettransactions 1
-2025-03-02 03:19:07.176	liststreamitems retailer_transactions 1
-2025-03-02 03:19:12.693	getblockcount
-2025-03-02 03:19:12.810	getblockhash 83
-2025-03-02 03:19:12.923	getpeerinfo
-2025-03-02 03:19:13.488	getmempoolinfo
-2025-03-02 03:19:13.604	listwallettransactions 1
-2025-03-02 03:19:13.718	liststreamitems retailer_transactions 1
-2025-03-02 03:19:19.205	getblockcount
-2025-03-02 03:19:19.315	getblockhash 83
-2025-03-02 03:19:19.430	getpeerinfo
-2025-03-02 03:19:20.020	getmempoolinfo
-2025-03-02 03:19:20.133	listwallettransactions 1
-2025-03-02 03:19:20.252	liststreamitems retailer_transactions 1
-2025-03-02 03:19:25.809	getblockcount
-2025-03-02 03:19:25.923	getblockhash 83
-2025-03-02 03:19:26.038	getpeerinfo
-2025-03-02 03:19:26.602	getmempoolinfo
-2025-03-02 03:19:26.713	listwallettransactions 1
-2025-03-02 03:19:26.828	liststreamitems retailer_transactions 1
-2025-03-02 03:19:32.333	getblockcount
-2025-03-02 03:19:32.445	getblockhash 83
-2025-03-02 03:19:32.561	getpeerinfo
-2025-03-02 03:19:33.138	getmempoolinfo
-2025-03-02 03:19:33.252	listwallettransactions 1
-2025-03-02 03:19:33.366	liststreamitems retailer_transactions 1
-2025-03-02 03:19:38.876	getblockcount
-2025-03-02 03:19:38.990	getblockhash 83
-2025-03-02 03:19:39.105	getpeerinfo
-2025-03-02 03:19:39.681	getmempoolinfo
-2025-03-02 03:19:39.805	listwallettransactions 1
-2025-03-02 03:19:39.918	liststreamitems retailer_transactions 1
-2025-03-02 03:19:43.650	getblockcount
-2025-03-02 03:19:43.759	getblockhash 83
-2025-03-02 03:19:43.872	getpeerinfo
-2025-03-02 03:19:44.409	getmempoolinfo
-2025-03-02 03:19:44.523	listwallettransactions 1
-2025-03-02 03:19:44.638	liststreamitems retailer_transactions 1
-2025-03-02 03:19:55.944	getblockcount
-2025-03-02 03:19:56.055	getblockhash 83
-2025-03-02 03:19:56.167	getpeerinfo
-2025-03-02 03:19:56.714	getmempoolinfo
-2025-03-02 03:19:56.831	listwallettransactions 1
-2025-03-02 03:19:56.942	liststreamitems retailer_transactions 1
-2025-03-02 03:20:02.750	getblockcount
-2025-03-02 03:20:02.891	getblockhash 83
-2025-03-02 03:20:03.017	getpeerinfo
-2025-03-02 03:20:03.693	getmempoolinfo
-2025-03-02 03:20:03.813	listwallettransactions 1
-2025-03-02 03:20:03.926	liststreamitems retailer_transactions 1
-2025-03-02 03:39:55.249	getinfo
-2025-03-02 03:40:32.803	getblockcount
-2025-03-02 03:40:32.910	getblockhash 1
-2025-03-02 03:40:33.017	getblock 00edb4a10ff188904100cdc351356fef5a34097a5e8ecb6273af0220f699170f
- 1
-2025-03-02 03:40:33.233	publish merkle_roots retailer-chain_block_1 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303065646234613130666631383839303431303063646333353133353666656635613334303937613565386563623632373361663032323066363939313730665c6e222c226d65726b6c65526f6f74223a2264393963323432623339643834343536613736626161396164323531666463366366636639643732353738363037363636363762653234343462636463336230222c22626c6f636b486569676874223a312c2274696d657374616d70223a313734303836353233333031387d
-2025-03-02 03:40:33.341	getblockhash 2
-2025-03-02 03:40:33.447	getblock 006b074118ed1d612af5d51677ba94c3d2951baf29d92d2fd81ae61b7c5294ba
- 1
-2025-03-02 03:40:33.666	publish merkle_roots retailer-chain_block_2 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303036623037343131386564316436313261663564353136373762613934633364323935316261663239643932643266643831616536316237633532393462615c6e222c226d65726b6c65526f6f74223a2261333038346334653431373234316566313062336564333238366136643461633664663761356662633936356462346338386639373134306436646161613938222c22626c6f636b486569676874223a322c2274696d657374616d70223a313734303836353233333434387d
-2025-03-02 03:40:33.775	getblockhash 3
-2025-03-02 03:40:33.890	getblock 0033f51a6e57818638a77c3cef4eacaa0f64e29fcf6c26d3c623dcc29e09b1c9
- 1
-2025-03-02 03:40:34.108	publish merkle_roots retailer-chain_block_3 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033336635316136653537383138363338613737633363656634656163616130663634653239666366366332366433633632336463633239653039623163395c6e222c226d65726b6c65526f6f74223a2236323864663831363737306432356531613164633934656466636466663561656530653239626231366161313435376365303165616332306133663037663337222c22626c6f636b486569676874223a332c2274696d657374616d70223a313734303836353233333839317d
-2025-03-02 03:40:34.215	getblockhash 4
-2025-03-02 03:40:34.322	getblock 00d5cfc0abbf0028713d5291c6282685cd5e797de5a40f9f514dacc12fe42adc
- 1
-2025-03-02 03:40:34.538	publish merkle_roots retailer-chain_block_4 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064356366633061626266303032383731336435323931633632383236383563643565373937646535613430663966353134646163633132666534326164635c6e222c226d65726b6c65526f6f74223a2232366162636430663831336539663365356365623262343233666538313062626438613137666565386464623865626163303931313130656136666531313238222c22626c6f636b486569676874223a342c2274696d657374616d70223a313734303836353233343332347d
-2025-03-02 03:40:34.645	getblockhash 5
-2025-03-02 03:40:34.752	getblock 003001cd6f74b56e94f4d46966701a42342896a11812d02ae21fb52c0cae598f
- 1
-2025-03-02 03:40:34.966	publish merkle_roots retailer-chain_block_5 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033303031636436663734623536653934663464343639363637303161343233343238393661313138313264303261653231666235326330636165353938665c6e222c226d65726b6c65526f6f74223a2237316632316136383732363432626633636262366439363535396530356664643839666336353862323035343761646463346336643236353036326638333737222c22626c6f636b486569676874223a352c2274696d657374616d70223a313734303836353233343735337d
-2025-03-02 03:40:35.073	getblockhash 6
-2025-03-02 03:40:35.180	getblock 00b7d490bfe7eaefaef98b40e9650a3419b306e0cc230e4e7600a88f64879dc8
- 1
-2025-03-02 03:40:35.394	publish merkle_roots retailer-chain_block_6 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062376434393062666537656165666165663938623430653936353061333431396233303665306363323330653465373630306138386636343837396463385c6e222c226d65726b6c65526f6f74223a2231616131303835613939643964636531336662353230313531373338656561353937656262663637366537393838613631376636316330383362383336343631222c22626c6f636b486569676874223a362c2274696d657374616d70223a313734303836353233353138327d
-2025-03-02 03:40:35.502	getblockhash 7
-2025-03-02 03:40:35.609	getblock 00993dd967f4fd66b4952057b5ee447ffc0fa85a4a60a786bfd60104d981f1be
- 1
-2025-03-02 03:40:35.824	publish merkle_roots retailer-chain_block_7 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039393364643936376634666436366234393532303537623565653434376666633066613835613461363061373836626664363031303464393831663162655c6e222c226d65726b6c65526f6f74223a2235396635653034316535626130633537333966376137643938633637373563643432656234626438326362376438363965613939663466643234303139333835222c22626c6f636b486569676874223a372c2274696d657374616d70223a313734303836353233353631307d
-2025-03-02 03:40:35.931	getblockhash 8
-2025-03-02 03:40:36.037	getblock 0095e015c41a6e6e620ed6e23d585f91760fe95f2c6aecffb3e1a306547303f0
- 1
-2025-03-02 03:40:36.251	publish merkle_roots retailer-chain_block_8 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039356530313563343161366536653632306564366532336435383566393137363066653935663263366165636666623365316133303635343733303366305c6e222c226d65726b6c65526f6f74223a2237303034323538636630623962343563393363386463333661616366626332646130306164653636643161366261633763396565366432306536616161373039222c22626c6f636b486569676874223a382c2274696d657374616d70223a313734303836353233363033387d
-2025-03-02 03:40:36.358	getblockhash 9
-2025-03-02 03:40:36.464	getblock 008a53941bbc21e35a578bd1d88ec85c76e451b05770057c469c7f3c18e9ba87
- 1
-2025-03-02 03:40:36.678	publish merkle_roots retailer-chain_block_9 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303038613533393431626263323165333561353738626431643838656338356337366534353162303537373030353763343639633766336331386539626138375c6e222c226d65726b6c65526f6f74223a2261316539633833623631613731353339613734613466613531656330393834386435396431393632636631303730303264323237323131376532613430366662222c22626c6f636b486569676874223a392c2274696d657374616d70223a313734303836353233363436357d
-2025-03-02 03:40:36.786	getblockhash 10
-2025-03-02 03:40:36.892	getblock 00abe041b1f5c5f65e5a3295a01c98e2166cf1500a0309cf8dd6c7af1bef07e1
- 1
-2025-03-02 03:40:37.108	publish merkle_roots retailer-chain_block_10 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303061626530343162316635633566363565356133323935613031633938653231363663663135303061303330396366386464366337616631626566303765315c6e222c226d65726b6c65526f6f74223a2238386233356464366364663339366337393431313732626630366331373534663666386664353036616561666265386461366636313436616165626434353064222c22626c6f636b486569676874223a31302c2274696d657374616d70223a313734303836353233363839337d
-2025-03-02 03:40:37.215	getblockhash 11
-2025-03-02 03:40:37.322	getblock 00b46a134637fb04352c25bb31bb2a2917c28339881453987a63624045e1baf8
- 1
-2025-03-02 03:40:37.540	publish merkle_roots retailer-chain_block_11 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062343661313334363337666230343335326332356262333162623261323931376332383333393838313435333938376136333632343034356531626166385c6e222c226d65726b6c65526f6f74223a2233346139336635656331663264323664323066373334373131393962363738323737363361643164613038323661346135303137663432383564386664386231222c22626c6f636b486569676874223a31312c2274696d657374616d70223a313734303836353233373332337d
-2025-03-02 03:40:37.647	getblockhash 12
-2025-03-02 03:40:37.754	getblock 00f5dccb6cc8862bdbe764916a11e9bb5572c8cce90bc6d00e34e3ee4b1c6e4c
- 1
-2025-03-02 03:40:37.968	publish merkle_roots retailer-chain_block_12 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303066356463636236636338383632626462653736343931366131316539626235353732633863636539306263366430306533346533656534623163366534635c6e222c226d65726b6c65526f6f74223a2233323930353763303330383066346439633236306135373764356564333137316262613133643034343134636532643736626162303730306631393732316665222c22626c6f636b486569676874223a31322c2274696d657374616d70223a313734303836353233373735357d
-2025-03-02 03:40:38.076	getblockhash 13
-2025-03-02 03:40:38.183	getblock 0009d05beb4b1967b5bdb8a71bb5de8c55fad641bc77e6d2a7be7c9420d8ff5d
- 1
-2025-03-02 03:40:38.403	publish merkle_roots retailer-chain_block_13 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303030396430356265623462313936376235626462386137316262356465386335356661643634316263373765366432613762653763393432306438666635645c6e222c226d65726b6c65526f6f74223a2263373039646166343932393162363139313532333739326635303936306333653834613235633232373833333437386631643264303262353464333631653835222c22626c6f636b486569676874223a31332c2274696d657374616d70223a313734303836353233383138347d
-2025-03-02 03:40:38.511	getblockhash 14
-2025-03-02 03:40:38.618	getblock 00438d4c485d3e6fba62dc6f9105b72eb36399cdf1806338750380503625581d
- 1
-2025-03-02 03:40:38.833	publish merkle_roots retailer-chain_block_14 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303034333864346334383564336536666261363264633666393130356237326562333633393963646631383036333338373530333830353033363235353831645c6e222c226d65726b6c65526f6f74223a2238616666623864333964326239616431313631303637663866323965613065303962663731353337356432613463656434366265376432323365616364303132222c22626c6f636b486569676874223a31342c2274696d657374616d70223a313734303836353233383631397d
-2025-03-02 03:40:38.940	getblockhash 15
-2025-03-02 03:40:39.047	getblock 0002d0b74133b436a14904ecb0b044cc1404a006a4b9246e32e9104f9f822f69
- 1
-2025-03-02 03:40:39.302	publish merkle_roots retailer-chain_block_15 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303030326430623734313333623433366131343930346563623062303434636331343034613030366134623932343665333265393130346639663832326636395c6e222c226d65726b6c65526f6f74223a2232386336666562393365386331363535616361396536333638386166316364623737633635323134363330336563306365363166383232323165316233353037222c22626c6f636b486569676874223a31352c2274696d657374616d70223a313734303836353233393034387d
-2025-03-02 03:40:39.409	getblockhash 16
-2025-03-02 03:40:39.515	getblock 005fb6aad70508f5a3b808401bc08b64a9d18b3be5b0f8b0633cde29c86ebbca
- 1
-2025-03-02 03:40:39.729	publish merkle_roots retailer-chain_block_16 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303035666236616164373035303866356133623830383430316263303862363461396431386233626535623066386230363333636465323963383665626263615c6e222c226d65726b6c65526f6f74223a2264386165643036343531646166383635393531343335326165316439323633396638356339363730393564636230616531613965353566333636636637333330222c22626c6f636b486569676874223a31362c2274696d657374616d70223a313734303836353233393531377d
-2025-03-02 03:40:39.836	getblockhash 17
-2025-03-02 03:40:39.942	getblock 00d3e9891f2ed0b37da606f67eb5a9e6e121b10b793c8b3847206888b4eccb17
- 1
-2025-03-02 03:40:40.158	publish merkle_roots retailer-chain_block_17 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064336539383931663265643062333764613630366636376562356139653665313231623130623739336338623338343732303638383862346563636231375c6e222c226d65726b6c65526f6f74223a2232346337666161313832613637623232366535366532316262316465643866383433386262333264666263383364636365366166306562396339323734323131222c22626c6f636b486569676874223a31372c2274696d657374616d70223a313734303836353233393934347d
-2025-03-02 03:40:40.265	getblockhash 18
-2025-03-02 03:40:40.372	getblock 00a3836a5e9984ec2759579ade08b0a5ca84c2efc88ddb6ecb59888f788a310d
- 1
-2025-03-02 03:40:40.602	publish merkle_roots retailer-chain_block_18 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303061333833366135653939383465633237353935373961646530386230613563613834633265666338386464623665636235393838386637383861333130645c6e222c226d65726b6c65526f6f74223a2237626438343538366233323935373732376134393564323133663935653037343632363865656365633561303432303130313134343635396265633263303866222c22626c6f636b486569676874223a31382c2274696d657374616d70223a313734303836353234303337347d
-2025-03-02 03:40:40.711	getblockhash 19
-2025-03-02 03:40:40.818	getblock 00e9c3c120d03352ea76b85fbb20dac7066b72518ab7139cf9c11e0ddf99780a
- 1
-2025-03-02 03:40:41.032	publish merkle_roots retailer-chain_block_19 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303065396333633132306430333335326561373662383566626232306461633730363662373235313861623731333963663963313165306464663939373830615c6e222c226d65726b6c65526f6f74223a2238366161663265653834323336383064366333663162326634346238623137643535326561353638356266353736376665336237333661653230343037653733222c22626c6f636b486569676874223a31392c2274696d657374616d70223a313734303836353234303831397d
-2025-03-02 03:40:41.139	getblockhash 20
-2025-03-02 03:40:41.248	getblock 00762bd0500516f21eae1c5aead521c4d99b79facf5adc788e14aa0dcfb4c408
- 1
-2025-03-02 03:40:41.463	publish merkle_roots retailer-chain_block_20 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303037363262643035303035313666323165616531633561656164353231633464393962373966616366356164633738386531346161306463666234633430385c6e222c226d65726b6c65526f6f74223a2236306665623732623337306335383265303464323363326362633634373030613330336635623838376232356135613237383562343836613264346364316438222c22626c6f636b486569676874223a32302c2274696d657374616d70223a313734303836353234313234397d
-2025-03-02 03:40:41.570	getblockhash 21
-2025-03-02 03:40:41.678	getblock 00da0272a51f73b2fbe1587deaf752d8e936be95ceaf27a02984e04f16da2645
- 1
-2025-03-02 03:40:41.896	publish merkle_roots retailer-chain_block_21 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064613032373261353166373362326662653135383764656166373532643865393336626539356365616632376130323938346530346631366461323634355c6e222c226d65726b6c65526f6f74223a2230303635303262633731343133353563323539373338353331393564356237386233336233373364616231623764353131663862343930656238663866663962222c22626c6f636b486569676874223a32312c2274696d657374616d70223a313734303836353234313638307d
-2025-03-02 03:40:42.006	getblockhash 22
-2025-03-02 03:40:42.113	getblock 00151db8ed3ab56c551cf39a3463531133f0956451f8292bbcd2c40039e194c3
- 1
-2025-03-02 03:40:42.328	publish merkle_roots retailer-chain_block_22 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303031353164623865643361623536633535316366333961333436333533313133336630393536343531663832393262626364326334303033396531393463335c6e222c226d65726b6c65526f6f74223a2234616363663866376338383063663631333431343934373163393833363764376136373738616639316339333561623865313434643531643139333535366161222c22626c6f636b486569676874223a32322c2274696d657374616d70223a313734303836353234323131357d
-2025-03-02 03:40:42.436	getblockhash 23
-2025-03-02 03:40:42.559	getblock 00404bd305597b5affa3ec7af454fb8010973077c1b315b52181f8d334560d27
- 1
-2025-03-02 03:40:42.776	publish merkle_roots retailer-chain_block_23 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303034303462643330353539376235616666613365633761663435346662383031303937333037376331623331356235323138316638643333343536306432375c6e222c226d65726b6c65526f6f74223a2239393338386331303461626239396134656663373539326230376235353137636334653338663736623464653464643936613435353865666237333865663635222c22626c6f636b486569676874223a32332c2274696d657374616d70223a313734303836353234323536317d
-2025-03-02 03:40:42.884	getblockhash 24
-2025-03-02 03:40:42.991	getblock 003ffcd9663493345a87abbdda2f66849e238883cdb96af461c360e594a4521b
- 1
-2025-03-02 03:40:43.210	publish merkle_roots retailer-chain_block_24 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033666663643936363334393333343561383761626264646132663636383439653233383838336364623936616634363163333630653539346134353231625c6e222c226d65726b6c65526f6f74223a2266363835373064333738646165356236666462336431373064323261323465616461323439613035306565393230633463343836386362646437313437643737222c22626c6f636b486569676874223a32342c2274696d657374616d70223a313734303836353234323939327d
-2025-03-02 03:40:43.317	getblockhash 25
-2025-03-02 03:40:43.424	getblock 00b85e492d3311b511d148289e79a5e98e8b6cf14bbefa708f779ed0266cb6e7
- 1
-2025-03-02 03:40:43.639	publish merkle_roots retailer-chain_block_25 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062383565343932643333313162353131643134383238396537396135653938653862366366313462626566613730386637373965643032363663623665375c6e222c226d65726b6c65526f6f74223a2235363131633635626462333238326535613939643062306237623835643937393339353966393566643837663734383034613565326461663731343138616331222c22626c6f636b486569676874223a32352c2274696d657374616d70223a313734303836353234333432357d
-2025-03-02 03:40:43.748	getblockhash 26
-2025-03-02 03:40:43.858	getblock 00be6a83b60d30844d83adf3b7894bd5d4c691509e1e85c18ed1c5d999adc6e3
- 1
-2025-03-02 03:40:44.088	publish merkle_roots retailer-chain_block_26 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062653661383362363064333038343464383361646633623738393462643564346336393135303965316538356331386564316335643939396164633665335c6e222c226d65726b6c65526f6f74223a2233336162623963613435333830313539316239663132666233653665626233383831393532343465666439333665336565323163303865363935633230363963222c22626c6f636b486569676874223a32362c2274696d657374616d70223a313734303836353234333836337d
-2025-03-02 03:40:44.197	getblockhash 27
-2025-03-02 03:40:44.303	getblock 00d4beb7908de466d01e07ef44f24809ecbafbe473cd7683532bec825e8fc16a
- 1
-2025-03-02 03:40:44.518	publish merkle_roots retailer-chain_block_27 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064346265623739303864653436366430316530376566343466323438303965636261666265343733636437363833353332626563383235653866633136615c6e222c226d65726b6c65526f6f74223a2263326436383139613065626266333638663165333434376130663135666663613563316531646535356135396338366463666562396161636630396135623965222c22626c6f636b486569676874223a32372c2274696d657374616d70223a313734303836353234343330357d
-2025-03-02 03:40:44.625	getblockhash 28
-2025-03-02 03:40:44.737	getblock 00f0e77d55947194411539f0f600e47bcfc99aef62302dd6bab90747f7497367
- 1
-2025-03-02 03:40:44.973	publish merkle_roots retailer-chain_block_28 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303066306537376435353934373139343431313533396630663630306534376263666339396165663632333032646436626162393037343766373439373336375c6e222c226d65726b6c65526f6f74223a2264663834626437643330656332623761656534393931383465643534356332646634373830303534313336636636613963313031393863353034393063326137222c22626c6f636b486569676874223a32382c2274696d657374616d70223a313734303836353234343733387d
-2025-03-02 03:40:45.081	getblockhash 29
-2025-03-02 03:40:45.189	getblock 00a513f58e388da78279ba61db5f0cc4e3d31ee102724f466cee13043328d986
- 1
-2025-03-02 03:40:45.423	publish merkle_roots retailer-chain_block_29 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303061353133663538653338386461373832373962613631646235663063633465336433316565313032373234663436366365653133303433333238643938365c6e222c226d65726b6c65526f6f74223a2261383038653064343339376237393938633366356636666432333862313332356365343934326436353136383762343838646637623837393830386165343865222c22626c6f636b486569676874223a32392c2274696d657374616d70223a313734303836353234353139307d
-2025-03-02 03:40:45.538	getblockhash 30
-2025-03-02 03:40:45.646	getblock 00dfeb5f86a2d469654c8dae25073e20e0a4b727911b124e5a73077b19b9347b
- 1
-2025-03-02 03:40:45.863	publish merkle_roots retailer-chain_block_30 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064666562356638366132643436393635346338646165323530373365323065306134623732373931316231323465356137333037376231396239333437625c6e222c226d65726b6c65526f6f74223a2233356235656236626265333738643632636636383663316133306134373166306130313465313538353365383035376331613266393034393939623662396161222c22626c6f636b486569676874223a33302c2274696d657374616d70223a313734303836353234353634387d
-2025-03-02 03:40:45.972	getblockhash 31
-2025-03-02 03:40:46.084	getblock 009d721d7a0df4479ff4a0c80c292dbbd0f2eab0d0f7f047bac7ec81abd4270b
- 1
-2025-03-02 03:40:46.317	publish merkle_roots retailer-chain_block_31 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039643732316437613064663434373966663461306338306332393264626264306632656162306430663766303437626163376563383161626434323730625c6e222c226d65726b6c65526f6f74223a2234626365343466613734623936363561636265663666323231396661613537343431663538666334346537356563363366343334646431316463626662376131222c22626c6f636b486569676874223a33312c2274696d657374616d70223a313734303836353234363039307d
-2025-03-02 03:40:46.428	getblockhash 32
-2025-03-02 03:40:46.535	getblock 001068e5c488c76ef1a3ee55f78bd2b3248c135ae5b6d43b86106ca16121a952
- 1
-2025-03-02 03:40:46.757	publish merkle_roots retailer-chain_block_32 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303031303638653563343838633736656631613365653535663738626432623332343863313335616535623664343362383631303663613136313231613935325c6e222c226d65726b6c65526f6f74223a2237636538313163396261633661646434373231316139636430306365366536373866306238373539306636393631353435346265643334363739643863636664222c22626c6f636b486569676874223a33322c2274696d657374616d70223a313734303836353234363533367d
-2025-03-02 03:40:46.869	getblockhash 33
-2025-03-02 03:40:46.984	getblock 00ac59ba2bfa4b4a83579b600355bfec1f2033b02de0a3202b755d2749714dac
- 1
-2025-03-02 03:40:47.208	publish merkle_roots retailer-chain_block_33 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303061633539626132626661346234613833353739623630303335356266656331663230333362303264653061333230326237353564323734393731346461635c6e222c226d65726b6c65526f6f74223a2262623961623237313165333365386338366564363962323933666164616134303364343261333166633736356635616361363530373133623461643430326332222c22626c6f636b486569676874223a33332c2274696d657374616d70223a313734303836353234363938357d
-2025-03-02 03:40:47.320	getblockhash 34
-2025-03-02 03:40:47.429	getblock 0042377170f787b6a7611cba5640b5b75f818343d6d411e1f60ac10c64c30fda
- 1
-2025-03-02 03:40:47.666	publish merkle_roots retailer-chain_block_34 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303034323337373137306637383762366137363131636261353634306235623735663831383334336436643431316531663630616331306336346333306664615c6e222c226d65726b6c65526f6f74223a2263336235333963346639323432333463366537336134363832336664306336326130653333306530633637626137303031313931656662643333316631383938222c22626c6f636b486569676874223a33342c2274696d657374616d70223a313734303836353234373433327d
-2025-03-02 03:40:47.775	getblockhash 35
-2025-03-02 03:40:47.883	getblock 009ea523b9017b02d0d23586882a5f047f82dcbbdebe9508eef1f83e694c7846
- 1
-2025-03-02 03:40:48.098	publish merkle_roots retailer-chain_block_35 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039656135323362393031376230326430643233353836383832613566303437663832646362626465626539353038656566316638336536393463373834365c6e222c226d65726b6c65526f6f74223a2235666332663038666235356539383934366564353764343935386639303339363633303164626163653165633236343231326337386562376166353739313539222c22626c6f636b486569676874223a33352c2274696d657374616d70223a313734303836353234373838347d
-2025-03-02 03:40:48.205	getblockhash 36
-2025-03-02 03:40:48.313	getblock 0015a36dad286ebde602aafaaf5eae1b4b239c3ed63f267d7806d5a6d5aeaccb
- 1
-2025-03-02 03:40:48.528	publish merkle_roots retailer-chain_block_36 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303031356133366461643238366562646536303261616661616635656165316234623233396333656436336632363764373830366435613664356165616363625c6e222c226d65726b6c65526f6f74223a2238653431613838613631383933316663333163323864663038663662326536656538323131353363626430666431663064666630633632633136663961626138222c22626c6f636b486569676874223a33362c2274696d657374616d70223a313734303836353234383331347d
-2025-03-02 03:40:48.638	getblockhash 37
-2025-03-02 03:40:48.746	getblock 0057e02814d8414c33c918caee74c1aa3306afa253ee950c9de769b8d01b97be
- 1
-2025-03-02 03:40:48.961	publish merkle_roots retailer-chain_block_37 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303035376530323831346438343134633333633931386361656537346331616133333036616661323533656539353063396465373639623864303162393762655c6e222c226d65726b6c65526f6f74223a2233616132313436633666613565333161626536613430633133616534613035383961653334306636396538656130396161643739393065346632663237336239222c22626c6f636b486569676874223a33372c2274696d657374616d70223a313734303836353234383734377d
-2025-03-02 03:40:49.070	getblockhash 38
-2025-03-02 03:40:49.176	getblock 00f4b428da63bb6067bbd81939c47e3f4be0eb135846a3e71c2724b0f6f49c6c
- 1
-2025-03-02 03:40:49.395	publish merkle_roots retailer-chain_block_38 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303066346234323864613633626236303637626264383139333963343765336634626530656231333538343661336537316332373234623066366634396336635c6e222c226d65726b6c65526f6f74223a2232373562393965346237306565313361306436336336636564343034363466616234323739363362363931333832623632306534613263636534363166353631222c22626c6f636b486569676874223a33382c2274696d657374616d70223a313734303836353234393137387d
-2025-03-02 03:40:49.503	getblockhash 39
-2025-03-02 03:40:49.611	getblock 0003941e00984b4a0264534a50ba844de6fb7f4d0b41aef2dadfa217c08c45d3
- 1
-2025-03-02 03:40:49.826	publish merkle_roots retailer-chain_block_39 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303030333934316530303938346234613032363435333461353062613834346465366662376634643062343161656632646164666132313763303863343564335c6e222c226d65726b6c65526f6f74223a2236623131393762336165623565313137343161663136366231663232623666666437643330383566306133353039303761333530346334663564393435303238222c22626c6f636b486569676874223a33392c2274696d657374616d70223a313734303836353234393631327d
-2025-03-02 03:40:49.934	getblockhash 40
-2025-03-02 03:40:50.041	getblock 00d22b70016bfadc398a2814a00721c0bf1030fbfd0a990f5319737717d242e8
- 1
-2025-03-02 03:40:50.256	publish merkle_roots retailer-chain_block_40 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064323262373030313662666164633339386132383134613030373231633062663130333066626664306139393066353331393733373731376432343265385c6e222c226d65726b6c65526f6f74223a2231363733616331663565366636336435626232616466643065666530376166333933303131356665393331613730323561396239363937353964366438363836222c22626c6f636b486569676874223a34302c2274696d657374616d70223a313734303836353235303034327d
-2025-03-02 03:40:50.364	getblockhash 41
-2025-03-02 03:40:50.472	getblock 00961c4fcc2165d6d7c1a4d0f415603d955ef5c9a7a5a74516a5f6a81363199e
- 1
-2025-03-02 03:40:50.688	publish merkle_roots retailer-chain_block_41 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039363163346663633231363564366437633161346430663431353630336439353565663563396137613561373435313661356636613831333633313939655c6e222c226d65726b6c65526f6f74223a2231633563393262613562316633336334633739386261643765623065303664333133373165373331666563643235313233653765363661303139333031643534222c22626c6f636b486569676874223a34312c2274696d657374616d70223a313734303836353235303437337d
-2025-03-02 03:40:50.796	getblockhash 42
-2025-03-02 03:40:50.903	getblock 0013a04d635d551ca50d7f1d48eda11c587cc80466f8b8a3be010164c0ea96e3
- 1
-2025-03-02 03:40:51.118	publish merkle_roots retailer-chain_block_42 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303031336130346436333564353531636135306437663164343865646131316335383763633830343636663862386133626530313031363463306561393665335c6e222c226d65726b6c65526f6f74223a2266643134636665393936623232313364303336386433666136633039643961333730626663356562613336316332303934633462356361656666383761323831222c22626c6f636b486569676874223a34322c2274696d657374616d70223a313734303836353235303930347d
-2025-03-02 03:40:51.225	getblockhash 43
-2025-03-02 03:40:51.332	getblock 00dd40f8f91bfa1d3643020f55084dd89f81381d7d8ff1589a3e7af817566456
- 1
-2025-03-02 03:40:51.555	publish merkle_roots retailer-chain_block_43 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303064643430663866393162666131643336343330323066353530383464643839663831333831643764386666313538396133653761663831373536363435365c6e222c226d65726b6c65526f6f74223a2230373133653938373863333237323433623033303766363234346239653263633965396231343163643361353165636237333031366561633463623764353463222c22626c6f636b486569676874223a34332c2274696d657374616d70223a313734303836353235313333347d
-2025-03-02 03:40:51.667	getblockhash 44
-2025-03-02 03:40:51.775	getblock 00cbedd15dc8adc205abd4c3c349dc0be2e34528358079c6bc0f659bce558ee7
- 1
-2025-03-02 03:40:51.991	publish merkle_roots retailer-chain_block_44 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303063626564643135646338616463323035616264346333633334396463306265326533343532383335383037396336626330663635396263653535386565375c6e222c226d65726b6c65526f6f74223a2263336239373931313666333531353433346239393432363834343734626632613666353531643132353461623764343834323238366532666566346462336163222c22626c6f636b486569676874223a34342c2274696d657374616d70223a313734303836353235313737367d
-2025-03-02 03:40:52.098	getblockhash 45
-2025-03-02 03:40:52.206	getblock 00e4bb50d453d47b11aaaf7d58fe7b8141bd8983a422bc89fb64602847bc433d
- 1
-2025-03-02 03:40:52.421	publish merkle_roots retailer-chain_block_45 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303065346262353064343533643437623131616161663764353866653762383134316264383938336134323262633839666236343630323834376263343333645c6e222c226d65726b6c65526f6f74223a2264356562386239633433353862626162303264343663646366343439616665616639363432323530373630363938663035663737346462646238386338346536222c22626c6f636b486569676874223a34352c2274696d657374616d70223a313734303836353235323230377d
-2025-03-02 03:40:52.533	getblockhash 46
-2025-03-02 03:40:52.643	getblock 00aa990807b4b7dff95c96d7445b020e0c653d8b5e365c6bf642ece3136a06b7
- 1
-2025-03-02 03:40:52.897	publish merkle_roots retailer-chain_block_46 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303061613939303830376234623764666639356339366437343435623032306530633635336438623565333635633662663634326563653331333661303662375c6e222c226d65726b6c65526f6f74223a2235303836633566313939653733306330633262363436663564316538383364356561336331333633666164316232353639636464643638396463303032613632222c22626c6f636b486569676874223a34362c2274696d657374616d70223a313734303836353235323635317d
-2025-03-02 03:40:53.008	getblockhash 47
-2025-03-02 03:40:53.118	getblock 002d2446dd157b2ea90709b223ab0932e62c11f488e6074028f67325cd5dab0e
- 1
-2025-03-02 03:40:53.342	publish merkle_roots retailer-chain_block_47 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303032643234343664643135376232656139303730396232323361623039333265363263313166343838653630373430323866363733323563643564616230655c6e222c226d65726b6c65526f6f74223a2236633738373064343963366331646638383465383666316431356631636331336135303939333439656233396431316563393761333963316238663536646465222c22626c6f636b486569676874223a34372c2274696d657374616d70223a313734303836353235333131397d
-2025-03-02 03:40:53.455	getblockhash 48
-2025-03-02 03:40:53.565	getblock 005c743804fbe429525db958d645ff9f4145726b0526e21dc1e6825c15eaec7b
- 1
-2025-03-02 03:40:53.779	publish merkle_roots retailer-chain_block_48 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303035633734333830346662653432393532356462393538643634356666396634313435373236623035323665323164633165363832356331356561656337625c6e222c226d65726b6c65526f6f74223a2235313834366537616533613733346666323334633961313934643762363836626431656532363630303466383164396465303137366432653337623762626432222c22626c6f636b486569676874223a34382c2274696d657374616d70223a313734303836353235333536367d
-2025-03-02 03:40:53.886	getblockhash 49
-2025-03-02 03:40:53.994	getblock 008beb5b7b407aec3c937ffd8e9029848ec146c4383fa92fe43d78581d29080a
- 1
-2025-03-02 03:40:54.210	publish merkle_roots retailer-chain_block_49 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303038626562356237623430376165633363393337666664386539303239383438656331343663343338336661393266653433643738353831643239303830615c6e222c226d65726b6c65526f6f74223a2262653061316434616634633063646434653039346631653334313437333339663638373930356362396634343863333237663863383635356337643632666163222c22626c6f636b486569676874223a34392c2274696d657374616d70223a313734303836353235333939357d
-2025-03-02 03:40:54.318	getblockhash 50
-2025-03-02 03:40:54.426	getblock 003a8f23d2d6aee7badc7e42b8f44ea210549e2f83dc219913c473ed1ebd62b4
- 1
-2025-03-02 03:40:54.642	publish merkle_roots retailer-chain_block_50 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033613866323364326436616565376261646337653432623866343465613231303534396532663833646332313939313363343733656431656264363262345c6e222c226d65726b6c65526f6f74223a2239376532633133663430366531393130313332333839633631646430623365623938343233383765383335613962313166663331663462373439356436323563222c22626c6f636b486569676874223a35302c2274696d657374616d70223a313734303836353235343432387d
-2025-03-02 03:40:54.750	getblockhash 51
-2025-03-02 03:40:54.857	getblock 0033a226b98be70c34ff378f35f2005fdfe1b3befc5ccd6d444edc32b6148229
- 1
-2025-03-02 03:40:55.072	publish merkle_roots retailer-chain_block_51 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033336132323662393862653730633334666633373866333566323030356664666531623362656663356363643664343434656463333262363134383232395c6e222c226d65726b6c65526f6f74223a2231653734333331313034333363396165653339373761353663303131363239373032393439663939623730633437636335316236653834376565303465383735222c22626c6f636b486569676874223a35312c2274696d657374616d70223a313734303836353235343835387d
-2025-03-02 03:40:55.185	getblockhash 52
-2025-03-02 03:40:55.298	getblock 00c73d67e8bcbbe8ad30535e9ec7949d5fcd19cc1157293ceb1852e7ed5eada9
- 1
-2025-03-02 03:40:55.519	publish merkle_roots retailer-chain_block_52 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303063373364363765386263626265386164333035333565396563373934396435666364313963633131353732393363656231383532653765643565616461395c6e222c226d65726b6c65526f6f74223a2235343133326161633935663263363739323032373466393934393265326634336163383036663065623039356561393664353132663466633032646330656661222c22626c6f636b486569676874223a35322c2274696d657374616d70223a313734303836353235353330307d
-2025-03-02 03:40:55.632	getblockhash 53
-2025-03-02 03:40:55.742	getblock 003a6e8643e8785ccf25bf6408efd70d790bd2f0a85b535bd9a7600e5d7a2899
- 1
-2025-03-02 03:40:55.958	publish merkle_roots retailer-chain_block_53 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033613665383634336538373835636366323562663634303865666437306437393062643266306138356235333562643961373630306535643761323839395c6e222c226d65726b6c65526f6f74223a2231376365346130626635346133313830343335353863633037306533653666313933666163313833376263303062336437336430386665616430323938663036222c22626c6f636b486569676874223a35332c2274696d657374616d70223a313734303836353235353734337d
-2025-03-02 03:40:56.066	getblockhash 54
-2025-03-02 03:40:56.173	getblock 00685f5593db13badb1985a13531fa3ad0894a933194f7a9f3f4293801c69427
- 1
-2025-03-02 03:40:56.391	publish merkle_roots retailer-chain_block_54 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303036383566353539336462313362616462313938356131333533316661336164303839346139333331393466376139663366343239333830316336393432375c6e222c226d65726b6c65526f6f74223a2231303538623261623063656361326166383534643636613339623138376432373666323934626430396465613630646165613663656464366564636631643531222c22626c6f636b486569676874223a35342c2274696d657374616d70223a313734303836353235363137357d
-2025-03-02 03:40:56.500	getblockhash 55
-2025-03-02 03:40:56.626	getblock 006362ef77230df8baafb2750e782537bcb6e169cbbd18656fd46b78eb362ea7
- 1
-2025-03-02 03:40:56.859	publish merkle_roots retailer-chain_block_55 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303036333632656637373233306466386261616662323735306537383235333762636236653136396362626431383635366664343662373865623336326561375c6e222c226d65726b6c65526f6f74223a2237373737373861396663376662323335613638663338353161613733373830363736333632376462303234313634333437623262336435306166343036313236222c22626c6f636b486569676874223a35352c2274696d657374616d70223a313734303836353235363632387d
-2025-03-02 03:40:56.987	getblockhash 56
-2025-03-02 03:40:57.102	getblock 00e600b099c3aba0167d05ae9fe390d866e9298e6cf0ee58adbe683cc774a81d
- 1
-2025-03-02 03:40:57.340	publish merkle_roots retailer-chain_block_56 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303065363030623039396333616261303136376430356165396665333930643836366539323938653663663065653538616462653638336363373734613831645c6e222c226d65726b6c65526f6f74223a2265316237633230653537643166383566646563303036383364613638666539396536626166383536613235643230646337393636393665653565373834313434222c22626c6f636b486569676874223a35362c2274696d657374616d70223a313734303836353235373130377d
-2025-03-02 03:40:57.461	getblockhash 57
-2025-03-02 03:40:57.581	getblock 00bb544e2152b64fde64198b2c2573288ec984981c45a9dbec528edc95a664e0
- 1
-2025-03-02 03:40:57.813	publish merkle_roots retailer-chain_block_57 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062623534346532313532623634666465363431393862326332353733323838656339383439383163343561396462656335323865646339356136363465305c6e222c226d65726b6c65526f6f74223a2232386232393534353735366634313563633061393733666331336662653063306130366263643131663537643764613532306266633764326231643833393061222c22626c6f636b486569676874223a35372c2274696d657374616d70223a313734303836353235373538347d
-2025-03-02 03:40:57.924	getblockhash 58
-2025-03-02 03:40:58.035	getblock 000fce9da5cdeace725ca0fcab7d35bcb004a76203d4dbd49266faab9f2f0935
- 1
-2025-03-02 03:40:58.297	publish merkle_roots retailer-chain_block_58 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303030666365396461356364656163653732356361306663616237643335626362303034613736323033643464626434393236366661616239663266303933355c6e222c226d65726b6c65526f6f74223a2262643533616563653561656537653633346165636564666664663563346566383031336263326462323931633032323839386138386231383630636663613336222c22626c6f636b486569676874223a35382c2274696d657374616d70223a313734303836353235383033377d
-2025-03-02 03:40:58.416	getblockhash 59
-2025-03-02 03:40:58.527	getblock 0035add84dd657abf27a257cda43699d54f75335b0a73e90b855804cb9235543
- 1
-2025-03-02 03:40:58.744	publish merkle_roots retailer-chain_block_59 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303033356164643834646436353761626632376132353763646134333639396435346637353333356230613733653930623835353830346362393233353534335c6e222c226d65726b6c65526f6f74223a2236616363353565633630343837303163333337633330313162643234323737653532386131646166616136333865373630303738376464653830386635646534222c22626c6f636b486569676874223a35392c2274696d657374616d70223a313734303836353235383532397d
-2025-03-02 03:40:58.852	getblockhash 60
-2025-03-02 03:40:58.959	getblock 00e6f3f479ea8170dd724e9b76dd9c0cf43d0f68b8f9135f0eee76597d053666
- 1
-2025-03-02 03:40:59.175	publish merkle_roots retailer-chain_block_60 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303065366633663437396561383137306464373234653962373664643963306366343364306636386238663931333566306565653736353937643035333636365c6e222c226d65726b6c65526f6f74223a2239656132313937646132366634376432396133316266623232343631643735333262363866353361623162633236653930336631373530623136643664326638222c22626c6f636b486569676874223a36302c2274696d657374616d70223a313734303836353235383936317d
-2025-03-02 03:40:59.283	getblockhash 61
-2025-03-02 03:40:59.390	getblock 0079e2545fdb58c22ba1f379c74d8432f3c0f730eb778f754fdd859b3db7145c
- 1
-2025-03-02 03:40:59.604	publish merkle_roots retailer-chain_block_61 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303037396532353435666462353863323262613166333739633734643834333266336330663733306562373738663735346664643835396233646237313435635c6e222c226d65726b6c65526f6f74223a2238616539316230333935383933383436306263356164666161346338653437313034653337623163323833306230363638623839393866393630343163343032222c22626c6f636b486569676874223a36312c2274696d657374616d70223a313734303836353235393339317d
-2025-03-02 03:40:59.711	getblockhash 62
-2025-03-02 03:40:59.818	getblock 007dcf097c316e26c6a06932087d78ca1635af7ec381e7a387845ca292df9ad7
- 1
-2025-03-02 03:41:00.033	publish merkle_roots retailer-chain_block_62 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303037646366303937633331366532366336613036393332303837643738636131363335616637656333383165376133383738343563613239326466396164375c6e222c226d65726b6c65526f6f74223a2262326139303534343231633835333035626230303833396137343337306235383234326639373937383837313561653931336364393637333861323438666539222c22626c6f636b486569676874223a36322c2274696d657374616d70223a313734303836353235393831397d
-2025-03-02 03:41:00.140	getblockhash 63
-2025-03-02 03:41:00.247	getblock 00879e3cd8e16e988552d158c5e8ca6b97090e0dd6a5ca57812b4d68bfd6ab5c
- 1
-2025-03-02 03:41:00.465	publish merkle_roots retailer-chain_block_63 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303038373965336364386531366539383835353264313538633565386361366239373039306530646436613563613537383132623464363862666436616235635c6e222c226d65726b6c65526f6f74223a2264663137316536303535363666326138666333613938303233313866366530386366616132383062656264393365316637306434323537616430623132396463222c22626c6f636b486569676874223a36332c2274696d657374616d70223a313734303836353236303234387d
-2025-03-02 03:41:00.574	getblockhash 64
-2025-03-02 03:41:00.681	getblock 0044c80a3c1f8755fa1b80b2eec21889276c2feba94132f7b1139607edafa9bf
- 1
-2025-03-02 03:41:00.895	publish merkle_roots retailer-chain_block_64 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303034346338306133633166383735356661316238306232656563323138383932373663326665626139343133326637623131333936303765646166613962665c6e222c226d65726b6c65526f6f74223a2231373162303538626336366433306436316136643262646633353163663361643233626434616531633237653962303362613866393663343465653032383261222c22626c6f636b486569676874223a36342c2274696d657374616d70223a313734303836353236303638327d
-2025-03-02 03:41:01.002	getblockhash 65
-2025-03-02 03:41:01.109	getblock 00f0af6e869ae71f20fee7dcce98339b59e2a110baed034480b4c39ec85c34b3
- 1
-2025-03-02 03:41:01.323	publish merkle_roots retailer-chain_block_65 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303066306166366538363961653731663230666565376463636539383333396235396532613131306261656430333434383062346333396563383563333462335c6e222c226d65726b6c65526f6f74223a2230663737653935613964303330373339633036396565653639643161343535373332376665393130306165346339386535633830393638613562353430396335222c22626c6f636b486569676874223a36352c2274696d657374616d70223a313734303836353236313131307d
-2025-03-02 03:41:01.433	getblockhash 66
-2025-03-02 03:41:01.540	getblock 00966fff564e8ab246e7d3c2b445c8b43bc5b7397819da44e44d8f18b90745d7
- 1
-2025-03-02 03:41:01.754	publish merkle_roots retailer-chain_block_66 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039363666666635363465386162323436653764336332623434356338623433626335623733393738313964613434653434643866313862393037343564375c6e222c226d65726b6c65526f6f74223a2238643465343031636132663062383338396530346634343432356666323164393434386238373532636365393535353335313233373362386636343936323562222c22626c6f636b486569676874223a36362c2274696d657374616d70223a313734303836353236313534317d
-2025-03-02 03:41:01.861	getblockhash 67
-2025-03-02 03:41:01.968	getblock 00fa94b720f449617413d0b9b36163bc3e34326032209eefd4435f7e4eecb48f
- 1
-2025-03-02 03:41:02.186	publish merkle_roots retailer-chain_block_67 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303066613934623732306634343936313734313364306239623336313633626333653334333236303332323039656566643434333566376534656563623438665c6e222c226d65726b6c65526f6f74223a2238303965303934313130343662656230336365373534393537653138613133656434663831353735636162303031303839323761303839653665393061323637222c22626c6f636b486569676874223a36372c2274696d657374616d70223a313734303836353236313936397d
-2025-03-02 03:41:02.297	getblockhash 68
-2025-03-02 03:41:02.404	getblock 00aad12f7afcaad27df935ac3b9e3120cbeae5cff37107a6545dfa8ab8c5985a
- 1
-2025-03-02 03:41:02.619	publish merkle_roots retailer-chain_block_68 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303061616431326637616663616164323764663933356163336239653331323063626561653563666633373130376136353435646661386162386335393835615c6e222c226d65726b6c65526f6f74223a2230366638663835323031646363386131343062383263626461306162303061376665653138663135613734656131333063363965353338653863363465653839222c22626c6f636b486569676874223a36382c2274696d657374616d70223a313734303836353236323430367d
-2025-03-02 03:41:02.727	getblockhash 69
-2025-03-02 03:41:02.833	getblock 00f56b3da0bd44c59102277317c94b0ab681ad92946bd5c5f9d10846da802ce5
- 1
-2025-03-02 03:41:03.049	publish merkle_roots retailer-chain_block_69 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303066353662336461306264343463353931303232373733313763393462306162363831616439323934366264356335663964313038343664613830326365355c6e222c226d65726b6c65526f6f74223a2237623264353433376631613630353735383963633439323735353063623166373237373533636463333330303937343537346666376339306534323539316335222c22626c6f636b486569676874223a36392c2274696d657374616d70223a313734303836353236323833357d
-2025-03-02 03:41:03.157	getblockhash 70
-2025-03-02 03:41:03.264	getblock 00bd15df2b73e8071b26d033ab4fab5b62f99e4077165797c186f34aa62d86cf
- 1
-2025-03-02 03:41:03.478	publish merkle_roots retailer-chain_block_70 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062643135646632623733653830373162323664303333616234666162356236326639396534303737313635373937633138366633346161363264383663665c6e222c226d65726b6c65526f6f74223a2237623664616366616436633533366266613233366333306138323165663561343039633363313166306233383634316164303566363764386432613565356637222c22626c6f636b486569676874223a37302c2274696d657374616d70223a313734303836353236333236357d
-2025-03-02 03:41:03.588	getblockhash 71
-2025-03-02 03:41:03.694	getblock 00c2b57a24a04a4b41a143135361052acae040b3b60578485a44767ea953c58b
- 1
-2025-03-02 03:41:03.909	publish merkle_roots retailer-chain_block_71 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303063326235376132346130346134623431613134333133353336313035326163616530343062336236303537383438356134343736376561393533633538625c6e222c226d65726b6c65526f6f74223a2239356363626531366336663137356363633837633864303034346137326438323437336165646433633162373361623539376336313930373434386536356363222c22626c6f636b486569676874223a37312c2274696d657374616d70223a313734303836353236333639367d
-2025-03-02 03:41:04.016	getblockhash 72
-2025-03-02 03:41:04.123	getblock 00b17115eec03fc337204a788f9b4bfc225477dbc939f3d7afd3c8253cbbf6d2
- 1
-2025-03-02 03:41:04.337	publish merkle_roots retailer-chain_block_72 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062313731313565656330336663333337323034613738386639623462666332323534373764626339333966336437616664336338323533636262663664325c6e222c226d65726b6c65526f6f74223a2265353038396164626433383032626134363231623762323563613361653866323530306261613533393834646136323765316631656535363138643836636437222c22626c6f636b486569676874223a37322c2274696d657374616d70223a313734303836353236343132347d
-2025-03-02 03:41:04.445	getblockhash 73
-2025-03-02 03:41:04.560	getblock 00016ccb6154d12362723978e3a12872a5185d25973aeb4a8702070e188b3d4c
- 1
-2025-03-02 03:41:04.778	publish merkle_roots retailer-chain_block_73 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303030313663636236313534643132333632373233393738653361313238373261353138356432353937336165623461383730323037306531383862336434635c6e222c226d65726b6c65526f6f74223a2235323236646564313865356439623831613130396233623437353732386265303435656364643732653965326436613538613035396162396163373435316330222c22626c6f636b486569676874223a37332c2274696d657374616d70223a313734303836353236343536327d
-2025-03-02 03:41:04.896	getblockhash 74
-2025-03-02 03:41:05.004	getblock 00ba926418a1b5b9afa87e6c4652d6560adb475d14288b5c79c4ab31792c72e2
- 1
-2025-03-02 03:41:05.221	publish merkle_roots retailer-chain_block_74 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303062613932363431386131623562396166613837653663343635326436353630616462343735643134323838623563373963346162333137393263373265325c6e222c226d65726b6c65526f6f74223a2230623461623164386534316161323864373939343362633539346631653236623031356639323839303265376334633534313761353663396630333537303735222c22626c6f636b486569676874223a37342c2274696d657374616d70223a313734303836353236353030357d
-2025-03-02 03:41:05.329	getblockhash 75
-2025-03-02 03:41:05.436	getblock 00c8f7d10c3c2a42acd21d2774551ded3eaf1c4370e5a841ca2fcdec215a6563
- 1
-2025-03-02 03:41:05.652	publish merkle_roots retailer-chain_block_75 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303063386637643130633363326134326163643231643237373435353164656433656166316334333730653561383431636132666364656332313561363536335c6e222c226d65726b6c65526f6f74223a2263613831623335333062323237373939373838623737666537323534376139613163633538626539663330306365616132373836313062623630633637653932222c22626c6f636b486569676874223a37352c2274696d657374616d70223a313734303836353236353433387d
-2025-03-02 03:41:05.762	getblockhash 76
-2025-03-02 03:41:05.869	getblock 008626e356e97888e3e81f4e98e0738a041af0e689f149ea9b8a2b31246e22ff
- 1
-2025-03-02 03:41:06.083	publish merkle_roots retailer-chain_block_76 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303038363236653335366539373838386533653831663465393865303733386130343161663065363839663134396561396238613262333132343665323266665c6e222c226d65726b6c65526f6f74223a2232653338333138353034353639623664336234386433383734653539373439353662343061356331323236653639373932656261633636623738643634633537222c22626c6f636b486569676874223a37362c2274696d657374616d70223a313734303836353236353837307d
-2025-03-02 03:41:06.190	getblockhash 77
-2025-03-02 03:41:06.297	getblock 0027d54e1322e43c5b1e10f6b19838dd05e0e7e55815b6936a000cd22fb061f1
- 1
-2025-03-02 03:41:06.514	publish merkle_roots retailer-chain_block_77 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303032376435346531333232653433633562316531306636623139383338646430356530653765353538313562363933366130303063643232666230363166315c6e222c226d65726b6c65526f6f74223a2262616131363464313136343537396662626136373531396439646631303962623364666565323935393066333030316335656264326632356232626565326465222c22626c6f636b486569676874223a37372c2274696d657374616d70223a313734303836353236363239397d
-2025-03-02 03:41:06.622	getblockhash 78
-2025-03-02 03:41:06.733	getblock 00913907f864a58f660b5ebd604b0cdef52b6668caf03ce0b2a61af8f359fdfa
- 1
-2025-03-02 03:41:06.947	publish merkle_roots retailer-chain_block_78 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039313339303766383634613538663636306235656264363034623063646566353262363636386361663033636530623261363161663866333539666466615c6e222c226d65726b6c65526f6f74223a2265626364363663616266363532306465623339333935653134643236303863663837333461626231316263656136623061623864373438623036363232653633222c22626c6f636b486569676874223a37382c2274696d657374616d70223a313734303836353236363733347d
-2025-03-02 03:41:07.054	getblockhash 79
-2025-03-02 03:41:07.162	getblock 00832cf2607ec1321e61450ddde8b893d607a1e115289c73042fcdec05156b94
- 1
-2025-03-02 03:41:07.379	publish merkle_roots retailer-chain_block_79 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303038333263663236303765633133323165363134353064646465386238393364363037613165313135323839633733303432666364656330353135366239345c6e222c226d65726b6c65526f6f74223a2236363961646664333639333464396663313633363234376530316230623363623861373030313932623663623936653131646334373535333033306533646261222c22626c6f636b486569676874223a37392c2274696d657374616d70223a313734303836353236373136337d
-2025-03-02 03:41:07.500	getblockhash 80
-2025-03-02 03:41:07.608	getblock 0099b5c44284ec5ae60b35802fc506b6520265d80a0874a450252496ae5d4530
- 1
-2025-03-02 03:41:07.825	publish merkle_roots retailer-chain_block_80 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303039396235633434323834656335616536306233353830326663353036623635323032363564383061303837346134353032353234393661653564343533305c6e222c226d65726b6c65526f6f74223a2232646666386664363365333164316336633437623435353831666439653334663661613861383863323139323237376331353634383563386532303964333236222c22626c6f636b486569676874223a38302c2274696d657374616d70223a313734303836353236373630397d
-2025-03-02 03:41:07.934	getblockhash 81
-2025-03-02 03:41:08.042	getblock 00467fea0bf77f67b90d2cb404777e9132b53c95a745709fb8dbe2f4bd60a893
- 1
-2025-03-02 03:41:08.258	publish merkle_roots retailer-chain_block_81 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303034363766656130626637376636376239306432636234303437373765393133326235336339356137343537303966623864626532663462643630613839335c6e222c226d65726b6c65526f6f74223a2236303431356434666531313930383363353933393164643833393638353330313435616362636531636338323430373038326566366238336664623332616233222c22626c6f636b486569676874223a38312c2274696d657374616d70223a313734303836353236383034337d
-2025-03-02 03:41:08.366	getblockhash 82
-2025-03-02 03:41:08.473	getblock 001252c14de207a71a63d07fcd38f7857651f3821415fa52932019a174ee33ce
- 1
-2025-03-02 03:41:08.689	publish merkle_roots retailer-chain_block_82 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303031323532633134646532303761373161363364303766636433386637383537363531663338323134313566613532393332303139613137346565333363655c6e222c226d65726b6c65526f6f74223a2231666164656531333363653039393939333161626163663936373433656638633935656231323638383865656638666332353439373739623931626564623231222c22626c6f636b486569676874223a38322c2274696d657374616d70223a313734303836353236383437357d
-2025-03-02 03:41:08.797	getblockhash 83
-2025-03-02 03:41:08.904	getblock 006a2ba7a8caca439a10863e4c9441b2b2e6531e6fa9aecd24bff4cae0122488
- 1
-2025-03-02 03:41:09.118	publish merkle_roots retailer-chain_block_83 7b22736f75726365436861696e223a2272657461696c65722d636861696e222c22626c6f636b48617368223a22303036613262613761386361636134333961313038363365346339343431623262326536353331653666613961656364323462666634636165303132323438385c6e222c226d65726b6c65526f6f74223a2230383339356236323033316139633037393139333961343932633638383834636262613163393161333935653264346533613130633661363032383539646564222c22626c6f636b486569676874223a38332c2274696d657374616d70223a313734303836353236383930357d
-2025-03-02 03:41:11.288	getblockcount
-2025-03-02 03:41:11.395	getblockhash 81
-2025-03-02 03:41:11.502	getblock 00467fea0bf77f67b90d2cb404777e9132b53c95a745709fb8dbe2f4bd60a893
- 1
-2025-03-02 03:41:11.609	getblock 00467fea0bf77f67b90d2cb404777e9132b53c95a745709fb8dbe2f4bd60a893
- 1
-2025-03-02 03:41:11.717	getblockhash 82
-2025-03-02 03:41:11.823	getblock 001252c14de207a71a63d07fcd38f7857651f3821415fa52932019a174ee33ce
- 1
-2025-03-02 03:41:11.930	getblock 001252c14de207a71a63d07fcd38f7857651f3821415fa52932019a174ee33ce
- 1
-2025-03-02 03:41:12.037	getblockhash 83
-2025-03-02 03:41:12.144	getblock 006a2ba7a8caca439a10863e4c9441b2b2e6531e6fa9aecd24bff4cae0122488
- 1
-2025-03-02 03:41:12.251	getblock 006a2ba7a8caca439a10863e4c9441b2b2e6531e6fa9aecd24bff4cae0122488
- 1
-2025-03-02 03:41:12.358	getblockhash 84
-2025-03-02 03:41:12.465	getblock 00d59c7797d67a30f3ec4d5192cd13a615d21f34fa7c786949477268d84fbde8
- 1
-2025-03-02 03:41:12.572	getblock 00d59c7797d67a30f3ec4d5192cd13a615d21f34fa7c786949477268d84fbde8
- 1
-2025-03-02 03:41:12.680	getblockhash 85
-2025-03-02 03:41:12.788	getblock 00f03c0e02f52af774b8c4d424f429cd5a37a63de6022f617a735ad60427f05b
- 1
-2025-03-02 03:41:12.895	getblock 00f03c0e02f52af774b8c4d424f429cd5a37a63de6022f617a735ad60427f05b
- 1
-2025-03-02 03:41:13.002	getblockhash 86
-2025-03-02 03:41:13.109	getblock 00fa9f88c582655e089e3157cb0da85288cc2e0b726eb527195df315412b9a49
- 1
-2025-03-02 03:41:13.218	getblock 00fa9f88c582655e089e3157cb0da85288cc2e0b726eb527195df315412b9a49
- 1
-2025-03-02 03:41:15.694	liststreamitems retailer_transactions
-2025-03-02 03:46:23.805	getblockcount
-2025-03-02 03:46:23.912	getblockhash 84
-2025-03-02 03:46:24.212	getblockcount
+2025-03-02 21:01:08.042	getblockcount
+2025-03-02 21:01:15.405	getaddresses
+2025-03-02 21:01:15.513	grant 12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB connect,send,receive,create,issue,admin
+2025-03-02 21:01:15.621	grant 12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB mine
+2025-03-02 21:01:15.728	setruntimeparam miningturnover 0.5
+2025-03-02 21:01:15.836	setgenerate true
+2025-03-02 21:01:16.952	getaddresses
+2025-03-02 21:01:17.060	generate 1
+2025-03-02 21:01:17.165	generatetoaddress 1 12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB
+2025-03-02 21:01:17.270	setgenerate true 1
+2025-03-02 21:01:21.288	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:01:21.395	subscribe retailer_transactions
+2025-03-02 21:01:21.517	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:01:21.625	subscribe merkle_roots
+2025-03-02 21:01:21.746	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:01:21.854	subscribe transaction_proofs
+2025-03-02 21:01:24.209	getaddresses
+2025-03-02 21:01:24.316	generate 1
+2025-03-02 21:01:24.422	generatetoaddress 1 12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB
+2025-03-02 21:01:24.527	setgenerate true 1
+2025-03-02 21:01:26.208	setruntimeparam autosubscribe streams
+2025-03-02 21:01:26.634	liststreams retailer_transactions
+2025-03-02 21:01:26.740	publish retailer_transactions inventory1 '{"json":{"type":"INVENTORY_UPDATE","productId":"PROD001","quantity":100}}'
+2025-03-02 21:01:27.510	getaddresses
+2025-03-02 21:01:27.618	generate 1
+2025-03-02 21:01:27.723	generatetoaddress 1 12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB
+2025-03-02 21:01:27.828	setgenerate true 1
+2025-03-02 21:01:53.522	grant 1aAeq5aVhMmWzWF7uVkmLD57E9Qhnp8bpkHVg1 connect
+2025-03-02 21:02:26.088	grant 1SmTxwJ1QB6oB317AJH7mCEvkkCshrHNV1ZeAY connect
+2025-03-02 21:02:52.273	grant 1aAeq5aVhMmWzWF7uVkmLD57E9Qhnp8bpkHVg1 send,receive,create
+2025-03-02 21:02:52.384	grant 1aAeq5aVhMmWzWF7uVkmLD57E9Qhnp8bpkHVg1 mine
+2025-03-02 21:02:52.933	grant 1SmTxwJ1QB6oB317AJH7mCEvkkCshrHNV1ZeAY send,receive,create
+2025-03-02 21:02:53.041	grant 1SmTxwJ1QB6oB317AJH7mCEvkkCshrHNV1ZeAY mine
+2025-03-02 21:02:54.710	getaddresses
+2025-03-02 21:02:54.822	generate 1
+2025-03-02 21:02:54.927	generatetoaddress 1 12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB
+2025-03-02 21:02:55.033	setgenerate true 1
+2025-03-02 21:03:03.632	getpeerinfo
+2025-03-02 21:03:03.739	getpeerinfo
+2025-03-02 21:03:10.608	getpeerinfo
+2025-03-02 21:03:10.716	getpeerinfo
+2025-03-02 21:04:07.260	getpeerinfo
+2025-03-02 21:04:07.368	getpeerinfo
+2025-03-02 21:12:55.624	liststreams
+2025-03-02 21:12:55.732	create stream products true
+2025-03-02 21:12:56.841	subscribe products
+2025-03-02 21:12:56.959	create stream supply_chain_events true
+2025-03-02 21:12:58.068	subscribe supply_chain_events
+2025-03-02 21:12:58.177	create stream asset_transfers true
+2025-03-02 21:12:59.284	subscribe asset_transfers
+2025-03-02 21:12:59.393	create stream asset_receipts true
+2025-03-02 21:13:00.501	subscribe asset_receipts
+2025-03-02 21:13:00.609	create stream notifications true
+2025-03-02 21:13:01.717	subscribe notifications
+2025-03-02 21:14:30.138	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:14:31.288	getinfo
+2025-03-02 21:14:31.419	getblockcount
+2025-03-02 21:14:31.526	getpeerinfo
+2025-03-02 21:14:34.324	publish retailer_transactions RETAIL-TXN-1740928474218-5395 7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303932383437343231382d35333935222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303932383437343231382c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d
+2025-03-02 21:14:35.017	publish asset_receipts TRANSFER-1740928474680-938 7b2261737365744e616d65223a2270726f647563742d31222c227175616e74697479223a31302c22736f75726365436861696e223a226469737472696275746f722d636861696e222c22737461747573223a225245434549564544222c227472616e736665724964223a225452414e534645522d313734303932383437343638302d393338222c226d61696e5265666572656e6365223a22353332396165353430333463643232656166653764376539316432323731383035373830633463306137303337336462336533353861616438396331343438355c6e222c2274696d657374616d70223a313734303932383437343930342c226d65746164617461223a7b226e6f746573223a224d6f6e74686c7920736869706d656e74227d7d
+2025-03-02 21:22:46.861	liststreams retailer_transactions
+2025-03-02 21:22:46.969	liststreams merkle_roots
+2025-03-02 21:22:47.076	liststreams transaction_proofs
+2025-03-02 21:22:47.184	liststreams asset_transfers
+2025-03-02 21:22:47.291	liststreams asset_receipts
+2025-03-02 21:22:47.399	liststreams notifications
+2025-03-02 21:23:27.282	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:23:28.037	getinfo
+2025-03-02 21:23:28.144	getpeerinfo
+2025-03-02 21:23:28.251	getinfo
+2025-03-02 21:23:28.358	getpeerinfo
+2025-03-02 21:23:28.466	getinfo
+2025-03-02 21:23:28.573	getpeerinfo
+2025-03-02 21:23:29.757	getblockcount
+2025-03-02 21:23:29.864	getmempoolinfo
+2025-03-02 21:23:29.972	liststreams
+2025-03-02 21:23:30.079	listassets
+2025-03-02 21:23:30.835	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:23:31.531	publish retailer_transactions PROD-123 7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303932393031313432312d34393431222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303932393031313432322c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d
+2025-03-02 21:23:32.085	publish asset_receipts TRANSFER-1740929011757-3837 7b2261737365744e616d65223a2270726f647563742d31222c227175616e74697479223a31302c22736f75726365436861696e223a226469737472696275746f722d636861696e222c22737461747573223a225245434549564544222c227472616e736665724964223a225452414e534645522d313734303932393031313735372d33383337222c226d61696e5265666572656e6365223a2230303662633062363038356562313663383233336262623039346634373461343366646630396537613138643931326539616331343430383232356261346133222c2274696d657374616d70223a313734303932393031313937382c226d65746164617461223a7b226e6f746573223a224d6f6e74686c7920736869706d656e74227d7d
+2025-03-02 21:23:36.079	getblockcount
+2025-03-02 21:23:36.186	getblockhash 54
+2025-03-02 21:23:36.293	getblock 0068cfa5a5a2a1b8d8c53613d4b10c987d6cec014a2ad822115073be0a02a4f8 1
+2025-03-02 21:23:36.508	getblockhash 55
+2025-03-02 21:23:36.615	getblock 009726897346aa0b4945058b50d7f0d0cd38dcad236fada6a07b478e70a5ff66 1
+2025-03-02 21:23:36.831	getblockhash 56
+2025-03-02 21:23:36.938	getblock 00289b30b9802bf39ce4cd898fc20b91fafa04e517d66cef0911f65abf3e70c7 1
+2025-03-02 21:23:37.153	getblockhash 57
+2025-03-02 21:23:37.260	getblock 001f00c2ba98f6cc85e42c3971c5a6d9cf9a1af758cdca18f8f1800f0163dcfa 1
+2025-03-02 21:23:37.476	getblockhash 58
+2025-03-02 21:23:37.583	getblock 007d1e14f43f295a4c2b7489a1cb7008a7fb402b61aa1ea459d7b3b21f400960 1
+2025-03-02 21:23:37.798	getblockhash 59
+2025-03-02 21:23:37.905	getblock 00dc70747abcb1ab75ac02e90d17aed4773a8f2d2c8553bbc85f59f327322976 1
+2025-03-02 21:23:38.120	getblockhash 60
+2025-03-02 21:23:38.227	getblock 005bc98cd30c4d11c1836194626149a360d0adca79d0b15cf2741b7015178fee 1
+2025-03-02 21:23:38.444	getblockhash 61
+2025-03-02 21:23:38.551	getblock 004b53e5f40be8f7744480f13c96a5e4f7c273b2a3ffc167e9b27962df666fce 1
+2025-03-02 21:23:38.766	getblockhash 62
+2025-03-02 21:23:38.873	getblock 00e2f6daf73e1606b8a644b94154fde683870771cf91d0065f23c60dd7d4fdb7 1
+2025-03-02 21:23:39.088	getblockhash 63
+2025-03-02 21:23:39.195	getblock 008dedb2486b6f17476ff74f30041af95a3ca2097e2cf681fbf232d474777e44 1
+2025-03-02 21:23:39.410	getblockhash 64
+2025-03-02 21:23:39.516	getblock 0080f1ba7439f85308ece515612a2226a46359ea118ef6956b1f08c4070b4e25 1
+2025-03-02 21:23:41.284	liststreams retailer_transactions
+2025-03-02 21:23:41.391	liststreams merkle_roots
+2025-03-02 21:23:41.498	liststreams transaction_proofs
+2025-03-02 21:23:41.605	liststreams asset_transfers
+2025-03-02 21:23:41.713	liststreams asset_receipts
+2025-03-02 21:23:41.821	liststreams notifications
+2025-03-02 21:23:43.402	getblockcount
+2025-03-02 21:23:43.509	getblockhash 54
+2025-03-02 21:23:43.617	getblock 0068cfa5a5a2a1b8d8c53613d4b10c987d6cec014a2ad822115073be0a02a4f8 1
+2025-03-02 21:23:43.832	getblockhash 55
+2025-03-02 21:23:43.941	getblock 009726897346aa0b4945058b50d7f0d0cd38dcad236fada6a07b478e70a5ff66 1
+2025-03-02 21:23:44.156	getblockhash 56
+2025-03-02 21:23:44.264	getblock 00289b30b9802bf39ce4cd898fc20b91fafa04e517d66cef0911f65abf3e70c7 1
+2025-03-02 21:23:44.478	getblockhash 57
+2025-03-02 21:23:44.586	getblock 001f00c2ba98f6cc85e42c3971c5a6d9cf9a1af758cdca18f8f1800f0163dcfa 1
+2025-03-02 21:23:44.800	getblockhash 58
+2025-03-02 21:23:44.907	getblock 007d1e14f43f295a4c2b7489a1cb7008a7fb402b61aa1ea459d7b3b21f400960 1
+2025-03-02 21:23:45.123	getblockhash 59
+2025-03-02 21:23:45.230	getblock 00dc70747abcb1ab75ac02e90d17aed4773a8f2d2c8553bbc85f59f327322976 1
+2025-03-02 21:23:45.454	getblockhash 60
+2025-03-02 21:23:45.563	getblock 005bc98cd30c4d11c1836194626149a360d0adca79d0b15cf2741b7015178fee 1
+2025-03-02 21:23:45.785	getblockhash 61
+2025-03-02 21:23:45.895	getblock 004b53e5f40be8f7744480f13c96a5e4f7c273b2a3ffc167e9b27962df666fce 1
+2025-03-02 21:23:46.115	getblockhash 62
+2025-03-02 21:23:46.243	getblock 00e2f6daf73e1606b8a644b94154fde683870771cf91d0065f23c60dd7d4fdb7 1
+2025-03-02 21:23:46.462	getblockhash 63
+2025-03-02 21:23:46.571	getblock 008dedb2486b6f17476ff74f30041af95a3ca2097e2cf681fbf232d474777e44 1
+2025-03-02 21:23:46.794	getblockhash 64
+2025-03-02 21:23:46.905	getblock 0080f1ba7439f85308ece515612a2226a46359ea118ef6956b1f08c4070b4e25 1
+2025-03-02 21:32:42.717	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:32:42.826	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:32:42.936	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:32:43.045	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:32:43.154	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:32:43.263	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:32:43.372	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:32:43.481	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:32:43.590	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:32:43.700	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:32:43.808	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:32:43.917	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:32:44.026	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:32:44.135	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:32:44.244	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:32:44.353	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:32:44.463	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:32:44.571	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:32:58.837	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:32:59.594	getinfo
+2025-03-02 21:32:59.702	getpeerinfo
+2025-03-02 21:32:59.810	getinfo
+2025-03-02 21:32:59.917	getpeerinfo
+2025-03-02 21:33:00.024	getinfo
+2025-03-02 21:33:00.131	getpeerinfo
+2025-03-02 21:33:01.317	getblockcount
+2025-03-02 21:33:01.424	getmempoolinfo
+2025-03-02 21:33:01.531	liststreams
+2025-03-02 21:33:01.639	listassets
+2025-03-02 21:33:02.407	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:33:03.090	publish retailer_transactions PROD-123 7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303932393538323938312d34343233222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303932393538323938312c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d
+2025-03-02 21:33:03.644	publish asset_receipts TRANSFER-1740929583316-1896 7b2261737365744e616d65223a2270726f647563742d31222c227175616e74697479223a31302c22736f75726365436861696e223a226469737472696275746f722d636861696e222c22737461747573223a225245434549564544222c227472616e736665724964223a225452414e534645522d313734303932393538333331362d31383936222c226d61696e5265666572656e6365223a2239346633616332356465623333636164633565643665616232636636663634333331316165623961313133656239643634663638656265303630363737663439222c2274696d657374616d70223a313734303932393538333533362c226d65746164617461223a7b226e6f746573223a224d6f6e74686c7920736869706d656e74227d7d
+2025-03-02 21:33:07.661	getblockcount
+2025-03-02 21:33:07.769	getblockhash 65
+2025-03-02 21:33:07.876	getblock 00a158b4549781d941955a0a314b75317267b2ebe456a22e4d731c31b0bd1ca6 1
+2025-03-02 21:33:08.091	getblockhash 66
+2025-03-02 21:33:08.198	getblock 000dd32e9d91ee4c6328aa4f559f59870ee9590b58bcf5889fa7df98276997ea 1
+2025-03-02 21:33:08.413	getblockhash 67
+2025-03-02 21:33:08.519	getblock 003cbd8432f1d8ad0e2abe40501604d4a7c2885ea78a2c6ed00f2f435657c27b 1
+2025-03-02 21:33:08.734	getblockhash 68
+2025-03-02 21:33:08.841	getblock 00d0b4e883867e431a0ab5ab590f2a2181354353245da44312090a408b236b4b 1
+2025-03-02 21:33:09.056	getblockhash 69
+2025-03-02 21:33:09.164	getblock 0095caa4778db787fd842930333fcb8f471ad066a6a685f3e85f86412a4e3c80 1
+2025-03-02 21:33:09.378	getblockhash 70
+2025-03-02 21:33:09.485	getblock 00300785fd35ef9e182c37413650ae4545ddda43a20943737af8e82ddc313957 1
+2025-03-02 21:33:09.700	getblockhash 71
+2025-03-02 21:33:09.807	getblock 00cc750d12afe9054cadc0abeb6e8178b550ab9c530e699cd40d01c275faa1a6 1
+2025-03-02 21:33:10.022	getblockhash 72
+2025-03-02 21:33:10.128	getblock 000205379ee9765e5d15441530965aa087453b123284eb21436ae5cdcd8af063 1
+2025-03-02 21:33:10.343	getblockhash 73
+2025-03-02 21:33:10.450	getblock 00d3b015341b4e9595bf5352724983a95b61799db8e4b813cad61dffff4dbf41 1
+2025-03-02 21:33:10.665	getblockhash 74
+2025-03-02 21:33:10.772	getblock 00aece463074c5fca3c5308c55be0795363afb53195492585866eef6bf8fca5c 1
+2025-03-02 21:33:10.987	getblockhash 75
+2025-03-02 21:33:11.094	getblock 00f386f12b4f52a04eb7f7104e44d45b7c637fde5f4b62140c758e4d97cb5dcb 1
+2025-03-02 21:33:13.877	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:33:13.987	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:33:14.096	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:33:14.205	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:33:14.315	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:33:14.424	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:33:14.533	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:33:14.643	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:33:14.752	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:33:14.861	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:33:14.971	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:33:15.011	getblockcount
+2025-03-02 21:33:15.080	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:33:15.119	getblockhash 66
+2025-03-02 21:33:15.189	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:33:15.226	getblock 000dd32e9d91ee4c6328aa4f559f59870ee9590b58bcf5889fa7df98276997ea 1
+2025-03-02 21:33:15.299	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:33:15.408	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:33:15.441	getblockhash 67
+2025-03-02 21:33:15.517	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:33:15.550	getblock 003cbd8432f1d8ad0e2abe40501604d4a7c2885ea78a2c6ed00f2f435657c27b 1
+2025-03-02 21:33:15.626	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:33:15.735	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:33:15.765	getblockhash 68
+2025-03-02 21:33:15.872	getblock 00d0b4e883867e431a0ab5ab590f2a2181354353245da44312090a408b236b4b 1
+2025-03-02 21:33:16.087	getblockhash 69
+2025-03-02 21:33:16.194	getblock 0095caa4778db787fd842930333fcb8f471ad066a6a685f3e85f86412a4e3c80 1
+2025-03-02 21:33:16.409	getblockhash 70
+2025-03-02 21:33:16.516	getblock 00300785fd35ef9e182c37413650ae4545ddda43a20943737af8e82ddc313957 1
+2025-03-02 21:33:16.733	getblockhash 71
+2025-03-02 21:33:16.840	getblock 00cc750d12afe9054cadc0abeb6e8178b550ab9c530e699cd40d01c275faa1a6 1
+2025-03-02 21:33:17.056	getblockhash 72
+2025-03-02 21:33:17.163	getblock 000205379ee9765e5d15441530965aa087453b123284eb21436ae5cdcd8af063 1
+2025-03-02 21:33:17.380	getblockhash 73
+2025-03-02 21:33:17.490	getblock 00d3b015341b4e9595bf5352724983a95b61799db8e4b813cad61dffff4dbf41 1
+2025-03-02 21:33:17.710	getblockhash 74
+2025-03-02 21:33:17.819	getblock 00aece463074c5fca3c5308c55be0795363afb53195492585866eef6bf8fca5c 1
+2025-03-02 21:33:18.038	getblockhash 75
+2025-03-02 21:33:18.147	getblock 00f386f12b4f52a04eb7f7104e44d45b7c637fde5f4b62140c758e4d97cb5dcb 1
+2025-03-02 21:33:18.367	getblockhash 76
+2025-03-02 21:33:18.479	getblock 006726fcb6bae0f5a9a2170b0f91994b33300bb2573b914ce3929ed2e6d31951 1
+2025-03-02 21:43:14.998	getblockcount
+2025-03-02 21:43:15.105	getblockhash 77
+2025-03-02 21:43:15.212	getblock 0012b06e4035355427f4cb2cfa9509f78151b4c1540149f2b192b2c5d5ca707e 1
+2025-03-02 21:43:15.427	getblockhash 78
+2025-03-02 21:43:15.534	getblock 00077905fe1129b39f1c12b8e419ecad35cac84b5c26c2771e41a9cec220dca7 1
+2025-03-02 21:43:15.748	getblockhash 79
+2025-03-02 21:43:15.857	getblock 001567ee7244b3c2ad8ea10a35d6c73a1665367523e1e7563d8b78ee541b6c3d 1
+2025-03-02 21:43:16.072	getblockhash 80
+2025-03-02 21:43:16.179	getblock 005211f6efbf7e40a0992f7415b0928b2165b93eb58c0c0fcf0ba49de84511c0 1
+2025-03-02 21:43:16.394	getblockhash 81
+2025-03-02 21:43:16.501	getblock 0096ada6fbdd067b0990b2caa5af64a8b59ddd8501587a28604441c22249cf3c 1
+2025-03-02 21:43:16.716	getblockhash 82
+2025-03-02 21:43:16.822	getblock 0006f09e10dc51fd3f1d1db043ba7e518b4a5039a577e076280577a359eebeb3 1
+2025-03-02 21:43:17.037	getblockhash 83
+2025-03-02 21:43:17.144	getblock 00cbad14a0e22d76492546da33df2fd84b610b8eebad89a01aa2686730922577 1
+2025-03-02 21:43:17.358	getblockhash 84
+2025-03-02 21:43:17.465	getblock 00c6274661cf0c72a59e180d0d5109c23869467028f3bd0d12ad0deef19a8a9c 1
+2025-03-02 21:43:17.681	getblockhash 85
+2025-03-02 21:43:17.787	getblock 004ff3067a5d0e7e631a68a4f66498b90e07540daff06408c814e6855b0407b1 1
+2025-03-02 21:43:18.002	getblockhash 86
+2025-03-02 21:43:18.109	getblock 0086a66d3c107321797409824b8b179ebfac035e93bc445a372370b18900d153 1
+2025-03-02 21:43:18.324	getblockhash 87
+2025-03-02 21:43:18.431	getblock 00730004f6062342d03692afd7b3ee289e2635699d4756b96631272bbc6d94df 1
+2025-03-02 21:46:46.657	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:46:46.766	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:46:46.875	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:46:46.984	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:46:47.093	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:46:47.204	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:46:47.312	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:46:47.421	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:46:47.530	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:46:47.639	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:46:47.748	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:46:47.856	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:46:47.965	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:46:48.074	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:46:48.183	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:46:48.292	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:46:48.401	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:46:48.510	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:46:53.749	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:46:54.506	getinfo
+2025-03-02 21:46:54.613	getpeerinfo
+2025-03-02 21:46:54.720	getinfo
+2025-03-02 21:46:54.828	getpeerinfo
+2025-03-02 21:46:54.935	getinfo
+2025-03-02 21:46:55.042	getpeerinfo
+2025-03-02 21:46:56.228	getblockcount
+2025-03-02 21:46:56.335	getmempoolinfo
+2025-03-02 21:46:56.442	liststreams
+2025-03-02 21:46:56.550	listassets
+2025-03-02 21:46:57.306	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:46:57.668	publish retailer_transactions PROD-123 7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303933303431373536312d38313034222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303933303431373536312c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d
+2025-03-02 21:46:58.225	publish asset_receipts TRANSFER-1740930417896-2523 7b2261737365744e616d65223a2270726f647563742d31222c227175616e74697479223a31302c22736f75726365436861696e223a226469737472696275746f722d636861696e222c22737461747573223a225245434549564544222c227472616e736665724964223a225452414e534645522d313734303933303431373839362d32353233222c226d61696e5265666572656e6365223a2230343535396633623665393034633232356335316663653138383832643962363035663433396564663035663632646534353236636638386662306565363737222c2274696d657374616d70223a313734303933303431383131372c226d65746164617461223a7b226e6f746573223a224d6f6e74686c7920736869706d656e74227d7d
+2025-03-02 21:47:02.208	getblockcount
+2025-03-02 21:47:02.315	getblockhash 77
+2025-03-02 21:47:02.422	getblock 0012b06e4035355427f4cb2cfa9509f78151b4c1540149f2b192b2c5d5ca707e 1
+2025-03-02 21:47:02.636	getblockhash 78
+2025-03-02 21:47:02.743	getblock 00077905fe1129b39f1c12b8e419ecad35cac84b5c26c2771e41a9cec220dca7 1
+2025-03-02 21:47:02.959	getblockhash 79
+2025-03-02 21:47:03.066	getblock 001567ee7244b3c2ad8ea10a35d6c73a1665367523e1e7563d8b78ee541b6c3d 1
+2025-03-02 21:47:03.281	getblockhash 80
+2025-03-02 21:47:03.389	getblock 005211f6efbf7e40a0992f7415b0928b2165b93eb58c0c0fcf0ba49de84511c0 1
+2025-03-02 21:47:03.604	getblockhash 81
+2025-03-02 21:47:03.711	getblock 0096ada6fbdd067b0990b2caa5af64a8b59ddd8501587a28604441c22249cf3c 1
+2025-03-02 21:47:03.926	getblockhash 82
+2025-03-02 21:47:04.033	getblock 0006f09e10dc51fd3f1d1db043ba7e518b4a5039a577e076280577a359eebeb3 1
+2025-03-02 21:47:04.248	getblockhash 83
+2025-03-02 21:47:04.356	getblock 00cbad14a0e22d76492546da33df2fd84b610b8eebad89a01aa2686730922577 1
+2025-03-02 21:47:04.578	getblockhash 84
+2025-03-02 21:47:04.685	getblock 00c6274661cf0c72a59e180d0d5109c23869467028f3bd0d12ad0deef19a8a9c 1
+2025-03-02 21:47:04.900	getblockhash 85
+2025-03-02 21:47:05.007	getblock 004ff3067a5d0e7e631a68a4f66498b90e07540daff06408c814e6855b0407b1 1
+2025-03-02 21:47:05.222	getblockhash 86
+2025-03-02 21:47:05.329	getblock 0086a66d3c107321797409824b8b179ebfac035e93bc445a372370b18900d153 1
+2025-03-02 21:47:05.544	getblockhash 87
+2025-03-02 21:47:05.651	getblock 00730004f6062342d03692afd7b3ee289e2635699d4756b96631272bbc6d94df 1
+2025-03-02 21:47:08.572	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:47:08.682	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:47:08.791	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:47:08.901	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:47:09.011	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:47:09.120	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:47:09.229	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:47:09.338	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:47:09.448	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:47:09.557	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:47:09.609	getblockcount
+2025-03-02 21:47:09.666	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:47:09.716	getblockhash 77
+2025-03-02 21:47:09.775	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:47:09.823	getblock 0012b06e4035355427f4cb2cfa9509f78151b4c1540149f2b192b2c5d5ca707e 1
+2025-03-02 21:47:09.884	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:47:09.994	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:47:10.039	getblockhash 78
+2025-03-02 21:47:10.103	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:47:10.146	getblock 00077905fe1129b39f1c12b8e419ecad35cac84b5c26c2771e41a9cec220dca7 1
+2025-03-02 21:47:10.212	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:47:10.321	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:47:10.361	getblockhash 79
+2025-03-02 21:47:10.448	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:47:10.468	getblock 001567ee7244b3c2ad8ea10a35d6c73a1665367523e1e7563d8b78ee541b6c3d 1
+2025-03-02 21:47:10.684	getblockhash 80
+2025-03-02 21:47:10.792	getblock 005211f6efbf7e40a0992f7415b0928b2165b93eb58c0c0fcf0ba49de84511c0 1
+2025-03-02 21:47:11.007	getblockhash 81
+2025-03-02 21:47:11.114	getblock 0096ada6fbdd067b0990b2caa5af64a8b59ddd8501587a28604441c22249cf3c 1
+2025-03-02 21:47:11.330	getblockhash 82
+2025-03-02 21:47:11.438	getblock 0006f09e10dc51fd3f1d1db043ba7e518b4a5039a577e076280577a359eebeb3 1
+2025-03-02 21:47:11.656	getblockhash 83
+2025-03-02 21:47:11.767	getblock 00cbad14a0e22d76492546da33df2fd84b610b8eebad89a01aa2686730922577 1
+2025-03-02 21:47:11.988	getblockhash 84
+2025-03-02 21:47:12.097	getblock 00c6274661cf0c72a59e180d0d5109c23869467028f3bd0d12ad0deef19a8a9c 1
+2025-03-02 21:47:12.318	getblockhash 85
+2025-03-02 21:47:12.428	getblock 004ff3067a5d0e7e631a68a4f66498b90e07540daff06408c814e6855b0407b1 1
+2025-03-02 21:47:12.648	getblockhash 86
+2025-03-02 21:47:12.758	getblock 0086a66d3c107321797409824b8b179ebfac035e93bc445a372370b18900d153 1
+2025-03-02 21:47:12.978	getblockhash 87
+2025-03-02 21:47:13.087	getblock 00730004f6062342d03692afd7b3ee289e2635699d4756b96631272bbc6d94df 1
+2025-03-02 21:47:25.256	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:47:26.040	getinfo
+2025-03-02 21:47:26.153	getpeerinfo
+2025-03-02 21:47:26.263	getinfo
+2025-03-02 21:47:26.370	getpeerinfo
+2025-03-02 21:47:26.477	getinfo
+2025-03-02 21:47:26.585	getpeerinfo
+2025-03-02 21:47:27.787	getblockcount
+2025-03-02 21:47:27.893	getmempoolinfo
+2025-03-02 21:47:28.000	liststreams
+2025-03-02 21:47:28.108	listassets
+2025-03-02 21:47:28.864	liststreamkeyitems retailer_transactions PROD-123
+2025-03-02 21:47:29.221	publish retailer_transactions PROD-123 7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303933303434393131352d38383039222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303933303434393131352c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d
+2025-03-02 21:47:29.774	publish asset_receipts TRANSFER-1740930449448-1872 7b2261737365744e616d65223a2270726f647563742d31222c227175616e74697479223a31302c22736f75726365436861696e223a226469737472696275746f722d636861696e222c22737461747573223a225245434549564544222c227472616e736665724964223a225452414e534645522d313734303933303434393434382d31383732222c226d61696e5265666572656e6365223a2237623135353934613834626237383539383739343066303663653035626431353831656435333531623836643366313435343633373230346662343333346466222c2274696d657374616d70223a313734303933303434393636372c226d65746164617461223a7b226e6f746573223a224d6f6e74686c7920736869706d656e74227d7d
+2025-03-02 21:47:33.819	getblockcount
+2025-03-02 21:47:33.926	getblockhash 81
+2025-03-02 21:47:34.033	getblock 0096ada6fbdd067b0990b2caa5af64a8b59ddd8501587a28604441c22249cf3c 1
+2025-03-02 21:47:34.248	getblockhash 82
+2025-03-02 21:47:34.356	getblock 0006f09e10dc51fd3f1d1db043ba7e518b4a5039a577e076280577a359eebeb3 1
+2025-03-02 21:47:34.577	getblockhash 83
+2025-03-02 21:47:34.686	getblock 00cbad14a0e22d76492546da33df2fd84b610b8eebad89a01aa2686730922577 1
+2025-03-02 21:47:34.903	getblockhash 84
+2025-03-02 21:47:35.014	getblock 00c6274661cf0c72a59e180d0d5109c23869467028f3bd0d12ad0deef19a8a9c 1
+2025-03-02 21:47:35.233	getblockhash 85
+2025-03-02 21:47:35.342	getblock 004ff3067a5d0e7e631a68a4f66498b90e07540daff06408c814e6855b0407b1 1
+2025-03-02 21:47:35.560	getblockhash 86
+2025-03-02 21:47:35.667	getblock 0086a66d3c107321797409824b8b179ebfac035e93bc445a372370b18900d153 1
+2025-03-02 21:47:35.888	getblockhash 87
+2025-03-02 21:47:35.995	getblock 00730004f6062342d03692afd7b3ee289e2635699d4756b96631272bbc6d94df 1
+2025-03-02 21:47:36.214	getblockhash 88
+2025-03-02 21:47:36.321	getblock 00ab8f7fb9ae046f553a7025ebae26f6999dccd1416f09588066d5598f77e65e 1
+2025-03-02 21:47:36.542	getblockhash 89
+2025-03-02 21:47:36.653	getblock 0087a8ffe064d280e1f61cfc09ea62c797a3fdd53fd60450155d341dedec5f9d 1
+2025-03-02 21:47:36.888	getblockhash 90
+2025-03-02 21:47:36.997	getblock 006e2e872758b62c59b79bc18ed33f94c8b51a4e8cd0e577446debb763222b52 1
+2025-03-02 21:47:37.220	getblockhash 91
+2025-03-02 21:47:37.327	getblock 004dc738a250fc98d266a7be5c500b9ce3076c6175c59ffeee0d55dedfaef1e5 1
+2025-03-02 21:47:40.372	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:47:40.482	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:47:40.592	create stream retailer_transactions '{"restrict":"write"}'
+2025-03-02 21:47:40.701	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:47:40.811	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:47:40.921	create stream merkle_roots '{"restrict":"write"}'
+2025-03-02 21:47:41.034	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:47:41.143	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:47:41.251	create stream transaction_proofs '{"restrict":"write"}'
+2025-03-02 21:47:41.308	getblockcount
+2025-03-02 21:47:41.361	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:47:41.415	getblockhash 81
+2025-03-02 21:47:41.469	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:47:41.523	getblock 0096ada6fbdd067b0990b2caa5af64a8b59ddd8501587a28604441c22249cf3c 1
+2025-03-02 21:47:41.579	create stream asset_transfers '{"restrict":"write"}'
+2025-03-02 21:47:41.687	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:47:41.740	getblockhash 82
+2025-03-02 21:47:41.800	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:47:41.851	getblock 0006f09e10dc51fd3f1d1db043ba7e518b4a5039a577e076280577a359eebeb3 1
+2025-03-02 21:47:41.911	create stream asset_receipts '{"restrict":"write"}'
+2025-03-02 21:47:42.020	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:47:42.071	getblockhash 83
+2025-03-02 21:47:42.129	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:47:42.178	getblock 00cbad14a0e22d76492546da33df2fd84b610b8eebad89a01aa2686730922577 1
+2025-03-02 21:47:42.239	create stream notifications '{"restrict":"write"}'
+2025-03-02 21:47:42.395	getblockhash 84
+2025-03-02 21:47:42.504	getblock 00c6274661cf0c72a59e180d0d5109c23869467028f3bd0d12ad0deef19a8a9c 1
+2025-03-02 21:47:42.726	getblockhash 85
+2025-03-02 21:47:42.836	getblock 004ff3067a5d0e7e631a68a4f66498b90e07540daff06408c814e6855b0407b1 1
+2025-03-02 21:47:43.063	getblockhash 86
+2025-03-02 21:47:43.173	getblock 0086a66d3c107321797409824b8b179ebfac035e93bc445a372370b18900d153 1
+2025-03-02 21:47:43.400	getblockhash 87
+2025-03-02 21:47:43.509	getblock 00730004f6062342d03692afd7b3ee289e2635699d4756b96631272bbc6d94df 1
+2025-03-02 21:47:43.733	getblockhash 88
+2025-03-02 21:47:43.843	getblock 00ab8f7fb9ae046f553a7025ebae26f6999dccd1416f09588066d5598f77e65e 1
+2025-03-02 21:47:44.078	getblockhash 89
+2025-03-02 21:47:44.186	getblock 0087a8ffe064d280e1f61cfc09ea62c797a3fdd53fd60450155d341dedec5f9d 1
+2025-03-02 21:47:44.414	getblockhash 90
+2025-03-02 21:47:44.522	getblock 006e2e872758b62c59b79bc18ed33f94c8b51a4e8cd0e577446debb763222b52 1
+2025-03-02 21:47:44.747	getblockhash 91
+2025-03-02 21:47:44.856	getblock 004dc738a250fc98d266a7be5c500b9ce3076c6175c59ffeee0d55dedfaef1e5 1

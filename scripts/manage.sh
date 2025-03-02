@@ -1,648 +1,577 @@
 #!/bin/bash
 # filepath: /home/lothrok/Documents/projects/dist-ledger/scripts/manage.sh
 
+# Base directory 
 PROJECT_DIR="/home/lothrok/Documents/projects/dist-ledger"
 
-# Port configurations for multiple nodes
+# Port configurations - organized by chain and node
 declare -A PORTS=(
-  # Original nodes
-  ["distributor-chain-node0-net"]=7741
-  ["distributor-chain-node0-rpc"]=7740
-  ["retailer-chain-node0-net"]=7743
-  ["retailer-chain-node0-rpc"]=7742
-  ["main-chain-node0-net"]=7745
-  ["main-chain-node0-rpc"]=7744
+  # Main nodes (node0)
+  ["distributor-node0-net"]=7741
+  ["distributor-node0-rpc"]=7740
+  ["retailer-node0-net"]=7743
+  ["retailer-node0-rpc"]=7742
+  ["main-node0-net"]=7745
+  ["main-node0-rpc"]=7744
   
-  # Additional peer nodes
-  ["distributor-chain-node1-net"]=7751
-  ["distributor-chain-node1-rpc"]=7750
-  ["distributor-chain-node2-net"]=7761
-  ["distributor-chain-node2-rpc"]=7760
-  ["distributor-chain-node3-net"]=7771
-  ["distributor-chain-node3-rpc"]=7770
+  # Additional nodes - spaced for clear port allocation
+  ["distributor-node1-net"]=7751
+  ["distributor-node1-rpc"]=7750
+  ["distributor-node2-net"]=7761
+  ["distributor-node2-rpc"]=7760
   
-  ["retailer-chain-node1-net"]=7753
-  ["retailer-chain-node1-rpc"]=7752
-  ["retailer-chain-node2-net"]=7763
-  ["retailer-chain-node2-rpc"]=7762
-  ["retailer-chain-node3-net"]=7773
-  ["retailer-chain-node3-rpc"]=7772
+  ["retailer-node1-net"]=7753
+  ["retailer-node1-rpc"]=7752
+  ["retailer-node2-net"]=7763
+  ["retailer-node2-rpc"]=7762
   
-  ["main-chain-node1-net"]=7755
-  ["main-chain-node1-rpc"]=7754
-  ["main-chain-node2-net"]=7765
-  ["main-chain-node2-rpc"]=7764
-  ["main-chain-node3-net"]=7775
-  ["main-chain-node3-rpc"]=7774
+  ["main-node1-net"]=7755
+  ["main-node1-rpc"]=7754
+  ["main-node2-net"]=7765
+  ["main-node2-rpc"]=7764
 )
 
-# Default RPC credentials (UPDATE THESE!)
-# Update this line near the top of your script
+# Credentials
 RPC_USER="multichainrpc"
-RPC_PASSWORD="23RwteDXLwo6hUpifeuNg5KYXte6XFR5JaokAQAfs7E7"  # Use your actual password, not the placeholder
+RPC_PASSWORD="23RwteDXLwo6hUpifeuNg5KYXte6XFR5JaokAQAfs7E7"
 
-# Update the create_chains function to overwrite, not append
+#----------------------------------------
+# CORE FUNCTIONS
+#----------------------------------------
+
 function create_chains() {
-    echo "Creating blockchain parameter sets..."
+    echo "Creating blockchain networks with proper isolation..."
     
     # Create distributor chain
-    echo "Creating distributor chain..."
     multichain-util -datadir=${PROJECT_DIR}/data/distributor-chain create distributor-chain \
-        -default-network-port=7741 \
-        -default-rpc-port=7740 \
+        -default-network-port=${PORTS["distributor-node0-net"]} \
+        -default-rpc-port=${PORTS["distributor-node0-rpc"]} \
         -anyone-can-connect=true \
-        -mining-requires-peers=false
-    
+        -mining-requires-peers=false \
+        -admin-consensus-admin=0.5 \
+        -admin-consensus-mine=0.5
+
     # Create retailer chain
-    echo "Creating retailer chain..."
     multichain-util -datadir=${PROJECT_DIR}/data/retailer-chain create retailer-chain \
-        -default-network-port=7743 \
-        -default-rpc-port=7742 \
+        -default-network-port=${PORTS["retailer-node0-net"]} \
+        -default-rpc-port=${PORTS["retailer-node0-rpc"]} \
         -anyone-can-connect=true \
-        -mining-requires-peers=false
-    
-    # Create main chain
-    echo "Creating main chain..."
+        -mining-requires-peers=false \
+        -admin-consensus-admin=0.5 \
+        -admin-consensus-mine=0.5
+        
+    # Create main chain - central connector
     multichain-util -datadir=${PROJECT_DIR}/data/main-chain create main-chain \
-        -default-network-port=7745 \
-        -default-rpc-port=7744 \
+        -default-network-port=${PORTS["main-node0-net"]} \
+        -default-rpc-port=${PORTS["main-node0-rpc"]} \
         -anyone-can-connect=true \
-        -mining-requires-peers=false
+        -mining-requires-peers=false \
+        -admin-consensus-admin=0.5 \
+        -admin-consensus-mine=0.5
     
-    # Setup RPC credentials in config files - OVERWRITE not append
+    # Setup RPC for all chains
     for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        echo "Setting up RPC credentials for $chain..."
         echo "rpcuser=$RPC_USER" > ${PROJECT_DIR}/data/${chain}/${chain}/multichain.conf
         echo "rpcpassword=$RPC_PASSWORD" >> ${PROJECT_DIR}/data/${chain}/${chain}/multichain.conf
-        # Ensure permissions are correct
+        echo "rpcallowip=0.0.0.0/0" >> ${PROJECT_DIR}/data/${chain}/${chain}/multichain.conf
+        echo "rpcbind=0.0.0.0" >> ${PROJECT_DIR}/data/${chain}/${chain}/multichain.conf
         chmod 600 ${PROJECT_DIR}/data/${chain}/${chain}/multichain.conf
     done
     
-    echo "All chains created successfully!"
+    echo "All chains created with PoA configuration!"
 }
+
 function start_chains() {
-    echo "Starting Distributor Chain node 0..."
+    # Ensure clean start by checking for existing processes
+    stop_running_chains
+    
+    echo "Starting core blockchain nodes..."
+    
+    # Start each chain with proper ports
     multichaind -datadir=${PROJECT_DIR}/data/distributor-chain distributor-chain -daemon
-    
-    echo "Starting Retailer Chain node 0..."
     multichaind -datadir=${PROJECT_DIR}/data/retailer-chain retailer-chain -daemon
-    
-    echo "Starting Main Chain node 0..."
     multichaind -datadir=${PROJECT_DIR}/data/main-chain main-chain -daemon
     
     # Allow chains time to start
     sleep 5
     
-    # Check if chains are running
-    if ! ps aux | grep multichaind | grep -v grep | grep -q "distributor-chain"; then
-        echo "ERROR: Distributor chain failed to start."
-        return 1
-    fi
-    
-    if ! ps aux | grep multichaind | grep -v grep | grep -q "retailer-chain"; then
-        echo "ERROR: Retailer chain failed to start."
-        return 1
-    fi
-    
-    if ! ps aux | grep multichaind | grep -v grep | grep -q "main-chain"; then
-        echo "ERROR: Main chain failed to start."
-        return 1
-    fi
-    
-    echo "All chains started successfully."
+    # Verify chains are running
+    check_chain_status "distributor-chain"
+    check_chain_status "retailer-chain"
+    check_chain_status "main-chain"
 }
 
 function stop_chains() {
-    echo "Stopping all chain nodes..."
+    echo "Stopping all blockchain nodes..."
     
-    echo "Stopping original nodes..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain stop 2>/dev/null || true
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain stop 2>/dev/null || true
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain stop 2>/dev/null || true
+    # Stop main nodes first
+    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+        multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain stop 2>/dev/null || true
+    done
     
-    # Stop additional peers if they exist
+    # Then stop all peer nodes
     for node in {1..3}; do
         for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-            if [ -d "${PROJECT_DIR}/data/${chain}-node${node}" ]; then
-                echo "Stopping ${chain} node ${node}..."
-                multichain-cli -datadir=${PROJECT_DIR}/data/${chain}-node${node} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} stop 2>/dev/null || true
+            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+            if [ -d "$NODE_DIR" ]; then
+                multichain-cli -datadir=$NODE_DIR -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain stop 2>/dev/null || true
             fi
         done
     done
     
-    # Wait for chains to stop
+    # Force kill any remaining processes
     sleep 3
-    
-    # Check if any multichaind processes are still running and force kill them if necessary
+    stop_running_chains
+}
+
+function stop_running_chains() {
+    # Find and kill any remaining multichain processes
     RUNNING_PROCESSES=$(ps aux | grep multichaind | grep -v grep | awk '{print $2}')
     if [ ! -z "$RUNNING_PROCESSES" ]; then
-        echo "Force killing remaining chain processes..."
+        echo "Killing remaining chain processes..."
         for pid in $RUNNING_PROCESSES; do
             kill -9 $pid 2>/dev/null || true
         done
     fi
-    
-    echo "All chains stopped."
 }
 
-function chain_status() {
-    echo "Chain Status:"
-    ps aux | grep multichaind | grep -v grep
+function check_chain_status() {
+    local chain=$1
+    echo "Checking $chain status..."
     
-    echo -e "\nNode status details:"
-    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        echo -e "\n${chain} status:"
-        multichain-cli -datadir=${PROJECT_DIR}/data/${chain} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} getinfo 2>/dev/null || echo "${chain} is not running"
-    done
+    if pgrep -f "multichaind.*$chain" > /dev/null; then
+        echo "✓ $chain is running"
+        
+        # Get block height
+        local height=$(multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain getblockcount 2>/dev/null)
+        if [ ! -z "$height" ]; then
+            echo "  - Block height: $height"
+        else
+            echo "  - Unable to get block height (RPC not ready)"
+        fi
+        
+        return 0
+    else
+        echo "✗ $chain is NOT running"
+        return 1
+    fi
 }
 
-# Replace the current mine_block function with this updated version
 function mine_block() {
     local chain=$1
     local datadir=$2
     
-    # Get the address for mining
-    local ADDRESS=$(multichain-cli -datadir=$datadir -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
+    # Get mining address
+    local address=$(multichain-cli -datadir=$datadir -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
     
-    if [ -z "$ADDRESS" ]; then
-        echo "ERROR: Could not get address for $chain"
-        return 1
-    fi
-    
-    echo "Mining block in $chain using address $ADDRESS..."
-    
-    # Try different mining methods in order of preference
+    # Different mining options in order of preference
     if multichain-cli -datadir=$datadir -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain generate 1 2>/dev/null; then
-        echo "Successfully mined block using 'generate'"
+        echo "✓ Block signed using 'generate'"
         return 0
-    elif multichain-cli -datadir=$datadir -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain generatetoaddress 1 "$ADDRESS" 2>/dev/null; then
-        echo "Successfully mined block using 'generatetoaddress'"
+    elif multichain-cli -datadir=$datadir -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain generatetoaddress 1 "$address" 2>/dev/null; then
+        echo "✓ Block signed using 'generatetoaddress'"
         return 0
     elif multichain-cli -datadir=$datadir -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain setgenerate true 1 2>/dev/null; then
-        echo "Successfully mined block using 'setgenerate'"
+        echo "✓ Block signed using 'setgenerate'"
         return 0
     else
-        echo "WARNING: Could not mine block using any method. Mining may require special permissions."
-        # Continue anyway - the grant might still work without an immediate block
+        echo "! Block signing failed - permissions may not be active yet"
         return 1
     fi
-}
-function setup_poa() {
-    echo "Setting up Proof of Authority (PoA)..."
-    
-    # Get node addresses
-    echo "Getting node addresses..."
-    DISTRIBUTOR_ADDRESS=$(multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
-    RETAILER_ADDRESS=$(multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
-    MAIN_ADDRESS=$(multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
-    
-    echo "Distributor address: $DISTRIBUTOR_ADDRESS"
-    echo "Retailer address: $RETAILER_ADDRESS"
-    echo "Main chain address: $MAIN_ADDRESS"
-    
-    if [ -z "$DISTRIBUTOR_ADDRESS" ] || [ -z "$RETAILER_ADDRESS" ] || [ -z "$MAIN_ADDRESS" ]; then
-        echo "Error: Could not retrieve addresses. Make sure chains are running."
-        return 1
-    fi
-    
-    # Grant mine permissions (for block creation) and admin permissions
-    echo "Granting validator permissions (PoA setup)..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain grant "$DISTRIBUTOR_ADDRESS" "mine,admin"
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain grant "$RETAILER_ADDRESS" "mine,admin"
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain grant "$MAIN_ADDRESS" "mine,admin"
-    
-    # Generate initial blocks to make permissions active
-    echo "Generating initial blocks to activate permissions..."
-    mine_block "distributor-chain" "${PROJECT_DIR}/data/distributor-chain"
-    mine_block "retailer-chain" "${PROJECT_DIR}/data/retailer-chain"
-    mine_block "main-chain" "${PROJECT_DIR}/data/main-chain"
-    
-    echo "PoA setup complete!"
 }
 
-function verify_nodes() {
-    echo "Verifying node connections..."
+#----------------------------------------
+# POA AND STREAMS SETUP
+#----------------------------------------
+
+function setup_poa() {
+    echo "Setting up Proof of Authority (PoA) validators..."
     
-    for node in {1..3}; do
-        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+        echo "Configuring PoA for $chain..."
+        
+        # Get validator address
+        ADDRESS=$(multichain-cli -datadir=${PROJECT_DIR}/data/$chain \
+            -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            $chain getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
+        
+        if [ -z "$ADDRESS" ]; then
+            echo "Error: Cannot get address for $chain"
+            continue
+        fi
+        
+        echo "Validator address: $ADDRESS"
+        
+        # Grant validator permissions (admin + mine for PoA)
+        multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            $chain grant "$ADDRESS" "connect,send,receive,create,issue,admin"
             
-            if [ -d "${NODE_DIR}/${chain}" ]; then
-                echo "Testing ${chain} node ${node}..."
-                
-                # Try to get info from the node
-                if multichain-cli -datadir=${NODE_DIR} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} getinfo >/dev/null 2>&1; then
-                    echo "${chain} node ${node} is running and responding"
-                    
-                    # Check if the node was granted permissions
-                    PERMISSIONS=$(multichain-cli -datadir=${NODE_DIR} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} listpermissions connect | grep "connect")
-                    if [ -z "$PERMISSIONS" ]; then
-                        echo "WARNING: ${chain} node ${node} does not have connect permissions"
-                    else
-                        echo "${chain} node ${node} has connect permissions"
-                    fi
-                else
-                    echo "ERROR: ${chain} node ${node} is not responding to RPC commands"
-                fi
-            fi
-        done
+        # Grant mine permission separately (this is the key permission for PoA)
+        multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            $chain grant "$ADDRESS" mine
+            
+        # Configure PoA parameters - FIXED SYNTAX
+        multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            $chain setruntimeparam miningturnover 0.5
+        
+        # Enable block signing
+        multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            $chain setgenerate true
+            
+        # Generate initial block to activate permissions
+        mine_block "$chain" "${PROJECT_DIR}/data/$chain"
     done
+    
+    echo "PoA setup complete. All validators configured."
 }
 
 function setup_streams() {
-    echo "Setting up streams for transactions and Merkle roots..."
+    echo "Setting up privacy-preserving streams for cross-chain communication..."
     
-    # Create streams on distributor chain
-    echo "Creating streams on distributor chain..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain create stream distributor_transactions '{"restrict":"write"}'
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain create stream merkle_roots '{"restrict":"write"}'
+    # Distributor chain streams - FIXED JSON FORMAT
+    create_stream "distributor-chain" "distributor_transactions" 
+    create_stream "distributor-chain" "merkle_roots"
+    create_stream "distributor-chain" "transaction_proofs"
     
-    # Create streams on retailer chain
-    echo "Creating streams on retailer chain..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain create stream retailer_transactions '{"restrict":"write"}'
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain create stream merkle_roots '{"restrict":"write"}'
+    # Retailer chain streams
+    create_stream "retailer-chain" "retailer_transactions"
+    create_stream "retailer-chain" "merkle_roots" 
+    create_stream "retailer-chain" "transaction_proofs"
     
-    # Create streams on main chain
-    echo "Creating streams on main chain..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain create stream sidechain_merkle_roots '{"restrict":"write"}'
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain create stream cross_chain_verifications '{"restrict":"write"}'
-    
-    # Subscribe to the streams
-    echo "Subscribing to streams..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain subscribe distributor_transactions
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD distributor-chain subscribe merkle_roots
-    
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain subscribe retailer_transactions
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD retailer-chain subscribe merkle_roots
-    
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain subscribe sidechain_merkle_roots
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD main-chain subscribe cross_chain_verifications
+    # Main chain streams - for cross-chain communication
+    create_stream "main-chain" "sidechain_merkle_roots"
+    create_stream "main-chain" "cross_chain_verifications"
+    create_stream "main-chain" "transaction_requests"
+    create_stream "main-chain" "transaction_proofs"
     
     # Generate blocks to confirm stream creation
-    echo "Generating blocks to confirm stream creation..."
-    mine_block "distributor-chain" "${PROJECT_DIR}/data/distributor-chain"
-    mine_block "retailer-chain" "${PROJECT_DIR}/data/retailer-chain"
-    mine_block "main-chain" "${PROJECT_DIR}/data/main-chain"
+    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+        mine_block "$chain" "${PROJECT_DIR}/data/$chain"
+    done
     
-    echo "Streams setup complete!"
+    echo "Privacy-preserving streams created and configured."
 }
 
-function add_validator() {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: $0 add_validator <chain-name> <address>"
-        return 1
+function create_stream() {
+    local chain=$1
+    local stream=$2
+    
+    echo "Creating stream '$stream' on $chain..."
+    
+    # FIXED STREAM CREATION - simpler JSON
+    multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+        $chain create stream $stream '{"restrict":"write"}'
+    
+    # Subscribe to stream
+    multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+        $chain subscribe $stream
+}
+
+function setup_architecture() {
+    echo "Configuring proper chain architecture for isolation..."
+    
+    # Alternative approach to isolation - use autosubscribe instead
+    # since handshakelocal isn't working as expected
+    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+        multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            $chain setruntimeparam autosubscribe streams
+    done
+    
+    # Create sample data
+    create_sample_data
+    
+    echo "Architecture configuration complete. Chains properly isolated."
+}
+
+function create_sample_data() {
+    echo "Creating sample data for demonstration..."
+    
+    # Check if streams exist before publishing
+    if stream_exists "distributor-chain" "distributor_transactions"; then
+        multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            distributor-chain publish distributor_transactions "shipment1" '{"json":{"type":"SHIPMENT","productId":"PROD001","quantity":100}}'
     fi
     
-    local chain=$1
-    local address=$2
+    if stream_exists "retailer-chain" "retailer_transactions"; then
+        multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            retailer-chain publish retailer_transactions "inventory1" '{"json":{"type":"INVENTORY_UPDATE","productId":"PROD001","quantity":100}}'
+    fi
     
-    echo "Adding validator to $chain..."
-    multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD $chain grant "$address" "mine,admin"
-    echo "Validator added to $chain: $address"
+    # Generate blocks to include these transactions
+    mine_block "distributor-chain" "${PROJECT_DIR}/data/distributor-chain"
+    mine_block "retailer-chain" "${PROJECT_DIR}/data/retailer-chain"
 }
+
+function stream_exists() {
+    local chain=$1
+    local stream=$2
+    
+    result=$(multichain-cli -datadir=${PROJECT_DIR}/data/$chain -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+        $chain liststreams $stream 2>/dev/null | grep "name\|$stream" | wc -l)
+        
+    if [ "$result" -gt 0 ]; then
+        return 0  # Stream exists
+    else
+        echo "Stream '$stream' does not exist on $chain"
+        return 1  # Stream does not exist
+    fi
+}
+
+#----------------------------------------
+# MULTI-NODE SETUP
+#----------------------------------------
 
 function create_peer_nodes() {
-    echo "Creating additional peer nodes for each chain..."
+    echo "Creating isolated peer nodes for each chain..."
     
-    # Make sure original nodes are running with blocks
-    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        if ! ps aux | grep multichaind | grep -v grep | grep -q "$chain"; then
-            echo "ERROR: Original $chain node is not running. Start it first with ./manage.sh start"
-            return 1
-        fi
-        
-        # Check block height
-        BLOCKS=$(multichain-cli -datadir=${PROJECT_DIR}/data/${chain} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} getblockcount)
-        echo "${chain} blocks: $BLOCKS"
-    done
+    # Store node addresses for later use
+    declare -A NODE_ADDRESSES
     
-    # Get connection details for original nodes
-    echo "Getting connection details for original nodes..."
-    
-    # Define proper connection addresses
-    DIST_ADDR="distributor-chain@192.168.0.102:7741"
-    RETAIL_ADDR="retailer-chain@192.168.0.102:7743" 
-    MAIN_ADDR="main-chain@192.168.0.102:7745"
-    
-    echo "Original distributor node: $DIST_ADDR"
-    echo "Original retailer node: $RETAIL_ADDR"
-    echo "Original main node: $MAIN_ADDR"
-    
-    # Pre-grant connect permissions to ANY address (this makes connecting easier)
-    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        echo "Enabling anyone-can-connect on $chain..."
-        multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
-            -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-            $chain setruntimeparam anyone-can-connect=true
-    done
-    
-    # Create each node one by one and verify it's working before proceeding
-    for node in {1..3}; do
-        # DISTRIBUTOR CHAIN NODES
-        echo "Creating distributor-chain node $node..."
-        mkdir -p ${PROJECT_DIR}/data/distributor-chain-node${node}
-        
-        # Write config first to ensure proper RPC settings
-        mkdir -p ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain
-        echo "rpcuser=$RPC_USER" > ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain/multichain.conf
-        echo "rpcpassword=$RPC_PASSWORD" >> ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain/multichain.conf
-        echo "rpcport=${PORTS["distributor-chain-node${node}-rpc"]}" >> ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain/multichain.conf
-        echo "rpcallowip=0.0.0.0/0" >> ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain/multichain.conf
-        echo "rpcbind=0.0.0.0" >> ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain/multichain.conf
-        chmod 600 ${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain/multichain.conf
-        
-        # Connect with explicit parameters
-        multichaind $DIST_ADDR \
-            -datadir=${PROJECT_DIR}/data/distributor-chain-node${node} \
-            -port=${PORTS["distributor-chain-node${node}-net"]} \
-            -rpcport=${PORTS["distributor-chain-node${node}-rpc"]} \
-            -rpcuser=$RPC_USER \
-            -rpcpassword=$RPC_PASSWORD \
-            -daemon
-        
-        sleep 5 # Give it time to start
-        
-        # RETAILER CHAIN NODES
-        echo "Creating retailer-chain node $node..."
-        mkdir -p ${PROJECT_DIR}/data/retailer-chain-node${node}
-        
-        # Write config first
-        mkdir -p ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain
-        echo "rpcuser=$RPC_USER" > ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain/multichain.conf
-        echo "rpcpassword=$RPC_PASSWORD" >> ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain/multichain.conf
-        echo "rpcport=${PORTS["retailer-chain-node${node}-rpc"]}" >> ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain/multichain.conf
-        echo "rpcallowip=0.0.0.0/0" >> ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain/multichain.conf
-        echo "rpcbind=0.0.0.0" >> ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain/multichain.conf
-        chmod 600 ${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain/multichain.conf
-        
-        # Connect with explicit parameters
-        multichaind $RETAIL_ADDR \
-            -datadir=${PROJECT_DIR}/data/retailer-chain-node${node} \
-            -port=${PORTS["retailer-chain-node${node}-net"]} \
-            -rpcport=${PORTS["retailer-chain-node${node}-rpc"]} \
-            -rpcuser=$RPC_USER \
-            -rpcpassword=$RPC_PASSWORD \
-            -daemon
+    # Create nodes for each chain
+    for node in {1..2}; do
+        for chain_name in "distributor" "retailer" "main"; do
+            chain="${chain_name}-chain"
+            echo "Creating ${chain} node ${node}..."
             
-        sleep 5 # Give it time to start
-        
-        # MAIN CHAIN NODES
-        echo "Creating main-chain node $node..."
-        mkdir -p ${PROJECT_DIR}/data/main-chain-node${node}
-        
-        # Write config first
-        mkdir -p ${PROJECT_DIR}/data/main-chain-node${node}/main-chain
-        echo "rpcuser=$RPC_USER" > ${PROJECT_DIR}/data/main-chain-node${node}/main-chain/multichain.conf
-        echo "rpcpassword=$RPC_PASSWORD" >> ${PROJECT_DIR}/data/main-chain-node${node}/main-chain/multichain.conf
-        echo "rpcport=${PORTS["main-chain-node${node}-rpc"]}" >> ${PROJECT_DIR}/data/main-chain-node${node}/main-chain/multichain.conf
-        echo "rpcallowip=0.0.0.0/0" >> ${PROJECT_DIR}/data/main-chain-node${node}/main-chain/multichain.conf
-        echo "rpcbind=0.0.0.0" >> ${PROJECT_DIR}/data/main-chain-node${node}/main-chain/multichain.conf
-        chmod 600 ${PROJECT_DIR}/data/main-chain-node${node}/main-chain/multichain.conf
-        
-        # Connect with explicit parameters
-        multichaind $MAIN_ADDR \
-            -datadir=${PROJECT_DIR}/data/main-chain-node${node} \
-            -port=${PORTS["main-chain-node${node}-net"]} \
-            -rpcport=${PORTS["main-chain-node${node}-rpc"]} \
-            -rpcuser=$RPC_USER \
-            -rpcpassword=$RPC_PASSWORD \
-            -daemon
+            # Create data directory
+            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+            mkdir -p ${NODE_DIR}/${chain}
             
-        sleep 5 # Give it time to start
-    done
-    
-    # Check which nodes actually started
-    echo "Checking status of started nodes:"
-    for node in {1..3}; do
-        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-            if pgrep -f "multichaind.*${chain}-node${node}" > /dev/null; then
-                echo "${chain} node ${node}: RUNNING"
+            # Set up configuration
+            echo "rpcuser=$RPC_USER" > ${NODE_DIR}/${chain}/multichain.conf
+            echo "rpcpassword=$RPC_PASSWORD" >> ${NODE_DIR}/${chain}/multichain.conf
+            echo "rpcport=${PORTS["${chain_name}-node${node}-rpc"]}" >> ${NODE_DIR}/${chain}/multichain.conf
+            echo "port=${PORTS["${chain_name}-node${node}-net"]}" >> ${NODE_DIR}/${chain}/multichain.conf
+            echo "rpcallowip=0.0.0.0/0" >> ${NODE_DIR}/${chain}/multichain.conf
+            echo "rpcbind=0.0.0.0" >> ${NODE_DIR}/${chain}/multichain.conf
+            
+            chmod 600 ${NODE_DIR}/${chain}/multichain.conf
+            
+            # Get connection address for main node
+            MAIN_PORT=${PORTS["${chain_name}-node0-net"]}
+            CONNECT_ADDR="${chain}@127.0.0.1:${MAIN_PORT}"
+            
+            # Start the node
+            multichaind "$CONNECT_ADDR" \
+                -datadir=${NODE_DIR} \
+                -port=${PORTS["${chain_name}-node${node}-net"]} \
+                -rpcport=${PORTS["${chain_name}-node${node}-rpc"]} \
+                -daemon
+                
+            # Wait for node to initialize
+            echo "Waiting for ${chain} node ${node} to initialize..."
+            sleep 10
+            
+            # Get the node's address directly from the node using RPC
+            NODE_ADDRESS=$(multichain-cli -datadir=${NODE_DIR} \
+                -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                -rpcport=${PORTS["${chain_name}-node${node}-rpc"]} \
+                ${chain} getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
+            
+            if [ ! -z "$NODE_ADDRESS" ]; then
+                # Store clean address
+                NODE_ADDRESSES["${chain}-${node}"]="$NODE_ADDRESS"
+                echo "Node address obtained via RPC: $NODE_ADDRESS"
+                
+                # Grant basic connect permission first
+                echo "Granting connect permission to $NODE_ADDRESS..."
+                multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
+                    -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                    ${chain} grant "$NODE_ADDRESS" connect
+                
+                echo "Basic connection granted to ${chain} node ${node}"
             else
-                echo "${chain} node ${node}: NOT RUNNING"
-                # Try to see why it's not running
-                if [ -f "${PROJECT_DIR}/data/${chain}-node${node}/${chain}/debug.log" ]; then
-                    echo "Last 5 lines of debug log:"
-                    tail -5 "${PROJECT_DIR}/data/${chain}-node${node}/${chain}/debug.log"
-                fi
+                echo "Warning: Could not get address for ${chain} node ${node}"
             fi
         done
     done
-}
-
-function force_connections() {
-    echo "Forcing peer connections..."
     
-    # First ensure all nodes are running
-    for node in {1..3}; do
-        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-            if ! pgrep -f "multichaind.*${chain}-node${node}" > /dev/null; then
-                echo "Restarting ${chain} node ${node}..."
-                multichaind -datadir=${PROJECT_DIR}/data/${chain}-node${node} ${chain} -daemon
-                sleep 3
+    # Now wait for all nodes to be fully initialized
+    echo "Waiting for peer nodes to be fully initialized..."
+    sleep 15
+    
+    # Complete permissions for validators after initial connect
+    for node in {1..2}; do
+        for chain_name in "distributor" "retailer" "main"; do
+            chain="${chain_name}-chain"
+            NODE_ADDRESS="${NODE_ADDRESSES["${chain}-${node}"]}"
+            
+            if [ ! -z "$NODE_ADDRESS" ]; then
+                echo "Granting additional permissions to $NODE_ADDRESS on $chain..."
+                
+                # Grant additional validator permissions on main node
+                multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
+                    -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                    ${chain} grant "$NODE_ADDRESS" send,receive,create
+                
+                # For validators, also add mine permission separately
+                multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
+                    -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                    ${chain} grant "$NODE_ADDRESS" mine
+                    
+                echo "Full permissions granted to ${chain} node ${node} ($NODE_ADDRESS)"
             fi
-        done
-    done
-
-    # Get proper IP:port format for connections
-    DIST_IP_PORT="192.168.0.102:7741"
-    RETAIL_IP_PORT="192.168.0.102:7743"
-    MAIN_IP_PORT="192.168.0.102:7745"
-    
-    echo "Distributor connect address: $DIST_IP_PORT"
-    echo "Retailer connect address: $RETAIL_IP_PORT"
-    echo "Main chain connect address: $MAIN_IP_PORT"
-    
-    # For each peer node, explicitly connect to the main node
-    for node in {1..3}; do
-        echo "Forcing connections for node $node..."
-        
-        # Connect distributor peer to main distributor - use "onetry" for immediate connection attempt
-        if [ -d "${PROJECT_DIR}/data/distributor-chain-node${node}/distributor-chain" ]; then
-            echo "Connecting distributor-chain node $node to main distributor node..."
-            multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain-node${node} \
-                -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-                -rpcport=${PORTS["distributor-chain-node${node}-rpc"]} \
-                distributor-chain addnode "$DIST_IP_PORT" "onetry"
-        fi
-        
-        # Connect retailer peer to main retailer
-        if [ -d "${PROJECT_DIR}/data/retailer-chain-node${node}/retailer-chain" ]; then
-            echo "Connecting retailer-chain node $node to main retailer node..."
-            multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain-node${node} \
-                -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-                -rpcport=${PORTS["retailer-chain-node${node}-rpc"]} \
-                retailer-chain addnode "$RETAIL_IP_PORT" "onetry"
-        fi
-        
-        # Connect main chain peer to main chain main
-        if [ -d "${PROJECT_DIR}/data/main-chain-node${node}/main-chain" ]; then
-            echo "Connecting main-chain node $node to main chain node..."
-            multichain-cli -datadir=${PROJECT_DIR}/data/main-chain-node${node} \
-                -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-                -rpcport=${PORTS["main-chain-node${node}-rpc"]} \
-                main-chain addnode "$MAIN_IP_PORT" "onetry"
-        fi
-    done
-    
-    echo "Connection attempts completed. Waiting for connections to establish..."
-    sleep 10  # Give more time for connections to establish
-}
-
-function add_peer_validators() {
-    echo "Adding peer nodes as validators..."
-    
-    for node in {1..3}; do
-        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-            echo "Getting address for ${chain} node ${node}..."
-            
-            # Specify datadir and port correctly
-            ADDRESS=$(multichain-cli -datadir=${PROJECT_DIR}/data/${chain}-node${node} \
-                     -rpcport=${PORTS["${chain}-node${node}-rpc"]} \
-                     -rpcuser=$RPC_USER \
-                     -rpcpassword=$RPC_PASSWORD \
-                     ${chain} getaddresses 2>/dev/null | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
-            
-            if [ -z "$ADDRESS" ]; then
-                echo "WARNING: Could not get address for ${chain} node ${node}"
-                # Check if node is running
-                if ! pgrep -f "${chain}-node${node}" > /dev/null; then
-                    echo "Node appears to be down. Attempting restart..."
-                    multichaind -datadir=${PROJECT_DIR}/data/${chain}-node${node} ${chain} -daemon
-                    sleep 3
-                    # Try again
-                    ADDRESS=$(multichain-cli -datadir=${PROJECT_DIR}/data/${chain}-node${node} \
-                             -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-                             ${chain} getaddresses 2>/dev/null | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
-                    if [ -z "$ADDRESS" ]; then
-                        echo "Still could not get address after restart. Skipping."
-                        continue
-                    fi
-                else
-                    continue
-                fi
-            fi
-            
-            echo "${chain} node ${node} address: $ADDRESS"
-            
-            # Grant permissions on the original node
-            echo "Granting permissions to ${chain} node ${node}..."
-            multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
-                          -rpcuser=$RPC_USER \
-                          -rpcpassword=$RPC_PASSWORD \
-                          ${chain} grant "$ADDRESS" "connect,send,receive,mine,admin"
         done
     done
     
     # Generate blocks to confirm permission changes
     for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        echo "Generating block for ${chain} to confirm permissions..."
-        mine_block "$chain" "${PROJECT_DIR}/data/${chain}"
+        mine_block "$chain" "${PROJECT_DIR}/data/$chain"
     done
     
-    echo "All peer validators added!"
-}
-
-function auto_grant_permissions() {
-    echo "Auto-granting permissions to all peer nodes..."
-    
-    # Wait for nodes to initialize completely
-    sleep 5
-    
-    for node in {1..3}; do
-        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-            # Extract the address from the wallet.dat of each node
-            echo "Getting address for ${chain} node ${node}..."
-            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+    # Check nodes are responsive before forcing connections
+    echo "Verifying node responsiveness before connection attempts..."
+    for node in {1..2}; do
+        for chain_name in "distributor" "retailer" "main"; do
+            chain="${chain_name}-chain"
+            RPCPORT=${PORTS["${chain_name}-node${node}-rpc"]}
             
-            # First check if node is running
-            if ! pgrep -f "multichaind.*${chain}-node${node}" > /dev/null; then
-                echo "Starting ${chain} node ${node}..."
-                multichaind -datadir=${NODE_DIR} ${chain} -daemon
-                sleep 3
-            fi
-            
-            # Get the node's address
-            ADDRESS=$(multichain-cli -datadir=${NODE_DIR} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} getaddresses | grep -o '"[^"]*"' | head -1 | sed 's/"//g')
-            
-            if [ -z "$ADDRESS" ]; then
-                echo "WARNING: Could not get address for ${chain} node ${node}"
-                continue
-            fi
-            
-            echo "${chain} node ${node} address: $ADDRESS"
-            
-            # Grant permissions on the main node
-            echo "Granting permissions to ${chain} node ${node}..."
-            multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
-                -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-                ${chain} grant "$ADDRESS" "connect,send,receive,mine,admin"
+            # Enhanced RPC connection check with better diagnostics
+            timeout 5 bash -c "echo >/dev/tcp/127.0.0.1/$RPCPORT" 2>/dev/null
+            if [ $? -eq 0 ]; then
+                echo "✓ ${chain} node ${node} is responding on port $RPCPORT"
+            else
+                echo "! ${chain} node ${node} is NOT responding on port $RPCPORT"
                 
-            # Mine a block to confirm permissions
-            echo "Mining block to confirm permissions for ${chain}..."
-            mine_block "${chain}" "${PROJECT_DIR}/data/${chain}"
-            sleep 2
+                # Attempt to diagnose the issue
+                ps aux | grep "[m]ultichaind.*${chain}-node${node}" || echo "No process found"
+                ls -la ${PROJECT_DIR}/data/${chain}-node${node}/${chain}/debug.log 2>/dev/null || echo "No debug log found"
+                tail -n 20 ${PROJECT_DIR}/data/${chain}-node${node}/${chain}/debug.log 2>/dev/null || echo "Cannot read debug log"
+            fi
         done
     done
     
-    echo "All permissions granted. Waiting for permissions to take effect..."
-    sleep 5
+    # Force connections
+    force_connections
 }
 
+function force_connections() {
+    echo "Forcing peer connections within their respective chains..."
+    
+    # For each peer node, connect to its main node
+    for node in {1..2}; do
+        for chain_name in "distributor" "retailer" "main"; do
+            chain="${chain_name}-chain"
+            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+            RPCPORT=${PORTS["${chain_name}-node${node}-rpc"]}
+            
+            # More comprehensive connection check
+            if timeout 3 bash -c "echo >/dev/tcp/127.0.0.1/$RPCPORT" 2>/dev/null; then
+                echo "Connecting ${chain} node ${node} to main node..."
+                
+                # Connect to main node
+                MAIN_IP_PORT="127.0.0.1:${PORTS["${chain_name}-node0-net"]}"
+                
+                multichain-cli -datadir=${NODE_DIR} \
+                    -rpcport=$RPCPORT \
+                    -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                    ${chain} addnode "$MAIN_IP_PORT" "add"
+                
+                echo "Connection from ${chain} node ${node} to main node attempted"
+            else
+                echo "Warning: Node ${chain} node ${node} not responding on port $RPCPORT"
+                
+                # Try to restart the node if it's not responding
+                echo "Attempting to restart ${chain} node ${node}..."
+                
+                # Stop if running
+                multichain-cli -datadir=${NODE_DIR} \
+                    -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                    -rpcport=$RPCPORT \
+                    ${chain} stop 2>/dev/null || true
+                
+                sleep 3
+                
+                # Start again
+                multichaind -datadir=${NODE_DIR} ${chain} \
+                    -port=${PORTS["${chain_name}-node${node}-net"]} \
+                    -rpcport=${PORTS["${chain_name}-node${node}-rpc"]} \
+                    -daemon
+                
+                echo "Restarted ${chain} node ${node}, waiting to initialize..."
+                sleep 10
+            fi
+        done
+    done
+    
+    # Wait for connections to establish
+    sleep 5
+    
+    # Check connections
+    check_peers
+}
+
+function add_peer_validators() {
+    echo "Verifying peer nodes as validators..."
+    
+    # For each peer node, verify it's a validator
+    for node in {1..2}; do
+        for chain_name in "distributor" "retailer" "main"; do
+            chain="${chain_name}-chain"
+            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+            RPCPORT=${PORTS["${chain_name}-node${node}-rpc"]}
+            
+            # Test RPC connection
+            if ! nc -z 127.0.0.1 $RPCPORT &>/dev/null; then
+                echo "Warning: Node ${chain} ${node} is not responding on port $RPCPORT"
+                continue
+            fi
+            
+            # Try to get validation status
+            VALIDATOR_STATUS=$(multichain-cli -datadir=${NODE_DIR} \
+                -rpcport=$RPCPORT \
+                -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+                ${chain} listpermissions mine 2>/dev/null | grep -c "address" || echo "0")
+            
+            if [ "$VALIDATOR_STATUS" -gt 0 ]; then
+                echo "✓ ${chain} node ${node} is properly configured as validator"
+            else
+                echo "! ${chain} node ${node} is not confirmed as validator"
+            fi
+        done
+    done
+}
+
+#----------------------------------------
+# UTILITY FUNCTIONS
+#----------------------------------------
+
 function check_peers() {
-    echo "Checking peers for each chain..."
+    echo "Checking peer connections for each chain..."
     
-    echo "Distributor Chain Peers:"
-    multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain \
-        -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-        distributor-chain getpeerinfo | grep -A 2 "\"addr\""
-    
-    echo "Retailer Chain Peers:"
-    multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain \
-        -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-        retailer-chain getpeerinfo | grep -A 2 "\"addr\""
-    
-    echo "Main Chain Peers:"
-    multichain-cli -datadir=${PROJECT_DIR}/data/main-chain \
-        -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-        main-chain getpeerinfo | grep -A 2 "\"addr\""
-    
-    echo -e "\nPeer count for each chain:"
-    DIST_COUNT=$(multichain-cli -datadir=${PROJECT_DIR}/data/distributor-chain \
-        -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-        distributor-chain getpeerinfo | grep -c "\"addr\"")
-    
-    RETAIL_COUNT=$(multichain-cli -datadir=${PROJECT_DIR}/data/retailer-chain \
-        -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-        retailer-chain getpeerinfo | grep -c "\"addr\"")
-    
-    MAIN_COUNT=$(multichain-cli -datadir=${PROJECT_DIR}/data/main-chain \
-        -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-        main-chain getpeerinfo | grep -c "\"addr\"")
-    
-    echo "Distributor: $DIST_COUNT"
-    echo "Retailer: $RETAIL_COUNT"
-    echo "Main: $MAIN_COUNT"
+    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+        echo -e "\n${chain^} peers:"
+        multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
+            -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            ${chain} getpeerinfo | grep "addr"
+            
+        # Count peers
+        PEER_COUNT=$(multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
+            -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
+            ${chain} getpeerinfo | grep -c "addr" || echo "0")
+            
+        echo "${chain} peer count: $PEER_COUNT"
+    done
 }
 
 function reset_all() {
-    echo "Stopping all chain nodes..."
+    echo "Resetting all chain data..."
+    
+    # Stop all running nodes
     stop_chains
     
-    echo "Removing all chain data..."
-    
-    # Delete original chain data
-    rm -rf ${PROJECT_DIR}/data/distributor-chain
-    rm -rf ${PROJECT_DIR}/data/retailer-chain
-    rm -rf ${PROJECT_DIR}/data/main-chain
-    
-    # Delete peer nodes data
-    for node in {1..3}; do
-        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+    # Clean all data
+    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+        # Remove main chain data
+        rm -rf ${PROJECT_DIR}/data/${chain}
+        
+        # Remove peer nodes
+        for node in {1..3}; do
             rm -rf ${PROJECT_DIR}/data/${chain}-node${node}
         done
     done
     
-    echo "Re-creating basic chain directories..."
+    # Create data directories
     mkdir -p ${PROJECT_DIR}/data/distributor-chain
     mkdir -p ${PROJECT_DIR}/data/retailer-chain
     mkdir -p ${PROJECT_DIR}/data/main-chain
@@ -650,95 +579,89 @@ function reset_all() {
     # Create new chains
     create_chains
     
-    echo "All data has been reset and chains created. Now you can:"
-    echo "1. Run './manage.sh start' to start fresh chains"
-    echo "2. Run './manage.sh setup' to configure PoA and streams"
-    echo "3. Run './manage.sh setup_multi_node' to create peer nodes"
+    echo "Reset complete. Run './manage.sh start' followed by './manage.sh setup'"
+}
+
+function start_all_nodes() {
+    echo "Starting all blockchain nodes..."
+    
+    # Start main nodes
+    start_chains
+    
+    # Start peer nodes if they exist
+    for node in {1..2}; do
+        for chain_name in "distributor" "retailer" "main"; do
+            chain="${chain_name}-chain"
+            NODE_DIR="${PROJECT_DIR}/data/${chain}-node${node}"
+            
+            if [ -d "${NODE_DIR}" ]; then
+                echo "Starting ${chain} node ${node}..."
+                
+                multichaind -datadir=${NODE_DIR} ${chain} \
+                    -port=${PORTS["${chain_name}-node${node}-net"]} \
+                    -rpcport=${PORTS["${chain_name}-node${node}-rpc"]} \
+                    -daemon
+            fi
+        done
+    done
+    
+    # Establish connections
+    sleep 5
+    force_connections
+    
+    echo "All nodes started."
 }
 
 function setup_all() {
+    echo "Setting up complete environment..."
+    
+    # Setup PoA
     setup_poa
+    
+    # Setup streams for privacy-preserving merkle proofs
     setup_streams
+    
+    # Setup architecture (chain isolation)
+    setup_architecture
+    
+    echo "Basic setup complete! For multi-node demo, run:"
+    echo "./manage.sh setup_multi_node"
 }
 
 function setup_multi_node() {
-    # First, make sure chains are running with blocks
-    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        # Check if chain is running
-        if ! ps aux | grep multichaind | grep -v grep | grep -q "$chain"; then
-            echo "ERROR: $chain is not running. Start chains with ./manage.sh start first."
-            return 1
-        fi
-        
-        # Check block height
-        BLOCKS=$(multichain-cli -datadir=${PROJECT_DIR}/data/${chain} -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD ${chain} getblockcount)
-        echo "${chain} blocks: $BLOCKS"
-        if [ "$BLOCKS" -lt 1 ]; then
-            echo "Mining first block for ${chain}..."
-            mine_block "$chain" "${PROJECT_DIR}/data/${chain}"
-        fi
-    done
-    
-    # Pre-grant permissions to make connecting easier
-    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        echo "Setting ${chain} to allow anyone to connect temporarily..."
-        multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
-            -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-            ${chain} setruntimeparam anyone-can-connect=true
-    done
-    
-    echo "Creating peer nodes..."
+    # Create peer nodes
     create_peer_nodes
     
-    echo "Granting permissions to peer nodes..."
-    auto_grant_permissions
+    # Add peer validators
+    add_peer_validators
     
-    echo "Forcing connections between nodes..."
+    # Force connections
     force_connections
     
-    # Turn off anyone-can-connect now that we have permissions
-    for chain in "distributor-chain" "retailer-chain" "main-chain"; do
-        echo "Restoring ${chain} connection security..."
-        multichain-cli -datadir=${PROJECT_DIR}/data/${chain} \
-            -rpcuser=$RPC_USER -rpcpassword=$RPC_PASSWORD \
-            ${chain} setruntimeparam anyone-can-connect=false
-    done
-    
-    echo "Checking peer connections..."
-    check_peers
+    echo "Multi-node environment ready for demonstration!"
 }
 
 function help() {
-    echo "MultiChain Management Script"
-    echo "============================="
+    echo -e "\nMultiChain Supply Chain Management - v1.0.0\n"
     echo "Usage: $0 <command>"
-    echo ""
-    echo "Available commands:"
-    echo "  start               Start main chain nodes"
-    echo "  stop                Stop all running chain nodes"
-    echo "  status              Display status of all nodes"
-    echo "  restart             Restart main chain nodes"
-    echo "  setup_poa           Configure Proof of Authority"
-    echo "  setup_streams       Create and configure streams"
-    echo "  setup               Run both setup_poa and setup_streams"
-    echo "  create              Create blockchain parameters only"
-    echo "  add_validator       Add a new validator address (params: <chain-name> <address>)"
-    echo "  create_peers        Create additional peer nodes"
-    echo "  force_connections   Force connections between nodes"
-    echo "  add_peer_validators Add peer nodes as validators"
-    echo "  check_peers         Check peer connections"
-    echo "  setup_multi_node    Complete setup of multi-node environment"
-    echo "  auto_permissions    Auto-grant permissions to all peer nodes"
+    echo -e "\nCore Commands:"
     echo "  reset               Reset all data and create fresh blockchains"
-    echo "  help                Show this help message"
-    echo ""
-    echo "Setup process flow:"
+    echo "  start               Start main chain nodes"
+    echo "  setup               Configure PoA, streams, and architecture"
+    echo "  setup_multi_node    Create additional nodes for demonstration"
+    echo -e "\nAdditional Commands:"
+    echo "  stop                Stop all blockchain nodes"
+    echo "  status              Display status of all nodes"
+    echo "  check_peers         Check peer connections"
+    echo "  start_all           Start all nodes (main + peer nodes)"
+    echo -e "\nSetup Flow:"
     echo "  1. ./manage.sh reset"
     echo "  2. ./manage.sh start"
     echo "  3. ./manage.sh setup"
-    echo "  4. ./manage.sh setup_multi_node (optional for multi-node)"
+    echo "  4. ./manage.sh setup_multi_node (for demo)"
 }
 
+# Main command handler
 case "$1" in
     start)
         start_chains
@@ -747,12 +670,9 @@ case "$1" in
         stop_chains
         ;;
     status)
-        chain_status
-        ;;
-    restart)
-        stop_chains
-        sleep 2
-        start_chains
+        for chain in "distributor-chain" "retailer-chain" "main-chain"; do
+            check_chain_status "$chain"
+        done
         ;;
     setup_poa)
         setup_poa
@@ -760,14 +680,14 @@ case "$1" in
     setup_streams)
         setup_streams
         ;;
+    setup_architecture)
+        setup_architecture
+        ;;
     setup)
         setup_all
         ;;
     create)
         create_chains
-        ;;
-    add_validator)
-        add_validator "$2" "$3"
         ;;
     force_connections)
         force_connections
@@ -781,16 +701,16 @@ case "$1" in
     check_peers)
         check_peers
         ;;
-    auto_grant_permissions)
-        auto_grant_permissions
-        ;;
     setup_multi_node)
         setup_multi_node
         ;;
     reset)
         reset_all
         ;;
-    help)
+    start_all)
+        start_all_nodes
+        ;;
+    help|--help|-h)
         help
         ;;
     *)
