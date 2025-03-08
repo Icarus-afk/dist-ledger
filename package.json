@@ -9,6 +9,8 @@
     "test": "npx mocha test/relay.test.js"
   },
   "dependencies": {
+    "axios": "^1.8.1",
+    "body-parser": "^1.20.3",
     "chai": "^5.2.0",
     "chai-http": "^5.1.1",
     "child_process": "^1.0.2",
@@ -16,9 +18,12 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "express-rate-limit": "^7.5.0",
+    "jsonwebtoken": "^9.0.2",
     "mocha": "^11.1.0",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
-    "sinon": "^19.0.2"
+    "prop-types": "^15.8.1",
+    "sinon": "^19.0.2",
+    "uuid": "^11.1.0"
   }
 }

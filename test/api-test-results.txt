@@ -1,1076 +1,671 @@
-# API Testing Results
+# Dist-Ledger API Testing Results
 
-[2025-03-02T15:47:24.678Z] INFO START
---------------------------------------------------
+[2025-03-06T13:01:34.101Z] INFO START
+--------------------------------------------------------------------------------
 {
   "message": "Starting API tests"
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:25.034Z] GET /api/chain/main-chain/latest-block
---------------------------------------------------
+[2025-03-06T13:01:34.876Z] POST /api/system/init
+--------------------------------------------------------------------------------
 {
   "status": 200,
   "data": {
     "success": true,
-    "block": {
-      "hash": "00c3a14e728a5a3165fad5154a5bfcfce20baf84e65412c1b5ffc1d0bca87f5e",
-      "miner": "1ZPcmtWDtdn7MNpBVRg2Aadhetb8yxYyRLDfrd",
-      "confirmations": 1,
-      "size": 25242,
-      "height": 102,
-      "version": 3,
-      "merkleroot": "764a2e5b52bf86deeb9c183797d06f830e428af706aa1af5322478117f5382ac",
-      "tx": [
-        "d54f1af1650405a42ffcac1fd505ea3c4c4b4e571b63fefec61accf70ea54e34",
-        "04559f3b6e904c225c51fce18882d9b605f439edf05f62de4526cf88fb0ee677",
-        "4d6322c14d649a4060efaf035f53f627692bbcd229903258ab9c52e891336ab5",
-        "daaf032d1b528e122affaca5060f62671a374386ba910b0085ea18eff9cefe6c",
-        "228c8a15cf285f487004740070782d8a872ea28677d0c0b70973782124dbd2a5",
-        "cb209aecfe1dd5dfffec2ec583af37527a1e96f3e1de506ecac5cb5322ac7421",
-        "ce11c0dd9947b4a24b183626e65e5103dd4f561c2f521003e080961150745c00",
-        "29fe68ee64d5cd2d8126d9912af7064d136ec5d0b864035e9b65ce95d51f8578",
-        "52d494189a45c651ee56a6f2cd618d56101fabc1214e0aacf2fa45a088a9d550",
-        "4c1bb3cbdc6db7ac184b8b399175c9809a617fa949acf12ac5174eb616e59b2d",
-        "68980252dd5cdc23e448c282843f78a7bf2b8165410a460f2ea69556ee927da6",
-        "18fd4946c9894a3ce93bfd37d0a152158420e04bbf351e2bd7ef149e156eb4fa",
-        "71508844e37ff2e43ad8b72e5e64186f725c048b7b8316b743cd81c197420986",
-        "54a945f4c877e67598ff3f0b6fd91196d9ce847a03ea972b39c6cf0aa6829152",
-        "d721484b5d53dfd6278c18a002cdc49d1b92c4f3367cb131de0a48ac774dc5b3",
-        "301cd759634cb928bb2e28dc28e1d5e9fcea34cf8d661cce4823e08c7747c5c4",
-        "265a6f05a41c79dbb1a6bba0268ff0817f0736277e9f7e714c65a19dfc8b3432",
-        "667620cc488a61b0ea4dac240bbf26ae5fea1ff6379defa0a9b792877b62f424",
-        "daaab9bd0c4fab3661ccaa770e34200661159cff467077bc216fb5a8c5586912",
-        "47562faa2455ece010e20fcdd6d1727d76df08607c89f3ba26c430cd4f5002b8",
-        "c28074957cdeb7c9c202c5e837ab9643dfa284c19ea3d742d9f9952a1ecfe37e",
-        "60532e2538588f87dff14188612f4da34131a911927728da8b05d733877a8e53",
-        "b99970d29662e808997d48abc94829b2deec27329fff6fa49cd8612ff734deda",
-        "52d99b0b02fbc18552a16cdf0e127be5749b61d679c36cfe1114ef434bba5dc2",
-        "40382f75333699c1655fede09fbb9dd4197cea2f152a492a72922ee62223d377",
-        "fc8c9aded17c77adfdd762125da4809ab8f35204eda8c140a49ec59e6da2b7ae",
-        "94a32ccf0d31e797d46affd24b52955c56c246d087f1b971c281a829b3d1300e",
-        "3b17ca73fe8e93cace46f8b4da7cdb5d9a1a1ee76927146ad1b1309f034d49c4",
-        "43a1dbe748bbcf73814f67402b1192137e925a0f5043dc5268f73792364621bb",
-        "02d5b83fbac97bec303edb92ada50fb7f3fc4282f302de7e5b5a5c39203e59be",
-        "123279582aa00c55f2a9a40f696c7d563b728395ee26454d3a37796f63a1e66a",
-        "a244268a2fc07684e56cb33fe0b3e45f13a72609843def53534343f1f129943f",
-        "9d19f8d73ea7d3046b45e864cb0f78db59034c658e2a0451cf3ed440099b9b64",
-        "b80ddd74261247359efcedd8366fe55343e1c7f857146d01017eeddcf41c4abe",
-        "4d25bae95b8d5cae6771d7b8ebfb1632e9e8285f026b966168e6142b811f7cc8",
-        "023e8bbd85340a91a88571ca5a20e82d024b3ea9d2ed4e90b0294b26f197b1dd",
-        "ecab99cb2e92fc3aa7d789295077bf3fc405a8b286567a7d3bd9704a0f7d7906",
-        "9a5567d6def68585d767aa91ddec8adcd97a9cebf0228bd1834c1746dcff73b5",
-        "e7edb478e7382e4a5b4c920141e8f5dc4a6b7f65f21911eb8be53829b35cb3dd",
-        "dc2f8a4009c5fa21e20dc941ef71e8b9d9120baf04448fce6ec35b1bbd2e4d38",
-        "61a022e1407daaf997c63a47d617f1a715dde3e2ca222cf8cc99b8287eaa0f2c",
-        "143354b932ca753527ef6150b447c0f6c23e2cdc325b55c0840309d551b729c0",
-        "cb205ce74cadc79542bac4efdfa54ccb5da284479a82ff26b6c629d376b1efad",
-        "4f01661d540bd4c76091b82ef50945a91e9bfeda39763dc31ead090e56f736e3",
-        "f8bbcc8a3417f0b8c1ab4362b80ef9e1712bc721682acfdc71dbf42cb3c550d6",
-        "8b89a9c7b6d47ab542f4aa5c02efea9c80bee8d24c4c3d397c16704b08b836af",
-        "90d963807fac6d663778bd5030fb40a4b48965b901769be455664291d26d59ef",
-        "892e5b771bc215a4d52e93e8fdcbcfed42b4372eb537633350fda1ecd33f5c90",
-        "c3bacbfc81ea3946339cf7240133fe94885b9b7442857d0347da9b526bc03b25",
-        "403d99a3a48c1d175babdb302859a18d5952eb801b55bb28c1fa83149dbd4b47",
-        "f8bf6ea6aebc5a30369199ad9f0340a07c0878edf2c43fa651543b1e8952fd6e",
-        "b200ab1b99506d5c1b6c15f1cadc23a1dd464d6bc6a135b8983782b98257ebec"
+    "message": "System initialized successfully",
+    "streams": {
+      "main-chain": [
+        {
+          "streamName": "entity_registry",
+          "status": "already exists"
+        },
+        {
+          "streamName": "product_registry",
+          "status": "already exists"
+        },
+        {
+          "streamName": "merkle_roots",
+          "status": "already exists"
+        },
+        {
+          "streamName": "asset_transfers",
+          "status": "already exists"
+        },
+        {
+          "streamName": "verification_proofs",
+          "status": "already exists"
+        },
+        {
+          "streamName": "retail_sales",
+          "status": "already exists"
+        },
+        {
+          "streamName": "asset_returns",
+          "status": "already exists"
+        }
       ],
-      "time": 1740930438,
-      "nonce": 41,
-      "bits": "2000ffff",
-      "difficulty": 5.96046447753906e-8,
-      "chainwork": "0000000000000000000000000000000000000000000000000000000000006700",
-      "previousblockhash": "007857a1b51d83be45a5c13f5997c6e5b1c23786eed2f993ea316bb1341417c2"
+      "distributor-chain": [],
+      "retailer-chain": []
     }
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:25.265Z] GET /api/product/PROD-123/history
---------------------------------------------------
+[2025-03-06T13:01:35.201Z] GET /api/health
+--------------------------------------------------------------------------------
 {
   "status": 200,
   "data": {
     "success": true,
-    "productId": "PROD-123",
-    "results": {
-      "distributor": [
-        {
-          "publishers": [
-            "1PjEmC9SQVdAK4L2ybnHEkcA6VJ31n468S6pyR"
-          ],
-          "keys": [
-            "PROD-123"
-          ],
-          "offchain": false,
-          "available": true,
-          "data": "7b227472616e73616374696f6e4964223a22444953542d54584e2d313734303932393031313330382d34313430222c227472616e73616374696f6e54797065223a22534849504d454e54222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a31302c2272656c61746564456e74697479223a2252455441494c4552222c2274696d657374616d70223a313734303932393031313330382c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b226e6f746573223a22457870726573732064656c6976657279227d7d",
-          "confirmations": 24,
-          "blocktime": 1740929024,
-          "txid": "b63546a13068d6e9999de237a688b070f1fb68aee12d85ae1f4ab5a62428e573"
-        },
-        {
-          "publishers": [
-            "1PjEmC9SQVdAK4L2ybnHEkcA6VJ31n468S6pyR"
-          ],
-          "keys": [
-            "PROD-123"
-          ],
-          "offchain": false,
-          "available": true,
-          "data": "7b227472616e73616374696f6e4964223a22444953542d54584e2d313734303932393538323836392d33393135222c227472616e73616374696f6e54797065223a22534849504d454e54222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a31302c2272656c61746564456e74697479223a2252455441494c4552222c2274696d657374616d70223a313734303932393538323836392c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b226e6f746573223a22457870726573732064656c6976657279227d7d",
-          "confirmations": 13,
-          "blocktime": 1740929596,
-          "txid": "5cacbf1b973ace6d6b816897c49d0030a4c12426091d24bc422f9035bcf39ce5"
-        },
-        {
-          "publishers": [
-            "1PjEmC9SQVdAK4L2ybnHEkcA6VJ31n468S6pyR"
-          ],
-          "keys": [
-            "PROD-123"
-          ],
-          "offchain": false,
-          "available": true,
-          "data": "7b227472616e73616374696f6e4964223a22444953542d54584e2d313734303933303431373434362d32363031222c227472616e73616374696f6e54797065223a22534849504d454e54222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a31302c2272656c61746564456e74697479223a2252455441494c4552222c2274696d657374616d70223a313734303933303431373434362c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b226e6f746573223a22457870726573732064656c6976657279227d7d",
-          "confirmations": 2,
-          "blocktime": 1740930432,
-          "txid": "cbbd317dd5890911a73bafdb75fb1f4c6359ee53fbc854895a06058dcd40ea91"
-        }
-      ],
-      "retailer": [
-        {
-          "publishers": [
-            "12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB"
-          ],
-          "keys": [
-            "PROD-123"
-          ],
-          "offchain": false,
-          "available": true,
-          "data": "7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303932393031313432312d34393431222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303932393031313432322c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d",
-          "confirmations": 26,
-          "blocktime": 1740929025,
-          "txid": "fd4390e65fffbecd22c8076e810c0cb7df27a33398ffbeee4774a9cd56242342"
-        },
-        {
-          "publishers": [
-            "12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB"
-          ],
-          "keys": [
-            "PROD-123"
-          ],
-          "offchain": false,
-          "available": true,
-          "data": "7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303932393538323938312d34343233222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303932393538323938312c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d",
-          "confirmations": 15,
-          "blocktime": 1740929594,
-          "txid": "6633feff6478f728e6ec4b9873e1c1ec83df1b3a13fa91090e8fae84b65f6c65"
-        },
-        {
-          "publishers": [
-            "12aR9ma8Fb3i81srCKUMDxxv6CDs1cP8Xr6NfB"
-          ],
-          "keys": [
-            "PROD-123"
-          ],
-          "offchain": false,
-          "available": true,
-          "data": "7b227472616e73616374696f6e4964223a2252455441494c2d54584e2d313734303933303431373536312d38313034222c227472616e73616374696f6e54797065223a2253414c45222c2270726f647563744964223a2250524f442d313233222c227175616e74697479223a322c22637573746f6d65724964223a22435553542d343536222c2273746f72654c6f636174696f6e223a2253544f52452d4e5943222c2274696d657374616d70223a313734303933303431373536312c22737461747573223a2250454e44494e47222c226164646974696f6e616c44617461223a7b7d7d",
-          "confirmations": 3,
-          "blocktime": 1740930429,
-          "txid": "acb63413c2e5670f9d73766291302d958910950f7ae5506c54a611f4bf6f4c59"
-        }
-      ],
-      "timeline": [
-        {
-          "chain": "retailer",
-          "timestamp": 1740929011308,
-          "txid": "b63546a13068d6e9999de237a688b070f1fb68aee12d85ae1f4ab5a62428e573",
-          "data": {
-            "transactionId": "DIST-TXN-1740929011308-4140",
-            "transactionType": "SHIPMENT",
-            "productId": "PROD-123",
-            "quantity": 10,
-            "relatedEntity": "RETAILER",
-            "timestamp": 1740929011308,
-            "status": "PENDING",
-            "additionalData": {
-              "notes": "Express delivery"
-            }
-          }
-        },
-        {
-          "chain": "retailer",
-          "timestamp": 1740929011422,
-          "txid": "fd4390e65fffbecd22c8076e810c0cb7df27a33398ffbeee4774a9cd56242342",
-          "data": {
-            "transactionId": "RETAIL-TXN-1740929011421-4941",
-            "transactionType": "SALE",
-            "productId": "PROD-123",
-            "quantity": 2,
-            "customerId": "CUST-456",
-            "storeLocation": "STORE-NYC",
-            "timestamp": 1740929011422,
-            "status": "PENDING",
-            "additionalData": {}
-          }
-        },
-        {
-          "chain": "retailer",
-          "timestamp": 1740929582869,
-          "txid": "5cacbf1b973ace6d6b816897c49d0030a4c12426091d24bc422f9035bcf39ce5",
-          "data": {
-            "transactionId": "DIST-TXN-1740929582869-3915",
-            "transactionType": "SHIPMENT",
-            "productId": "PROD-123",
-            "quantity": 10,
-            "relatedEntity": "RETAILER",
-            "timestamp": 1740929582869,
-            "status": "PENDING",
-            "additionalData": {
-              "notes": "Express delivery"
-            }
-          }
-        },
-        {
-          "chain": "retailer",
-          "timestamp": 1740929582981,
-          "txid": "6633feff6478f728e6ec4b9873e1c1ec83df1b3a13fa91090e8fae84b65f6c65",
-          "data": {
-            "transactionId": "RETAIL-TXN-1740929582981-4423",
-            "transactionType": "SALE",
-            "productId": "PROD-123",
-            "quantity": 2,
-            "customerId": "CUST-456",
-            "storeLocation": "STORE-NYC",
-            "timestamp": 1740929582981,
-            "status": "PENDING",
-            "additionalData": {}
-          }
-        },
-        {
-          "chain": "retailer",
-          "timestamp": 1740930417446,
-          "txid": "cbbd317dd5890911a73bafdb75fb1f4c6359ee53fbc854895a06058dcd40ea91",
-          "data": {
-            "transactionId": "DIST-TXN-1740930417446-2601",
-            "transactionType": "SHIPMENT",
-            "productId": "PROD-123",
-            "quantity": 10,
-            "relatedEntity": "RETAILER",
-            "timestamp": 1740930417446,
-            "status": "PENDING",
-            "additionalData": {
-              "notes": "Express delivery"
-            }
-          }
-        },
-        {
-          "chain": "retailer",
-          "timestamp": 1740930417561,
-          "txid": "acb63413c2e5670f9d73766291302d958910950f7ae5506c54a611f4bf6f4c59",
-          "data": {
-            "transactionId": "RETAIL-TXN-1740930417561-8104",
-            "transactionType": "SALE",
-            "productId": "PROD-123",
-            "quantity": 2,
-            "customerId": "CUST-456",
-            "storeLocation": "STORE-NYC",
-            "timestamp": 1740930417561,
-            "status": "PENDING",
-            "additionalData": {}
-          }
-        }
-      ]
-    }
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:27.237Z] GET /api/network/health
---------------------------------------------------
-{
-  "status": 200,
-  "data": {
-    "success": true,
-    "timestamp": 1740930447235,
-    "network": {
-      "distributor-chain": {
-        "mainNode": {
-          "status": "online",
+    "status": "healthy",
+    "chains": {
+      "main-chain": {
+        "status": "online",
+        "info": {
           "version": "2.3.1",
+          "nodeversion": 20301901,
+          "edition": "Community",
           "protocolversion": 20013,
-          "blockHeight": 89,
-          "peers": 4
-        },
-        "peerNodes": [
-          {
-            "nodeId": 1,
-            "status": "online",
-            "version": "2.3.1",
-            "protocolversion": 20013,
-            "blockHeight": 88,
-            "peers": 4
-          },
-          {
-            "nodeId": 2,
-            "status": "online",
-            "version": "2.3.1",
-            "protocolversion": 20013,
-            "blockHeight": 89,
-            "peers": 4
-          }
-        ]
+          "chainname": "main-chain",
+          "description": "MultiChain main-chain",
+          "protocol": "multichain",
+          "port": 7745,
+          "setupblocks": 60,
+          "nodeaddress": "main-chain@192.168.0.106:7745",
+          "burnaddress": "1XXXXXXWiXXXXXXXGSXXXXXXeXXXXXXXXZf86q",
+          "incomingpaused": false,
+          "miningpaused": false,
+          "offchainpaused": false,
+          "walletversion": 60000,
+          "balance": 0,
+          "walletdbversion": 3,
+          "reindex": false,
+          "blocks": 153,
+          "chainrewards": 0,
+          "streams": 13,
+          "timeoffset": 0,
+          "connections": 0,
+          "proxy": "",
+          "difficulty": 5.96046447753906e-8,
+          "testnet": false,
+          "keypoololdest": 1741225731,
+          "keypoolsize": 2,
+          "paytxfee": 0,
+          "relayfee": 0,
+          "errors": ""
+        }
+      },
+      "distributor-chain": {
+        "status": "online",
+        "info": {
+          "version": "2.3.1",
+          "nodeversion": 20301901,
+          "edition": "Community",
+          "protocolversion": 20013,
+          "chainname": "distributor-chain",
+          "description": "MultiChain distributor-chain",
+          "protocol": "multichain",
+          "port": 7741,
+          "setupblocks": 60,
+          "nodeaddress": "distributor-chain@192.168.0.106:7741",
+          "burnaddress": "1XXXXXXWiXXXXXXXGSXXXXXXeXXXXXXXXZf86q",
+          "incomingpaused": false,
+          "miningpaused": false,
+          "offchainpaused": false,
+          "walletversion": 60000,
+          "balance": 0,
+          "walletdbversion": 3,
+          "reindex": false,
+          "blocks": 79,
+          "chainrewards": 0,
+          "streams": 16,
+          "timeoffset": 0,
+          "connections": 0,
+          "proxy": "",
+          "difficulty": 5.96046447753906e-8,
+          "testnet": false,
+          "keypoololdest": 1741225730,
+          "keypoolsize": 2,
+          "paytxfee": 0,
+          "relayfee": 0,
+          "errors": ""
+        }
       },
       "retailer-chain": {
-        "mainNode": {
-          "status": "online",
+        "status": "online",
+        "info": {
           "version": "2.3.1",
+          "nodeversion": 20301901,
+          "edition": "Community",
           "protocolversion": 20013,
-          "blockHeight": 90,
-          "peers": 6
-        },
-        "peerNodes": [
-          {
-            "nodeId": 1,
-            "status": "online",
-            "version": "2.3.1",
-            "protocolversion": 20013,
-            "blockHeight": 90,
-            "peers": 5
-          },
-          {
-            "nodeId": 2,
-            "status": "online",
-            "version": "2.3.1",
-            "protocolversion": 20013,
-            "blockHeight": 90,
-            "peers": 5
-          }
-        ]
-      },
-      "main-chain": {
-        "mainNode": {
-          "status": "online",
-          "version": "2.3.1",
-          "protocolversion": 20013,
-          "blockHeight": 102,
-          "peers": 7
-        },
-        "peerNodes": [
-          {
-            "nodeId": 1,
-            "status": "online",
-            "version": "2.3.1",
-            "protocolversion": 20013,
-            "blockHeight": 102,
-            "peers": 6
-          },
-          {
-            "nodeId": 2,
-            "status": "online",
-            "version": "2.3.1",
-            "protocolversion": 20013,
-            "blockHeight": 102,
-            "peers": 7
-          }
-        ]
+          "chainname": "retailer-chain",
+          "description": "MultiChain retailer-chain",
+          "protocol": "multichain",
+          "port": 7743,
+          "setupblocks": 60,
+          "nodeaddress": "retailer-chain@192.168.0.106:7743",
+          "burnaddress": "1XXXXXXWiXXXXXXXGSXXXXXXeXXXXXXXXZf86q",
+          "incomingpaused": false,
+          "miningpaused": false,
+          "offchainpaused": false,
+          "walletversion": 60000,
+          "balance": 0,
+          "walletdbversion": 3,
+          "reindex": false,
+          "blocks": 79,
+          "chainrewards": 0,
+          "streams": 16,
+          "timeoffset": 0,
+          "connections": 0,
+          "proxy": "",
+          "difficulty": 5.96046447753906e-8,
+          "testnet": false,
+          "keypoololdest": 1741225730,
+          "keypoolsize": 2,
+          "paytxfee": 0,
+          "relayfee": 0,
+          "errors": ""
+        }
       }
-    }
+    },
+    "timestamp": 1741266095199
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:28.541Z] GET /api/dashboard/stats
---------------------------------------------------
-{
-  "status": 200,
-  "data": {
-    "success": true,
-    "timestamp": 1740930448539,
-    "stats": {
-      "blocks": {
-        "distributor-chain": 89,
-        "retailer-chain": 90,
-        "main-chain": 102
-      },
-      "transactions": {
-        "distributor-chain": 0,
-        "retailer-chain": 0,
-        "main-chain": 0
-      },
-      "streams": {
-        "distributor-chain": 10,
-        "retailer-chain": 9,
-        "main-chain": 14
-      },
-      "assets": {
-        "distributor-chain": 0,
-        "retailer-chain": 0,
-        "main-chain": 0
-      }
-    }
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:28.867Z] GET /api/supply-chain/product/PROD-123/history
---------------------------------------------------
-{
-  "status": 200,
-  "data": {
-    "success": true,
-    "productId": "PROD-123",
-    "history": {
-      "manufacturing": [
-        {
-          "timestamp": 1740929025,
-          "txid": "252e3ec0bebc076b0a4d70dec278230c4362d8f0ea40e16e80042238f0ec0013",
-          "productId": "PROD-123",
-          "name": "Test Product",
-          "manufacturer": "Test Manufacturer",
-          "manufacturingDate": 1615000000,
-          "attributes": {
-            "color": "red",
-            "weight": "2kg"
-          },
-          "registrationDate": 1740929019636,
-          "status": "ACTIVE"
-        },
-        {
-          "timestamp": 1740929594,
-          "txid": "ff1b7f87c154969a14c8bbfaa11667b0ac654ee220a5101b453e0d6c74444682",
-          "productId": "PROD-123",
-          "name": "Test Product",
-          "manufacturer": "Test Manufacturer",
-          "manufacturingDate": 1615000000,
-          "attributes": {
-            "color": "red",
-            "weight": "2kg"
-          },
-          "registrationDate": 1740929591248,
-          "status": "ACTIVE"
-        },
-        {
-          "timestamp": 1740930438,
-          "txid": "fc8c9aded17c77adfdd762125da4809ab8f35204eda8c140a49ec59e6da2b7ae",
-          "productId": "PROD-123",
-          "name": "Test Product",
-          "manufacturer": "Test Manufacturer",
-          "manufacturingDate": 1615000000,
-          "attributes": {
-            "color": "red",
-            "weight": "2kg"
-          },
-          "registrationDate": 1740930425771,
-          "status": "ACTIVE"
-        }
-      ],
-      "distribution": [
-        {
-          "timestamp": 1740929011308,
-          "txid": "b63546a13068d6e9999de237a688b070f1fb68aee12d85ae1f4ab5a62428e573",
-          "transactionId": "DIST-TXN-1740929011308-4140",
-          "transactionType": "SHIPMENT",
-          "productId": "PROD-123",
-          "quantity": 10,
-          "relatedEntity": "RETAILER",
-          "status": "PENDING",
-          "additionalData": {
-            "notes": "Express delivery"
-          }
-        },
-        {
-          "timestamp": 1740929582869,
-          "txid": "5cacbf1b973ace6d6b816897c49d0030a4c12426091d24bc422f9035bcf39ce5",
-          "transactionId": "DIST-TXN-1740929582869-3915",
-          "transactionType": "SHIPMENT",
-          "productId": "PROD-123",
-          "quantity": 10,
-          "relatedEntity": "RETAILER",
-          "status": "PENDING",
-          "additionalData": {
-            "notes": "Express delivery"
-          }
-        },
-        {
-          "timestamp": 1740930417446,
-          "txid": "cbbd317dd5890911a73bafdb75fb1f4c6359ee53fbc854895a06058dcd40ea91",
-          "transactionId": "DIST-TXN-1740930417446-2601",
-          "transactionType": "SHIPMENT",
-          "productId": "PROD-123",
-          "quantity": 10,
-          "relatedEntity": "RETAILER",
-          "status": "PENDING",
-          "additionalData": {
-            "notes": "Express delivery"
-          }
-        }
-      ],
-      "retail": [
-        {
-          "timestamp": 1740929011422,
-          "txid": "fd4390e65fffbecd22c8076e810c0cb7df27a33398ffbeee4774a9cd56242342",
-          "transactionId": "RETAIL-TXN-1740929011421-4941",
-          "transactionType": "SALE",
-          "productId": "PROD-123",
-          "quantity": 2,
-          "customerId": "CUST-456",
-          "storeLocation": "STORE-NYC",
-          "status": "PENDING",
-          "additionalData": {}
-        },
-        {
-          "timestamp": 1740929582981,
-          "txid": "6633feff6478f728e6ec4b9873e1c1ec83df1b3a13fa91090e8fae84b65f6c65",
-          "transactionId": "RETAIL-TXN-1740929582981-4423",
-          "transactionType": "SALE",
-          "productId": "PROD-123",
-          "quantity": 2,
-          "customerId": "CUST-456",
-          "storeLocation": "STORE-NYC",
-          "status": "PENDING",
-          "additionalData": {}
-        },
-        {
-          "timestamp": 1740930417561,
-          "txid": "acb63413c2e5670f9d73766291302d958910950f7ae5506c54a611f4bf6f4c59",
-          "transactionId": "RETAIL-TXN-1740930417561-8104",
-          "transactionType": "SALE",
-          "productId": "PROD-123",
-          "quantity": 2,
-          "customerId": "CUST-456",
-          "storeLocation": "STORE-NYC",
-          "status": "PENDING",
-          "additionalData": {}
-        }
-      ],
-      "events": [
-        {
-          "timestamp": 1740929025,
-          "txid": "252e3ec0bebc076b0a4d70dec278230c4362d8f0ea40e16e80042238f0ec0013",
-          "productId": "PROD-123",
-          "name": "Test Product",
-          "manufacturer": "Test Manufacturer",
-          "manufacturingDate": 1615000000,
-          "attributes": {
-            "color": "red",
-            "weight": "2kg"
-          },
-          "registrationDate": 1740929019636,
-          "status": "ACTIVE",
-          "phase": "manufacturing"
-        },
-        {
-          "timestamp": 1740929594,
-          "txid": "ff1b7f87c154969a14c8bbfaa11667b0ac654ee220a5101b453e0d6c74444682",
-          "productId": "PROD-123",
-          "name": "Test Product",
-          "manufacturer": "Test Manufacturer",
-          "manufacturingDate": 1615000000,
-          "attributes": {
-            "color": "red",
-            "weight": "2kg"
-          },
-          "registrationDate": 1740929591248,
-          "status": "ACTIVE",
-          "phase": "manufacturing"
-        },
-        {
-          "timestamp": 1740930438,
-          "txid": "fc8c9aded17c77adfdd762125da4809ab8f35204eda8c140a49ec59e6da2b7ae",
-          "productId": "PROD-123",
-          "name": "Test Product",
-          "manufacturer": "Test Manufacturer",
-          "manufacturingDate": 1615000000,
-          "attributes": {
-            "color": "red",
-            "weight": "2kg"
-          },
-          "registrationDate": 1740930425771,
-          "status": "ACTIVE",
-          "phase": "manufacturing"
-        },
-        {
-          "timestamp": 1740929011308,
-          "txid": "b63546a13068d6e9999de237a688b070f1fb68aee12d85ae1f4ab5a62428e573",
-          "transactionId": "DIST-TXN-1740929011308-4140",
-          "transactionType": "SHIPMENT",
-          "productId": "PROD-123",
-          "quantity": 10,
-          "relatedEntity": "RETAILER",
-          "status": "PENDING",
-          "additionalData": {
-            "notes": "Express delivery"
-          },
-          "phase": "distribution"
-        },
-        {
-          "timestamp": 1740929011422,
-          "txid": "fd4390e65fffbecd22c8076e810c0cb7df27a33398ffbeee4774a9cd56242342",
-          "transactionId": "RETAIL-TXN-1740929011421-4941",
-          "transactionType": "SALE",
-          "productId": "PROD-123",
-          "quantity": 2,
-          "customerId": "CUST-456",
-          "storeLocation": "STORE-NYC",
-          "status": "PENDING",
-          "additionalData": {},
-          "phase": "retail"
-        },
-        {
-          "timestamp": 1740929582869,
-          "txid": "5cacbf1b973ace6d6b816897c49d0030a4c12426091d24bc422f9035bcf39ce5",
-          "transactionId": "DIST-TXN-1740929582869-3915",
-          "transactionType": "SHIPMENT",
-          "productId": "PROD-123",
-          "quantity": 10,
-          "relatedEntity": "RETAILER",
-          "status": "PENDING",
-          "additionalData": {
-            "notes": "Express delivery"
-          },
-          "phase": "distribution"
-        },
-        {
-          "timestamp": 1740929582981,
-          "txid": "6633feff6478f728e6ec4b9873e1c1ec83df1b3a13fa91090e8fae84b65f6c65",
-          "transactionId": "RETAIL-TXN-1740929582981-4423",
-          "transactionType": "SALE",
-          "productId": "PROD-123",
-          "quantity": 2,
-          "customerId": "CUST-456",
-          "storeLocation": "STORE-NYC",
-          "status": "PENDING",
-          "additionalData": {},
-          "phase": "retail"
-        },
-        {
-          "timestamp": 1740930417446,
-          "txid": "cbbd317dd5890911a73bafdb75fb1f4c6359ee53fbc854895a06058dcd40ea91",
-          "transactionId": "DIST-TXN-1740930417446-2601",
-          "transactionType": "SHIPMENT",
-          "productId": "PROD-123",
-          "quantity": 10,
-          "relatedEntity": "RETAILER",
-          "status": "PENDING",
-          "additionalData": {
-            "notes": "Express delivery"
-          },
-          "phase": "distribution"
-        },
-        {
-          "timestamp": 1740930417561,
-          "txid": "acb63413c2e5670f9d73766291302d958910950f7ae5506c54a611f4bf6f4c59",
-          "transactionId": "RETAIL-TXN-1740930417561-8104",
-          "transactionType": "SALE",
-          "productId": "PROD-123",
-          "quantity": 2,
-          "customerId": "CUST-456",
-          "storeLocation": "STORE-NYC",
-          "status": "PENDING",
-          "additionalData": {},
-          "phase": "retail"
-        }
-      ]
-    }
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:28.980Z] GET /api/transfer/TRANSFER-1234567890-1234/status
---------------------------------------------------
-{
-  "status": 404,
-  "data": {
-    "success": false,
-    "message": "Transfer not found"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:28.992Z] POST /api/relay/merkleroot
---------------------------------------------------
-{
-  "status": 400,
-  "data": {
-    "success": false,
-    "message": "Source chain and block height are required"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:28.994Z] POST /api/relay/verify
---------------------------------------------------
-{
-  "status": 400,
-  "data": {
-    "success": false,
-    "message": "Invalid block hash format"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:29.112Z] POST /api/distributor/transaction
---------------------------------------------------
+[2025-03-06T13:01:35.314Z] POST /api/entities/register (manufacturer)
+--------------------------------------------------------------------------------
 {
   "status": 201,
   "data": {
     "success": true,
-    "message": "Transaction recorded",
-    "transaction": {
-      "transactionId": "DIST-TXN-1740930448997-6014",
-      "transactionType": "SHIPMENT",
-      "productId": "PROD-123",
-      "quantity": 10,
-      "relatedEntity": "RETAILER",
-      "timestamp": 1740930448997,
-      "status": "PENDING",
-      "additionalData": {
-        "notes": "Express delivery"
-      }
+    "message": "Entity registered successfully",
+    "entity": {
+      "entityId": "MANUFACTURER-1741266095203-9545",
+      "name": "Test Manufacturer",
+      "type": "manufacturer",
+      "location": "Test Location",
+      "description": "A test manufacturer entity",
+      "contactInfo": {
+        "email": "manufacturer@test.com",
+        "phone": "123-456-7890"
+      },
+      "publicKey": "3a1fa40f7ee0260e8e05804f6c246108df8f12722d32687f11ec06ef2f4483c0",
+      "registrationDate": 1741266095203,
+      "status": "ACTIVE",
+      "passwordHash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae"
     },
-    "txid": "b10703dbfa40204c894a3f4ba7d3d820d606bd7e7bce7a5bf8ff50c195007c7e"
+    "txid": "c82f040ea6f9aa82d425ce1e9887bfc7fe8b70576c14ba09947785487afc3c7e",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6Ik1BTlVGQUNUVVJFUi0xNzQxMjY2MDk1MjAzLTk1NDUiLCJ0eXBlIjoibWFudWZhY3R1cmVyIiwibmFtZSI6IlRlc3QgTWFudWZhY3R1cmVyIiwiaWF0IjoxNzQxMjY2MDk1LCJleHAiOjE3NDM4NTgwOTV9.76DVx3Zg2xV7khkn-g04xJFZJkJpbH5JLBCRPRRwtJE"
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:29.224Z] POST /api/retailer/transaction
---------------------------------------------------
+[2025-03-06T13:01:36.806Z] POST /api/entities/register (distributor)
+--------------------------------------------------------------------------------
 {
   "status": 201,
   "data": {
     "success": true,
-    "message": "Transaction recorded",
-    "transaction": {
-      "transactionId": "RETAIL-TXN-1740930449115-8809",
-      "transactionType": "SALE",
-      "productId": "PROD-123",
-      "quantity": 2,
-      "customerId": "CUST-456",
-      "storeLocation": "STORE-NYC",
-      "timestamp": 1740930449115,
-      "status": "PENDING",
-      "additionalData": {}
-    },
-    "txid": "cdafbb818718735bc0a9632d323e8bda06733a7ce20c28d422322cf702d55af3"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:29.447Z] POST /api/batch/transactions
---------------------------------------------------
-{
-  "status": 200,
-  "data": {
-    "success": true,
-    "message": "Processed 2 of 2 transactions",
-    "results": [
-      {
-        "success": true,
-        "transactionId": "DIST-TXN-1740930449226-3641",
-        "txid": "b3c9746969934d272a1b622e6b1b773273fce68bc42b4bfe302db4b55b4431ed"
+    "message": "Entity registered successfully",
+    "entity": {
+      "entityId": "DISTRIBUTOR-1741266095316-9431",
+      "name": "Test Distributor",
+      "type": "distributor",
+      "location": "Test Location",
+      "description": "A test distributor entity",
+      "contactInfo": {
+        "email": "distributor@test.com",
+        "phone": "123-456-7890"
       },
-      {
-        "success": true,
-        "transactionId": "DIST-TXN-1740930449337-2808",
-        "txid": "d204608987c2b84fb259a678bb846f098e9cd6360ddd50943e9a76430af725de"
-      }
-    ]
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:29.996Z] POST /api/transfer/asset
---------------------------------------------------
-{
-  "status": 200,
-  "data": {
-    "success": true,
-    "message": "Asset transfer completed successfully",
-    "transferId": "TRANSFER-1740930449448-1872",
-    "transactions": {
-      "sourceLock": "f2c847090254c199f7be442a57d0b59f163d42674232874439e47a7afd2133d5",
-      "mainRecord": "7b15594a84bb785987940f06ce05bd1581ed5351b86d3f1454637204fb4334df",
-      "targetReceipt": "ad22c7776fa8811ca880a95d45eb34ec8dfe143a19ee14cd8fb22f2da46aab84",
-      "completion": "1f2bf9f28dc38c5d3b003948472664266aeb85f08f37410b4788457a65efb50a"
+      "publicKey": "fdcec21a2b798911308fcb6a34ad05cb284df7df4be7200fa14faefb76ab0954",
+      "registrationDate": 1741266095316,
+      "status": "ACTIVE",
+      "passwordHash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae"
     },
-    "transfer": {
-      "sourceChain": "distributor-chain",
-      "targetChain": "retailer-chain",
-      "assetName": "product-1",
-      "quantity": 10,
-      "timestamp": 1740930449994
-    }
+    "txid": "99f4b057ae5a013bc24a7e67059efbaeb6a2dfae2fa617f394cdd4a395f1535f",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IkRJU1RSSUJVVE9SLTE3NDEyNjYwOTUzMTYtOTQzMSIsInR5cGUiOiJkaXN0cmlidXRvciIsIm5hbWUiOiJUZXN0IERpc3RyaWJ1dG9yIiwiaWF0IjoxNzQxMjY2MDk2LCJleHAiOjE3NDM4NTgwOTZ9.gLEW1NbgRbIqwz1bvm5zeHq8CEnoVsIAs7HnbQP-FBE"
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:37.440Z] POST /api/sync/merkle-roots
---------------------------------------------------
+[2025-03-06T13:01:38.299Z] POST /api/entities/register (retailer)
+--------------------------------------------------------------------------------
 {
-  "status": 200,
+  "status": 201,
   "data": {
     "success": true,
-    "message": "Merkle roots synced successfully",
-    "results": {
-      "distributor": [
-        {
-          "blockHeight": 79,
-          "txid": "a8e67301901a0f036b698cea584cd4c1e5f95c319387f8a9c2da43d8fde9a180"
-        },
-        {
-          "blockHeight": 80,
-          "txid": "bc739939210fdaff8172ede88e5b55edbe37b1adc3e5a0f7abcd9d0844a7a830"
-        },
-        {
-          "blockHeight": 81,
-          "txid": "1f3c17690e3ee03f0ec5d2f4005f675c6b65661b3eada202f1ea419c6c9813c2"
-        },
-        {
-          "blockHeight": 82,
-          "txid": "1198f8884fcad8a57f1fc6379e9b7867da9f1c5a1d409a49bf801eee06b0ebac"
-        },
-        {
-          "blockHeight": 83,
-          "txid": "446850ceab1fa761ef134e637a0afaf9f14eb884e88dbec9595e5200174e2514"
-        },
-        {
-          "blockHeight": 84,
-          "txid": "973f9ee345cb79b0fd20d3724f6a18009156b87646105975332ac9b4eed5e525"
-        },
-        {
-          "blockHeight": 85,
-          "txid": "43e0c991363a017014a26db1359c23d39d70c3bcaf37eee7adf26affc40db873"
-        },
-        {
-          "blockHeight": 86,
-          "txid": "271cb0c42644533c5a80a77eb8e6bd70414ac8cfe051bd2e6a5d5c7091b31894"
-        },
-        {
-          "blockHeight": 87,
-          "txid": "a52b0459a5afac1d52e0662953be241eb6912e4d0c4d9ed7883a2ae1c56706cd"
-        },
-        {
-          "blockHeight": 88,
-          "txid": "50061f6d5a6baeccac72681b753c711c6e9420368f046ca9ea44d59f176520a8"
-        },
-        {
-          "blockHeight": 89,
-          "txid": "170a27a0daaf48699624ccc504c54fe3b938feb4b0f085995bce888450cf2978"
-        }
-      ],
-      "retailer": [
-        {
-          "blockHeight": 81,
-          "txid": "454126d53b1bd7e956662b43d34d14aa8a064f8828e4036a6c8ae46a0ac59e64"
-        },
-        {
-          "blockHeight": 82,
-          "txid": "dc713eeff63034992563112fb22e53fc9c921fa8dfb0f37a7eaa062ee451e34a"
-        },
-        {
-          "blockHeight": 83,
-          "txid": "26f6c99981dfbafdd10ac81e0a4333e79f49958a347fa8fbb0b07883874892bc"
-        },
-        {
-          "blockHeight": 84,
-          "txid": "735442866b92cfba1449635c66f4f06ac9cbb2c1fbb4126c86216bc302c5b1ca"
-        },
-        {
-          "blockHeight": 85,
-          "txid": "fadb6c7d0ace3dc532470411f93b951a62c4d287cd285922ac7fb8789e5ee691"
-        },
-        {
-          "blockHeight": 86,
-          "txid": "0ee6727677df0e2cb4f6cb95d490a7de2b98d9553795080dda614731e190a69e"
-        },
-        {
-          "blockHeight": 87,
-          "txid": "b4f3fdf9a1a9116d9a738cedccd651d153b696e8b19273845cc0b22756a1dd25"
-        },
-        {
-          "blockHeight": 88,
-          "txid": "59f2ef047c1653a7cbb6a8b4c4d3bc5f2f74b73b93f7502baba8c09dff97ad39"
-        },
-        {
-          "blockHeight": 89,
-          "txid": "e71aca34e755ab79f9a7b02867e47662012b83adb9515749fdf4419ac7aa0033"
-        },
-        {
-          "blockHeight": 90,
-          "txid": "e25c0786966d0ff294ed657e2201f54b13d6d0f66edbe3a3a32b9a5dacd35824"
-        },
-        {
-          "blockHeight": 91,
-          "txid": "98120d9a1fb217d8ddddde9fae333e46b86c624df2c531c8bee63ccdb04f90aa"
-        }
-      ]
-    }
+    "message": "Entity registered successfully",
+    "entity": {
+      "entityId": "RETAILER-1741266096807-4975",
+      "name": "Test Retailer",
+      "type": "retailer",
+      "location": "Test Location",
+      "description": "A test retailer entity",
+      "contactInfo": {
+        "email": "retailer@test.com",
+        "phone": "123-456-7890"
+      },
+      "publicKey": "63956b3c555b3b671a60cef666636edd48a3ff55795cb075b2efa44edfbed9c7",
+      "registrationDate": 1741266096808,
+      "status": "ACTIVE",
+      "passwordHash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae"
+    },
+    "txid": "5944c13454d59e0cdd46077134cc386647f15c32caec02c70229f403e1c59c0c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IlJFVEFJTEVSLTE3NDEyNjYwOTY4MDctNDk3NSIsInR5cGUiOiJyZXRhaWxlciIsIm5hbWUiOiJUZXN0IFJldGFpbGVyIiwiaWF0IjoxNzQxMjY2MDk4LCJleHAiOjE3NDM4NTgwOTh9.-9uxEk32Snw4wEoSA2d3cYNMtOnHYuHDUIk1kg2Lw58"
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:37.448Z] POST /api/automation/block-verification
---------------------------------------------------
-{
-  "status": 200,
-  "data": {
-    "success": true,
-    "message": "Block verification automation started with 10 minute interval",
-    "nextRun": "2025-03-02T15:57:37.447Z"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:37.564Z] POST /api/supply-chain/register-product
---------------------------------------------------
+[2025-03-06T13:01:38.734Z] POST /api/products/register
+--------------------------------------------------------------------------------
 {
   "status": 201,
   "data": {
     "success": true,
     "message": "Product registered successfully",
-    "registration": {
-      "productId": "PROD-123",
+    "product": {
+      "productId": "PROD-TEST-001",
       "name": "Test Product",
-      "manufacturer": "Test Manufacturer",
-      "manufacturingDate": 1615000000,
-      "attributes": {
-        "color": "red",
-        "weight": "2kg"
+      "description": "A test product",
+      "category": "Test Category",
+      "unitPrice": 99.99,
+      "initialQuantity": 100,
+      "serialNumberSamples": [
+        "PROD-TEST-001-1741266098408-2903",
+        "PROD-TEST-001-1741266098409-6131",
+        "PROD-TEST-001-1741266098410-1849",
+        "PROD-TEST-001-1741266098411-6916",
+        "PROD-TEST-001-1741266098412-9123",
+        "PROD-TEST-001-1741266098413-4680",
+        "PROD-TEST-001-1741266098414-9276",
+        "PROD-TEST-001-1741266098415-6608",
+        "PROD-TEST-001-1741266098416-0198",
+        "PROD-TEST-001-1741266098417-8856"
+      ],
+      "totalSerialCount": 100,
+      "manufacturerId": "MANUFACTURER-1741266095203-9545",
+      "manufacturerName": "Test Manufacturer",
+      "manufacturingDate": 1741266094099,
+      "registrationDate": 1741266098408,
+      "status": "ACTIVE",
+      "sku": "SKU-001",
+      "barcode": "123456789",
+      "dimensions": {
+        "length": 10,
+        "width": 5,
+        "height": 2
       },
-      "registrationDate": 1740930457450,
-      "status": "ACTIVE"
-    },
-    "txid": "f6ca7f698e394ddf59a6e16df46b06e462be9284bc1a465ffb22e35d11ec6a49"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:37.687Z] POST /api/supply-chain/record-event
---------------------------------------------------
-{
-  "status": 201,
-  "data": {
-    "success": true,
-    "message": "Event recorded successfully",
-    "event": {
-      "eventId": "EVENT-1740930457566-8018",
-      "productId": "PROD-123",
-      "eventType": "SHIPPED",
-      "location": "Warehouse A",
-      "handler": "John Doe",
-      "timestamp": 1740930457566,
-      "data": {
-        "destination": "Store 42",
-        "carrier": "FastShip"
+      "weight": 1.5,
+      "specifications": {
+        "material": "Test Material",
+        "color": "Red"
       }
     },
-    "chain": "main-chain",
-    "txid": "9b04f819f17600ff66b2c682d0e4d7baa8dd907a160076a060768c2407decb67"
+    "txid": "5f4b3f567da783125fa56eac99551a1b33bc23d735d1382ae9d795dfe0723eb6"
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:37.811Z] POST /api/rules/create
---------------------------------------------------
-{
-  "status": 201,
-  "data": {
-    "success": true,
-    "message": "Rule created successfully",
-    "rule": {
-      "ruleId": "RULE-1740930457690-2042",
-      "ruleName": "Low Stock Alert",
-      "description": "Create alert when inventory is low",
-      "triggerConditions": [
-        {
-          "field": "quantity",
-          "operator": "<",
-          "value": 10
-        }
-      ],
-      "actions": [
-        {
-          "type": "notifyChain",
-          "targetChain": "main-chain",
-          "notificationType": "LOW_STOCK"
-        }
-      ],
-      "enabled": true,
-      "createdAt": 1740930457690,
-      "updatedAt": 1740930457690
-    },
-    "txid": "1cb556974bb25feda00ae6082dea2badc4ced6958f44f81bad2e9099f65a7fe1"
-  }
-}
---------------------------------------------------
-
-[2025-03-02T15:47:38.254Z] POST /api/rules/process
---------------------------------------------------
+[2025-03-06T13:01:38.845Z] GET /api/products
+--------------------------------------------------------------------------------
 {
   "status": 200,
   "data": {
     "success": true,
-    "message": "Processed 3 rules",
-    "matchedRules": 3,
-    "results": [
+    "count": 3,
+    "products": [
       {
-        "ruleId": "RULE-1740929591472-8990",
-        "ruleName": "Low Stock Alert",
-        "matched": true,
-        "actions": [
-          {
-            "type": "notifyChain",
-            "success": true,
-            "txid": "c9b38a15fe98cc25ec3ee10a3241c6b0cda997b58977fcf4e19bc651abcff03f"
-          }
-        ]
+        "productId": "PROD-1229071528-8852",
+        "name": "LCD TV",
+        "description": "Best TV",
+        "category": "TV",
+        "unitPrice": 0,
+        "initialQuantity": 1,
+        "serialNumberSamples": [
+          "PROD-1229071528-8852-1741229100979-4028"
+        ],
+        "totalSerialCount": 1,
+        "manufacturerId": "MANUFACTURER-1741229064194-0894",
+        "manufacturerName": "Walton",
+        "manufacturingDate": 1741229100979,
+        "registrationDate": 1741229100979,
+        "status": "ACTIVE",
+        "specifications": {},
+        "txid": "9970936da3d338e775ca9293066e991912b79bd6150236d4a4eaec35d405cf70"
       },
       {
-        "ruleId": "RULE-1740930426002-9025",
-        "ruleName": "Low Stock Alert",
-        "matched": true,
-        "actions": [
-          {
-            "type": "notifyChain",
-            "success": true,
-            "txid": "688f85fe798bd657c3d80e1ffff6f75d34918f92cf2de3f71a15aa2df1371361"
-          }
-        ]
+        "productId": "PROD-1229337672-3604",
+        "name": "dsfs",
+        "description": "fsd",
+        "category": "dfsdf",
+        "unitPrice": 0,
+        "initialQuantity": 1,
+        "serialNumberSamples": [
+          "PROD-1229337672-3604-1741229345724-5965"
+        ],
+        "totalSerialCount": 1,
+        "manufacturerId": "MANUFACTURER-1741229190694-0004",
+        "manufacturerName": "TCL",
+        "manufacturingDate": 1741229345724,
+        "registrationDate": 1741229345724,
+        "status": "ACTIVE",
+        "specifications": {},
+        "txid": "e649e057c151c3b112cd0bb8fb319d71cb52cd727ff5b50c9a5b42cdfa4df4d0"
       },
       {
-        "ruleId": "RULE-1740930457690-2042",
-        "ruleName": "Low Stock Alert",
-        "matched": true,
-        "actions": [
-          {
-            "type": "notifyChain",
-            "success": true,
-            "txid": "4920a45119e55e693dedb1e45f107762d97d381914fc7d49fcea22d4c8acec37"
-          }
-        ]
+        "productId": "PROD-TEST-001",
+        "name": "Test Product",
+        "description": "A test product",
+        "category": "Test Category",
+        "unitPrice": 99.99,
+        "initialQuantity": 100,
+        "serialNumberSamples": [
+          "PROD-TEST-001-1741230192986-5293",
+          "PROD-TEST-001-1741230192987-5583",
+          "PROD-TEST-001-1741230192988-1576",
+          "PROD-TEST-001-1741230192989-7320",
+          "PROD-TEST-001-1741230192990-3091",
+          "PROD-TEST-001-1741230192991-6935",
+          "PROD-TEST-001-1741230192992-4092",
+          "PROD-TEST-001-1741230192993-5081",
+          "PROD-TEST-001-1741230192994-9485",
+          "PROD-TEST-001-1741230192995-3471"
+        ],
+        "totalSerialCount": 100,
+        "manufacturerId": "MANUFACTURER-1741230192001-1136",
+        "manufacturerName": "Test Manufacturer",
+        "manufacturingDate": 1741230190994,
+        "registrationDate": 1741230192987,
+        "status": "ACTIVE",
+        "sku": "SKU-001",
+        "barcode": "123456789",
+        "dimensions": {
+          "length": 10,
+          "width": 5,
+          "height": 2
+        },
+        "weight": 1.5,
+        "specifications": {
+          "material": "Test Material",
+          "color": "Red"
+        },
+        "txid": "9e7b7316f5a2193d2ab7eb8cdd46b6e581aff5ecef15adb22380a69e2a5de06e"
       }
     ]
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:44.953Z] POST /api/admin/setup-streams
---------------------------------------------------
+[2025-03-06T13:01:39.602Z] POST /api/distributor/receive-from-manufacturer
+--------------------------------------------------------------------------------
+{
+  "status": 201,
+  "data": {
+    "success": true,
+    "message": "Product received successfully from manufacturer",
+    "receivingId": "RECV-1741266099169-9258",
+    "distributorChainTxid": "750695c47ce7dc839a15dc68542c73d2eb5b5c3055a4551f40ce0de9a6ae0a90",
+    "mainChainTxid": "6e78ef62b0f6ded376c9bc0097fb3223c91ccaa44a730639fdbb90a0f6aad8ae",
+    "merkleRoot": "8d6d2a01f3c6148fa0a1633350372282eadc01aa1aa39e3c341042959a1eaaab"
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:39.928Z] GET /api/distributor/inventory
+--------------------------------------------------------------------------------
 {
   "status": 200,
   "data": {
     "success": true,
-    "message": "All required streams set up successfully"
+    "distributorId": "DISTRIBUTOR-1741266095316-9431",
+    "count": 1,
+    "inventory": [
+      {
+        "productId": "PROD-TEST-001",
+        "quantity": 50,
+        "previousQuantity": 0,
+        "change": 50,
+        "timestamp": 1741266099385,
+        "productDetails": {
+          "productId": "PROD-TEST-001",
+          "name": "Test Product",
+          "description": "A test product",
+          "category": "Test Category",
+          "unitPrice": 99.99,
+          "initialQuantity": 100,
+          "serialNumberSamples": [
+            "PROD-TEST-001-1741266098408-2903",
+            "PROD-TEST-001-1741266098409-6131",
+            "PROD-TEST-001-1741266098410-1849",
+            "PROD-TEST-001-1741266098411-6916",
+            "PROD-TEST-001-1741266098412-9123",
+            "PROD-TEST-001-1741266098413-4680",
+            "PROD-TEST-001-1741266098414-9276",
+            "PROD-TEST-001-1741266098415-6608",
+            "PROD-TEST-001-1741266098416-0198",
+            "PROD-TEST-001-1741266098417-8856"
+          ],
+          "totalSerialCount": 100,
+          "manufacturerId": "MANUFACTURER-1741266095203-9545",
+          "manufacturerName": "Test Manufacturer",
+          "manufacturingDate": 1741266094099,
+          "registrationDate": 1741266098408,
+          "status": "ACTIVE",
+          "sku": "SKU-001",
+          "barcode": "123456789",
+          "dimensions": {
+            "length": 10,
+            "width": 5,
+            "height": 2
+          },
+          "weight": 1.5,
+          "specifications": {
+            "material": "Test Material",
+            "color": "Red"
+          }
+        }
+      }
+    ]
   }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
 
-[2025-03-02T15:47:44.954Z] INFO END
---------------------------------------------------
+[2025-03-06T13:01:40.905Z] POST /api/distributor/ship-to-retailer
+--------------------------------------------------------------------------------
 {
-  "message": "API tests completed"
+  "status": 201,
+  "data": {
+    "success": true,
+    "message": "Product shipment to retailer recorded successfully",
+    "shipmentId": "SHIP-TEST-001",
+    "distributorChainTxid": "449ee4feee43b4fff59e43f05884518f37e881e87835ea53b9eefce62396571a",
+    "mainChainTxid": "3a8ec5a28af1a75e4f6dfdf570682ac194b76275e2183d1cb31ad3947527f8ec",
+    "merkleRoot": "9e3b171d065fe1ab96d47112b6864dc8627a9fcf1013634bc18acfdd6d6dbef3"
+  }
 }
---------------------------------------------------
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:41.671Z] POST /api/retailer/receive-shipment
+--------------------------------------------------------------------------------
+{
+  "status": 200,
+  "data": {
+    "success": true,
+    "message": "Shipment received successfully",
+    "shipmentId": "SHIP-TEST-001",
+    "retailerChainTxid": "4873dff61c0fd2ea2fd5509c129064e687967c13a85db36401852d06b879d1a6",
+    "mainChainTxid": "8f2b4bb44a3a025878a2622174d03148cee6261421ef44ca21d05b23af52f41c",
+    "merkleRoot": "36afe31de4378a500125e03bf15ebe2ddc9df34bc61935bba5e0ed7596407bda"
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:41.998Z] GET /api/retailer/inventory
+--------------------------------------------------------------------------------
+{
+  "status": 200,
+  "data": {
+    "success": true,
+    "retailerId": "RETAILER-1741266096807-4975",
+    "count": 1,
+    "inventory": [
+      {
+        "productId": "PROD-TEST-001",
+        "quantity": 25,
+        "previousQuantity": 0,
+        "change": 25,
+        "timestamp": 1741266101231,
+        "productDetails": {
+          "productId": "PROD-TEST-001",
+          "name": "Test Product",
+          "description": "A test product",
+          "category": "Test Category",
+          "unitPrice": 99.99,
+          "initialQuantity": 100,
+          "serialNumberSamples": [
+            "PROD-TEST-001-1741266098408-2903",
+            "PROD-TEST-001-1741266098409-6131",
+            "PROD-TEST-001-1741266098410-1849",
+            "PROD-TEST-001-1741266098411-6916",
+            "PROD-TEST-001-1741266098412-9123",
+            "PROD-TEST-001-1741266098413-4680",
+            "PROD-TEST-001-1741266098414-9276",
+            "PROD-TEST-001-1741266098415-6608",
+            "PROD-TEST-001-1741266098416-0198",
+            "PROD-TEST-001-1741266098417-8856"
+          ],
+          "totalSerialCount": 100,
+          "manufacturerId": "MANUFACTURER-1741266095203-9545",
+          "manufacturerName": "Test Manufacturer",
+          "manufacturingDate": 1741266094099,
+          "registrationDate": 1741266098408,
+          "status": "ACTIVE",
+          "sku": "SKU-001",
+          "barcode": "123456789",
+          "dimensions": {
+            "length": 10,
+            "width": 5,
+            "height": 2
+          },
+          "weight": 1.5,
+          "specifications": {
+            "material": "Test Material",
+            "color": "Red"
+          }
+        }
+      }
+    ]
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:42.755Z] POST /api/retailer/record-sale
+--------------------------------------------------------------------------------
+{
+  "status": 201,
+  "data": {
+    "success": true,
+    "message": "Sale recorded successfully",
+    "saleId": "SALE-TEST-001",
+    "retailerChainTxid": "161b545b80bbc9965775ba4f86593cb52b5019656ae64ce484e1694bed5e893b",
+    "mainChainTxid": "b3d0468796f657edb205d92ecbe34a3bab59ca79b703b3d907c6a6139cc796c5",
+    "merkleRoot": "c397e8f804113d1aab9e9c652e05012ec7c4b19f59a853050e2d2feed5670fc9"
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:42.973Z] GET /api/retailer/sales
+--------------------------------------------------------------------------------
+{
+  "status": 200,
+  "data": {
+    "success": true,
+    "retailerId": "RETAILER-1741266096807-4975",
+    "count": 1,
+    "totalRecords": 1,
+    "summary": {
+      "totalRevenue": 149.99,
+      "totalQuantity": 1,
+      "totalProfit": 50.000000000000014,
+      "avgProfitMargin": "33.34%"
+    },
+    "sales": [
+      {
+        "saleId": "SALE-TEST-001",
+        "productId": "PROD-TEST-001",
+        "productName": "Test Product",
+        "quantity": 1,
+        "salePrice": 149.99,
+        "totalAmount": 149.99,
+        "profit": 50.000000000000014,
+        "profitMargin": "33.34",
+        "customerInfo": {
+          "anonymized": true,
+          "loyaltyId": "LOY123"
+        },
+        "paymentMethod": "CREDIT_CARD",
+        "saleDate": 1741266094100,
+        "retailerId": "RETAILER-1741266096807-4975",
+        "retailerName": "Test Retailer",
+        "storeLocation": "Store 1",
+        "salesPersonId": "EMP-001",
+        "receiptId": "RCT-001",
+        "timestamp": 1741266102322
+      }
+    ]
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:43.847Z] POST /api/retailer/return-product
+--------------------------------------------------------------------------------
+{
+  "status": 201,
+  "data": {
+    "success": true,
+    "message": "Product return initiated successfully",
+    "returnId": "RET-1741266103298-0793",
+    "retailerChainTxid": "61365fa95d7def46d5f9df6a2dcc7010cae3ebd4b886b67017f5352b83f9b142",
+    "mainChainTxid": "18a00f99506199ea4bdd69bd7f6e73430b3c97e40effad9703108384e8b7c7a5",
+    "merkleRoot": "fec7ecfe6dc9ced886d59af7f9c7fa2d253c49c98029ef7e3b01f0ba8bfb820c"
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:44.629Z] POST /api/distributor/process-return
+--------------------------------------------------------------------------------
+{
+  "status": 200,
+  "data": {
+    "success": true,
+    "message": "Return processed successfully",
+    "returnId": "RET-1741266103298-0793",
+    "disposition": "APPROVED",
+    "distributorChainTxid": "96f039799a9c972a18690c914c096c5a64039992ea95b1223b6b9a9c3e54b849",
+    "mainChainTxid": "87e489358ce2b122361894f136e831c0fa16d361164fc120016ad774a5a24db1",
+    "merkleRoot": "f12bda5138c2e08e8cbf2d3cba6cf82372f2e320c0f25d69e481068c7d7100f6"
+  }
+}
+--------------------------------------------------------------------------------
+
+[2025-03-06T13:01:44.629Z] INFO END
+--------------------------------------------------------------------------------
+{
+  "message": "API tests completed",
+  "context": {
+    "manufacturerId": "MANUFACTURER-1741266095203-9545",
+    "distributorId": "DISTRIBUTOR-1741266095316-9431",
+    "retailerId": "RETAILER-1741266096807-4975",
+    "productId": "PROD-TEST-001",
+    "shipmentId": "SHIP-TEST-001",
+    "returnId": "RET-1741266103298-0793",
+    "tokens": {
+      "manufacturer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6Ik1BTlVGQUNUVVJFUi0xNzQxMjY2MDk1MjAzLTk1NDUiLCJ0eXBlIjoibWFudWZhY3R1cmVyIiwibmFtZSI6IlRlc3QgTWFudWZhY3R1cmVyIiwiaWF0IjoxNzQxMjY2MDk1LCJleHAiOjE3NDM4NTgwOTV9.76DVx3Zg2xV7khkn-g04xJFZJkJpbH5JLBCRPRRwtJE",
+      "distributor": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IkRJU1RSSUJVVE9SLTE3NDEyNjYwOTUzMTYtOTQzMSIsInR5cGUiOiJkaXN0cmlidXRvciIsIm5hbWUiOiJUZXN0IERpc3RyaWJ1dG9yIiwiaWF0IjoxNzQxMjY2MDk2LCJleHAiOjE3NDM4NTgwOTZ9.gLEW1NbgRbIqwz1bvm5zeHq8CEnoVsIAs7HnbQP-FBE",
+      "retailer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnRpdHlJZCI6IlJFVEFJTEVSLTE3NDEyNjYwOTY4MDctNDk3NSIsInR5cGUiOiJyZXRhaWxlciIsIm5hbWUiOiJUZXN0IFJldGFpbGVyIiwiaWF0IjoxNzQxMjY2MDk4LCJleHAiOjE3NDM4NTgwOTh9.-9uxEk32Snw4wEoSA2d3cYNMtOnHYuHDUIk1kg2Lw58"
+    }
+  }
+}
+--------------------------------------------------------------------------------

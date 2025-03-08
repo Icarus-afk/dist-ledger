@@ -1,0 +1,668 @@
+=== TECHCHAIN SUPPLY NETWORK TEST (2025-03-08T01:25:05.635Z) ===
+
+[2025-03-08T01:25:05.636Z] ✅  Starting supply chain test...
+[2025-03-08T01:25:05.638Z] ✅  STEP 1: REGISTERING ENTITIES
+[2025-03-08T01:25:05.639Z] ✅  API POST: /api/register/manufacturer
+[2025-03-08T01:25:05.677Z] ✅  Response: {
+  "success": true,
+  "message": "Manufacturer registered successfully",
+  "entity": {
+    "id": "manufacturer-1741397105671-f69796ae",
+    "name": "TechGadgets Inc.",
+    "apiKey": "626073e2c5f15f28ced96b399841f284"
+  }
+}
+[2025-03-08T01:25:05.678Z] ✅  Registered manufacturer TechGadgets Inc. with ID manufacturer-1741397105671-f69796ae
+[2025-03-08T01:25:05.678Z] ✅  API POST: /api/register/distributor
+[2025-03-08T01:25:06.328Z] ✅  Response: {
+  "success": true,
+  "message": "Distributor registered successfully",
+  "entity": {
+    "id": "distributor-1741397105681-050d4f19",
+    "name": "Global Distribution Co.",
+    "apiKey": "b914ab7e4d80cf0c00f7bc239d03540b"
+  }
+}
+[2025-03-08T01:25:06.329Z] ✅  Registered distributor Global Distribution Co. with ID distributor-1741397105681-050d4f19
+[2025-03-08T01:25:06.329Z] ✅  API POST: /api/register/retailer
+[2025-03-08T01:25:06.981Z] ✅  Response: {
+  "success": true,
+  "message": "Retailer registered successfully",
+  "entity": {
+    "id": "retailer-1741397106331-fa4a346c",
+    "name": "Tech Store",
+    "apiKey": "845fb1911cf737f23084fe353107bdb3"
+  }
+}
+[2025-03-08T01:25:06.983Z] ✅  Registered retailer Tech Store with ID retailer-1741397106331-fa4a346c
+[2025-03-08T01:25:06.984Z] ✅  
+STEP 2: REGISTERING PRODUCT WITH SERIAL NUMBERS AND SENSITIVE MANUFACTURING DATA
+[2025-03-08T01:25:06.987Z] ✅  API POST: /api/products/register
+[2025-03-08T01:25:07.425Z] ✅  Response: {
+  "success": true,
+  "message": "Product registered successfully",
+  "productId": "prod-1741397106991-b0713fc5",
+  "name": "SmartWatch X1",
+  "serialNumberCount": 10,
+  "merkleRoot": "0b3afdd3f942c0c823d66dcf39ca13ee4f953b92c23233b20deacc1e92ef846c",
+  "sensitiveDataStored": true,
+  "txid": "eb835ccb81304f6f2119848e126660b4483391382fd9c0f396c9d7e321fd3ca6"
+}
+[2025-03-08T01:25:07.425Z] ✅  Registered product SmartWatch X1 with ID prod-1741397106991-b0713fc5 and 10 serial numbers
+[2025-03-08T01:25:07.426Z] ✅  
+STEP 3: RETRIEVING PRODUCT DETAILS AND SERIAL NUMBERS
+[2025-03-08T01:25:07.426Z] ✅  API GET: /api/products/prod-1741397106991-b0713fc5
+[2025-03-08T01:25:07.540Z] ✅  Response: {
+  "success": true,
+  "product": {
+    "productId": "prod-1741397106991-b0713fc5",
+    "name": "SmartWatch X1",
+    "description": "Advanced smartwatch with health tracking",
+    "category": "Electronics",
+    "specifications": {
+      "display": "1.5 inch AMOLED",
+      "battery": "48 hours",
+      "waterResistant": true
+    },
+    "quantity": 10,
+    "unitPrice": 249.99,
+    "manufacturerId": "manufacturer-1741397105671-f69796ae",
+    "manufacturerName": "TechGadgets Inc.",
+    "registrationDate": 1741397107208,
+    "serialNumberCount": 10,
+    "serialNumbersMerkleRoot": "0b3afdd3f942c0c823d66dcf39ca13ee4f953b92c23233b20deacc1e92ef846c",
+    "sensitiveDataReference": "dd46b2c2a5f0fa43efe9416c18af27ad7973d3846aaeecf573d2fe7b4d8c93f4"
+  }
+}
+[2025-03-08T01:25:07.541Z] ✅  Generated 5 serial numbers in system format for testing
+[2025-03-08T01:25:07.541Z] ✅  API GET: /api/products/prod-1741397106991-b0713fc5/serial-numbers
+[2025-03-08T01:25:07.548Z] ❌ ERROR:  Failed API GET: /api/products/prod-1741397106991-b0713fc5/serial-numbers - Request failed with status code 404
+[2025-03-08T01:25:07.549Z] ❌ ERROR:  Could not retrieve serial numbers from dedicated endpoint: Request failed with status code 404
+[2025-03-08T01:25:07.549Z] ✅  Using serial numbers for distributor: [PROD-bcee86-00001, PROD-11bcfc-00002, PROD-a4f8e5-00003, PROD-7030ab-00004, PROD-a6aba2-00005]
+[2025-03-08T01:25:07.549Z] ✅  Using serial number for customer flow: PROD-bcee86-00001
+[2025-03-08T01:25:07.550Z] ✅  
+STEP 3.1: MANUFACTURER RETRIEVES SENSITIVE MANUFACTURING DATA
+[2025-03-08T01:25:07.550Z] ✅  API GET: /api/manufacturer/sensitive-data/prod-1741397106991-b0713fc5
+[2025-03-08T01:25:07.771Z] ✅  Response: {
+  "success": true,
+  "productId": "prod-1741397106991-b0713fc5",
+  "productName": "SmartWatch X1",
+  "manufacturingData": {
+    "productId": "prod-1741397106991-b0713fc5",
+    "manufacturingCost": 95.5,
+    "supplierInfo": {
+      "mainBoard": "TechSupply Inc.",
+      "display": "ScreenTech Co.",
+      "battery": "PowerCell Ltd."
+    },
+    "batchQualityMetrics": {
+      "defectRate": 0.5,
+      "passingRate": 99.5,
+      "qcNotes": "Excellent batch, minimal defects"
+    },
+    "productionFacility": "Factory 3, Shanghai",
+    "internalNotes": "",
+    "components": [
+      {
+        "name": "CPU",
+        "supplier": "MicroChips Ltd.",
+        "cost": 25
+      },
+      {
+        "name": "Display",
+        "supplier": "ScreenTech Co.",
+        "cost": 35
+      },
+      {
+        "name": "Battery",
+        "supplier": "PowerCell Ltd.",
+        "cost": 12.5
+      },
+      {
+        "name": "Sensors",
+        "supplier": "SensorTech",
+        "cost": 18
+      }
+    ],
+    "timestamp": 1741397106991
+  }
+}
+[2025-03-08T01:25:07.772Z] ✅  Retrieved sensitive manufacturing data: manufacturing cost = $95.5
+[2025-03-08T01:25:07.772Z] ✅  Production facility: Factory 3, Shanghai
+[2025-03-08T01:25:07.772Z] ✅  
+STEP 3.2: ATTEMPT UNAUTHORIZED ACCESS TO SENSITIVE MANUFACTURING DATA
+[2025-03-08T01:25:07.772Z] ✅  API GET: /api/manufacturer/sensitive-data/prod-1741397106991-b0713fc5
+[2025-03-08T01:25:07.778Z] ❌ ERROR:  Failed API GET: /api/manufacturer/sensitive-data/prod-1741397106991-b0713fc5 - Only manufacturers can access this endpoint
+[2025-03-08T01:25:07.778Z] ✅  Security working: Distributor correctly denied access to manufacturer data
+[2025-03-08T01:25:07.778Z] ✅  
+STEP 4: DISTRIBUTOR RECEIVES PRODUCTS FROM MANUFACTURER
+[2025-03-08T01:25:07.779Z] ✅  API POST: /api/distributor/receive-from-manufacturer
+[2025-03-08T01:25:08.645Z] ✅  Response: {
+  "success": true,
+  "message": "Products received and inventory updated",
+  "receiptId": "receipt-1741397107888-0e47740c",
+  "productId": "prod-1741397106991-b0713fc5",
+  "quantity": 5,
+  "txid": "f695a18ce4346602d7708b79ac78490e5879a100ebe47a99620889f237895955",
+  "inventoryUpdateId": "inv-update-1741397108104-491f9e7f"
+}
+[2025-03-08T01:25:08.646Z] ✅  Distributor received 5 products
+[2025-03-08T01:25:08.646Z] ✅  
+STEP 5: CHECKING DISTRIBUTOR INVENTORY
+[2025-03-08T01:25:08.646Z] ✅  API GET: /api/distributor/inventory
+[2025-03-08T01:25:08.867Z] ✅  Response: {
+  "success": true,
+  "distributorId": "distributor-1741397105681-050d4f19",
+  "inventory": [
+    {
+      "productId": "prod",
+      "distributorId": "distributor-1741397105681-050d4f19",
+      "quantity": 0,
+      "serialNumbers": []
+    }
+  ]
+}
+[2025-03-08T01:25:08.868Z] ✅  Distributor inventory checked - has 1 product(s)
+[2025-03-08T01:25:08.868Z] ✅  
+STEP 6: VERIFYING PRODUCT LOCATION (AT DISTRIBUTOR)
+[2025-03-08T01:25:08.868Z] ✅  API GET: /api/verify/product/PROD-bcee86-00001
+[2025-03-08T01:25:09.307Z] ✅  Response: {
+  "success": true,
+  "serialNumber": "PROD-bcee86-00001",
+  "productId": "prod-1741390802715-753cc96e",
+  "productInfo": {
+    "name": "SmartWatch X1",
+    "description": "Advanced smartwatch with health tracking",
+    "category": "Electronics",
+    "manufacturer": {
+      "id": "manufacturer-1741390801309-5d5dac7c",
+      "name": "TechGadgets Inc."
+    },
+    "specifications": {
+      "display": "1.5 inch AMOLED",
+      "battery": "48 hours",
+      "waterResistant": true
+    }
+  },
+  "currentLocation": {
+    "type": "distributor",
+    "status": "in_stock",
+    "entityId": "distributor-1741397105681-050d4f19"
+  },
+  "verificationTimestamp": 1741397109306,
+  "authenticity": {
+    "isAuthentic": true,
+    "merkleRoot": "65bea2856d4098d8e134dc86b4da88908d6e9a9c52099332a253c1bef60c5b34",
+    "productRegisteredRoot": "58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788",
+    "proofAvailable": true,
+    "rootMatchesRegistration": false
+  }
+}
+[2025-03-08T01:25:09.307Z] ✅  Product PROD-bcee86-00001 is currently at: distributor (in_stock)
+[2025-03-08T01:25:09.307Z] ✅  
+STEP 7: DISTRIBUTOR SHIPS PRODUCTS TO RETAILER WITH ENCRYPTED LOGISTICS
+[2025-03-08T01:25:09.308Z] ✅  API POST: /api/distributor/shipment/create
+[2025-03-08T01:25:10.184Z] ✅  Response: {
+  "success": true,
+  "message": "Shipment created successfully",
+  "shipmentId": "shipment-1741397109851-664e1650",
+  "productId": "prod-1741397106991-b0713fc5",
+  "retailerId": "retailer-1741397106331-fa4a346c",
+  "quantity": 1,
+  "txid": "ecdef53087eb79b8c7a4f192f64388fbd30a3ae4908278d7c9b29479437f7f1d"
+}
+[2025-03-08T01:25:10.184Z] ✅  Distributor shipped product PROD-bcee86-00001 to retailer with shipment ID shipment-1741397109851-664e1650
+[2025-03-08T01:25:10.184Z] ✅  Logistics data encrypted with distributor-specific key
+[2025-03-08T01:25:10.185Z] ✅  
+STEP 7.1: DISTRIBUTOR RETRIEVES ENCRYPTED LOGISTICS DETAILS
+[2025-03-08T01:25:10.185Z] ✅  API GET: /api/distributor/shipment/shipment-1741397109851-664e1650/logistics
+[2025-03-08T01:25:10.298Z] ✅  Response: {
+  "success": true,
+  "shipmentId": "shipment-1741397109851-664e1650",
+  "productId": "prod-1741397106991-b0713fc5",
+  "retailerId": "retailer-1741397106331-fa4a346c",
+  "quantity": 1,
+  "status": "shipped",
+  "timestamp": 1741397109851,
+  "expectedDeliveryDate": "2025-03-10T01:25:09.308Z",
+  "logisticsData": {
+    "carrier": "Express Logistics",
+    "trackingNumber": "EL97109308",
+    "routingDetails": {
+      "route": "East Coast Express",
+      "stops": [
+        "Distribution Center",
+        "Regional Hub",
+        "Local Terminal"
+      ],
+      "estimatedTravelTime": "18 hours"
+    },
+    "insuranceInfo": {
+      "provider": "SecureShip Insurance",
+      "policyNumber": "INS-4562",
+      "coverageAmount": 5000,
+      "deductible": 250
+    },
+    "specialInstructions": "Handle with care. Temperature-sensitive electronics.",
+    "contractTerms": {
+      "paymentTerms": "Net 30",
+      "liabilityLimit": "$5000",
+      "returnPolicy": "Contact distributor for returns authorization"
+    },
+    "pricing": {
+      "shippingCost": 120.5,
+      "insuranceCost": 35,
+      "discounts": 15.5,
+      "taxes": 14,
+      "totalCost": 154
+    },
+    "internalNotes": ""
+  }
+}
+[2025-03-08T01:25:10.299Z] ✅  Retrieved logistics data for shipment shipment-1741397109851-664e1650
+[2025-03-08T01:25:10.299Z] ✅  Carrier: N/A
+[2025-03-08T01:25:10.299Z] ✅  Tracking Number: N/A
+[2025-03-08T01:25:10.299Z] ✅  Total Shipping Cost: $N/A
+[2025-03-08T01:25:10.300Z] ✅  
+STEP 7.2: ATTEMPT UNAUTHORIZED ACCESS TO SENSITIVE LOGISTICS DATA
+[2025-03-08T01:25:10.300Z] ✅  API GET: /api/distributor/shipment/shipment-1741397109851-664e1650/logistics
+[2025-03-08T01:25:10.305Z] ❌ ERROR:  Failed API GET: /api/distributor/shipment/shipment-1741397109851-664e1650/logistics - Only distributors can access this endpoint
+[2025-03-08T01:25:10.305Z] ✅  Security working: Retailer correctly denied access to distributor logistics data
+[2025-03-08T01:25:10.306Z] ✅  
+STEP 8: VERIFYING PRODUCT LOCATION (IN TRANSIT)
+[2025-03-08T01:25:10.306Z] ✅  API GET: /api/verify/product/PROD-bcee86-00001
+[2025-03-08T01:25:10.741Z] ✅  Response: {
+  "success": true,
+  "serialNumber": "PROD-bcee86-00001",
+  "productId": "prod-1741390802715-753cc96e",
+  "productInfo": {
+    "name": "SmartWatch X1",
+    "description": "Advanced smartwatch with health tracking",
+    "category": "Electronics",
+    "manufacturer": {
+      "id": "manufacturer-1741390801309-5d5dac7c",
+      "name": "TechGadgets Inc."
+    },
+    "specifications": {
+      "display": "1.5 inch AMOLED",
+      "battery": "48 hours",
+      "waterResistant": true
+    }
+  },
+  "currentLocation": {
+    "type": "in_transit",
+    "status": "shipping",
+    "from": "distributor-1741397105681-050d4f19",
+    "to": "retailer-1741397106331-fa4a346c"
+  },
+  "verificationTimestamp": 1741397110740,
+  "authenticity": {
+    "isAuthentic": true,
+    "merkleRoot": "65bea2856d4098d8e134dc86b4da88908d6e9a9c52099332a253c1bef60c5b34",
+    "productRegisteredRoot": "58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788",
+    "proofAvailable": true,
+    "rootMatchesRegistration": false
+  }
+}
+[2025-03-08T01:25:10.741Z] ✅  Product PROD-bcee86-00001 is currently: in_transit (shipping)
+[2025-03-08T01:25:10.742Z] ✅  
+STEP 9: RETAILER RECEIVES PRODUCTS
+[2025-03-08T01:25:10.742Z] ✅  API POST: /api/retailer/receive-from-distributor
+[2025-03-08T01:25:11.610Z] ✅  Response: {
+  "success": true,
+  "message": "Shipment received and inventory updated",
+  "receiptId": "receipt-1741397110963-ba6f67e2",
+  "productId": "prod-1741397106991-b0713fc5",
+  "quantity": 1,
+  "txid": "247670576c2699d1a0d0dc5700ee95076767eaa35bbf952b641926a541bf02c4",
+  "inventoryUpdateId": "inv-update-1741397111070-ae07c6d9"
+}
+[2025-03-08T01:25:11.610Z] ✅  Retailer received product PROD-bcee86-00001
+[2025-03-08T01:25:11.611Z] ✅  
+STEP 10: CHECKING RETAILER INVENTORY
+[2025-03-08T01:25:11.611Z] ✅  API GET: /api/retailer/inventory
+[2025-03-08T01:25:11.831Z] ✅  Response: {
+  "success": true,
+  "retailerId": "retailer-1741397106331-fa4a346c",
+  "inventory": [
+    {
+      "productId": "prod",
+      "retailerId": "retailer-1741397106331-fa4a346c",
+      "quantity": 0,
+      "serialNumbers": []
+    }
+  ]
+}
+[2025-03-08T01:25:11.832Z] ✅  Retailer inventory checked - has 1 product(s)
+[2025-03-08T01:25:11.832Z] ✅  
+STEP 11: VERIFYING PRODUCT LOCATION (AT RETAILER)
+[2025-03-08T01:25:11.832Z] ✅  API GET: /api/verify/product/PROD-bcee86-00001
+[2025-03-08T01:25:12.271Z] ✅  Response: {
+  "success": true,
+  "serialNumber": "PROD-bcee86-00001",
+  "productId": "prod-1741390802715-753cc96e",
+  "productInfo": {
+    "name": "SmartWatch X1",
+    "description": "Advanced smartwatch with health tracking",
+    "category": "Electronics",
+    "manufacturer": {
+      "id": "manufacturer-1741390801309-5d5dac7c",
+      "name": "TechGadgets Inc."
+    },
+    "specifications": {
+      "display": "1.5 inch AMOLED",
+      "battery": "48 hours",
+      "waterResistant": true
+    }
+  },
+  "currentLocation": {
+    "type": "retailer",
+    "status": "in_stock",
+    "entityId": "retailer-1741397106331-fa4a346c"
+  },
+  "verificationTimestamp": 1741397112270,
+  "authenticity": {
+    "isAuthentic": true,
+    "merkleRoot": "65bea2856d4098d8e134dc86b4da88908d6e9a9c52099332a253c1bef60c5b34",
+    "productRegisteredRoot": "58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788",
+    "proofAvailable": true,
+    "rootMatchesRegistration": false
+  }
+}
+[2025-03-08T01:25:12.271Z] ✅  Product PROD-bcee86-00001 is currently at: retailer (in_stock)
+[2025-03-08T01:25:12.271Z] ✅  
+STEP 12: RETAILER SELLS PRODUCT TO CUSTOMER WITH ENCRYPTED CUSTOMER DATA
+[2025-03-08T01:25:12.272Z] ✅  API POST: /api/retailer/sales/record
+[2025-03-08T01:25:13.141Z] ✅  Response: {
+  "success": true,
+  "message": "Sale recorded successfully",
+  "saleId": "sale-1741397112384-3b030117",
+  "productId": "prod-1741397106991-b0713fc5",
+  "serialNumber": "PROD-bcee86-00001",
+  "txid": "e42ef56e7d25b2dd1e96525f5aba2663a48ac07f01d655ed2364252e5e1b3b81"
+}
+[2025-03-08T01:25:13.141Z] ✅  Retailer sold product PROD-bcee86-00001 with sale ID sale-1741397112384-3b030117
+[2025-03-08T01:25:13.141Z] ✅  Customer data encrypted with retailer-specific key
+[2025-03-08T01:25:13.141Z] ✅  
+STEP 12.1: RETAILER RETRIEVES ENCRYPTED CUSTOMER DATA
+[2025-03-08T01:25:13.142Z] ✅  API GET: /api/retailer/sales/sale-1741397112384-3b030117/customer-data
+[2025-03-08T01:25:13.255Z] ✅  Response: {
+  "success": true,
+  "saleId": "sale-1741397112384-3b030117",
+  "productId": "prod-1741397106991-b0713fc5",
+  "serialNumber": "PROD-bcee86-00001",
+  "price": 299.99,
+  "timestamp": 1741397112384,
+  "status": "sold",
+  "customerData": {
+    "customerId": "cust-1bc10641",
+    "customerInfo": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "address": "123 Main St, Anytown, USA",
+      "dateOfBirth": "1985-06-15",
+      "loyaltyProgram": {
+        "memberSince": "2020-03-01",
+        "points": 1500,
+        "tier": "Gold"
+      }
+    },
+    "paymentDetails": {
+      "method": "Credit Card",
+      "cardType": "Visa",
+      "last4": "1234",
+      "expiryDate": "06/25",
+      "transactionId": "txn_1741397112272"
+    },
+    "shippingAddress": {
+      "street": "123 Main St",
+      "city": "Anytown",
+      "state": "CA",
+      "zipCode": "12345",
+      "country": "USA"
+    },
+    "contactInfo": {
+      "phone": "555-123-4567",
+      "email": "john@example.com",
+      "preferredContact": "email"
+    },
+    "customerNotes": "Customer requested gift wrapping. First-time buyer."
+  }
+}
+[2025-03-08T01:25:13.255Z] ✅  Retrieved customer data for sale sale-1741397112384-3b030117
+[2025-03-08T01:25:13.255Z] ✅  Customer Name: John Doe
+[2025-03-08T01:25:13.256Z] ✅  Payment Method: Credit Card
+[2025-03-08T01:25:13.256Z] ✅  Loyalty Tier: Gold
+[2025-03-08T01:25:13.256Z] ✅  
+STEP 12.2: ATTEMPT UNAUTHORIZED ACCESS TO SENSITIVE CUSTOMER DATA
+[2025-03-08T01:25:13.256Z] ✅  API GET: /api/retailer/sales/sale-1741397112384-3b030117/customer-data
+[2025-03-08T01:25:13.262Z] ❌ ERROR:  Failed API GET: /api/retailer/sales/sale-1741397112384-3b030117/customer-data - Only retailers can access this endpoint
+[2025-03-08T01:25:13.262Z] ✅  Security working: Distributor correctly denied access to customer data
+[2025-03-08T01:25:13.262Z] ✅  
+STEP 13: VERIFYING PRODUCT LOCATION (WITH CUSTOMER)
+[2025-03-08T01:25:13.263Z] ✅  API GET: /api/verify/product/PROD-bcee86-00001
+[2025-03-08T01:25:13.697Z] ✅  Response: {
+  "success": true,
+  "serialNumber": "PROD-bcee86-00001",
+  "productId": "prod-1741390802715-753cc96e",
+  "productInfo": {
+    "name": "SmartWatch X1",
+    "description": "Advanced smartwatch with health tracking",
+    "category": "Electronics",
+    "manufacturer": {
+      "id": "manufacturer-1741390801309-5d5dac7c",
+      "name": "TechGadgets Inc."
+    },
+    "specifications": {
+      "display": "1.5 inch AMOLED",
+      "battery": "48 hours",
+      "waterResistant": true
+    }
+  },
+  "currentLocation": {
+    "type": "customer",
+    "status": "sold",
+    "saleId": "sale-1741397112384-3b030117"
+  },
+  "verificationTimestamp": 1741397113697,
+  "authenticity": {
+    "isAuthentic": true,
+    "merkleRoot": "65bea2856d4098d8e134dc86b4da88908d6e9a9c52099332a253c1bef60c5b34",
+    "productRegisteredRoot": "58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788",
+    "proofAvailable": true,
+    "rootMatchesRegistration": false
+  }
+}
+[2025-03-08T01:25:13.698Z] ✅  Product PROD-bcee86-00001 is currently: customer (sold)
+[2025-03-08T01:25:13.698Z] ✅  
+STEP 14: CHECKING RETAILER SALES HISTORY
+[2025-03-08T01:25:13.698Z] ✅  API GET: /api/retailer/sales/history
+[2025-03-08T01:25:13.811Z] ✅  Response: {
+  "success": true,
+  "retailerId": "retailer-1741397106331-fa4a346c",
+  "sales": [
+    {
+      "saleId": "sale-1741397112384-3b030117",
+      "productId": "prod-1741397106991-b0713fc5",
+      "serialNumber": "PROD-bcee86-00001",
+      "price": 299.99,
+      "timestamp": 1741397112384,
+      "status": "sold"
+    }
+  ]
+}
+[2025-03-08T01:25:13.812Z] ✅  Retailer sales history checked - has 1 sale(s)
+[2025-03-08T01:25:13.812Z] ✅  
+STEP 15: SUBMITTING DAILY SALES SUMMARY WITH ENCRYPTED FINANCIAL DATA
+[2025-03-08T01:25:13.812Z] ✅  API POST: /api/retailer/sales/daily-summary
+[2025-03-08T01:25:14.142Z] ✅  Response: {
+  "success": true,
+  "message": "Daily sales summary recorded successfully",
+  "summaryId": "summary-2025-03-08-8687918d",
+  "date": "2025-03-08",
+  "merkleRoot": "7a0ef4176e0bbde0ba3579b8c4fffc0246d26ca9b9c883e5008ec2a27b92cfd5",
+  "txid": "a75739d98bbc99567a7943e784b4176f2f2478e6682f1eaf2356bce6242db00d"
+}
+[2025-03-08T01:25:14.143Z] ✅  Submitted daily sales summary for 2025-03-08 with ID summary-2025-03-08-8687918d
+[2025-03-08T01:25:14.143Z] ✅  Financial data encrypted with retailer-specific key
+[2025-03-08T01:25:14.143Z] ✅  Merkle root for sales verification: 7a0ef4176e0bbde0ba3579b8c4fffc0246d26ca9b9c883e5008ec2a27b92cfd5
+[2025-03-08T01:25:14.143Z] ✅  
+STEP 15.1: RETAILER RETRIEVES ENCRYPTED FINANCIAL DATA
+[2025-03-08T01:25:14.144Z] ✅  API GET: /api/retailer/sales-summary/summary-2025-03-08-8687918d/financial-data
+[2025-03-08T01:25:14.257Z] ✅  Response: {
+  "success": true,
+  "summaryId": "summary-2025-03-08-8687918d",
+  "date": "2025-03-08",
+  "itemsSold": 1,
+  "merkleRoot": "7a0ef4176e0bbde0ba3579b8c4fffc0246d26ca9b9c883e5008ec2a27b92cfd5",
+  "timestamp": 1741397113817,
+  "financialData": {
+    "totalSales": 299.99,
+    "revenue": 299.99,
+    "profitMargin": 0.45,
+    "productBreakdown": {
+      "Electronics": {
+        "units": 1,
+        "revenue": 299.99
+      }
+    },
+    "paymentMethodBreakdown": {
+      "Credit Card": {
+        "count": 1,
+        "amount": 299.99
+      }
+    },
+    "transactionDetails": [
+      {
+        "productId": "prod-1741397106991-b0713fc5",
+        "serialNumber": "PROD-bcee86-00001",
+        "price": 299.99
+      }
+    ],
+    "categoryPerformance": {
+      "SmartWatches": {
+        "sold": 1,
+        "revenue": 299.99,
+        "margin": 0.45
+      }
+    },
+    "hourlyDistribution": {
+      "10": 1
+    },
+    "staffPerformance": {
+      "Employee1": {
+        "sales": 1,
+        "revenue": 299.99
+      }
+    },
+    "discountsApplied": {
+      "None": 0
+    },
+    "taxCollected": 24
+  }
+}
+[2025-03-08T01:25:14.257Z] ✅  Retrieved financial data for summary summary-2025-03-08-8687918d
+[2025-03-08T01:25:14.257Z] ✅  Total Sales: $299.99
+[2025-03-08T01:25:14.258Z] ✅  Profit Margin: 45%
+[2025-03-08T01:25:14.258Z] ✅  Tax Collected: $24
+[2025-03-08T01:25:14.258Z] ✅  
+STEP 15.2: ATTEMPT UNAUTHORIZED ACCESS TO SENSITIVE FINANCIAL DATA
+[2025-03-08T01:25:14.258Z] ✅  API GET: /api/retailer/sales-summary/summary-2025-03-08-8687918d/financial-data
+[2025-03-08T01:25:14.264Z] ❌ ERROR:  Failed API GET: /api/retailer/sales-summary/summary-2025-03-08-8687918d/financial-data - Only retailers can access this endpoint
+[2025-03-08T01:25:14.264Z] ✅  Security working: Distributor correctly denied access to financial data
+[2025-03-08T01:25:14.265Z] ✅  
+STEP 16: CUSTOMER RETURNS PRODUCT TO RETAILER
+[2025-03-08T01:25:14.265Z] ✅  API POST: /api/retailer/returns/process
+[2025-03-08T01:25:15.031Z] ✅  Response: {
+  "success": true,
+  "message": "Return processed successfully",
+  "returnId": "return-1741397114375-b6a67cec",
+  "saleId": "sale-1741397112384-3b030117",
+  "productId": "prod-1741397106991-b0713fc5",
+  "serialNumber": "PROD-bcee86-00001",
+  "txid": "541580e90b4216f44f9808f5b186aaafaf59b47e4567450faa01e5c34829424f"
+}
+[2025-03-08T01:25:15.031Z] ✅  Customer returned product PROD-bcee86-00001 with return ID return-1741397114375-b6a67cec
+[2025-03-08T01:25:15.031Z] ✅  
+STEP 17: VERIFYING PRODUCT LOCATION (BACK AT RETAILER)
+[2025-03-08T01:25:15.031Z] ✅  API GET: /api/verify/product/PROD-bcee86-00001
+[2025-03-08T01:25:15.477Z] ✅  Response: {
+  "success": true,
+  "serialNumber": "PROD-bcee86-00001",
+  "productId": "prod-1741390802715-753cc96e",
+  "productInfo": {
+    "name": "SmartWatch X1",
+    "description": "Advanced smartwatch with health tracking",
+    "category": "Electronics",
+    "manufacturer": {
+      "id": "manufacturer-1741390801309-5d5dac7c",
+      "name": "TechGadgets Inc."
+    },
+    "specifications": {
+      "display": "1.5 inch AMOLED",
+      "battery": "48 hours",
+      "waterResistant": true
+    }
+  },
+  "currentLocation": {
+    "type": "customer",
+    "status": "sold",
+    "saleId": "sale-1741397112384-3b030117"
+  },
+  "verificationTimestamp": 1741397115476,
+  "authenticity": {
+    "isAuthentic": true,
+    "merkleRoot": "65bea2856d4098d8e134dc86b4da88908d6e9a9c52099332a253c1bef60c5b34",
+    "productRegisteredRoot": "58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788",
+    "proofAvailable": true,
+    "rootMatchesRegistration": false
+  }
+}
+[2025-03-08T01:25:15.477Z] ✅  Product PROD-bcee86-00001 is now: customer (sold)
+[2025-03-08T01:25:15.477Z] ✅  
+STEP 18: CHECKING RETAILER RETURNS HISTORY
+[2025-03-08T01:25:15.478Z] ✅  API GET: /api/retailer/returns/history
+[2025-03-08T01:25:15.591Z] ✅  Response: {
+  "success": true,
+  "retailerId": "retailer-1741397106331-fa4a346c",
+  "returns": [
+    {
+      "returnId": "return-1741397114375-b6a67cec",
+      "saleId": "sale-1741397112384-3b030117",
+      "productId": "prod-1741397106991-b0713fc5",
+      "serialNumber": "PROD-bcee86-00001",
+      "reason": "Changed mind",
+      "timestamp": 1741397114376,
+      "status": "returned"
+    }
+  ]
+}
+[2025-03-08T01:25:15.591Z] ✅  Retailer returns history checked - has 1 return(s)
+[2025-03-08T01:25:15.591Z] ✅  
+STEP 20: TESTING MERKLE PROOF VERIFICATION
+[2025-03-08T01:25:15.592Z] ✅  API GET: /api/verify/product/PROD-bcee86-00001/merkle-proof
+[2025-03-08T01:25:15.814Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-bcee86-00001",
+  "verified": true,
+  "merkleRoot": "21069b41d1b2f76abe43476d3c7d939febacab706a2b3c49211cd07fcdd9ddc2",
+  "registeredRoot": "58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741390802715-753cc96e",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397115812,
+  "message": "Product PROD-bcee86-00001 verified with Merkle proof successfully"
+}
+[2025-03-08T01:25:15.814Z] ✅  Product PROD-bcee86-00001 verified with Merkle proof successfully
+[2025-03-08T01:25:15.814Z] ✅  Merkle root: 21069b41d1b2f76abe43476d3c7d939febacab706a2b3c49211cd07fcdd9ddc2
+[2025-03-08T01:25:15.814Z] ✅  Registered root: 58e531f92307bcda7dd1b8576e4f3e9ade49fec55645dfdda940a473325b4788
+[2025-03-08T01:25:15.814Z] ✅  Roots match: No
+[2025-03-08T01:25:15.815Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:25:15.815Z] ✅  
+TEST COMPLETED SUCCESSFULLY
+[2025-03-08T01:25:15.815Z] ✅  All privacy and security features verified - supply chain system is working as expected

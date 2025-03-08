@@ -1,0 +1,299 @@
+=== MERKLE VERIFICATION TEST (2025-03-08T01:36:51.353Z) ===
+
+[2025-03-08T01:36:51.354Z] ✅  Starting Merkle verification test with real serial numbers...
+[2025-03-08T01:36:51.356Z] ✅  STEP 1: REGISTERING TEST MANUFACTURER
+[2025-03-08T01:36:51.357Z] ✅  API POST: /api/register/manufacturer
+[2025-03-08T01:36:51.395Z] ✅  Response: {
+  "success": true,
+  "message": "Manufacturer registered successfully",
+  "entity": {
+    "id": "manufacturer-1741397811389-47d26844",
+    "name": "Test Manufacturer Inc.",
+    "apiKey": "4a20ae337858f4ce150ee5822e5da993"
+  }
+}
+[2025-03-08T01:36:51.396Z] ✅  Registered manufacturer with ID manufacturer-1741397811389-47d26844
+[2025-03-08T01:36:51.396Z] ✅  
+STEP 2: REGISTERING TEST PRODUCT
+[2025-03-08T01:36:51.396Z] ✅  API POST: /api/products/register
+[2025-03-08T01:36:51.833Z] ✅  Response: {
+  "success": true,
+  "message": "Product registered successfully",
+  "productId": "prod-1741397811399-0617c67e",
+  "name": "Test Product",
+  "serialNumberCount": 10,
+  "merkleRoot": "06bf62e0b060b61c402c3e666f5f3baeb3e8a107168b6873e65520f62f2ebbd2",
+  "sensitiveDataStored": true,
+  "txid": "6b118e6cbbc5659452f4b1e789651ccb65a0c19241504cd31d3626349bc405f7"
+}
+[2025-03-08T01:36:51.834Z] ✅  Registered product with ID prod-1741397811399-0617c67e
+[2025-03-08T01:36:51.834Z] ✅  
+STEP 3: RETRIEVING REAL SERIAL NUMBERS
+[2025-03-08T01:36:51.834Z] ✅  API GET: /api/products/prod-1741397811399-0617c67e/serial-numbers
+[2025-03-08T01:36:52.055Z] ✅  Response: {
+  "success": true,
+  "productId": "prod-1741397811399-0617c67e",
+  "serialNumbers": [
+    "PROD-d24b5376a294-00001",
+    "PROD-188a88372b5a-00002",
+    "PROD-363d63f92222-00003",
+    "PROD-cbfc293ed767-00004",
+    "PROD-5fa0ddec0e2b-00005",
+    "PROD-96b90cded7d0-00006",
+    "PROD-f1d7e86b71e7-00007",
+    "PROD-22ab162d307b-00008",
+    "PROD-d284bc45cc4b-00009",
+    "PROD-49b74a015a5f-00010"
+  ],
+  "count": 10
+}
+[2025-03-08T01:36:52.056Z] ✅  Retrieved 10 real serial numbers from the system
+[2025-03-08T01:36:52.056Z] ✅  Serial numbers: PROD-d24b5376a294-00001, PROD-188a88372b5a-00002, PROD-363d63f92222-00003, PROD-cbfc293ed767-00004, PROD-5fa0ddec0e2b-00005, PROD-96b90cded7d0-00006, PROD-f1d7e86b71e7-00007, PROD-22ab162d307b-00008, PROD-d284bc45cc4b-00009, PROD-49b74a015a5f-00010
+[2025-03-08T01:36:52.056Z] ✅  
+STEP 4: VERIFYING MERKLE PROOFS WITH REAL SERIAL NUMBERS
+[2025-03-08T01:36:52.057Z] ✅  API GET: /api/verify/product/PROD-d24b5376a294-00001/merkle-proof
+[2025-03-08T01:36:52.280Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-d24b5376a294-00001",
+  "verified": true,
+  "merkleRoot": "be1eecc9dc20d4d0db3d021895561734c645048fcc91f27b0a69c99ce4f3975b",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397812279,
+  "message": "Product PROD-d24b5376a294-00001 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:52.280Z] ✅  Product PROD-d24b5376a294-00001 verified with Merkle proof successfully
+[2025-03-08T01:36:52.281Z] ✅  Merkle root: be1eecc9dc20d4d0db3d021895561734c645048fcc91f27b0a69c99ce4f3975b
+[2025-03-08T01:36:52.281Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:52.281Z] ✅  Roots match: No
+[2025-03-08T01:36:52.282Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:52.282Z] ✅  ------------------------------
+[2025-03-08T01:36:52.282Z] ✅  API GET: /api/verify/product/PROD-188a88372b5a-00002/merkle-proof
+[2025-03-08T01:36:52.504Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-188a88372b5a-00002",
+  "verified": true,
+  "merkleRoot": "1b948d03d4ddff70dee3a4dc33e2ea1997d9416a572f6d267f12f16e40b23241",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397812503,
+  "message": "Product PROD-188a88372b5a-00002 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:52.505Z] ✅  Product PROD-188a88372b5a-00002 verified with Merkle proof successfully
+[2025-03-08T01:36:52.505Z] ✅  Merkle root: 1b948d03d4ddff70dee3a4dc33e2ea1997d9416a572f6d267f12f16e40b23241
+[2025-03-08T01:36:52.505Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:52.505Z] ✅  Roots match: No
+[2025-03-08T01:36:52.505Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:52.505Z] ✅  ------------------------------
+[2025-03-08T01:36:52.506Z] ✅  API GET: /api/verify/product/PROD-363d63f92222-00003/merkle-proof
+[2025-03-08T01:36:52.727Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-363d63f92222-00003",
+  "verified": true,
+  "merkleRoot": "6bf8f817cdead7fd00bb64124894009240a4777924f6ac915123e39bc9fbcf39",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397812726,
+  "message": "Product PROD-363d63f92222-00003 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:52.728Z] ✅  Product PROD-363d63f92222-00003 verified with Merkle proof successfully
+[2025-03-08T01:36:52.728Z] ✅  Merkle root: 6bf8f817cdead7fd00bb64124894009240a4777924f6ac915123e39bc9fbcf39
+[2025-03-08T01:36:52.728Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:52.729Z] ✅  Roots match: No
+[2025-03-08T01:36:52.729Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:52.729Z] ✅  ------------------------------
+[2025-03-08T01:36:52.729Z] ✅  API GET: /api/verify/product/PROD-cbfc293ed767-00004/merkle-proof
+[2025-03-08T01:36:52.966Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-cbfc293ed767-00004",
+  "verified": true,
+  "merkleRoot": "16949a5d70b75208cd46968b5c53c03412bfd8500515968ec337bad8dc6fc47a",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397812964,
+  "message": "Product PROD-cbfc293ed767-00004 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:52.977Z] ✅  Product PROD-cbfc293ed767-00004 verified with Merkle proof successfully
+[2025-03-08T01:36:52.977Z] ✅  Merkle root: 16949a5d70b75208cd46968b5c53c03412bfd8500515968ec337bad8dc6fc47a
+[2025-03-08T01:36:52.978Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:52.978Z] ✅  Roots match: No
+[2025-03-08T01:36:52.978Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:52.978Z] ✅  ------------------------------
+[2025-03-08T01:36:52.978Z] ✅  API GET: /api/verify/product/PROD-5fa0ddec0e2b-00005/merkle-proof
+[2025-03-08T01:36:53.200Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-5fa0ddec0e2b-00005",
+  "verified": true,
+  "merkleRoot": "fef9203224fe54808b75f8a7bafd644b94c4d0b703e509f41f0bec8588672ca3",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397813199,
+  "message": "Product PROD-5fa0ddec0e2b-00005 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:53.200Z] ✅  Product PROD-5fa0ddec0e2b-00005 verified with Merkle proof successfully
+[2025-03-08T01:36:53.201Z] ✅  Merkle root: fef9203224fe54808b75f8a7bafd644b94c4d0b703e509f41f0bec8588672ca3
+[2025-03-08T01:36:53.201Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:53.201Z] ✅  Roots match: No
+[2025-03-08T01:36:53.201Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:53.202Z] ✅  ------------------------------
+[2025-03-08T01:36:53.202Z] ✅  API GET: /api/verify/product/PROD-96b90cded7d0-00006/merkle-proof
+[2025-03-08T01:36:53.423Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-96b90cded7d0-00006",
+  "verified": true,
+  "merkleRoot": "39e6dc9e3123b021fd7aaab519ca3ab100e64a5973226059051962a75d0681e4",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397813422,
+  "message": "Product PROD-96b90cded7d0-00006 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:53.424Z] ✅  Product PROD-96b90cded7d0-00006 verified with Merkle proof successfully
+[2025-03-08T01:36:53.424Z] ✅  Merkle root: 39e6dc9e3123b021fd7aaab519ca3ab100e64a5973226059051962a75d0681e4
+[2025-03-08T01:36:53.425Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:53.425Z] ✅  Roots match: No
+[2025-03-08T01:36:53.425Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:53.425Z] ✅  ------------------------------
+[2025-03-08T01:36:53.425Z] ✅  API GET: /api/verify/product/PROD-f1d7e86b71e7-00007/merkle-proof
+[2025-03-08T01:36:53.647Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-f1d7e86b71e7-00007",
+  "verified": true,
+  "merkleRoot": "8e2eee89c63b1bd295cd07fe41511fecd5aaf9d7941117f58eed6d23d80cfd32",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397813646,
+  "message": "Product PROD-f1d7e86b71e7-00007 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:53.648Z] ✅  Product PROD-f1d7e86b71e7-00007 verified with Merkle proof successfully
+[2025-03-08T01:36:53.648Z] ✅  Merkle root: 8e2eee89c63b1bd295cd07fe41511fecd5aaf9d7941117f58eed6d23d80cfd32
+[2025-03-08T01:36:53.648Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:53.648Z] ✅  Roots match: No
+[2025-03-08T01:36:53.648Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:53.649Z] ✅  ------------------------------
+[2025-03-08T01:36:53.649Z] ✅  API GET: /api/verify/product/PROD-22ab162d307b-00008/merkle-proof
+[2025-03-08T01:36:53.870Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-22ab162d307b-00008",
+  "verified": true,
+  "merkleRoot": "9c4387f66eb76ed1d50f4a0f8a3340b4703c5cf78e739ed37dda7d927a3fefc0",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397813869,
+  "message": "Product PROD-22ab162d307b-00008 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:53.871Z] ✅  Product PROD-22ab162d307b-00008 verified with Merkle proof successfully
+[2025-03-08T01:36:53.871Z] ✅  Merkle root: 9c4387f66eb76ed1d50f4a0f8a3340b4703c5cf78e739ed37dda7d927a3fefc0
+[2025-03-08T01:36:53.871Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:53.872Z] ✅  Roots match: No
+[2025-03-08T01:36:53.872Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:53.872Z] ✅  ------------------------------
+[2025-03-08T01:36:53.872Z] ✅  API GET: /api/verify/product/PROD-d284bc45cc4b-00009/merkle-proof
+[2025-03-08T01:36:54.093Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-d284bc45cc4b-00009",
+  "verified": true,
+  "merkleRoot": "e506fbaffcff58b1d16253204270ea57c7fcc0d756ea89bb1addf90280d39540",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397814092,
+  "message": "Product PROD-d284bc45cc4b-00009 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:54.093Z] ✅  Product PROD-d284bc45cc4b-00009 verified with Merkle proof successfully
+[2025-03-08T01:36:54.094Z] ✅  Merkle root: e506fbaffcff58b1d16253204270ea57c7fcc0d756ea89bb1addf90280d39540
+[2025-03-08T01:36:54.094Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:54.094Z] ✅  Roots match: No
+[2025-03-08T01:36:54.094Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:54.095Z] ✅  ------------------------------
+[2025-03-08T01:36:54.095Z] ✅  API GET: /api/verify/product/PROD-49b74a015a5f-00010/merkle-proof
+[2025-03-08T01:36:54.316Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-49b74a015a5f-00010",
+  "verified": true,
+  "merkleRoot": "d5c0a4ae776e85d06ab443d3f182fc724548fb78fa8a811e58e9d63926c5cd9f",
+  "registeredRoot": "51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93",
+  "rootsMatch": false,
+  "proof": {
+    "siblings": [],
+    "path": []
+  },
+  "productName": "SmartWatch X1",
+  "productId": "prod-1741391060169-e1e107ee",
+  "manufacturer": "TechGadgets Inc.",
+  "verificationTimestamp": 1741397814315,
+  "message": "Product PROD-49b74a015a5f-00010 verified with Merkle proof successfully"
+}
+[2025-03-08T01:36:54.317Z] ✅  Product PROD-49b74a015a5f-00010 verified with Merkle proof successfully
+[2025-03-08T01:36:54.317Z] ✅  Merkle root: d5c0a4ae776e85d06ab443d3f182fc724548fb78fa8a811e58e9d63926c5cd9f
+[2025-03-08T01:36:54.317Z] ✅  Registered root: 51e40085118d89962aa76279d391f8c62cf1200e5b42ac259d24617f745f4f93
+[2025-03-08T01:36:54.317Z] ✅  Roots match: No
+[2025-03-08T01:36:54.318Z] ✅  Proof contains 0 sibling hashes
+[2025-03-08T01:36:54.318Z] ✅  ------------------------------
+[2025-03-08T01:36:54.318Z] ✅  
+TEST SUMMARY:
+[2025-03-08T01:36:54.318Z] ✅  Total serial numbers tested: 10
+[2025-03-08T01:36:54.319Z] ✅  Successful verifications: 10
+[2025-03-08T01:36:54.319Z] ✅  Merkle root matches: 0
+[2025-03-08T01:36:54.319Z] ❌ ERROR:  PARTIAL SUCCESS: All serial numbers verified but no Merkle root matches. This indicates a potential issue with root storage or comparison.

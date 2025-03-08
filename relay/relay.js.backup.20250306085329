@@ -1,0 +1,2519 @@
+import express from 'express';
+import cors from 'cors';
+import { exec } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import morgan from 'morgan';
+import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
+
+// Get directory name in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Configuration
+const PROJECT_DIR = "/home/lothrok/Documents/projects/dist-ledger";
+const PORT = process.env.PORT || 3005;
+const RPC_USER = "multichainrpc";
+const RPC_PASSWORD = "23RwteDXLwo6hUpifeuNg5KYXte6XFR5JaokAQAfs7E7";
+const JWT_SECRET = "your-jwt-secret-key-replace-in-production";
+
+// Entity types
+const ENTITY_TYPES = {
+  MANUFACTURER: 'manufacturer',
+  DISTRIBUTOR: 'distributor',
+  RETAILER: 'retailer'
+};
+
+// Chain definitions with improved structure for multi-entity support
+const CHAINS = {
+  'main-chain': {
+    rpcPort: 7744,
+    networkPort: 7745,
+    description: 'Central ledger for product registry, entity registry and cross-chain verifications',
+    streams: [
+      'entity_registry',       // All registered entities
+      'product_registry',      // All registered products
+      'merkle_roots',          // Cross-chain Merkle roots
+      'asset_transfers',       // References to asset transfers between entities
+      'verification_proofs'    // Cross-chain verification proofs
+    ]
+  },
+  'distributor-chain': {
+    rpcPort: 7740,
+    networkPort: 7741,
+    description: 'Chain for distributor operations',
+    entityStreams: [
+      '{entityId}_inventory',    // Distributor-specific inventory
+      '{entityId}_transactions', // Distributor-specific transactions
+      '{entityId}_transfers_out',// Shipments to retailers
+      '{entityId}_returns',      // Returns from retailers
+      '{entityId}_purchases',    // Purchases from manufacturers (sensitive)
+      '{entityId}_financials'    // Financial data (sensitive)
+    ]
+  },
+  'retailer-chain': {
+    rpcPort: 7742,
+    networkPort: 7743,
+    description: 'Chain for retailer operations',
+    entityStreams: [
+      '{entityId}_inventory',    // Retailer-specific inventory
+      '{entityId}_transactions', // Retailer-specific transactions
+      '{entityId}_transfers_in', // Receipts from distributors
+      '{entityId}_returns',      // Returns to distributors
+      '{entityId}_sales',        // Customer sales data
+      '{entityId}_financials'    // Financial data (sensitive)
+    ]
+  }
+};
+
+// Initialize express app
+const app = express();
+
+// Middlewares
+app.use(express.json({ limit: '10mb' }));
+app.use(cors());
+
+// Add logging
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, 'access.log'),
+  { flags: 'a' }
+);
+app.use(morgan('combined', { stream: accessLogStream }));
+
+// Helper function to execute MultiChain CLI commands
+const executeCommand = (chainName, command, rpcPort) => {
+  return new Promise((resolve, reject) => {
+    const chainConfig = CHAINS[chainName];
+    if (!chainConfig) {
+      return reject(new Error(`Unknown chain: ${chainName}`));
+    }
+
+    const port = rpcPort || chainConfig.rpcPort;
+    const cliCommand = `multichain-cli -datadir=${PROJECT_DIR}/data/${chainName} -rpcuser=${RPC_USER} -rpcpassword=${RPC_PASSWORD} -rpcport=${port} ${chainName} ${command}`;
+
+    exec(cliCommand, (error, stdout, stderr) => {
+      if (error) {
+        reject(new Error(`Command failed (${chainName}): ${stderr || error.message}`));
+        return;
+      }
+      resolve(stdout.trim());
+    });
+  });
+};
+
+// Authentication middleware
+const authenticateEntity = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: 'Authentication token is required'
+      });
+    }
+
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      
+      // Get entity details from main chain to verify existence
+      const entityData = await executeCommand(
+        'main-chain',
+        `liststreamkeyitems entity_registry ${decoded.entityId}`
+      );
+      
+      const entities = JSON.parse(entityData || '[]');
+      if (entities.length === 0) {
+        throw new Error('Entity not found');
+      }
+      
+      // Get the latest entity record
+      const entity = JSON.parse(
+        Buffer.from(entities[entities.length - 1].data, 'hex').toString()
+      );
+      
+      // Verify entity type matches
+      if (entity.type !== decoded.type) {
+        throw new Error('Entity type mismatch');
+      }
+
+      // Add entity info to request
+      req.entity = {
+        id: decoded.entityId,
+        type: decoded.type,
+        name: entity.name
+      };
+
+      next();
+    } catch (error) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid or expired token',
+        error: error.message
+      });
+    }
+  } catch (error) {
+    console.error('Authentication error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Authentication error',
+      error: error.message
+    });
+  }
+};
+
+// Role-based authorization middleware
+const authorizeRole = (allowedRoles) => {
+  return (req, res, next) => {
+    if (!req.entity || !allowedRoles.includes(req.entity.type)) {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied: Insufficient permissions'
+      });
+    }
+    next();
+  };
+};
+
+// Helper function to create entity-specific streams
+const createEntityStreams = async (entityId, entityType) => {
+  try {
+    const chainName = entityType === ENTITY_TYPES.DISTRIBUTOR 
+      ? 'distributor-chain' 
+      : entityType === ENTITY_TYPES.RETAILER 
+        ? 'retailer-chain' 
+        : 'main-chain';
+    
+    const chainConfig = CHAINS[chainName];
+    if (!chainConfig || !chainConfig.entityStreams) {
+      throw new Error(`No entity stream templates defined for ${chainName}`);
+    }
+    
+    const results = [];
+    
+    // Create each stream defined in the chain config
+    for (const streamTemplate of chainConfig.entityStreams) {
+      const streamName = streamTemplate.replace('{entityId}', entityId);
+      
+      try {
+        // Create stream with write permissions for the entity
+        await executeCommand(
+          chainName,
+          `create stream ${streamName} '{"restrict":"write"}'`
+        );
+        
+        // Subscribe to stream
+        await executeCommand(
+          chainName,
+          `subscribe ${streamName}`
+        );
+        
+        results.push({
+          streamName,
+          status: 'created'
+        });
+      } catch (error) {
+        if (error.message.includes('already exists')) {
+          results.push({
+            streamName,
+            status: 'already exists'
+          });
+        } else {
+          throw error;
+        }
+      }
+    }
+    
+    return results;
+  } catch (error) {
+    console.error('Error creating entity streams:', error);
+    throw error;
+  }
+};
+
+// Setup required system streams
+const setupSystemStreams = async () => {
+  try {
+    const results = {};
+    
+    // Create system streams for each chain
+    for (const [chainName, chainConfig] of Object.entries(CHAINS)) {
+      results[chainName] = [];
+      
+      // Create main streams specified in chain config
+      if (chainConfig.streams) {
+        for (const streamName of chainConfig.streams) {
+          try {
+            await executeCommand(
+              chainName,
+              `create stream ${streamName} '{"restrict":"write"}'`
+            );
+            
+            // Subscribe to stream
+            await executeCommand(
+              chainName,
+              `subscribe ${streamName}`
+            );
+            
+            results[chainName].push({
+              streamName,
+              status: 'created'
+            });
+          } catch (error) {
+            if (error.message.includes('already exists')) {
+              results[chainName].push({
+                streamName,
+                status: 'already exists'
+              });
+            } else {
+              results[chainName].push({
+                streamName,
+                status: 'error',
+                error: error.message
+              });
+            }
+          }
+        }
+      }
+    }
+    
+    return results;
+  } catch (error) {
+    console.error('Error setting up system streams:', error);
+    throw error;
+  }
+};
+
+// Helper to generate Merkle tree and proofs
+const generateMerkleTree = (dataObject) => {
+  // Convert object to sorted array of key-value pairs
+  const sortedEntries = Object.entries(dataObject).sort(([keyA], [keyB]) => keyA.localeCompare(keyB));
+  
+  // Create leaf nodes by hashing each key-value pair
+  const leaves = sortedEntries.map(([key, value]) => {
+    const leafData = `${key}:${JSON.stringify(value)}`;
+    return {
+      key,
+      hash: crypto.createHash('sha256').update(leafData).digest('hex')
+    };
+  });
+  
+  // Build tree from leaf nodes
+  const leafHashes = leaves.map(leaf => leaf.hash);
+  const tree = buildMerkleTree(leafHashes);
+  
+  // Generate proofs for each field
+  const proofs = {};
+  leaves.forEach((leaf, index) => {
+    proofs[leaf.key] = generateMerkleProof(tree, index);
+  });
+  
+  return {
+    root: tree.root,
+    proofs,
+    leaves: leaves.map(leaf => ({ key: leaf.key, hash: leaf.hash }))
+  };
+};
+
+// Build a Merkle tree from an array of leaf hashes
+const buildMerkleTree = (leaves) => {
+  if (leaves.length === 0) return { root: null, levels: [] };
+  
+  // Clone leaves to avoid modifying the original array
+  let currentLevel = [...leaves];
+  const levels = [currentLevel];
+  
+  // Continue until we reach the root (single node)
+  while (currentLevel.length > 1) {
+    const nextLevel = [];
+    
+    // Process pairs of nodes
+    for (let i = 0; i < currentLevel.length; i += 2) {
+      if (i + 1 < currentLevel.length) {
+        // Hash the pair
+        const combined = currentLevel[i] + currentLevel[i + 1];
+        const hash = crypto.createHash('sha256').update(combined).digest('hex');
+        nextLevel.push(hash);
+      } else {
+        // Odd number of nodes, promote the last one
+        nextLevel.push(currentLevel[i]);
+      }
+    }
+    
+    // Add the new level and continue
+    levels.unshift(nextLevel);
+    currentLevel = nextLevel;
+  }
+  
+  return {
+    root: levels[0][0],
+    levels
+  };
+};
+
+// Generate a Merkle proof for a specific leaf
+const generateMerkleProof = (tree, leafIndex) => {
+  const proof = [];
+  let currentIndex = leafIndex;
+  
+  // Build proof from bottom to top (except root)
+  for (let i = tree.levels.length - 1; i > 0; i--) {
+    const levelSize = tree.levels[i].length;
+    const pairIndex = currentIndex % 2 === 0 
+      ? Math.min(currentIndex + 1, levelSize - 1) 
+      : currentIndex - 1;
+    
+    // Don't include proof elements for nodes pairing with themselves
+    if (currentIndex !== pairIndex) {
+      proof.push({
+        sibling: tree.levels[i][pairIndex],
+        position: currentIndex % 2 === 0 ? 'right' : 'left'
+      });
+    }
+    
+    // Move to parent node index
+    currentIndex = Math.floor(currentIndex / 2);
+  }
+  
+  return proof;
+};
+
+// Verify a Merkle proof
+const verifyMerkleProof = (proof, leafHash, merkleRoot) => {
+  let computedHash = leafHash;
+  
+  // Apply each proof element
+  for (const { sibling, position } of proof) {
+    if (position === 'left') {
+      // Sibling is on the left
+      computedHash = crypto.createHash('sha256').update(sibling + computedHash).digest('hex');
+    } else {
+      // Sibling is on the right
+      computedHash = crypto.createHash('sha256').update(computedHash + sibling).digest('hex');
+    }
+  }
+  
+  // Compare the computed hash to the claimed Merkle root
+  return computedHash === merkleRoot;
+};
+
+// Update entity inventory
+const updateEntityInventory = async (entityId, entityType, productId, quantity, operation) => {
+  try {
+    const chainName = entityType === ENTITY_TYPES.DISTRIBUTOR 
+      ? 'distributor-chain' 
+      : 'retailer-chain';
+    
+    const streamName = `${entityId}_inventory`;
+    
+    // Try to get current inventory
+    let currentQuantity = 0;
+    try {
+      const inventoryData = await executeCommand(
+        chainName,
+        `liststreamkeyitems ${streamName} ${productId}`
+      );
+      
+      const inventory = JSON.parse(inventoryData || '[]');
+      if (inventory.length > 0) {
+        // Get the most recent inventory entry
+        const latest = inventory.reduce((a, b) => a.time > b.time ? a : b);
+        const parsedData = JSON.parse(Buffer.from(latest.data, 'hex').toString());
+        currentQuantity = parsedData.quantity || 0;
+      }
+    } catch (error) {
+      // If stream or product doesn't exist yet, start at 0
+      console.log(`No existing inventory for ${entityId} - ${productId}, starting at 0`);
+    }
+    
+    // Calculate new quantity
+    let newQuantity = currentQuantity;
+    if (operation === 'ADD') {
+      newQuantity += parseInt(quantity);
+    } else if (operation === 'SUBTRACT') {
+      newQuantity -= parseInt(quantity);
+      // Don't allow negative inventory
+      if (newQuantity < 0) {
+        throw new Error(`Insufficient inventory: ${currentQuantity} available, trying to remove ${quantity}`);
+      }
+    } else {
+      throw new Error(`Invalid inventory operation: ${operation}`);
+    }
+    
+    // Update inventory
+    const inventoryData = {
+      productId,
+      quantity: newQuantity,
+      previousQuantity: currentQuantity,
+      change: operation === 'ADD' ? parseInt(quantity) : -parseInt(quantity),
+      timestamp: Date.now()
+    };
+    
+    const hexData = Buffer.from(JSON.stringify(inventoryData)).toString('hex');
+    
+    const txid = await executeCommand(
+      chainName,
+      `publish ${streamName} ${productId} ${hexData}`
+    );
+    
+    return {
+      entityId,
+      productId,
+      previousQuantity: currentQuantity,
+      newQuantity,
+      operation,
+      txid: txid.trim()
+    };
+  } catch (error) {
+    console.error(`Error updating inventory for ${entityId}:`, error);
+    throw error;
+  }
+};
+
+// Helper to get product details
+const getProductDetails = async (productId) => {
+  try {
+    const productData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems product_registry ${productId}`
+    );
+    
+    const products = JSON.parse(productData || '[]');
+    
+    if (products.length === 0) {
+      return null;
+    }
+    
+    // Get the most recent product data
+    const latest = products.reduce((a, b) => a.time > b.time ? a : b);
+    return JSON.parse(Buffer.from(latest.data, 'hex').toString());
+  } catch (error) {
+    console.error(`Error getting product details for ${productId}:`, error);
+    throw error;
+  }
+};
+
+// Helper to get entity details
+const getEntityDetails = async (entityId) => {
+  try {
+    const entityData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems entity_registry ${entityId}`
+    );
+    
+    const entities = JSON.parse(entityData || '[]');
+    
+    if (entities.length === 0) {
+      return null;
+    }
+    
+    // Get the most recent entity data
+    const latest = entities.reduce((a, b) => a.time > b.time ? a : b);
+    return JSON.parse(Buffer.from(latest.data, 'hex').toString());
+  } catch (error) {
+    console.error(`Error getting entity details for ${entityId}:`, error);
+    throw error;
+  }
+};
+
+// Generate a unique ID with prefix
+const generateId = (prefix) => {
+  return `${prefix}-${Date.now()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+};
+
+// =============================================================================
+// API ENDPOINTS
+// =============================================================================
+
+// ---------------------------------------------------------------------------
+// ENTITY MANAGEMENT ENDPOINTS
+// ---------------------------------------------------------------------------
+
+// Register a new entity
+app.post('/api/entities/register', async (req, res) => {
+  try {
+    const {
+      name,
+      type,
+      location,
+      description,
+      contactInfo,
+      publicKey
+    } = req.body;
+    
+    // Validate required fields
+    if (!name || !type || !location) {
+      return res.status(400).json({
+        success: false,
+        message: 'Name, type, and location are required'
+      });
+    }
+    
+    // Validate entity type
+    if (!Object.values(ENTITY_TYPES).includes(type)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid entity type. Must be manufacturer, distributor, or retailer'
+      });
+    }
+    
+    // Generate entity ID
+    const entityId = generateId(type.toUpperCase());
+    
+    // Create entity object
+    const entity = {
+      entityId,
+      name,
+      type,
+      location,
+      description: description || '',
+      contactInfo: contactInfo || {},
+      publicKey: publicKey || crypto.randomBytes(32).toString('hex'),
+      registrationDate: Date.now(),
+      status: 'ACTIVE'
+    };
+    
+    // Store entity in main chain
+    const hexData = Buffer.from(JSON.stringify(entity)).toString('hex');
+    const txid = await executeCommand(
+      'main-chain',
+      `publish entity_registry ${entityId} ${hexData}`
+    );
+    
+    // Create entity-specific streams
+    if (type !== ENTITY_TYPES.MANUFACTURER) {
+      await createEntityStreams(entityId, type);
+    }
+    
+    // Generate authentication token
+    const token = jwt.sign(
+      { 
+        entityId,
+        type,
+        name
+      }, 
+      JWT_SECRET, 
+      { expiresIn: '30d' }
+    );
+    
+    res.status(201).json({
+      success: true,
+      message: 'Entity registered successfully',
+      entity,
+      txid: txid.trim(),
+      token
+    });
+  } catch (error) {
+    console.error('Error registering entity:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error registering entity',
+      error: error.message
+    });
+  }
+});
+
+// Get entity details
+app.get('/api/entities/:entityId', async (req, res) => {
+  try {
+    const { entityId } = req.params;
+    
+    const entity = await getEntityDetails(entityId);
+    
+    if (!entity) {
+      return res.status(404).json({
+        success: false,
+        message: 'Entity not found'
+      });
+    }
+    
+    res.status(200).json({
+      success: true,
+      entity
+    });
+  } catch (error) {
+    console.error('Error getting entity details:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving entity details',
+      error: error.message
+    });
+  }
+});
+
+// List entities by type
+app.get('/api/entities', async (req, res) => {
+  try {
+    const { type } = req.query;
+    
+    const entitiesData = await executeCommand(
+      'main-chain',
+      'liststreamitems entity_registry'
+    );
+    
+    let entities = JSON.parse(entitiesData || '[]');
+    
+    // Map entities and filter by the latest version of each entity
+    const entityMap = new Map();
+    
+    for (const item of entities) {
+      try {
+        const entityData = JSON.parse(Buffer.from(item.data, 'hex').toString());
+        const entityId = entityData.entityId;
+        
+        // Only keep the latest version of each entity
+        if (!entityMap.has(entityId) || entityMap.get(entityId).time < item.time) {
+          entityMap.set(entityId, {
+            ...entityData,
+            time: item.time,
+            txid: item.txid
+          });
+        }
+      } catch (error) {
+        console.error('Error parsing entity data:', error);
+      }
+    }
+    
+    entities = Array.from(entityMap.values());
+    
+    // Filter by type if specified
+    if (type && Object.values(ENTITY_TYPES).includes(type)) {
+      entities = entities.filter(entity => entity.type === type);
+    }
+    
+    res.status(200).json({
+      success: true,
+      count: entities.length,
+      entities
+    });
+  } catch (error) {
+    console.error('Error listing entities:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving entities',
+      error: error.message
+    });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// PRODUCT MANAGEMENT ENDPOINTS
+// ---------------------------------------------------------------------------
+
+// Register a new product
+app.post('/api/products/register', authenticateEntity, async (req, res) => {
+  try {
+    const {
+      productId,
+      name,
+      description,
+      category,
+      unitPrice,
+      initialQuantity,
+      manufacturingDate,
+      sku,
+      barcode,
+      dimensions,
+      weight,
+      specifications,
+      customAttributes
+    } = req.body;
+    
+    // Validate required fields
+    if (!productId || !name) {
+      return res.status(400).json({
+        success: false,
+        message: 'Product ID and name are required'
+      });
+    }
+    
+    // Generate serial numbers (limited to a sample to avoid blockchain size issues)
+    const serialNumbers = [];
+    const qty = parseInt(initialQuantity) || 1;
+    const maxSamples = Math.min(qty, 10);
+    
+    for (let i = 0; i < maxSamples; i++) {
+      serialNumbers.push(`${productId}-${Date.now() + i}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`);
+    }
+    
+    // Create product object
+    const product = {
+      productId,
+      name,
+      description: description || '',
+      category: category || 'Uncategorized',
+      unitPrice: parseFloat(unitPrice) || 0,
+      initialQuantity: qty,
+      serialNumberSamples: serialNumbers,
+      totalSerialCount: qty,
+      manufacturerId: req.entity.id,
+      manufacturerName: req.entity.name,
+      manufacturingDate: manufacturingDate || Date.now(),
+      registrationDate: Date.now(),
+      status: 'ACTIVE',
+      // Additional optional fields
+      sku: sku || undefined,
+      barcode: barcode || undefined,
+      dimensions: dimensions || undefined,
+      weight: weight ? parseFloat(weight) : undefined,
+      specifications: specifications || undefined,
+      customAttributes: customAttributes || undefined
+    };
+    
+    // Store product in main chain
+    const hexData = Buffer.from(JSON.stringify(product)).toString('hex');
+    const txid = await executeCommand(
+      'main-chain',
+      `publish product_registry ${productId} ${hexData}`
+    );
+    
+    // If lots of serial numbers, store them in batches
+    if (qty > maxSamples) {
+      try {
+        // Ensure product_serials stream exists
+        try {
+          await executeCommand(
+            'main-chain',
+            'create stream product_serials false'
+          );
+          
+          await executeCommand(
+            'main-chain',
+            'subscribe product_serials'
+          );
+        } catch (error) {
+          // Stream might already exist
+        }
+        
+        // Store serial numbers in batches
+        const batchSize = 100;
+        for (let i = 0; i < qty; i += batchSize) {
+          const batch = [];
+          const batchCount = Math.min(batchSize, qty - i);
+          
+          for (let j = 0; j < batchCount; j++) {
+            batch.push(`${productId}-${Date.now()}-${i + j}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`);
+          }
+          
+          const batchData = {
+            productId,
+            batchNumber: Math.floor(i / batchSize) + 1,
+            totalBatches: Math.ceil(qty / batchSize),
+            count: batch.length,
+            serials: batch
+          };
+          
+          const hexBatchData = Buffer.from(JSON.stringify(batchData)).toString('hex');
+          await executeCommand(
+            'main-chain',
+            `publish product_serials ${productId}-batch-${batchData.batchNumber} ${hexBatchData}`
+          );
+        }
+      } catch (error) {
+        console.warn('Warning: Failed to store all serial numbers:', error);
+      }
+    }
+    
+    res.status(201).json({
+      success: true,
+      message: 'Product registered successfully',
+      product,
+      txid: txid.trim()
+    });
+  } catch (error) {
+    console.error('Error registering product:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error registering product',
+      error: error.message
+    });
+  }
+});
+
+// Get product details
+app.get('/api/products/:productId', async (req, res) => {
+  try {
+    const { productId } = req.params;
+    
+    const product = await getProductDetails(productId);
+    
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+    
+    res.status(200).json({
+      success: true,
+      product
+    });
+  } catch (error) {
+    console.error('Error getting product details:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving product details',
+      error: error.message
+    });
+  }
+});
+
+// List products
+app.get('/api/products', async (req, res) => {
+  try {
+    const { category, manufacturer, search, limit = 100 } = req.query;
+    
+    const productsData = await executeCommand(
+      'main-chain',
+      'liststreamitems product_registry'
+    );
+    
+    let products = JSON.parse(productsData || '[]');
+    
+    // Map products and filter by the latest version of each product
+    const productMap = new Map();
+    
+    for (const item of products) {
+      try {
+        const productData = JSON.parse(Buffer.from(item.data, 'hex').toString());
+        const productId = productData.productId;
+        
+        // Only keep the latest version of each product
+        if (!productMap.has(productId) || productMap.get(productId).time < item.time) {
+          productMap.set(productId, {
+            ...productData,
+            time: item.time,
+            txid: item.txid
+          });
+        }
+      } catch (error) {
+        console.error('Error parsing product data:', error);
+      }
+    }
+    
+    products = Array.from(productMap.values());
+    
+    // Apply filters
+    if (category) {
+      products = products.filter(product => 
+        product.category && product.category.toLowerCase().includes(category.toLowerCase())
+      );
+    }
+    
+    if (manufacturer) {
+      products = products.filter(product => 
+        product.manufacturerId === manufacturer || 
+        (product.manufacturerName && product.manufacturerName.toLowerCase().includes(manufacturer.toLowerCase()))
+      );
+    }
+    
+    if (search) {
+      const searchLower = search.toLowerCase();
+      products = products.filter(product => 
+        (product.productId && product.productId.toLowerCase().includes(searchLower)) ||
+        (product.name && product.name.toLowerCase().includes(searchLower)) ||
+        (product.description && product.description.toLowerCase().includes(searchLower)) ||
+        (product.sku && product.sku.toLowerCase().includes(searchLower))
+      );
+    }
+    
+    // Apply limit
+    const limitNum = parseInt(limit);
+    if (!isNaN(limitNum) && limitNum > 0) {
+      products = products.slice(0, limitNum);
+    }
+    
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      products
+    });
+  } catch (error) {
+    console.error('Error listing products:', error);
+    res.status(500).json({
+      success: false,
+
+
+      message: 'Error listing products',
+      error: error.message
+    });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// SUPPLY CHAIN OPERATIONS - DISTRIBUTOR ENDPOINTS
+// ---------------------------------------------------------------------------
+
+// Receive product shipment from manufacturer (distributor-specific)
+app.post('/api/distributor/receive-from-manufacturer', authenticateEntity, authorizeRole([ENTITY_TYPES.DISTRIBUTOR]), async (req, res) => {
+  try {
+    const {
+      productId,
+      quantity,
+      manufacturerId,
+      batchId,
+      invoiceNumber,
+      receivedDate,
+      purchaseOrderNumber,
+      shipmentDetails,
+      qualityCheckPassed
+    } = req.body;
+    
+    // Validate required fields
+    if (!productId || !quantity || !manufacturerId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Product ID, quantity, and manufacturer ID are required'
+      });
+    }
+    
+    // Check if product exists
+    const product = await getProductDetails(productId);
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+    
+    // Check if manufacturer exists
+    const manufacturer = await getEntityDetails(manufacturerId);
+    if (!manufacturer || manufacturer.type !== ENTITY_TYPES.MANUFACTURER) {
+      return res.status(404).json({
+        success: false,
+        message: 'Manufacturer not found'
+      });
+    }
+    
+    // Generate receiving record ID
+    const receivingId = generateId('RECV');
+    
+    // Create the private receiving record (stored only in distributor chain)
+    const privateReceivingData = {
+      receivingId,
+      productId,
+      productName: product.name,
+      manufacturerId,
+      manufacturerName: manufacturer.name,
+      quantity: parseInt(quantity),
+      distributorId: req.entity.id,
+      distributorName: req.entity.name,
+      receivedDate: receivedDate || Date.now(),
+      purchaseOrderNumber,
+      invoiceNumber,
+      unitPrice: product.unitPrice,
+      totalCost: parseInt(quantity) * (product.unitPrice || 0),
+      paymentTerms: shipmentDetails?.paymentTerms,
+      financialDetails: {
+        paymentStatus: shipmentDetails?.paymentStatus || 'PENDING',
+        paymentMethod: shipmentDetails?.paymentMethod,
+        accountingRef: shipmentDetails?.accountingRef
+      },
+      qualityCheckPassed: qualityCheckPassed || false,
+      timestamp: Date.now()
+    };
+    
+    // Create a Merkle tree for the private data to enable selective disclosure
+    const merkleData = generateMerkleTree(privateReceivingData);
+    
+    // Create public receiving record with only necessary information for main chain
+    const publicReceivingData = {
+      receivingId,
+      productId,
+      manufacturerId,
+      distributorId: req.entity.id,
+      quantity: parseInt(quantity),
+      receivedDate: receivedDate || Date.now(),
+      merkleRoot: merkleData.root,
+      // Public proofs for commonly verified fields
+      proofs: {
+        quantity: merkleData.proofs.quantity,
+        receivedDate: merkleData.proofs.receivedDate,
+        productId: merkleData.proofs.productId
+      },
+      status: qualityCheckPassed ? 'ACCEPTED' : 'PENDING_INSPECTION',
+      timestamp: Date.now()
+    };
+    
+    // Record private data in distributor's chain
+    const distributorStreamName = `${req.entity.id}_purchases`;
+    const privateHexData = Buffer.from(JSON.stringify(privateReceivingData)).toString('hex');
+    
+    const privateTxid = await executeCommand(
+      'distributor-chain',
+      `publish ${distributorStreamName} ${receivingId} ${privateHexData}`
+    );
+    
+    // Store in distributor's inventory stream
+    await updateEntityInventory(
+      req.entity.id, 
+      ENTITY_TYPES.DISTRIBUTOR, 
+      productId, 
+      parseInt(quantity), 
+      'ADD'
+    );
+    
+    // Record public data in main chain
+    const publicHexData = Buffer.from(JSON.stringify(publicReceivingData)).toString('hex');
+    const mainChainTxid = await executeCommand(
+      'main-chain',
+      `publish asset_transfers ${receivingId} ${publicHexData}`
+    );
+    
+    res.status(201).json({
+      success: true,
+      message: 'Product received successfully from manufacturer',
+      receivingId,
+      distributorChainTxid: privateTxid.trim(),
+      mainChainTxid: mainChainTxid.trim(),
+      merkleRoot: merkleData.root
+    });
+    
+  } catch (error) {
+    console.error('Error processing manufacturer-to-distributor transfer:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error processing product receipt',
+      error: error.message
+    });
+  }
+});
+
+// Ship products to retailer (distributor-specific)
+app.post('/api/distributor/ship-to-retailer', authenticateEntity, authorizeRole([ENTITY_TYPES.DISTRIBUTOR]), async (req, res) => {
+  try {
+    const {
+      productId,
+      quantity,
+      retailerId,
+      shipmentId,
+      shipmentDate,
+      expectedDeliveryDate,
+      transportInfo,
+      invoiceNumber,
+      pricePerUnit,
+      termsOfSale
+    } = req.body;
+    
+    // Validate required fields
+    if (!productId || !quantity || !retailerId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Product ID, quantity, and retailer ID are required'
+      });
+    }
+    
+    // Check if product exists
+    const product = await getProductDetails(productId);
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+    
+    // Check if retailer exists
+    const retailer = await getEntityDetails(retailerId);
+    if (!retailer || retailer.type !== ENTITY_TYPES.RETAILER) {
+      return res.status(404).json({
+        success: false,
+        message: 'Retailer not found'
+      });
+    }
+    
+    // Check distributor's inventory
+    try {
+      const inventoryStream = `${req.entity.id}_inventory`;
+      const inventoryData = await executeCommand(
+        'distributor-chain',
+        `liststreamkeyitems ${inventoryStream} ${productId}`
+      );
+      
+      const inventory = JSON.parse(inventoryData || '[]');
+      if (inventory.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Product not in inventory'
+        });
+      }
+      
+      // Get latest inventory record
+      const latestInventory = inventory.reduce((a, b) => a.time > b.time ? a : b);
+      const parsedInventory = JSON.parse(Buffer.from(latestInventory.data, 'hex').toString());
+      
+      if (parsedInventory.quantity < parseInt(quantity)) {
+        return res.status(400).json({
+          success: false,
+          message: `Insufficient inventory. Available: ${parsedInventory.quantity}, Requested: ${quantity}`
+        });
+      }
+    } catch (error) {
+      console.error('Error checking inventory:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Error checking inventory',
+        error: error.message
+      });
+    }
+    
+    // Generate shipment ID if not provided
+    const finalShipmentId = shipmentId || generateId('SHIP');
+    
+    // Create private shipment record for distributor
+    const privateShipmentData = {
+      shipmentId: finalShipmentId,
+      productId,
+      productName: product.name,
+      quantity: parseInt(quantity),
+      retailerId,
+      retailerName: retailer.name,
+      distributorId: req.entity.id,
+      distributorName: req.entity.name,
+      shipmentDate: shipmentDate || Date.now(),
+      expectedDeliveryDate,
+      status: 'SHIPPED',
+      invoiceNumber,
+      pricePerUnit: pricePerUnit || product.unitPrice,
+      totalValue: parseInt(quantity) * (pricePerUnit || product.unitPrice || 0),
+      profitMargin: pricePerUnit ? (pricePerUnit - product.unitPrice) / product.unitPrice * 100 : undefined,
+      termsOfSale,
+      transportInfo,
+      timestamp: Date.now()
+    };
+    
+    // Create Merkle tree for private data
+    const merkleData = generateMerkleTree(privateShipmentData);
+    
+    // Create public shipment data
+    const publicShipmentData = {
+      shipmentId: finalShipmentId,
+      productId,
+      quantity: parseInt(quantity),
+      retailerId,
+      distributorId: req.entity.id,
+      shipmentDate: shipmentDate || Date.now(),
+      expectedDeliveryDate,
+      merkleRoot: merkleData.root,
+      status: 'SHIPPED',
+      // Public proofs for commonly verified fields
+      proofs: {
+        productId: merkleData.proofs.productId,
+        quantity: merkleData.proofs.quantity,
+        shipmentDate: merkleData.proofs.shipmentDate
+      },
+      timestamp: Date.now()
+    };
+    
+    // Record transfer in distributor's chain
+    const distributorStreamName = `${req.entity.id}_transfers_out`;
+    const privateHexData = Buffer.from(JSON.stringify(privateShipmentData)).toString('hex');
+    
+    const privateTxid = await executeCommand(
+      'distributor-chain',
+      `publish ${distributorStreamName} ${finalShipmentId} ${privateHexData}`
+    );
+    
+    // Update distributor inventory
+    await updateEntityInventory(
+      req.entity.id, 
+      ENTITY_TYPES.DISTRIBUTOR, 
+      productId, 
+      parseInt(quantity), 
+      'SUBTRACT'
+    );
+    
+    // Record public data in main chain
+    const publicHexData = Buffer.from(JSON.stringify(publicShipmentData)).toString('hex');
+    const mainChainTxid = await executeCommand(
+      'main-chain',
+      `publish asset_transfers ${finalShipmentId} ${publicHexData}`
+    );
+    
+    // Notify retailer by creating a transfer request in their chain
+    try {
+      const retailerNotification = {
+        shipmentId: finalShipmentId,
+        productId,
+        productName: product.name,
+        quantity: parseInt(quantity),
+        distributorId: req.entity.id,
+        distributorName: req.entity.name,
+        shipmentDate: shipmentDate || Date.now(),
+        expectedDeliveryDate,
+        merkleRoot: merkleData.root,
+        status: 'PENDING_RECEIPT',
+        timestamp: Date.now()
+      };
+      
+      const retailerHexData = Buffer.from(JSON.stringify(retailerNotification)).toString('hex');
+      const retailerStreamName = `${retailerId}_transfers_in`;
+      
+      await executeCommand(
+        'retailer-chain',
+        `publish ${retailerStreamName} ${finalShipmentId} ${retailerHexData}`
+      );
+      
+    } catch (error) {
+      console.warn('Warning: Failed to notify retailer:', error);
+      // Continue with the response, we'll handle this notification failure separately
+    }
+    
+    res.status(201).json({
+      success: true,
+      message: 'Product shipment to retailer recorded successfully',
+      shipmentId: finalShipmentId,
+      distributorChainTxid: privateTxid.trim(),
+      mainChainTxid: mainChainTxid.trim(),
+      merkleRoot: merkleData.root
+    });
+    
+  } catch (error) {
+    console.error('Error processing distributor-to-retailer transfer:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error processing product shipment',
+      error: error.message
+    });
+  }
+});
+
+// Process return from retailer (distributor-specific)
+app.post('/api/distributor/process-return', authenticateEntity, authorizeRole([ENTITY_TYPES.DISTRIBUTOR]), async (req, res) => {
+  try {
+    const {
+      returnId,
+      disposition,
+      notes,
+      creditAmount,
+      replacementShipmentId
+    } = req.body;
+    
+    if (!returnId || !disposition) {
+      return res.status(400).json({
+        success: false,
+        message: 'Return ID and disposition are required'
+      });
+    }
+    
+    // Get return details from main chain
+    const returnsData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems asset_returns ${returnId}`
+    );
+    
+    const returns = JSON.parse(returnsData || '[]');
+    if (returns.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Return not found'
+      });
+    }
+    
+    // Get the latest return data
+    const latestReturn = returns.reduce((a, b) => a.time > b.time ? a : b);
+    const returnData = JSON.parse(Buffer.from(latestReturn.data, 'hex').toString());
+    
+    // Validate distributor is the return recipient
+    if (returnData.distributorId !== req.entity.id) {
+      return res.status(403).json({
+        success: false,
+        message: 'This return is not addressed to your entity'
+      });
+    }
+    
+    // Create disposition record for distributor chain (private data)
+    const privateDisposition = {
+      returnId,
+      productId: returnData.productId,
+      quantity: returnData.quantity,
+      retailerId: returnData.retailerId,
+      disposition, // APPROVED, REJECTED, PARTIAL
+      dispositionDate: Date.now(),
+      notes,
+      creditAmount,
+      replacementShipmentId,
+      dispositionBy: req.entity.name,
+      timestamp: Date.now()
+    };
+    
+    // Update inventory if return is approved
+    if (disposition === 'APPROVED') {
+      try {
+        await updateEntityInventory(
+          req.entity.id, 
+          ENTITY_TYPES.DISTRIBUTOR, 
+          returnData.productId, 
+          parseInt(returnData.quantity), 
+          'ADD'
+        );
+      } catch (error) {
+        console.error('Error updating inventory:', error);
+        // Continue with return processing even if inventory update fails
+      }
+    }
+    
+    // Create Merkle tree for private data
+    const merkleData = generateMerkleTree(privateDisposition);
+    
+    // Create public disposition record
+    const publicDisposition = {
+      returnId,
+      productId: returnData.productId,
+      retailerId: returnData.retailerId,
+      distributorId: req.entity.id,
+      disposition,
+      dispositionDate: Date.now(),
+      merkleRoot: merkleData.root,
+      status: 'PROCESSED',
+      timestamp: Date.now()
+    };
+    
+    // Record private disposition in distributor's chain
+    const distributorStreamName = `${req.entity.id}_returns`;
+    const privateHexData = Buffer.from(JSON.stringify(privateDisposition)).toString('hex');
+    
+    const privateTxid = await executeCommand(
+      'distributor-chain',
+      `publish ${distributorStreamName} ${returnId} ${privateHexData}`
+    );
+    
+    // Update public return record in main chain
+    const publicHexData = Buffer.from(JSON.stringify(publicDisposition)).toString('hex');
+    const mainChainTxid = await executeCommand(
+      'main-chain',
+      `publish asset_returns ${returnId} ${publicHexData}`
+    );
+    
+    // Notify retailer
+    try {
+      const retailerNotification = {
+        returnId,
+        productId: returnData.productId,
+        disposition,
+        dispositionDate: Date.now(),
+        creditAmount: disposition === 'APPROVED' ? creditAmount : 0,
+        replacementShipmentId,
+        status: 'PROCESSED',
+        timestamp: Date.now()
+      };
+      
+      const retailerHexData = Buffer.from(JSON.stringify(retailerNotification)).toString('hex');
+      const retailerStreamName = `${returnData.retailerId}_returns`;
+      
+      await executeCommand(
+        'retailer-chain',
+        `publish ${retailerStreamName} ${returnId} ${retailerHexData}`
+      );
+      
+    } catch (error) {
+      console.warn('Warning: Failed to notify retailer about return disposition:', error);
+    }
+    
+    res.status(200).json({
+      success: true,
+      message: 'Return processed successfully',
+      returnId,
+      disposition,
+      distributorChainTxid: privateTxid.trim(),
+      mainChainTxid: mainChainTxid.trim(),
+      merkleRoot: merkleData.root
+    });
+    
+  } catch (error) {
+    console.error('Error processing return:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error processing return',
+      error: error.message
+    });
+  }
+});
+
+// Get distributor's inventory (distributor-specific)
+app.get('/api/distributor/inventory', authenticateEntity, authorizeRole([ENTITY_TYPES.DISTRIBUTOR]), async (req, res) => {
+  try {
+    const distributorId = req.entity.id;
+    const inventoryStreamName = `${distributorId}_inventory`;
+    
+    // Get all inventory records
+    const inventoryData = await executeCommand(
+      'distributor-chain',
+      `liststreamitems ${inventoryStreamName}`
+    );
+    
+    const allInventoryRecords = JSON.parse(inventoryData || '[]');
+    
+    // Group by product ID and get latest record for each product
+    const productMap = new Map();
+    
+    for (const record of allInventoryRecords) {
+      try {
+        if (!record.data) continue;
+        
+        const inventoryRecord = JSON.parse(Buffer.from(record.data, 'hex').toString());
+        const productId = inventoryRecord.productId;
+        
+        // Keep only the latest record for each product
+        if (!productMap.has(productId) || productMap.get(productId).timestamp < inventoryRecord.timestamp) {
+          productMap.set(productId, inventoryRecord);
+        }
+      } catch (error) {
+        console.error('Error parsing inventory record:', error);
+      }
+    }
+    
+    // Convert map to array
+    const inventory = Array.from(productMap.values());
+    
+    // Fetch product details for each inventory item
+    const inventoryWithDetails = await Promise.all(inventory.map(async (item) => {
+      try {
+        const product = await getProductDetails(item.productId);
+        return {
+          ...item,
+          productDetails: product || { name: 'Unknown Product' }
+        };
+      } catch (error) {
+        return {
+          ...item,
+          productDetails: { name: 'Unknown Product' }
+        };
+      }
+    }));
+    
+    res.status(200).json({
+      success: true,
+      distributorId,
+      count: inventoryWithDetails.length,
+      inventory: inventoryWithDetails
+    });
+    
+  } catch (error) {
+    console.error('Error getting distributor inventory:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving distributor inventory',
+      error: error.message
+    });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// SUPPLY CHAIN OPERATIONS - RETAILER ENDPOINTS
+// ---------------------------------------------------------------------------
+
+// Receive product shipment from distributor (retailer-specific)
+app.post('/api/retailer/receive-shipment', authenticateEntity, authorizeRole([ENTITY_TYPES.RETAILER]), async (req, res) => {
+  try {
+    const {
+      shipmentId,
+      receivedQuantity,
+      notes,
+      qualityCheck,
+      receivedDate
+    } = req.body;
+    
+    if (!shipmentId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Shipment ID is required'
+      });
+    }
+    
+    // Get shipment details from retailer's chain
+    const transferStreamName = `${req.entity.id}_transfers_in`;
+    const transfersData = await executeCommand(
+      'retailer-chain',
+      `liststreamkeyitems ${transferStreamName} ${shipmentId}`
+    );
+    
+    const transfers = JSON.parse(transfersData || '[]');
+    if (transfers.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Shipment not found'
+      });
+    }
+    
+    // Get latest transfer notification
+    const latestTransfer = transfers.reduce((a, b) => a.time > b.time ? a : b);
+    const transferData = JSON.parse(Buffer.from(latestTransfer.data, 'hex').toString());
+    
+    // Check if already received
+    if (transferData.status === 'RECEIVED') {
+      return res.status(400).json({
+        success: false,
+        message: 'Shipment already received'
+      });
+    }
+    
+    // Create receipt record for retailer chain (private data)
+    const privateReceipt = {
+      shipmentId,
+      productId: transferData.productId,
+      productName: transferData.productName,
+      expectedQuantity: transferData.quantity,
+      receivedQuantity: receivedQuantity || transferData.quantity,
+      discrepancy: receivedQuantity ? transferData.quantity - receivedQuantity : 0,
+      distributorId: transferData.distributorId,
+      distributorName: transferData.distributorName,
+      receivedDate: receivedDate || Date.now(),
+      qualityCheck: qualityCheck || { passed: true },
+      notes,
+      retailerId: req.entity.id,
+      retailerName: req.entity.name,
+      status: 'RECEIVED',
+      timestamp: Date.now()
+    };
+    
+    // Update inventory with received quantity
+    await updateEntityInventory(
+      req.entity.id, 
+      ENTITY_TYPES.RETAILER, 
+      transferData.productId, 
+      parseInt(privateReceipt.receivedQuantity), 
+      'ADD'
+    );
+    
+    // Create Merkle tree for private data
+    const merkleData = generateMerkleTree(privateReceipt);
+    
+    // Create public receipt data for main chain
+    const publicReceipt = {
+      shipmentId,
+      productId: transferData.productId,
+      distributorId: transferData.distributorId,
+      retailerId: req.entity.id,
+      receivedDate: receivedDate || Date.now(),
+      receivedQuantity: privateReceipt.receivedQuantity,
+      status: 'RECEIVED',
+      merkleRoot: merkleData.root,
+      // Public proofs for commonly verified fields
+      proofs: {
+        receivedQuantity: merkleData.proofs.receivedQuantity,
+        receivedDate: merkleData.proofs.receivedDate
+      },
+      timestamp: Date.now()
+    };
+    
+    // Record private receipt in retailer's chain
+    const retailerStreamName = `${req.entity.id}_transactions`;
+    const privateHexData = Buffer.from(JSON.stringify(privateReceipt)).toString('hex');
+    
+    const privateTxid = await executeCommand(
+      'retailer-chain',
+      `publish ${retailerStreamName} ${shipmentId} ${privateHexData}`
+    );
+    
+    // Update public transfer record in main chain
+    const publicHexData = Buffer.from(JSON.stringify(publicReceipt)).toString('hex');
+    const mainChainTxid = await executeCommand(
+      'main-chain',
+      `publish asset_transfers ${shipmentId}_receipt ${publicHexData}`
+    );
+    
+    // Notify distributor
+    try {
+      const distributorNotification = {
+        shipmentId,
+        productId: transferData.productId,
+        receivedQuantity: privateReceipt.receivedQuantity,
+        discrepancy: privateReceipt.discrepancy,
+        receivedDate: receivedDate || Date.now(),
+        retailerId: req.entity.id,
+        status: 'RECEIVED',
+        timestamp: Date.now()
+      };
+      
+      const distributorHexData = Buffer.from(JSON.stringify(distributorNotification)).toString('hex');
+      const distributorStreamName = `${transferData.distributorId}_transfers_out`;
+      
+      await executeCommand(
+        'distributor-chain',
+        `publish ${distributorStreamName} ${shipmentId}_receipt ${distributorHexData}`
+      );
+      
+    } catch (error) {
+      console.warn('Warning: Failed to notify distributor about receipt:', error);
+    }
+    
+    res.status(200).json({
+      success: true,
+      message: 'Shipment received successfully',
+      shipmentId,
+      retailerChainTxid: privateTxid.trim(),
+      mainChainTxid: mainChainTxid.trim(),
+      merkleRoot: merkleData.root
+    });
+    
+  } catch (error) {
+    console.error('Error processing shipment receipt:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error processing shipment receipt',
+      error: error.message
+    });
+  }
+});
+
+// Record product sale to customer (retailer-specific)
+app.post('/api/retailer/record-sale', authenticateEntity, authorizeRole([ENTITY_TYPES.RETAILER]), async (req, res) => {
+  try {
+    const {
+      productId,
+      quantity,
+      salePrice,
+      customerInfo,
+      paymentMethod,
+      saleDate,
+      storeLocation,
+      salesPersonId,
+      transactionId,
+      receiptId
+    } = req.body;
+    
+    if (!productId || !quantity || !salePrice) {
+      return res.status(400).json({
+        success: false,
+        message: 'Product ID, quantity, and sale price are required'
+      });
+    }
+    
+    // Check inventory
+    try {
+      const inventoryStream = `${req.entity.id}_inventory`;
+      const inventoryData = await executeCommand(
+        'retailer-chain',
+        `liststreamkeyitems ${inventoryStream} ${productId}`
+      );
+      
+      const inventory = JSON.parse(inventoryData || '[]');
+      if (inventory.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Product not in inventory'
+        });
+      }
+      
+      // Get latest inventory record
+      const latestInventory = inventory.reduce((a, b) => a.time > b.time ? a : b);
+      const parsedInventory = JSON.parse(Buffer.from(latestInventory.data, 'hex').toString());
+      
+      if (parsedInventory.quantity < parseInt(quantity)) {
+        return res.status(400).json({
+          success: false,
+          message: `Insufficient inventory. Available: ${parsedInventory.quantity}, Requested: ${quantity}`
+        });
+      }
+    } catch (error) {
+      console.error('Error checking inventory:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Error checking inventory',
+        error: error.message
+      });
+    }
+    
+    // Get product details
+    const product = await getProductDetails(productId);
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found in registry'
+      });
+    }
+    
+    // Generate sale ID
+    const saleId = transactionId || generateId('SALE');
+    
+    // Create sale record (private to retailer)
+    const privateSaleData = {
+      saleId,
+      productId,
+      productName: product.name,
+      quantity: parseInt(quantity),
+      salePrice: parseFloat(salePrice),
+      totalAmount: parseInt(quantity) * parseFloat(salePrice),
+      profit: parseInt(quantity) * (parseFloat(salePrice) - (product.unitPrice || 0)),
+      profitMargin: ((parseFloat(salePrice) - (product.unitPrice || 0)) / parseFloat(salePrice) * 100).toFixed(2),
+      customerInfo: customerInfo || {
+        anonymized: true
+      },
+      paymentMethod,
+      saleDate: saleDate || Date.now(),
+      retailerId: req.entity.id,
+      retailerName: req.entity.name,
+      storeLocation,
+      salesPersonId,
+      receiptId,
+      timestamp: Date.now()
+    };
+    
+    // Update inventory
+    await updateEntityInventory(
+      req.entity.id, 
+      ENTITY_TYPES.RETAILER, 
+      productId, 
+      parseInt(quantity), 
+      'SUBTRACT'
+    );
+    
+    // Create Merkle tree for private sale data
+    const merkleData = generateMerkleTree(privateSaleData);
+    
+    // Create public sale data (minimal information shared on main chain)
+    const publicSaleData = {
+      saleId,
+      productId,
+      quantity: parseInt(quantity),
+      retailerId: req.entity.id,
+      saleDate: saleDate || Date.now(),
+      merkleRoot: merkleData.root,
+      // Public proofs for commonly verified fields
+      proofs: {
+        quantity: merkleData.proofs.quantity,
+        saleDate: merkleData.proofs.saleDate
+      },
+      timestamp: Date.now()
+    };
+    
+    // Record private sale in retailer's chain
+    const retailerStreamName = `${req.entity.id}_sales`;
+    const privateHexData = Buffer.from(JSON.stringify(privateSaleData)).toString('hex');
+    
+    const privateTxid = await executeCommand(
+      'retailer-chain',
+      `publish ${retailerStreamName} ${saleId} ${privateHexData}`
+    );
+    
+    // Record minimal sale data in main chain
+    const publicHexData = Buffer.from(JSON.stringify(publicSaleData)).toString('hex');
+    const mainChainTxid = await executeCommand(
+      'main-chain',
+      `publish retail_sales ${saleId} ${publicHexData}`
+    );
+    
+    res.status(201).json({
+      success: true,
+      message: 'Sale recorded successfully',
+      saleId,
+      retailerChainTxid: privateTxid.trim(),
+      mainChainTxid: mainChainTxid.trim(),
+      merkleRoot: merkleData.root
+    });
+    
+  } catch (error) {
+    console.error('Error recording sale:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error recording sale',
+      error: error.message
+    });
+  }
+});
+
+// Return product to distributor (retailer-specific)
+// Return product to distributor (retailer-specific)
+app.post('/api/retailer/return-product', authenticateEntity, authorizeRole([ENTITY_TYPES.RETAILER]), async (req, res) => {
+  try {
+    const {
+      productId,
+      quantity,
+      distributorId,
+      reason,
+      shipmentId,
+      returnCondition,
+      attachmentUrls,
+      notes
+    } = req.body;
+    
+    if (!productId || !quantity || !distributorId || !reason) {
+      return res.status(400).json({
+        success: false,
+        message: 'Product ID, quantity, distributor ID, and reason are required'
+      });
+    }
+    
+    // Check if distributor exists
+    const distributor = await getEntityDetails(distributorId);
+    if (!distributor || distributor.type !== ENTITY_TYPES.DISTRIBUTOR) {
+      return res.status(404).json({
+        success: false,
+        message: 'Distributor not found'
+      });
+    }
+    
+    // Check if the product is in retailer's inventory
+    try {
+      const inventoryStream = `${req.entity.id}_inventory`;
+      const inventoryData = await executeCommand(
+        'retailer-chain',
+        `liststreamkeyitems ${inventoryStream} ${productId}`
+      );
+      
+      const inventory = JSON.parse(inventoryData || '[]');
+      if (inventory.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Product not in inventory'
+        });
+      }
+      
+      // Get latest inventory record
+      const latestInventory = inventory.reduce((a, b) => a.time > b.time ? a : b);
+      const parsedInventory = JSON.parse(Buffer.from(latestInventory.data, 'hex').toString());
+      
+      if (parsedInventory.quantity < parseInt(quantity)) {
+        return res.status(400).json({
+          success: false,
+          message: `Insufficient inventory. Available: ${parsedInventory.quantity}, Requested: ${quantity}`
+        });
+      }
+    } catch (error) {
+      console.error('Error checking inventory:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Error checking inventory',
+        error: error.message
+      });
+    }
+    
+    // Generate return ID
+    const returnId = generateId('RET');
+    
+    // Create private return record for retailer
+    const privateReturnData = {
+      returnId,
+      productId,
+      quantity: parseInt(quantity),
+      distributorId,
+      retailerId: req.entity.id,
+      retailerName: req.entity.name,
+      returnDate: Date.now(),
+      reason,
+      shipmentId,
+      returnCondition: returnCondition || 'UNOPENED',
+      status: 'INITIATED',
+      attachmentUrls,
+      internalNotes: notes,
+      timestamp: Date.now()
+    };
+    
+    // Update retailer's inventory
+    await updateEntityInventory(
+      req.entity.id,
+      ENTITY_TYPES.RETAILER,
+      productId,
+      parseInt(quantity),
+      'SUBTRACT'
+    );
+    
+    // Generate Merkle tree for private data
+    const merkleData = generateMerkleTree(privateReturnData);
+    
+    // Create public return record for main chain
+    const publicReturnData = {
+      returnId,
+      productId,
+      quantity: parseInt(quantity),
+      distributorId,
+      retailerId: req.entity.id,
+      returnDate: Date.now(),
+      reason, // Reason is shared publicly for supply chain analysis
+      status: 'INITIATED',
+      merkleRoot: merkleData.root,
+      // Public proofs for commonly verified fields
+      proofs: {
+        productId: merkleData.proofs.productId,
+        quantity: merkleData.proofs.quantity,
+        returnDate: merkleData.proofs.returnDate,
+        reason: merkleData.proofs.reason
+      },
+      timestamp: Date.now()
+    };
+    
+    // Record private data in retailer's chain
+    const retailerStreamName = `${req.entity.id}_returns`;
+    const privateHexData = Buffer.from(JSON.stringify(privateReturnData)).toString('hex');
+    
+    const privateTxid = await executeCommand(
+      'retailer-chain',
+      `publish ${retailerStreamName} ${returnId} ${privateHexData}`
+    );
+    
+    // Record public data in main chain
+    const publicHexData = Buffer.from(JSON.stringify(publicReturnData)).toString('hex');
+    const mainChainTxid = await executeCommand(
+      'main-chain',
+      `publish asset_returns ${returnId} ${publicHexData}`
+    );
+    
+    // Notify distributor
+    try {
+      const distributorNotification = {
+        returnId,
+        productId,
+        quantity: parseInt(quantity),
+        retailerId: req.entity.id,
+        retailerName: req.entity.name,
+        returnDate: Date.now(),
+        reason,
+        status: 'PENDING_APPROVAL',
+        merkleRoot: merkleData.root,
+        timestamp: Date.now()
+      };
+      
+      const distributorHexData = Buffer.from(JSON.stringify(distributorNotification)).toString('hex');
+      const distributorStreamName = `${distributorId}_returns`;
+      
+      await executeCommand(
+        'distributor-chain',
+        `publish ${distributorStreamName} ${returnId} ${distributorHexData}`
+      );
+      
+    } catch (error) {
+      console.warn('Warning: Failed to notify distributor about return:', error);
+      // Continue with the response, we'll handle notification failure separately
+    }
+    
+    res.status(201).json({
+      success: true,
+      message: 'Product return initiated successfully',
+      returnId,
+      retailerChainTxid: privateTxid.trim(),
+      mainChainTxid: mainChainTxid.trim(),
+      merkleRoot: merkleData.root
+    });
+    
+  } catch (error) {
+    console.error('Error initiating product return:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error initiating product return',
+      error: error.message
+    });
+  }
+});
+
+// Get retailer's inventory (retailer-specific)
+app.get('/api/retailer/inventory', authenticateEntity, authorizeRole([ENTITY_TYPES.RETAILER]), async (req, res) => {
+  try {
+    const retailerId = req.entity.id;
+    const inventoryStreamName = `${retailerId}_inventory`;
+    
+    // Get all inventory records
+    const inventoryData = await executeCommand(
+      'retailer-chain',
+      `liststreamitems ${inventoryStreamName}`
+    );
+    
+    const allInventoryRecords = JSON.parse(inventoryData || '[]');
+    
+    // Group by product ID and get latest record for each product
+    const productMap = new Map();
+    
+    for (const record of allInventoryRecords) {
+      try {
+        if (!record.data) continue;
+        
+        const inventoryRecord = JSON.parse(Buffer.from(record.data, 'hex').toString());
+        const productId = inventoryRecord.productId;
+        
+        // Keep only the latest record for each product
+        if (!productMap.has(productId) || productMap.get(productId).timestamp < inventoryRecord.timestamp) {
+          productMap.set(productId, inventoryRecord);
+        }
+      } catch (error) {
+        console.error('Error parsing inventory record:', error);
+      }
+    }
+    
+    // Convert map to array
+    const inventory = Array.from(productMap.values());
+    
+    // Fetch product details for each inventory item
+    const inventoryWithDetails = await Promise.all(inventory.map(async (item) => {
+      try {
+        const product = await getProductDetails(item.productId);
+        return {
+          ...item,
+          productDetails: product || { name: 'Unknown Product' }
+        };
+      } catch (error) {
+        return {
+          ...item,
+          productDetails: { name: 'Unknown Product' }
+        };
+      }
+    }));
+    
+    // Filter out products with zero quantity
+    const nonZeroInventory = inventoryWithDetails.filter(item => item.quantity > 0);
+    
+    res.status(200).json({
+      success: true,
+      retailerId,
+      count: nonZeroInventory.length,
+      inventory: nonZeroInventory
+    });
+    
+  } catch (error) {
+    console.error('Error getting retailer inventory:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving retailer inventory',
+      error: error.message
+    });
+  }
+});
+
+// Get retailer's sales history (retailer-specific)
+app.get('/api/retailer/sales', authenticateEntity, authorizeRole([ENTITY_TYPES.RETAILER]), async (req, res) => {
+  try {
+    const retailerId = req.entity.id;
+    const salesStreamName = `${retailerId}_sales`;
+    const { startDate, endDate, productId, limit = 100 } = req.query;
+    
+    // Get all sales records
+    const salesData = await executeCommand(
+      'retailer-chain',
+      `liststreamitems ${salesStreamName}`
+    );
+    
+    const allSales = JSON.parse(salesData || '[]');
+    const sales = [];
+    
+    // Parse sales data and apply filters
+    for (const record of allSales) {
+      try {
+        if (!record.data) continue;
+        
+        const saleRecord = JSON.parse(Buffer.from(record.data, 'hex').toString());
+        
+        // Apply filters
+        if (productId && saleRecord.productId !== productId) continue;
+        
+        if (startDate) {
+          const startTimestamp = new Date(startDate).getTime();
+          if (saleRecord.saleDate < startTimestamp) continue;
+        }
+        
+        if (endDate) {
+          const endTimestamp = new Date(endDate).getTime();
+          if (saleRecord.saleDate > endTimestamp) continue;
+        }
+        
+        sales.push({
+          ...saleRecord,
+          blockTimestamp: record.time
+        });
+      } catch (error) {
+        console.error('Error parsing sale record:', error);
+      }
+    }
+    
+    // Sort by date (newest first)
+    sales.sort((a, b) => b.saleDate - a.saleDate);
+    
+    // Apply limit
+    const limitedSales = sales.slice(0, parseInt(limit));
+    
+    // Calculate summary statistics
+    const totalRevenue = sales.reduce((sum, sale) => sum + sale.totalAmount, 0);
+    const totalQuantity = sales.reduce((sum, sale) => sum + sale.quantity, 0);
+    const totalProfit = sales.reduce((sum, sale) => sum + sale.profit, 0);
+    const avgProfitMargin = sales.length > 0 ? 
+      sales.reduce((sum, sale) => sum + parseFloat(sale.profitMargin || 0), 0) / sales.length :
+      0;
+    
+    res.status(200).json({
+      success: true,
+      retailerId,
+      count: limitedSales.length,
+      totalRecords: sales.length,
+      summary: {
+        totalRevenue,
+        totalQuantity,
+        totalProfit,
+        avgProfitMargin: avgProfitMargin.toFixed(2) + '%'
+      },
+      sales: limitedSales
+    });
+    
+  } catch (error) {
+    console.error('Error getting retailer sales:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving sales history',
+      error: error.message
+    });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// CROSS-CHAIN VERIFICATION ENDPOINTS
+// ---------------------------------------------------------------------------
+
+// Verify a Merkle proof against a record
+app.post('/api/verify/merkle-proof', async (req, res) => {
+  try {
+    const {
+      merkleRoot,
+      recordId,
+      field,
+      value,
+      proof
+    } = req.body;
+    
+    if (!merkleRoot || !field || value === undefined || !proof) {
+      return res.status(400).json({
+        success: false,
+        message: 'Merkle root, field, value, and proof are required'
+      });
+    }
+    
+    // Create leaf hash from field and value
+    const leafData = `${field}:${JSON.stringify(value)}`;
+    const leafHash = crypto.createHash('sha256').update(leafData).digest('hex');
+    
+    // Verify the proof against the claimed root
+    const isValid = verifyMerkleProof(proof, leafHash, merkleRoot);
+    
+    // If a record ID was provided, check that the merkle root exists in the blockchain
+    let rootExists = true;
+    let rootRecord = null;
+    
+    if (recordId) {
+      try {
+        const rootsData = await executeCommand(
+          'main-chain',
+          `liststreamkeyitems merkle_roots ${merkleRoot}`
+        );
+        
+        const roots = JSON.parse(rootsData || '[]');
+        rootExists = roots.length > 0;
+        
+        if (rootExists) {
+          // Check related record IDs
+          let recordFound = false;
+          
+          for (const root of roots) {
+            try {
+              const rootData = JSON.parse(Buffer.from(root.data, 'hex').toString());
+              if (rootData.recordId === recordId) {
+                recordFound = true;
+                rootRecord = rootData;
+                break;
+              }
+            } catch (error) {
+              // Skip invalid root records
+            }
+          }
+          
+          rootExists = recordFound;
+        }
+      } catch (error) {
+        rootExists = false;
+        console.error('Error verifying merkle root in blockchain:', error);
+      }
+    }
+    
+    res.status(200).json({
+      success: true,
+      verified: isValid,
+      rootVerified: rootExists,
+      field,
+      value,
+      rootRecord: rootExists ? rootRecord : null
+    });
+    
+  } catch (error) {
+    console.error('Error verifying merkle proof:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error verifying merkle proof',
+      error: error.message
+    });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// ANALYTICS AND REPORTING ENDPOINTS
+// ---------------------------------------------------------------------------
+
+// Get distributor's shipment analytics
+app.get('/api/distributor/analytics/shipments', authenticateEntity, authorizeRole([ENTITY_TYPES.DISTRIBUTOR]), async (req, res) => {
+  try {
+    const distributorId = req.entity.id;
+    const { startDate, endDate, period = 'monthly' } = req.query;
+    
+    const shipmentStreamName = `${distributorId}_transfers_out`;
+    
+    // Get all shipment records
+    const shipmentsData = await executeCommand(
+      'distributor-chain',
+      `liststreamitems ${shipmentStreamName}`
+    );
+    
+    const shipments = [];
+    const allShipments = JSON.parse(shipmentsData || '[]');
+    
+    // Parse shipment data and apply filters
+    for (const record of allShipments) {
+      try {
+        if (!record.data) continue;
+        
+        const shipment = JSON.parse(Buffer.from(record.data, 'hex').toString());
+        
+        if (!shipment.shipmentDate) continue;
+        
+        // Apply date filters if provided
+        if (startDate) {
+          const startTimestamp = new Date(startDate).getTime();
+          if (shipment.shipmentDate < startTimestamp) continue;
+        }
+        
+        if (endDate) {
+          const endTimestamp = new Date(endDate).getTime();
+          if (shipment.shipmentDate > endTimestamp) continue;
+        }
+        
+        shipments.push(shipment);
+      } catch (error) {
+        console.error('Error parsing shipment data:', error);
+      }
+    }
+    
+    // Prepare time-series data
+    const timeSeriesData = {};
+    const retailerData = {};
+    const productData = {};
+    
+    // Group shipments by time period
+    for (const shipment of shipments) {
+      try {
+        // Get period key based on selected period
+        let periodKey;
+        const shipmentDate = new Date(shipment.shipmentDate);
+        
+        if (period === 'daily') {
+          periodKey = shipmentDate.toISOString().split('T')[0];
+        } else if (period === 'weekly') {
+          const weekStart = new Date(shipmentDate);
+          weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+          periodKey = weekStart.toISOString().split('T')[0];
+        } else if (period === 'monthly') {
+          periodKey = `${shipmentDate.getFullYear()}-${(shipmentDate.getMonth() + 1).toString().padStart(2, '0')}`;
+        } else if (period === 'yearly') {
+          periodKey = shipmentDate.getFullYear().toString();
+        } else {
+          periodKey = 'all';
+        }
+        
+        // Initialize period data if not exists
+        if (!timeSeriesData[periodKey]) {
+          timeSeriesData[periodKey] = {
+            totalShipments: 0,
+            totalItems: 0,
+            totalValue: 0
+          };
+        }
+        
+        // Initialize retailer data if not exists
+        const retailerId = shipment.retailerId;
+        if (!retailerData[retailerId]) {
+          retailerData[retailerId] = {
+            totalShipments: 0,
+            totalItems: 0,
+            totalValue: 0,
+            retailerName: shipment.retailerName || 'Unknown'
+          };
+        }
+        
+        // Initialize product data if not exists
+        const productId = shipment.productId;
+        if (!productData[productId]) {
+          productData[productId] = {
+            totalShipments: 0,
+            totalItems: 0,
+            totalValue: 0,
+            productName: shipment.productName || 'Unknown'
+          };
+        }
+        
+        // Update statistics
+        timeSeriesData[periodKey].totalShipments += 1;
+        timeSeriesData[periodKey].totalItems += shipment.quantity || 0;
+        timeSeriesData[periodKey].totalValue += shipment.totalValue || 0;
+        
+        retailerData[retailerId].totalShipments += 1;
+        retailerData[retailerId].totalItems += shipment.quantity || 0;
+        retailerData[retailerId].totalValue += shipment.totalValue || 0;
+        
+        productData[productId].totalShipments += 1;
+        productData[productId].totalItems += shipment.quantity || 0;
+        productData[productId].totalValue += shipment.totalValue || 0;
+        
+      } catch (error) {
+        console.error('Error processing shipment for analytics:', error);
+      }
+    }
+    
+    // Convert to arrays and sort
+    const timeSeriesArray = Object.entries(timeSeriesData).map(([period, data]) => ({
+      period,
+      ...data
+    })).sort((a, b) => a.period.localeCompare(b.period));
+    
+    const retailerArray = Object.entries(retailerData).map(([retailerId, data]) => ({
+      retailerId,
+      ...data
+    })).sort((a, b) => b.totalItems - a.totalItems);
+    
+    const productArray = Object.entries(productData).map(([productId, data]) => ({
+      productId,
+      ...data
+    })).sort((a, b) => b.totalItems - a.totalItems);
+    
+    // Overall summary
+    const summary = {
+      totalShipments: shipments.length,
+      totalItems: shipments.reduce((sum, shipment) => sum + (shipment.quantity || 0), 0),
+      totalValue: shipments.reduce((sum, shipment) => sum + (shipment.totalValue || 0), 0),
+      uniqueRetailers: Object.keys(retailerData).length,
+      uniqueProducts: Object.keys(productData).length
+    };
+    
+    res.status(200).json({
+      success: true,
+      distributorId,
+      period,
+      summary,
+      timeSeries: timeSeriesArray,
+      topRetailers: retailerArray.slice(0, 10),
+      topProducts: productArray.slice(0, 10)
+    });
+    
+  } catch (error) {
+    console.error('Error retrieving distributor shipment analytics:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving shipment analytics',
+      error: error.message
+    });
+  }
+});
+
+// Initialize system
+app.post('/api/system/init', async (req, res) => {
+  try {
+    // Setup required streams on all chains
+    const streamResults = await setupSystemStreams();
+    
+    res.status(200).json({
+      success: true,
+      message: 'System initialized successfully',
+      streams: streamResults
+    });
+  } catch (error) {
+    console.error('Error initializing system:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error initializing system',
+      error: error.message
+    });
+  }
+});
+
+// Health check endpoint
+app.get('/api/health', async (req, res) => {
+  try {
+    // Check connection to each chain
+    const healthChecks = {};
+    
+    for (const [chainName, chainConfig] of Object.entries(CHAINS)) {
+      try {
+        const result = await executeCommand(
+          chainName,
+          'getinfo'
+        );
+        
+        healthChecks[chainName] = {
+          status: 'online',
+          info: JSON.parse(result)
+        };
+      } catch (error) {
+        healthChecks[chainName] = {
+          status: 'offline',
+          error: error.message
+        };
+      }
+    }
+    
+    // Overall status is online only if all chains are online
+    const overallStatus = Object.values(healthChecks).every(check => check.status === 'online') 
+      ? 'healthy' 
+      : 'degraded';
+    
+    res.status(200).json({
+      success: true,
+      status: overallStatus,
+      chains: healthChecks,
+      timestamp: Date.now()
+    });
+  } catch (error) {
+    console.error('Health check error:', error);
+    res.status(500).json({
+      success: false,
+      status: 'error',
+      message: 'Error performing health check',
+      error: error.message
+    });
+  }
+});
+
+// Start the server
+const startServer = async () => {
+  try {
+    console.log('Performing initial system check...');
+    
+    // Check connections to chains
+    for (const chainName of Object.keys(CHAINS)) {
+      try {
+        const info = await executeCommand(chainName, 'getinfo');
+        console.log(`✓ Connected to ${chainName}`);
+      } catch (error) {
+        console.error(`✗ Failed to connect to ${chainName}: ${error.message}`);
+        console.error('Please ensure the blockchain nodes are running.');
+        process.exit(1);
+      }
+    }
+    
+    // Start the server
+    app.listen(PORT, () => {
+      console.log(`
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║                    Dist-Ledger API Server                    ║
+║                                                              ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                              ║
+║  - Server running on port ${PORT}                             ║
+║  - Connected to: main-chain, distributor-chain, retailer-chain║
+║  - API documentation: http://localhost:${PORT}/api/docs        ║
+║                                                              ║
+║  Use /api/system/init to set up required blockchain streams  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+      `);
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+// Start the server
+startServer();

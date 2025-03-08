@@ -1,0 +1,224 @@
+=== FIXED MERKLE VERIFICATION TEST (2025-03-08T01:51:41.953Z) ===
+
+[2025-03-08T01:51:41.954Z] ✅  Starting Merkle verification test with diagnosis for root mismatch...
+[2025-03-08T01:51:41.956Z] ✅  STEP 1: REGISTERING TEST MANUFACTURER
+[2025-03-08T01:51:41.957Z] ✅  API POST: /api/register/manufacturer
+[2025-03-08T01:51:41.996Z] ✅  Response: {
+  "success": true,
+  "message": "Manufacturer registered successfully",
+  "entity": {
+    "id": "manufacturer-1741398701989-3609b950",
+    "name": "Merkle Fix Test Inc.",
+    "apiKey": "88fd66dc14604afcd793c1777d69e554"
+  }
+}
+[2025-03-08T01:51:41.996Z] ✅  Registered manufacturer with ID manufacturer-1741398701989-3609b950
+[2025-03-08T01:51:41.997Z] ✅  
+STEP 2: REGISTERING TEST PRODUCT
+[2025-03-08T01:51:41.997Z] ✅  API POST: /api/products/register
+[2025-03-08T01:51:42.434Z] ✅  Response: {
+  "success": true,
+  "message": "Product registered successfully",
+  "productId": "prod-1741398702000-71cb9fdb",
+  "name": "Merkle Fix Test Product",
+  "serialNumberCount": 5,
+  "merkleRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "sensitiveDataStored": true,
+  "txid": "d53dcd7f8e6ada2716ffea9a9218314f0fdc867d12da4e44e662ab1c0576c232"
+}
+[2025-03-08T01:51:42.434Z] ✅  Registered product with ID prod-1741398702000-71cb9fdb
+[2025-03-08T01:51:42.435Z] ✅  Product registered with Merkle root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:42.435Z] ✅  
+STEP 3: RETRIEVING SERIAL NUMBERS
+[2025-03-08T01:51:42.436Z] ✅  API GET: /api/products/prod-1741398702000-71cb9fdb/serial-numbers
+[2025-03-08T01:51:42.657Z] ✅  Response: {
+  "success": true,
+  "productId": "prod-1741398702000-71cb9fdb",
+  "serialNumbers": [
+    "PROD-203fe119c2f9-00001",
+    "PROD-fdd98f54e291-00002",
+    "PROD-7e3193239bfd-00003",
+    "PROD-31a991f364eb-00004",
+    "PROD-55cc1a38c9be-00005"
+  ],
+  "count": 5
+}
+[2025-03-08T01:51:42.657Z] ✅  Retrieved 5 serial numbers
+[2025-03-08T01:51:42.658Z] ✅  
+STEP 4: DIAGNOSTIC - MANUALLY RECREATING MERKLE TREE
+[2025-03-08T01:51:42.659Z] ✅  Manually calculated Merkle root: a4c580ab8e88d405a26c554d97a6dd56d8349665cc9fdf4b5d6b1e799ae2c9b6
+[2025-03-08T01:51:42.659Z] ✅  Original registered Merkle root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:42.660Z] ✅  Manual root matches registered root: false
+[2025-03-08T01:51:42.661Z] ✅  
+STEP 5: VERIFYING MERKLE PROOFS WITH API
+[2025-03-08T01:51:42.662Z] ✅  API GET: /api/verify/product/PROD-203fe119c2f9-00001/merkle-proof
+[2025-03-08T01:51:42.883Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-203fe119c2f9-00001",
+  "verified": true,
+  "merkleRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "registeredRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "rootsMatch": true,
+  "proof": {
+    "siblings": [
+      "d6b27a070a5c1429158c008aafd4ad956c79c05152cdd8e410abf345843b38bf",
+      "8b9595eed3c1323ab509db499f8efd16c5efde1c84b7e90828afd9cf7f2e91b1",
+      "2cf67a8383c886301f2aa0e3049eb2b39d386428d8d919a8d69093a40c94ac27"
+    ],
+    "path": [
+      "right",
+      "right",
+      "right"
+    ]
+  },
+  "productName": "Merkle Fix Test Product",
+  "productId": "prod-1741398702000-71cb9fdb",
+  "manufacturer": "Merkle Fix Test Inc.",
+  "verificationTimestamp": 1741398702882,
+  "message": "Product PROD-203fe119c2f9-00001 verified with Merkle proof successfully"
+}
+[2025-03-08T01:51:42.883Z] ✅  Serial PROD-203fe119c2f9-00001 verification: SUCCESS
+[2025-03-08T01:51:42.884Z] ✅  API calculated root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:42.884Z] ✅  API registered root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:42.884Z] ✅  API roots match: true
+[2025-03-08T01:51:42.885Z] ✅  Our manual root matches API calculated: false
+[2025-03-08T01:51:42.885Z] ✅  ------------------------------
+[2025-03-08T01:51:42.886Z] ✅  API GET: /api/verify/product/PROD-fdd98f54e291-00002/merkle-proof
+[2025-03-08T01:51:43.109Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-fdd98f54e291-00002",
+  "verified": true,
+  "merkleRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "registeredRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "rootsMatch": true,
+  "proof": {
+    "siblings": [
+      "5f7b1b9e03ca68de2932aed40d5276e657d14aace9f2cedf7775c672fb834197",
+      "8b9595eed3c1323ab509db499f8efd16c5efde1c84b7e90828afd9cf7f2e91b1",
+      "2cf67a8383c886301f2aa0e3049eb2b39d386428d8d919a8d69093a40c94ac27"
+    ],
+    "path": [
+      "left",
+      "right",
+      "right"
+    ]
+  },
+  "productName": "Merkle Fix Test Product",
+  "productId": "prod-1741398702000-71cb9fdb",
+  "manufacturer": "Merkle Fix Test Inc.",
+  "verificationTimestamp": 1741398703108,
+  "message": "Product PROD-fdd98f54e291-00002 verified with Merkle proof successfully"
+}
+[2025-03-08T01:51:43.109Z] ✅  Serial PROD-fdd98f54e291-00002 verification: SUCCESS
+[2025-03-08T01:51:43.110Z] ✅  API calculated root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.110Z] ✅  API registered root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.110Z] ✅  API roots match: true
+[2025-03-08T01:51:43.110Z] ✅  Our manual root matches API calculated: false
+[2025-03-08T01:51:43.110Z] ✅  ------------------------------
+[2025-03-08T01:51:43.111Z] ✅  API GET: /api/verify/product/PROD-7e3193239bfd-00003/merkle-proof
+[2025-03-08T01:51:43.332Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-7e3193239bfd-00003",
+  "verified": true,
+  "merkleRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "registeredRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "rootsMatch": true,
+  "proof": {
+    "siblings": [
+      "eb3c7f924df79dcbdd4e20975b3c989822a8ad927af4bf26c6a3d2937112620f",
+      "066f44ea5ea28a71dc20a080f3bba9629e1633aafa85896a1e2c4f2f6883b563",
+      "2cf67a8383c886301f2aa0e3049eb2b39d386428d8d919a8d69093a40c94ac27"
+    ],
+    "path": [
+      "right",
+      "left",
+      "right"
+    ]
+  },
+  "productName": "Merkle Fix Test Product",
+  "productId": "prod-1741398702000-71cb9fdb",
+  "manufacturer": "Merkle Fix Test Inc.",
+  "verificationTimestamp": 1741398703331,
+  "message": "Product PROD-7e3193239bfd-00003 verified with Merkle proof successfully"
+}
+[2025-03-08T01:51:43.332Z] ✅  Serial PROD-7e3193239bfd-00003 verification: SUCCESS
+[2025-03-08T01:51:43.332Z] ✅  API calculated root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.333Z] ✅  API registered root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.333Z] ✅  API roots match: true
+[2025-03-08T01:51:43.333Z] ✅  Our manual root matches API calculated: false
+[2025-03-08T01:51:43.333Z] ✅  ------------------------------
+[2025-03-08T01:51:43.333Z] ✅  API GET: /api/verify/product/PROD-31a991f364eb-00004/merkle-proof
+[2025-03-08T01:51:43.554Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-31a991f364eb-00004",
+  "verified": true,
+  "merkleRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "registeredRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "rootsMatch": true,
+  "proof": {
+    "siblings": [
+      "e41550b9097f30e58c38f89b8f49294be390daf705d788aa1a95de302eb3e004",
+      "066f44ea5ea28a71dc20a080f3bba9629e1633aafa85896a1e2c4f2f6883b563",
+      "2cf67a8383c886301f2aa0e3049eb2b39d386428d8d919a8d69093a40c94ac27"
+    ],
+    "path": [
+      "left",
+      "left",
+      "right"
+    ]
+  },
+  "productName": "Merkle Fix Test Product",
+  "productId": "prod-1741398702000-71cb9fdb",
+  "manufacturer": "Merkle Fix Test Inc.",
+  "verificationTimestamp": 1741398703554,
+  "message": "Product PROD-31a991f364eb-00004 verified with Merkle proof successfully"
+}
+[2025-03-08T01:51:43.555Z] ✅  Serial PROD-31a991f364eb-00004 verification: SUCCESS
+[2025-03-08T01:51:43.555Z] ✅  API calculated root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.555Z] ✅  API registered root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.555Z] ✅  API roots match: true
+[2025-03-08T01:51:43.555Z] ✅  Our manual root matches API calculated: false
+[2025-03-08T01:51:43.556Z] ✅  ------------------------------
+[2025-03-08T01:51:43.556Z] ✅  API GET: /api/verify/product/PROD-55cc1a38c9be-00005/merkle-proof
+[2025-03-08T01:51:43.777Z] ✅  Response: {
+  "success": true,
+  "product": "PROD-55cc1a38c9be-00005",
+  "verified": true,
+  "merkleRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "registeredRoot": "69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499",
+  "rootsMatch": true,
+  "proof": {
+    "siblings": [
+      "15f93536de75ad7eb5cbe7131e1363dc3bcca9daf153a8de1abeff39635e869b"
+    ],
+    "path": [
+      "left"
+    ]
+  },
+  "productName": "Merkle Fix Test Product",
+  "productId": "prod-1741398702000-71cb9fdb",
+  "manufacturer": "Merkle Fix Test Inc.",
+  "verificationTimestamp": 1741398703776,
+  "message": "Product PROD-55cc1a38c9be-00005 verified with Merkle proof successfully"
+}
+[2025-03-08T01:51:43.778Z] ✅  Serial PROD-55cc1a38c9be-00005 verification: SUCCESS
+[2025-03-08T01:51:43.778Z] ✅  API calculated root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.778Z] ✅  API registered root: 69810e2c0fedb386f0641bb454cd74cd5fd54d6e5039aa65549f914700707499
+[2025-03-08T01:51:43.778Z] ✅  API roots match: true
+[2025-03-08T01:51:43.778Z] ✅  Our manual root matches API calculated: false
+[2025-03-08T01:51:43.778Z] ✅  ------------------------------
+[2025-03-08T01:51:43.778Z] ✅  
+STEP 6: DIRECTLY CHECKING PRODUCT DATA IN BLOCKCHAIN
+[2025-03-08T01:51:43.779Z] ✅  API GET: /api/system/diagnostic/product/prod-1741398702000-71cb9fdb
+[2025-03-08T01:51:43.786Z] ❌ ERROR:  Failed API GET: /api/system/diagnostic/product/prod-1741398702000-71cb9fdb - Request failed with status code 404
+[2025-03-08T01:51:43.786Z] ❌ ERROR:  Could not directly access product blockchain data. Endpoint may not exist yet.
+[2025-03-08T01:51:43.786Z] ✅  
+TEST SUMMARY:
+[2025-03-08T01:51:43.787Z] ✅  Total serial numbers tested: 5
+[2025-03-08T01:51:43.787Z] ✅  Successful verifications: 5
+[2025-03-08T01:51:43.787Z] ✅  Merkle root matches in API: 5
+[2025-03-08T01:51:43.787Z] ✅  DIAGNOSIS: Manual root calculation does NOT match registered root. Issue is likely in the original Merkle tree calculation or storage.
+[2025-03-08T01:51:43.788Z] ✅  
+CONCLUSION:
+[2025-03-08T01:51:43.788Z] ✅  The root mismatch appears to be due to differences in how the Merkle tree is being generated at registration vs. verification time.
+[2025-03-08T01:51:43.788Z] ✅  RECOMMENDATION: Ensure consistent serialization and hashing of data in both places.
