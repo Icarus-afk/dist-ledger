@@ -1,286 +1,120 @@
-1. Core System Functions
-Chain Management
-initializeChain(chainType) - Initialize specific blockchain (main, distributor, retailer)
-connectChains() - Establish connections between the three chains
-getChainStatus(chainName) - Get current status and metrics for a chain
-verifyChainIntegrity(chainName) - Verify blockchain integrity
-Authentication & Authorization
-registerEntity(entityType, entityDetails) - Register a new participant
-authenticateEntity(entityId, credentials) - Authenticate participant
-authorizeAction(entityId, actionType, resource) - Check permissions
-Merkle Tree Functions
-generateMerkleTree(transactions) - Create Merkle tree from transactions
-getMerkleRoot(treeData) - Extract root hash
-generateMerkleProof(tree, transactionIndex) - Generate proof for specific transaction
-verifyMerkleProof(root, proof, transaction) - Verify transaction inclusion
-2. Main Chain APIs
-Product Registration
-POST /api/products/register - Register new product
+# TechChain API Reference Guide
 
-Input: product details, specifications, quantity
-Output: productId, serial number range, registration confirmation
-GET /api/products/{productId} - Get product details
+## AUTHENTICATION
+Most endpoints require API key authentication:
 
-Output: complete product information
-POST /api/products/{productId}/merkle - Generate Merkle tree for product batch
+- Include in request header: `x-api-key: YOUR_API_KEY`
+- API keys are issued when entities register with the system
+- Each entity type (manufacturer, distributor, retailer) has access to specific endpoints
 
-Output: Merkle root, batch verification data
-Cross-Chain Coordination
-POST /api/main/chainroots - Store Merkle roots from sidechains
+## REGISTRATION ENDPOINTS
 
-Input: chainId, blockId, merkleRoot
-Output: verification status
-GET /api/main/verify/transaction - Verify transaction across chains
+### REGISTER MANUFACTURER
+- **POST** `/api/register/manufacturer`
+- No authentication required
+- Request body: `{"name": "Company Name", "contactInfo": {...}, "location": "..."}`
+- Response: Returns manufacturer ID and API key for future authentication
 
-Input: transactionId, chainId
-Output: verification status, proof
-GET /api/main/product/history/{serialNumber} - Get complete product history
+### REGISTER DISTRIBUTOR
+- **POST** `/api/register/distributor`
+- No authentication required
+- Request body: `{"name": "Company Name", "contactInfo": {...}, "location": "..."}`
+- Response: Returns distributor ID and API key
 
-Output: full chain of custody
-3. Distributor Chain APIs
-Receiving Management
-POST /api/distributor/receive-from-manufacturer - Record receipt of goods
+### REGISTER RETAILER
+- **POST** `/api/register/retailer`
+- No authentication required
+- Request body: `{"name": "Store Name", "contactInfo": {...}, "location": "..."}`
+- Response: Returns retailer ID and API key
 
-Input: productId, quantity, serialNumbers, manufacturerId
-Output: receipt confirmation, transaction details
-GET /api/distributor/pending-shipments - List pending incoming shipments
+## MANUFACTURER ENDPOINTS
 
-Output: pending shipments from manufacturers
-GET /api/distributor/received-shipments - List completed receipts
+### REGISTER PRODUCT
+- **POST** `/api/products/register`
+- Auth: Manufacturer API key
+- Request body: `{"name": "Product Name", "description": "...", "category": "...", "specifications": {...}, "quantity": 100}`
+- Response: Returns product ID, generated serial numbers, and Merkle root
 
-Output: history of received shipments
-Inventory Management
-GET /api/distributor/inventory - Get current inventory
+### GET PRODUCT SERIAL NUMBERS
+- **GET** `/api/products/{productId}/serial-numbers`
+- Auth: Manufacturer API key
+- Response: Returns list of serial numbers for the specific product
 
-Output: stock levels by product
-POST /api/distributor/inventory/update - Update inventory levels
+### TRANSFER PRODUCT TO DISTRIBUTOR
+- **POST** `/api/manufacturer/transfer`
+- Auth: Manufacturer API key
+- Request body: `{"productId": "...", "distributorId": "...", "serialNumbers": [...], "shipmentDetails": {...}}`
+- Response: Returns transfer confirmation and transaction ID
 
-Input: productId, quantityChange, reason
-Output: updated inventory status
-POST /api/distributor/inventory/audit - Perform inventory audit
+## DISTRIBUTOR ENDPOINTS
 
-Input: audit details, stock counts
-Output: discrepancies, audit results
-Shipment Management
-POST /api/distributor/shipment/create - Create outbound shipment to retailer
+### CONFIRM PRODUCT RECEIPT
+- **POST** `/api/distributor/receive`
+- Auth: Distributor API key
+- Request body: `{"transferId": "...", "serialNumbers": [...]}`
+- Response: Returns receipt confirmation
 
-Input: productIds, quantities, serialNumbers, retailerId
-Output: shipmentId, tracking information
-GET /api/distributor/shipments - List all shipments
+### CHECK INVENTORY
+- **GET** `/api/distributor/inventory`
+- Auth: Distributor API key
+- Response: Returns current inventory with product details
 
-Output: shipment history with status
-PUT /api/distributor/shipment/{shipmentId}/status - Update shipment status
+### TRANSFER TO RETAILER
+- **POST** `/api/distributor/transfer`
+- Auth: Distributor API key
+- Request body: `{"productId": "...", "retailerId": "...", "serialNumbers": [...], "shipmentDetails": {...}}`
+- Response: Returns transfer confirmation and transaction ID
 
-Input: status, statusDetails
-Output: updated shipment record
-Dashboard and Analytics
-GET /api/distributor/dashboard - Get dashboard data
+## RETAILER ENDPOINTS
 
-Output: inventory summary, pending shipments, recent activity
-GET /api/distributor/analytics/inventory - Inventory movement analytics
+### CONFIRM PRODUCT RECEIPT
+- **POST** `/api/retailer/receive`
+- Auth: Retailer API key
+- Request body: `{"transferId": "...", "serialNumbers": [...]}`
+- Response: Returns receipt confirmation
 
-Output: inventory turnover, stock levels over time
-4. Retailer Chain APIs
-Receiving Management
-POST /api/retailer/receive-from-distributor - Record receipt from distributor
+### REGISTER PRODUCT SALE
+- **POST** `/api/retailer/sales/register`
+- Auth: Retailer API key
+- Request body: `{"serialNumber": "...", "saleDetails": {...}, "customerInfo": {...}}`
+- Response: Returns sale confirmation and transaction ID
 
-Input: shipmentId, productIds, quantities, serialNumbers, distributorId
-Output: receipt confirmation
-GET /api/retailer/pending-receipts - List pending deliveries
+### PROCESS PRODUCT RETURN
+- **POST** `/api/retailer/returns/process`
+- Auth: Retailer API key
+- Request body: `{"serialNumber": "...", "returnReason": "...", "condition": "..."}`
+- Response: Returns return confirmation and updated inventory status
 
-Output: expected shipments from distributors
-Inventory Management
-GET /api/retailer/inventory - Get store inventory
+### GENERATE DAILY SALES SUMMARY
+- **GET** `/api/retailer/sales/daily-summary?date=YYYY-MM-DD`
+- Auth: Retailer API key
+- Response: Returns aggregated sales data for specified date
 
-Output: current stock by product/location
-POST /api/retailer/inventory/update - Update inventory
+## VERIFICATION ENDPOINTS
 
-Input: productId, quantityChange, reason
-Output: updated inventory status
-Sales Recording
-POST /api/retailer/sales/record - Record customer sale
+### VERIFY PRODUCT AUTHENTICITY
+- **GET** `/api/verify/product/{serialNumber}`
+- No authentication required
+- Response: Returns product authenticity status and basic product details
 
-Input: productId, serialNumber, quantity, price, customerId
-Output: sale confirmation, warranty activation
-GET /api/retailer/sales/history - Get sales history
+### GET PRODUCT MERKLE PROOF
+- **GET** `/api/verify/product/{serialNumber}/merkle-proof`
+- No authentication required
+- Response: Returns cryptographic proof of product authenticity and verification result
 
-Output: historical sales records
-POST /api/retailer/sales/daily-summary - Submit daily sales summary
+### GET PRODUCT HISTORY
+- **GET** `/api/verify/product/{serialNumber}/history`
+- No authentication required
+- Response: Returns timeline of product journey through supply chain
 
-Input: date, aggregated sales data
-Output: confirmation, merkle root for verification
-Returns and Exchanges
-POST /api/retailer/returns/process - Process customer return
+## SYSTEM DIAGNOSTIC ENDPOINTS
 
-Input: saleId, productId, serialNumber, reason
-Output: return confirmation, updated inventory
-GET /api/retailer/returns/history - Get returns history
+### GET PRODUCT DATA
+- **GET** `/api/system/diagnostic/product/{productId}`
+- Admin access only
+- Response: Returns raw product data from blockchain including Merkle root information
 
-Output: processed returns
-5. Cross-Chain Verification Functions
-verifyProductProvenance(serialNumber) - Trace product through supply chain
-verifyTransactionAcrossChains(transactionId) - Verify transaction across multiple chains
-syncMerkleRoots() - Synchronize Merkle roots across chains
-generateCrossChainProof(sourceChain, targetChain, transactionId) - Generate proof valid across chains
-6. Event Handlers
-onProductRegistered(productData) - Handle new product registration
-onShipmentCreated(shipmentData) - Handle new shipment creation
-onProductReceived(receiptData) - Handle product receipt
-onProductSold(saleData) - Handle product sale to customer
-onInventoryChanged(inventoryData) - Handle inventory updates
-onBlockCreated(blockData) - Handle new block creation
-onMerkleRootGenerated(rootData) - Handle new Merkle root
-7. Database Functions
-storeTransaction(chainId, transaction) - Store transaction in database
-queryTransactionHistory(filters) - Query transaction history
-updateTransactionStatus(transactionId, status) - Update transaction status
-linkCrossChainTransactions(transactionIds) - Link related transactions across chains
-8. Helper Functions
-generateSerialNumbers(productId, quantity) - Generate unique serial numbers
-validateSerialNumbers(serialNumbers) - Validate serial number format and uniqueness
-calculateInventoryMetrics(inventoryData) - Calculate inventory KPIs
-formatTransactionForBlock(transactionData) - Format transaction for blockchain
-signTransaction(transactionData, privateKey) - Sign transaction with entity key
-1. Core System Functions
-Chain Management
-initializeChain(chainType) - Initialize specific blockchain (main, distributor, retailer)
-connectChains() - Establish connections between the three chains
-getChainStatus(chainName) - Get current status and metrics for a chain
-verifyChainIntegrity(chainName) - Verify blockchain integrity
-Authentication & Authorization
-registerEntity(entityType, entityDetails) - Register a new participant
-authenticateEntity(entityId, credentials) - Authenticate participant
-authorizeAction(entityId, actionType, resource) - Check permissions
-Merkle Tree Functions
-generateMerkleTree(transactions) - Create Merkle tree from transactions
-getMerkleRoot(treeData) - Extract root hash
-generateMerkleProof(tree, transactionIndex) - Generate proof for specific transaction
-verifyMerkleProof(root, proof, transaction) - Verify transaction inclusion
-2. Main Chain APIs
-Product Registration
-POST /api/products/register - Register new product
-
-Input: product details, specifications, quantity
-Output: productId, serial number range, registration confirmation
-GET /api/products/{productId} - Get product details
-
-Output: complete product information
-POST /api/products/{productId}/merkle - Generate Merkle tree for product batch
-
-Output: Merkle root, batch verification data
-Cross-Chain Coordination
-POST /api/main/chainroots - Store Merkle roots from sidechains
-
-Input: chainId, blockId, merkleRoot
-Output: verification status
-GET /api/main/verify/transaction - Verify transaction across chains
-
-Input: transactionId, chainId
-Output: verification status, proof
-GET /api/main/product/history/{serialNumber} - Get complete product history
-
-Output: full chain of custody
-3. Distributor Chain APIs
-Receiving Management
-POST /api/distributor/receive-from-manufacturer - Record receipt of goods
-
-Input: productId, quantity, serialNumbers, manufacturerId
-Output: receipt confirmation, transaction details
-GET /api/distributor/pending-shipments - List pending incoming shipments
-
-Output: pending shipments from manufacturers
-GET /api/distributor/received-shipments - List completed receipts
-
-Output: history of received shipments
-Inventory Management
-GET /api/distributor/inventory - Get current inventory
-
-Output: stock levels by product
-POST /api/distributor/inventory/update - Update inventory levels
-
-Input: productId, quantityChange, reason
-Output: updated inventory status
-POST /api/distributor/inventory/audit - Perform inventory audit
-
-Input: audit details, stock counts
-Output: discrepancies, audit results
-Shipment Management
-POST /api/distributor/shipment/create - Create outbound shipment to retailer
-
-Input: productIds, quantities, serialNumbers, retailerId
-Output: shipmentId, tracking information
-GET /api/distributor/shipments - List all shipments
-
-Output: shipment history with status
-PUT /api/distributor/shipment/{shipmentId}/status - Update shipment status
-
-Input: status, statusDetails
-Output: updated shipment record
-Dashboard and Analytics
-GET /api/distributor/dashboard - Get dashboard data
-
-Output: inventory summary, pending shipments, recent activity
-GET /api/distributor/analytics/inventory - Inventory movement analytics
-
-Output: inventory turnover, stock levels over time
-4. Retailer Chain APIs
-Receiving Management
-POST /api/retailer/receive-from-distributor - Record receipt from distributor
-
-Input: shipmentId, productIds, quantities, serialNumbers, distributorId
-Output: receipt confirmation
-GET /api/retailer/pending-receipts - List pending deliveries
-
-Output: expected shipments from distributors
-Inventory Management
-GET /api/retailer/inventory - Get store inventory
-
-Output: current stock by product/location
-POST /api/retailer/inventory/update - Update inventory
-
-Input: productId, quantityChange, reason
-Output: updated inventory status
-Sales Recording
-POST /api/retailer/sales/record - Record customer sale
-
-Input: productId, serialNumber, quantity, price, customerId
-Output: sale confirmation, warranty activation
-GET /api/retailer/sales/history - Get sales history
-
-Output: historical sales records
-POST /api/retailer/sales/daily-summary - Submit daily sales summary
-
-Input: date, aggregated sales data
-Output: confirmation, merkle root for verification
-Returns and Exchanges
-POST /api/retailer/returns/process - Process customer return
-
-Input: saleId, productId, serialNumber, reason
-Output: return confirmation, updated inventory
-GET /api/retailer/returns/history - Get returns history
-
-Output: processed returns
-5. Cross-Chain Verification Functions
-verifyProductProvenance(serialNumber) - Trace product through supply chain
-verifyTransactionAcrossChains(transactionId) - Verify transaction across multiple chains
-syncMerkleRoots() - Synchronize Merkle roots across chains
-generateCrossChainProof(sourceChain, targetChain, transactionId) - Generate proof valid across chains
-6. Event Handlers
-onProductRegistered(productData) - Handle new product registration
-onShipmentCreated(shipmentData) - Handle new shipment creation
-onProductReceived(receiptData) - Handle product receipt
-onProductSold(saleData) - Handle product sale to customer
-onInventoryChanged(inventoryData) - Handle inventory updates
-onBlockCreated(blockData) - Handle new block creation
-onMerkleRootGenerated(rootData) - Handle new Merkle root
-7. Database Functions
-storeTransaction(chainId, transaction) - Store transaction in database
-queryTransactionHistory(filters) - Query transaction history
-updateTransactionStatus(transactionId, status) - Update transaction status
-linkCrossChainTransactions(transactionIds) - Link related transactions across chains
-8. Helper Functions
-generateSerialNumbers(productId, quantity) - Generate unique serial numbers
-validateSerialNumbers(serialNumbers) - Validate serial number format and uniqueness
-calculateInventoryMetrics(inventoryData) - Calculate inventory KPIs
-formatTransactionForBlock(transactionData) - Format transaction for blockchain
-signTransaction(transactionData, privateKey) - Sign transaction with entity key
+### GET ENTITY STATUS
+- **GET** `/api/system/entities/{entityType}/{entityId}/status`
+- Admin access only
+- Response: Returns entity information and all associated streams/transactions

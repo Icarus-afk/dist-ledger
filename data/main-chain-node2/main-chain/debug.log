@@ -859,3 +859,21 @@ Using RdRand as an additional entropy source
 2025-03-08 01:53:01 UpdateTip:            new best=009ee0c9de49a05071846053f826568b0182baf126a4fc1b9cb461ae026da70d  height=409  log2_work=16.67948  tx=704  date=2025-03-08 01:53:01 progress=1.000000  cache=0
 2025-03-08 01:53:05 UpdateTip:            new best=00b286585012ba67aaf5eeac0e535b2d19e62bfa1a77d952ffc2f5c2fe5e4b92  height=410  log2_work=16.682995  tx=705  date=2025-03-08 01:53:05 progress=1.000000  cache=0
 2025-03-08 01:53:11 UpdateTip:            new best=00ae4bb89a38ba1dba0b2ace6410133e07ca7949e1ba488718d62a856fb2101b  height=411  log2_work=16.686501  tx=706  date=2025-03-08 01:53:11 progress=1.000000  cache=0
+2025-03-08 02:01:58 disconnecting peer=6
+2025-03-08 02:01:58 disconnecting peer=7
+2025-03-08 02:01:58 disconnecting peer=3
+2025-03-08 02:01:58 disconnecting peer=8
+2025-03-08 02:01:58 tmsghand thread interrupt
+2025-03-08 02:01:58 addcon thread interrupt
+2025-03-08 02:01:58 dumpaddr thread stop
+2025-03-08 02:01:58 msghand thread interrupt
+2025-03-08 02:01:58 omsghand thread interrupt
+2025-03-08 02:01:58 opencon thread interrupt
+2025-03-08 02:01:58 gmsghand thread interrupt
+2025-03-08 02:01:58 dmsghand thread interrupt
+2025-03-08 02:01:58 net thread interrupt
+2025-03-08 02:01:58 Shutdown: In progress...
+2025-03-08 02:01:58 MultiChainMiner terminated
+2025-03-08 02:01:58 StopNode()
+2025-03-08 02:01:58 Node stopped
+2025-03-08 02:01:58 Shutdown: done
