@@ -13,7 +13,8 @@ const RetailerReturns = () => {
     condition: 'good',
     customerName: '',
     customerContact: '',
-    notes: ''
+    notes: '',
+    distributorId: '' // Added distributorId to track the source distributor
   });
   const [returnHistory, setReturnHistory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -120,6 +121,8 @@ const RetailerReturns = () => {
             saleId,
             productId: item.productId,
             serialNumber: serialNumber,
+            // Add distributorId from item or sale if available
+            distributorId: item.distributorId || selectedSale.distributorId || '',
             // Pre-fill customer name if available from sales data
             customerName: selectedSale.customerName !== 'Anonymous' ? selectedSale.customerName : returnData.customerName
           });
@@ -129,6 +132,8 @@ const RetailerReturns = () => {
           setReturnData({
             ...returnData,
             saleId,
+            // Include distributor ID if it's at the sale level
+            distributorId: selectedSale.distributorId || '',
             // Pre-fill customer name if available
             customerName: selectedSale.customerName !== 'Anonymous' ? selectedSale.customerName : returnData.customerName
           });
@@ -140,18 +145,22 @@ const RetailerReturns = () => {
         // Just set the sale ID if no items data is available
         setReturnData({
           ...returnData,
-          saleId
+          saleId,
+          // Include distributor ID if it's at the sale level
+          distributorId: selectedSale.distributorId || ''
         });
         setExpandedSale(null);
       }
     }
   };
 
-  const handleProductSelection = (productId, serialNumber) => {
+  const handleProductSelection = (productId, serialNumber, distributorId = '') => {
     setReturnData({
       ...returnData,
       productId,
-      serialNumber
+      serialNumber,
+      // Include distributor ID if provided
+      distributorId: distributorId || returnData.distributorId
     });
     
     // Clear any errors
@@ -181,7 +190,8 @@ const RetailerReturns = () => {
     try {
       setLoading(true);
       
-      const response = await api.post('/api/retailer/returns/process', {
+      // Create base request body 
+      const requestBody = {
         saleId: returnData.saleId,
         productId: returnData.productId,
         serialNumber: returnData.serialNumber,
@@ -190,7 +200,24 @@ const RetailerReturns = () => {
         customerName: returnData.customerName,
         customerContact: returnData.customerContact,
         notes: returnData.notes
-      });
+      };
+      
+      // Always include distributorId and returnToDistributor when a distributorId exists
+      if (returnData.distributorId) {
+        requestBody.distributorId = returnData.distributorId;
+        requestBody.returnToDistributor = true;
+        requestBody.returnStatus = 'processed'; // Add this to mark it as automatically processed
+        
+        // Mark as defective if condition indicates so
+        if (returnData.condition === 'defective' || returnData.condition === 'damaged') {
+          requestBody.defective = true;
+        }
+      }
+      
+      // Log the request body for debugging
+      console.log('Sending return request with body:', requestBody);
+      
+      const response = await api.post('/api/retailer/returns/process', requestBody);
       
       if (response.success) {
         setSuccess(true);
@@ -202,7 +229,8 @@ const RetailerReturns = () => {
           condition: 'good',
           customerName: '',
           customerContact: '',
-          notes: ''
+          notes: '',
+          distributorId: '' // Reset distributorId too
         });
         
         // Refresh the return history
@@ -262,10 +290,19 @@ const RetailerReturns = () => {
                   </span>
                   <span className="text-xs text-gray-500">
                     ID: {item.productId} | SN: {serial}
+                    {item.distributorId && (
+                      <span className="ml-2 text-blue-600">
+                        • Dist: {item.distributorId.split('-').pop()}
+                      </span>
+                    )}
                   </span>
                 </div>
                 <button 
-                  onClick={() => handleProductSelection(item.productId, serial)}
+                  onClick={() => handleProductSelection(
+                    item.productId, 
+                    serial, 
+                    item.distributorId || sale.distributorId
+                  )}
                   className="text-xs py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
                   Select
@@ -449,6 +486,17 @@ const RetailerReturns = () => {
                   ></textarea>
                 </div>
 
+                {returnData.distributorId && (
+                  <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                    <p className="text-sm text-blue-700">
+                      <span className="font-medium">Return to Distributor:</span> {returnData.distributorId}
+                    </p>
+                    <p className="text-xs text-blue-600 mt-1">
+                      This return will be processed as a distributor return and automatically tracked in the distributor's system.
+                    </p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
                   disabled={loading}
@@ -519,6 +567,11 @@ const RetailerReturns = () => {
                               </td>
                               <td className="py-2 px-4 text-sm">
                                 {itemCount}
+                                {sale.distributorId && (
+                                  <span className="ml-2 text-xs text-blue-600">
+                                    • Dist: {sale.distributorId.split('-').pop()}
+                                  </span>
+                                )}
                               </td>
                               <td className="py-2 px-4 text-right">
                                 <button
@@ -659,9 +712,15 @@ const RetailerReturns = () => {
                   {selectedReturn.status || 'Processed'}
                 </span>
               </div>
+              {selectedReturn.distributorId && (
+                <div className="mb-4">
+                  <p className="text-sm text-gray-500">Returned to Distributor</p>
+                  <p className="font-medium">{selectedReturn.distributorId}</p>
+                </div>
+              )}
             </div>
             <div className="bg-gray-50 px-6 py-3 flex justify-end">
-              <button 
+            <button
                 onClick={closeDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
               >

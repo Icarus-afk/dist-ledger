@@ -20,7 +20,8 @@ const DashboardLayout = () => {
     distributor: [
       { name: 'Dashboard', href: '/distributor/dashboard' },
       { name: 'Inventory', href: '/distributor/inventory' },
-      { name: 'Shipments', href: '/distributor/shipments' }
+      { name: 'Shipments', href: '/distributor/shipments' },
+      { name: 'Returns', href: '/distributor/returns' }
     ],
     retailer: [
       { name: 'Dashboard', href: '/retailer/dashboard' },

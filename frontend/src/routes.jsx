@@ -15,7 +15,7 @@ import RegisterProduct from './pages/manufacturer/RegisterProduct'; // Fixed the
 // Distributor pages
 import Inventory from './pages/distributor/Inventory';
 import Shipments from './pages/distributor/Shipments';
-
+import Returns from './pages/distributor/Returns';
 // Retailer pages
 import RetailerInventory from './pages/retailer/Inventory';
 import RetailerSales from './pages/retailer/Sales';
@@ -149,6 +149,7 @@ const AppRoutes = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="shipments" element={<Shipments />} />
+        <Route path="returns" element={<Returns />} />
       </Route>
 
       {/* Retailer Routes */}

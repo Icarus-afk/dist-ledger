@@ -224,8 +224,9 @@ const initializeChains = async () => {
           'cross_chain_verifications',
           'transaction_requests',
           'transaction_proofs',
-          'products',                // Add this missing stream
-          'product_serial_numbers'   // Add this missing stream
+          'products',                
+          'product_serial_numbers',
+          'transaction_status',
         ]);
       } else if (chainName === 'distributor-chain') {
         await verifyStreams(chainName, [
@@ -808,7 +809,65 @@ const validateSerialNumbers = (serialNumbers) => {
   return validFormat;
 };
 
-// Add these functions after your existing helper functions
+/**
+ * Updates transaction status across chains for supply chain visibility
+ * @param {string} transactionId - ID of the transaction (shipment, transfer, etc)
+ * @param {string} type - Type of transaction (transfer, shipment, return)
+ * @param {string} newStatus - New status (accepted, rejected, received, etc)
+ * @param {Object} details - Additional status details
+ * @returns {Object} - Result of the update
+ */
+const updateTransactionStatus = async (transactionId, type, newStatus, details = {}) => {
+  try {
+    if (!transactionId || !type || !newStatus) {
+      throw new Error('Transaction ID, type and new status are required');
+    }
+
+    // Create status update with timestamp
+    const statusUpdate = {
+      transactionId,
+      type,
+      status: newStatus,
+      timestamp: Date.now(),
+      updateId: `status-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`,
+      ...details
+    };
+
+    // Convert to hex for blockchain storage
+    const hexData = Buffer.from(JSON.stringify(statusUpdate)).toString('hex');
+
+    // First ensure the transaction_status stream exists on main chain
+    try {
+      await executeCommand(
+        'main-chain',
+        `create stream transaction_status false`
+      );
+      console.log('Created transaction_status stream');
+    } catch (streamError) {
+      // If error is not about the stream already existing, rethrow
+      if (!streamError.message.includes('already exists')) {
+        throw streamError;
+      }
+    }
+
+    // Publish to main chain for all entities to see
+    const txid = await executeCommand(
+      'main-chain',
+      `publish transaction_status ${transactionId} ${hexData}`
+    );
+
+    return {
+      txid: txid.trim(),
+      transactionId,
+      status: newStatus,
+      timestamp: statusUpdate.timestamp
+    };
+  } catch (error) {
+    console.error('Failed to update transaction status:', error);
+    throw error;
+  }
+};
+
 
 /**
  * Encrypts sensitive data using entity-specific keys
@@ -902,6 +961,109 @@ const createDataReference = (data) => {
   return crypto.createHash('sha256').update(dataString).digest('hex');
 };
 
+// Add this helper function right before the returns processing endpoint
+/**
+ * Find distributor ID for a product serial number
+ * @param {string} serialNumber - The serial number to look up
+ * @param {string} productId - Product ID
+ * @returns {string|null} - Distributor ID or null if not found
+ */
+const findDistributorForSerial = async (serialNumber, productId) => {
+  console.log(`Looking up distributor for serial: ${serialNumber}, product: ${productId}`);
+  
+  try {
+    // First check retailer transactions - this is the most reliable source
+    const txData = await executeCommand(
+      'retailer-chain',
+      'liststreamitems retailer_transactions'
+    );
+    
+    const transactions = JSON.parse(txData);
+    
+    // First look for receipt transactions
+    for (const tx of transactions) {
+      try {
+        const txInfo = JSON.parse(Buffer.from(tx.data, 'hex').toString());
+        
+        if (txInfo.status === 'received' && 
+            txInfo.productId === productId &&
+            txInfo.serialNumbers && 
+            txInfo.serialNumbers.includes(serialNumber) &&
+            txInfo.distributorId) {
+          
+          console.log(`✓ Found distributor ${txInfo.distributorId} in receipt transaction`);
+          return txInfo.distributorId;
+        }
+      } catch (e) {
+        // Skip this transaction
+      }
+    }
+    
+    // If not found in receipts, check for any transaction with this serial
+    for (const tx of transactions) {
+      try {
+        const txInfo = JSON.parse(Buffer.from(tx.data, 'hex').toString());
+        
+        const hasThisSerial = 
+          (txInfo.serialNumber === serialNumber) ||
+          (txInfo.serialNumbers && txInfo.serialNumbers.includes(serialNumber));
+          
+        if (hasThisSerial && txInfo.distributorId) {
+          console.log(`✓ Found distributor ${txInfo.distributorId} in other transaction`);
+          return txInfo.distributorId;
+        }
+        
+        // Check in items array for sales
+        if (txInfo.items && Array.isArray(txInfo.items)) {
+          for (const item of txInfo.items) {
+            const itemHasSerial = 
+              (item.serialNumber === serialNumber) ||
+              (item.serialNumbers && item.serialNumbers.includes(serialNumber));
+              
+            if (itemHasSerial && item.distributorId) {
+              console.log(`✓ Found distributor ${item.distributorId} in sale item`);
+              return item.distributorId;
+            }
+          }
+        }
+      } catch (e) {
+        // Skip this transaction
+      }
+    }
+    
+    // Now check distributor chain as a fallback
+    const distTxData = await executeCommand(
+      'distributor-chain',
+      'liststreamitems distributor_transactions'
+    );
+    
+    const distTransactions = JSON.parse(distTxData);
+    
+    for (const tx of distTransactions) {
+      try {
+        const txInfo = JSON.parse(Buffer.from(tx.data, 'hex').toString());
+        
+        const hasThisSerial = 
+          (txInfo.serialNumber === serialNumber) ||
+          (txInfo.serialNumbers && txInfo.serialNumbers.includes(serialNumber));
+          
+        if (hasThisSerial && txInfo.distributorId) {
+          console.log(`✓ Found distributor ${txInfo.distributorId} in distributor transaction`);
+          return txInfo.distributorId;
+        }
+      } catch (e) {
+        // Skip this transaction
+      }
+    }
+    
+    // Default to standard distributor ID as last resort if needed
+    console.log(`⚠ No distributor found for serial ${serialNumber}`);
+    return "distributor-1741570362943-88eca9c4";
+  } catch (error) {
+    console.error(`Error finding distributor: ${error.message}`);
+    return null;
+  }
+};
 
 // ===== API Endpoints =====
 
@@ -1855,6 +2017,117 @@ app.get('/api/manufacturer/products', authenticateRequest, async (req, res) => {
   }
 });
 
+// Endpoint for manufacturers to check status of their transfers
+app.get('/api/manufacturer/transfers/:transferId/status', authenticateRequest, async (req, res) => {
+  try {
+    // Verify that the authenticated entity is a manufacturer
+    if (req.entityType !== 'manufacturer') {
+      return res.status(403).json({
+        success: false,
+        message: 'Only manufacturers can access this endpoint'
+      });
+    }
+
+    const { transferId } = req.params;
+
+    if (!transferId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Transfer ID is required'
+      });
+    }
+
+    // Get transfer details first to verify ownership
+    const transferData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems transfers ${transferId}`
+    );
+
+    const transfers = JSON.parse(transferData);
+
+    if (!transfers || transfers.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Transfer not found'
+      });
+    }
+
+    // Get most recent transfer data
+    const latestTransfer = transfers.reduce((latest, current) => {
+      return latest.time > current.time ? latest : current;
+    }, transfers[0]);
+
+    const transferInfo = JSON.parse(Buffer.from(latestTransfer.data, 'hex').toString());
+
+    // Verify manufacturer owns this transfer
+    if (transferInfo.manufacturerId !== req.entity.id) {
+      return res.status(403).json({
+        success: false,
+        message: 'You do not have permission to access this transfer'
+      });
+    }
+
+    // Get status updates from transaction_status stream
+    const statusData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems transaction_status ${transferId}`
+    );
+
+    let statusUpdates = [];
+    try {
+      statusUpdates = JSON.parse(statusData);
+    } catch (error) {
+      // If no status updates or error parsing
+      console.error(`Error getting status for transfer ${transferId}:`, error);
+    }
+
+    // Format the status updates
+    const formattedUpdates = statusUpdates.map(update => {
+      try {
+        const updateData = JSON.parse(Buffer.from(update.data, 'hex').toString());
+        return {
+          status: updateData.status,
+          timestamp: updateData.timestamp || update.time * 1000,
+          type: updateData.type,
+          distributorId: updateData.distributorId,
+          details: updateData
+        };
+      } catch (error) {
+        console.error('Error parsing status update:', error);
+        return null;
+      }
+    }).filter(update => update !== null);
+
+    // Determine current status based on most recent update
+    let currentStatus = transferInfo.status || 'pending';
+    let statusTimestamp = transferInfo.timestamp || transferInfo.createdAt;
+
+    if (formattedUpdates.length > 0) {
+      // Sort by timestamp (newest first)
+      formattedUpdates.sort((a, b) => b.timestamp - a.timestamp);
+      currentStatus = formattedUpdates[0].status;
+      statusTimestamp = formattedUpdates[0].timestamp;
+    }
+
+    res.json({
+      success: true,
+      transferId,
+      currentStatus,
+      statusTimestamp,
+      productId: transferInfo.productId,
+      distributorId: transferInfo.distributorId,
+      history: formattedUpdates
+    });
+  } catch (error) {
+    console.error('Failed to get transfer status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get transfer status',
+      error: error.message
+    });
+  }
+});
+
 // ----- Distributor Chain Endpoints -----
 
 /**
@@ -2201,28 +2474,14 @@ app.post('/api/distributor/receive-from-manufacturer', authenticateRequest, asyn
         const transfers = JSON.parse(transferData);
 
         if (transfers && transfers.length > 0) {
-          // Get the latest transfer record
-          const latestTransfer = transfers.reduce((latest, current) => {
-            return latest.time > current.time ? latest : current;
-          }, transfers[0]);
-
-          // Parse the transfer data
-          const transferRecord = JSON.parse(Buffer.from(latestTransfer.data, 'hex').toString());
-
-          // Update the status to 'accepted'
-          transferRecord.status = 'accepted';
-          transferRecord.acceptedAt = Date.now();
-          transferRecord.receiptId = receiptId;
-
-          // Publish the updated transfer record
-          const updatedHexData = Buffer.from(JSON.stringify(transferRecord)).toString('hex');
-
-          await executeCommand(
-            'main-chain',
-            `publish transfers ${transferId} ${updatedHexData}`
-          );
-
-          console.log(`Updated transfer status to 'accepted' for transfer ID: ${transferId}`);
+          // Update transfer status on main chain for manufacturer visibility
+          await updateTransactionStatus(transferId, 'manufacturer_transfer', 'accepted', {
+            distributorId: req.entity.id,
+            manufacturerId,
+            productId,
+            serialNumberCount: serialNumbers.length,
+            receiptId
+          });
         }
       } catch (transferUpdateError) {
         console.error(`Failed to update transfer status: ${transferUpdateError.message}`);
@@ -2302,7 +2561,18 @@ app.post('/api/distributor/shipment/create', authenticateRequest, async (req, re
     // Generate a shipment ID
     const shipmentId = `shipment-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
 
-    // Create public shipment data (non-sensitive)
+    const shipmentItems = serialNumbers.map((serial, index) => ({
+      serialNumber: serial,
+      productId,
+      distributorId: req.entity.id,
+      index
+    }));
+
+    // Generate Merkle tree for verification
+    const merkleTree = generateMerkleTree(shipmentItems);
+    const merkleRoot = merkleTree.root;
+
+    // Add merkle root to the shipment data
     const publicShipment = {
       shipmentId,
       productId,
@@ -2312,9 +2582,10 @@ app.post('/api/distributor/shipment/create', authenticateRequest, async (req, re
       retailerId,
       timestamp: Date.now(),
       status: 'shipped',
-      expectedDeliveryDate: shipmentDetails?.expectedDelivery
+      expectedDeliveryDate: shipmentDetails?.expectedDelivery,
+      merkleRoot // Add the merkle root here
     };
-
+  
     // Create sensitive logistics data (should not be shared with other entities)
     const sensitiveLogistics = {
       carrier: shipmentDetails?.carrier || 'Unknown',
@@ -2396,6 +2667,21 @@ app.post('/api/distributor/shipment/create', authenticateRequest, async (req, re
       'main-chain',
       `publish cross_chain_verifications ${shipmentId} ${crossChainHexData}`
     );
+    const merkleData = {
+          shipmentId,
+          merkleRoot: merkleRoot,
+          distributorId: req.entity.id,
+          retailerId,
+          serialNumberCount: serialNumbers.length,
+          timestamp: Date.now()
+        };
+    
+    const merkleHexData = Buffer.from(JSON.stringify(merkleData)).toString('hex');
+    
+    await executeCommand(
+          'main-chain',
+          `publish sidechain_merkle_roots ${shipmentId} ${merkleHexData}`
+        );
 
     res.status(201).json({
       success: true,
@@ -2725,16 +3011,59 @@ app.get('/api/distributor/pending-transfers', authenticateRequest, async (req, r
       }
     });
 
-    // Now filter to only include pending transfers for this distributor
-    // Convert to array and extract just the transfer data
+    // Get all transaction statuses
+    const statusData = await executeCommand(
+      'main-chain',
+      'liststreamitems transaction_status'
+    );
+
+    // Create a status map for quick lookup
+    const statusMap = new Map();
+    
+    try {
+      const statusItems = JSON.parse(statusData);
+      
+      // Group status updates by transaction ID and keep only the latest
+      for (const item of statusItems) {
+        try {
+          const statusInfo = JSON.parse(Buffer.from(item.data, 'hex').toString());
+          const transactionId = item.keys[0]; // The first key is the transaction ID
+          
+          if (!statusMap.has(transactionId) || 
+              item.time > statusMap.get(transactionId).blockTime) {
+            statusMap.set(transactionId, {
+              status: statusInfo.status,
+              blockTime: item.time
+            });
+          }
+        } catch (e) {
+          console.error('Error processing status item:', e);
+        }
+      }
+    } catch (e) {
+      console.error('Error processing status data:', e);
+    }
+
+    // Now filter to only include truly pending transfers for this distributor
     let pendingTransfers = Array.from(transferMap.values())
-      .map(item => item.data)
+      .map(item => {
+        const transfer = item.data;
+        // Check if there's a status update for this transfer
+        const status = statusMap.has(transfer.id) 
+          ? statusMap.get(transfer.id).status 
+          : (transfer.status || 'pending');
+          
+        return {
+          ...transfer,
+          currentStatus: status
+        };
+      })
       .filter(transfer =>
         transfer.distributorId === req.entity.id &&
-        transfer.status === 'pending'
+        (transfer.currentStatus === 'pending')
       );
 
-    console.log(`Found ${pendingTransfers.length} pending transfers for distributor ${req.entity.id}`);
+    console.log(`Found ${pendingTransfers.length} truly pending transfers for distributor ${req.entity.id}`);
 
     // Sort by creation timestamp (newest first)
     pendingTransfers = pendingTransfers.sort((a, b) => b.createdAt - a.createdAt);
@@ -2746,7 +3075,7 @@ app.get('/api/distributor/pending-transfers', authenticateRequest, async (req, r
           'main-chain',
           `liststreamkeyitems products ${transfer.productId}`
         );
-
+        
         const products = JSON.parse(productData);
 
         if (!products || products.length === 0) {
@@ -2786,6 +3115,286 @@ app.get('/api/distributor/pending-transfers', authenticateRequest, async (req, r
   }
 });
 
+// Endpoint for distributors to get returned products from retailers
+// Endpoint for distributors to get returned products from retailers
+// Endpoint for distributors to get returned products from retailers
+app.get('/api/distributor/returned-products', authenticateRequest, async (req, res) => {
+  try {
+    // Verify that the authenticated entity is a distributor
+    if (req.entityType !== 'distributor') {
+      return res.status(403).json({
+        success: false,
+        message: 'Only distributors can access this endpoint'
+      });
+    }
+
+    const distributorId = req.entity.id;
+    console.log(`Looking up returned products for distributor ${distributorId}`);
+    
+    // Find retailers that might have returned products to this distributor
+    const retailers = Object.entries(config.entityStore.retailers);
+    console.log(`Found ${retailers.length} retailers to check for returns`);
+    
+    let returnedProducts = [];
+    let debugInfo = { 
+      processedItems: 0, 
+      matchedItems: 0, 
+      errors: [],
+      returnData: [] // Store sample return data for debugging
+    };
+    
+    // CHECK THE RETAILER_TRANSACTIONS STREAM FIRST
+    try {
+      console.log("Checking retailer_transactions stream for returns");
+      const txData = await executeCommand(
+        'retailer-chain',
+        'liststreamitems retailer_transactions'
+      );
+      
+      const transactions = JSON.parse(txData);
+      console.log(`Found ${transactions.length} total transactions to check`);
+      
+      for (const tx of transactions) {
+        try {
+          debugInfo.processedItems++;
+          const txInfo = JSON.parse(Buffer.from(tx.data, 'hex').toString());
+          
+          // Log every transaction that has a return ID for debugging
+          if (txInfo.returnId || txInfo.originalReturnId) {
+            console.log(`Found return transaction:`, JSON.stringify(txInfo));
+            
+            // Store the first 5 return transactions for debugging
+            if (debugInfo.returnData.length < 5) {
+              debugInfo.returnData.push({
+                returnId: txInfo.returnId || txInfo.originalReturnId,
+                hasDistributorId: !!txInfo.distributorId,
+                distributorId: txInfo.distributorId || 'none',
+                returnToDistributor: txInfo.returnToDistributor,
+                reason: txInfo.reason,
+                status: txInfo.status,
+                type: txInfo.type
+              });
+            }
+          }
+          
+          // Much more permissive filtering to catch any possible return
+          const isReturn = 
+            (txInfo.returnId || txInfo.originalReturnId) && // Has a return ID
+            txInfo.productId; // And has a product ID
+          
+          const involvesThisDistributor =
+            txInfo.distributorId === distributorId || // Explicit distributor ID
+            txInfo.returnToDistributor === true || // Any return to distributor
+            (typeof txInfo.notes === 'string' && txInfo.notes.includes(distributorId)) || // Notes mention distributor
+            (txInfo.status === 'returned' && txInfo.type === 'return'); // Generic return
+          
+          if (isReturn && involvesThisDistributor) {
+            console.log(`Matched return for distributor ${distributorId}:`, JSON.stringify(txInfo));
+            
+            debugInfo.matchedItems++;
+            
+            // Check if we already have this return to avoid duplicates
+            if (!returnedProducts.some(r => r.returnId === (txInfo.returnId || txInfo.originalReturnId))) {
+              let retailerName = 'Unknown Retailer';
+              const retailer = config.entityStore.retailers[txInfo.retailerId];
+              if (retailer) {
+                retailerName = retailer.name || txInfo.retailerId;
+              }
+              
+              // Get product details if needed
+              let productName = txInfo.productName || 'Unknown Product';
+              let productValue = txInfo.value || 0;
+              
+              if (!productName || productName === 'Unknown Product' || productValue === 0) {
+                try {
+                  const productData = await executeCommand(
+                    'main-chain',
+                    `liststreamkeyitems products ${txInfo.productId}`
+                  );
+                  
+                  const products = JSON.parse(productData);
+                  if (products && products.length > 0) {
+                    const productInfo = JSON.parse(Buffer.from(products[0].data, 'hex').toString());
+                    productName = productInfo.name || txInfo.productId;
+                    productValue = txInfo.value || productInfo.unitPrice || 0;
+                  }
+                } catch (err) {
+                  console.error(`Error getting product details: ${err.message}`);
+                }
+              }
+              
+              // Format serial numbers consistently
+              let serialNumbers = [];
+              if (txInfo.serialNumbers && Array.isArray(txInfo.serialNumbers)) {
+                serialNumbers = txInfo.serialNumbers;
+              } else if (txInfo.serialNumber) {
+                serialNumbers = [txInfo.serialNumber];
+              }
+              
+              returnedProducts.push({
+                returnId: txInfo.returnId || txInfo.originalReturnId,
+                productId: txInfo.productId,
+                productName: productName,
+                serialNumbers: serialNumbers,
+                timestamp: txInfo.timestamp || tx.time * 1000,
+                reason: txInfo.reason || 'Not specified',
+                status: txInfo.status || 'pending',
+                defective: txInfo.defective || false,
+                replacement: txInfo.replacement || false,
+                value: txInfo.value || productValue || 0,
+                retailerId: txInfo.retailerId,
+                retailerName: retailerName,
+                defectDescription: txInfo.defectDescription || txInfo.notes || '',
+                actionHistory: txInfo.actionHistory || []
+              });
+              
+              console.log(`Added return ${txInfo.returnId || txInfo.originalReturnId} for product ${txInfo.productId}`);
+            }
+          }
+        } catch (parseError) {
+          debugInfo.errors.push(parseError.message);
+          console.error(`Error parsing transaction data: ${parseError.message}`);
+        }
+      }
+    } catch (txError) {
+      debugInfo.errors.push(txError.message);
+      console.error(`Error checking transactions stream: ${txError.message}`);
+    }
+    
+    // THEN check each retailer's specific returns stream with more permissive filtering
+    for (const [retailerId, retailer] of retailers) {
+      try {
+        // Skip if retailer has no streams or returns stream
+        if (!retailer || !retailer.streams || !retailer.streams.returns) {
+          console.log(`Retailer ${retailerId} has no returns stream, skipping`);
+          continue;
+        }
+        
+        const returnsStreamName = retailer.streams.returns;
+        
+        // Get returns from retailer chain
+        console.log(`Checking returns stream ${returnsStreamName} for retailer ${retailerId}`);
+        const returnsData = await executeCommand(
+          'retailer-chain',
+          `liststreamitems ${returnsStreamName}`
+        );
+        
+        const returns = JSON.parse(returnsData);
+        
+        if (returns && returns.length > 0) {
+          console.log(`Found ${returns.length} potential returns from retailer ${retailerId}`);
+          
+          // Filter returns with more permissive criteria
+          for (const returnItem of returns) {
+            try {
+              debugInfo.processedItems++;
+              const returnData = JSON.parse(Buffer.from(returnItem.data, 'hex').toString());
+              
+              // Store sample return data for debugging
+              if (debugInfo.returnData.length < 10) {
+                debugInfo.returnData.push({
+                  source: `${returnsStreamName}`,
+                  returnId: returnData.returnId || returnData.originalReturnId,
+                  hasDistributorId: !!returnData.distributorId,
+                  distributorId: returnData.distributorId || 'none',
+                  returnToDistributor: returnData.returnToDistributor,
+                  reason: returnData.reason,
+                  productId: returnData.productId
+                });
+              }
+              
+              // More permissive check - any field indicating this might be for this distributor
+              const isForThisDistributor = 
+                returnData.distributorId === distributorId || // Explicitly for this distributor 
+                returnData.returnToDistributor === true || // Any return to distributor flag
+                (typeof returnData.notes === 'string' && 
+                 returnData.notes.toLowerCase().includes(distributorId.toLowerCase())); // Notes mentioning distributor
+              
+              if (returnData.productId && (returnData.returnId || returnData.originalReturnId) && isForThisDistributor) {
+                console.log(`Found matching return in ${returnsStreamName}:`, JSON.stringify(returnData));
+                
+                debugInfo.matchedItems++;
+                // Check if we already have this return to avoid duplicates
+                if (!returnedProducts.some(r => r.returnId === (returnData.returnId || returnData.originalReturnId))) {
+                  // Get product details and add the return as before
+                  let productName = returnData.productName || 'Unknown Product';
+                  let productValue = returnData.value || 0;
+                  
+                  // Format serial numbers consistently
+                  let serialNumbers = [];
+                  if (returnData.serialNumbers && Array.isArray(returnData.serialNumbers)) {
+                    serialNumbers = returnData.serialNumbers;
+                  } else if (returnData.serialNumber) {
+                    serialNumbers = [returnData.serialNumber];
+                  }
+                  
+                  returnedProducts.push({
+                    returnId: returnData.returnId || returnData.originalReturnId,
+                    productId: returnData.productId,
+                    productName: productName,
+                    serialNumbers: serialNumbers,
+                    timestamp: returnData.timestamp || returnItem.time * 1000,
+                    reason: returnData.reason || 'Not specified',
+                    status: returnData.status || 'pending',
+                    defective: returnData.defective || false,
+                    replacement: returnData.replacement || false,
+                    value: returnData.value || productValue || 0,
+                    retailerId: retailer.id,
+                    retailerName: retailer.name || retailer.id,
+                    defectDescription: returnData.defectDescription || returnData.notes || '',
+                    actionHistory: returnData.actionHistory || []
+                  });
+                  
+                  console.log(`Added return from returns stream: ${returnData.returnId || 'unknown'}`);
+                }
+              }
+            } catch (parseError) {
+              debugInfo.errors.push(parseError.message);
+              console.error(`Error parsing return data: ${parseError.message}`);
+            }
+          }
+        }
+      } catch (retailerError) {
+        debugInfo.errors.push(retailerError.message);
+        console.error(`Error getting returns from retailer ${retailerId}: ${retailerError.message}`);
+      }
+    }
+
+    // Debug: print found returns
+    for (const returnProd of returnedProducts) {
+      console.log(`Return in final list: ${returnProd.returnId}, product: ${returnProd.productId}, reason: ${returnProd.reason}`);
+    }
+    
+    // Sort returns by timestamp (newest first)
+    returnedProducts.sort((a, b) => b.timestamp - a.timestamp);
+    
+    // Count defective products and products needing replacement
+    const defectiveCount = returnedProducts.filter(item => item.defective === true).length;
+    const replacementCount = returnedProducts.filter(item => item.replacement === true).length;
+    
+    // Calculate total value of returned products
+    const totalValue = returnedProducts.reduce((sum, item) => sum + (item.value || 0), 0);
+    
+    console.log(`Found ${returnedProducts.length} total returns for distributor ${distributorId}`);
+    
+    res.json({
+      success: true,
+      returnedProducts: returnedProducts,
+      totalCount: returnedProducts.length,
+      defectiveCount,
+      replacementCount,
+      totalValue,
+      debug: debugInfo
+    });
+  } catch (error) {
+    console.error('Failed to get returned products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get returned products',
+      error: error.message
+    });
+  }
+});
 
 // ----- Retailer Chain Endpoints -----
 
@@ -3099,10 +3708,78 @@ app.post('/api/retailer/receive-from-distributor', authenticateRequest, async (r
       });
     }
 
+    // Verify the shipment with Merkle proof
+    let merkleVerified = false;
+    let merkleRoot = null;
+    
+    try {
+      // Get the distributor's transfers_out stream
+      const distributorEntity = config.entityStore.distributors[distributorId];
+      let transfersOutStream = distributorEntity?.streams?.transfersOut;
+      
+      if (!transfersOutStream) {
+        const entityCode = distributorId.split('-')[2] || crypto.randomBytes(2).toString('hex');
+        transfersOutStream = `d${entityCode}out`;
+      }
+
+      // Get shipment data with its merkle root
+      const shipmentData = await executeCommand(
+        'distributor-chain',
+        `liststreamkeyitems ${transfersOutStream} ${shipmentId}`
+      );
+
+      const shipments = JSON.parse(shipmentData);
+      
+      if (shipments && shipments.length > 0) {
+        const shipmentInfo = JSON.parse(Buffer.from(shipments[0].data, 'hex').toString());
+        merkleRoot = shipmentInfo.merkleRoot;
+        
+        if (merkleRoot) {
+          // Create items for local Merkle tree verification - using EXACT SAME FORMAT
+          const shipmentItems = serialNumbers.map((serial, index) => ({
+            serialNumber: serial,
+            productId,
+            distributorId,
+            index
+          }));
+
+          // Generate local Merkle tree
+          const localMerkleTree = generateMerkleTree(shipmentItems);
+          
+          // Also check the main chain for cross-chain verification
+          const mainChainData = await executeCommand(
+            'main-chain',
+            `liststreamkeyitems sidechain_merkle_roots ${shipmentId}`
+          );
+          
+          const mainChainRecords = JSON.parse(mainChainData);
+          
+          if (mainChainRecords && mainChainRecords.length > 0) {
+            const mainChainRecord = JSON.parse(Buffer.from(mainChainRecords[0].data, 'hex').toString());
+            
+            // Verify both local and cross-chain merkle roots match
+            if (localMerkleTree.root === merkleRoot && 
+                mainChainRecord.merkleRoot === merkleRoot) {
+              merkleVerified = true;
+              console.log('Merkle verification successful for shipment:', shipmentId);
+            } else {
+              console.warn('Merkle verification failed:',
+                `Local root: ${localMerkleTree.root}`,
+                `Shipment root: ${merkleRoot}`,
+                `Main chain root: ${mainChainRecord.merkleRoot}`
+              );
+            }
+          }
+        }
+      }
+    } catch (merkleError) {
+      console.error('Error verifying merkle proof:', merkleError);
+    }
+
     // Record the receipt on the retailer chain
     const receiptId = `receipt-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
 
-    // Create receipt record
+    // Create receipt record with Merkle verification status
     const receipt = {
       receiptId,
       shipmentId,
@@ -3112,7 +3789,8 @@ app.post('/api/retailer/receive-from-distributor', authenticateRequest, async (r
       distributorId,
       retailerId: req.entity.id,
       timestamp: Date.now(),
-      status: 'received'
+      status: 'received',
+      merkleVerified // Add verification result to receipt
     };
 
     // Use the standard retailer_transactions stream - this exists for all retailers
@@ -3144,7 +3822,8 @@ app.post('/api/retailer/receive-from-distributor', authenticateRequest, async (r
       productId,
       serialNumberCount: serialNumbers.length,
       merkleRoot: inventoryUpdate.merkleRoot,
-      timestamp: receipt.timestamp
+      timestamp: receipt.timestamp,
+      merkleVerified // Include verification status in cross-chain data
     };
 
     const crossChainHexData = Buffer.from(JSON.stringify(crossChainData)).toString('hex');
@@ -3154,6 +3833,15 @@ app.post('/api/retailer/receive-from-distributor', authenticateRequest, async (r
       `publish cross_chain_verifications ${receiptId} ${crossChainHexData}`
     );
 
+    await updateTransactionStatus(shipmentId, 'distributor_shipment', 'received', {
+      retailerId: req.entity.id,
+      distributorId,
+      productId,
+      serialNumberCount: serialNumbers.length,
+      receiptId,
+      merkleVerified // Include verification status in transaction status update
+    });
+    
     res.status(201).json({
       success: true,
       message: 'Shipment received and inventory updated',
@@ -3161,7 +3849,8 @@ app.post('/api/retailer/receive-from-distributor', authenticateRequest, async (r
       productId,
       quantity: serialNumbers.length,
       txid: txid.trim(),
-      inventoryUpdateId: inventoryUpdate.updateId
+      inventoryUpdateId: inventoryUpdate.updateId,
+      merkleVerified // Include verification status in response
     });
   } catch (error) {
     console.error('Failed to process shipment receipt:', error);
@@ -3914,7 +4603,7 @@ app.get('/api/retailer/sales-summary/:summaryId/financial-data', authenticateReq
   }
 });
 
-// Endpoint to process a customer return
+// Endpoint to process a customer return to retailer
 app.post('/api/retailer/returns/process', authenticateRequest, async (req, res) => {
   try {
     // Verify that the authenticated entity is a retailer
@@ -3925,133 +4614,95 @@ app.post('/api/retailer/returns/process', authenticateRequest, async (req, res) 
       });
     }
 
-    const { saleId, productId, serialNumber, reason } = req.body;
+    const { saleId, productId, serialNumber, reason, defective = false } = req.body;
 
-    if (!saleId || !productId || !serialNumber || !reason) {
+    if (!productId || !serialNumber || !reason) {
       return res.status(400).json({
         success: false,
-        message: 'Sale ID, product ID, serial number, and reason are required'
+        message: 'Product ID, serial number, and reason are required'
       });
     }
 
     // Get entity to access its stream names
-    const entity = config.entityStore.retailers[req.entity.id];
+    let entity = config.entityStore.retailers[req.entity.id];
 
-    if (!entity || !entity.streams || !entity.streams.sales) {
-      return res.status(404).json({
-        success: false,
-        message: `Cannot find sales stream for retailer ${req.entity.id}`
-      });
+    // Ensure retailer streams exist
+    if (!entity?.streams?.returns) {
+      console.log(`Creating missing streams for retailer ${req.entity.id}`);
+      await ensureRetailerStreams(req.entity.id);
+      entity = config.entityStore.retailers[req.entity.id];
     }
 
-    // Stream name for this retailer's sales - get from entity config
-    const streamName = entity.streams.sales;
-
-    try {
-      const saleData = await executeCommand(
-        'retailer-chain',
-        `liststreamkeyitems ${streamName} ${saleId}`
-      );
-
-      const sales = JSON.parse(saleData);
-
-      if (!sales || sales.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: 'Sale record not found'
-        });
-      }
-
-      // Get the most recent version of the sale
-      const latestSale = sales.reduce(
-        (latest, current) => (latest.time > current.time ? latest : current),
-        sales[0]
-      );
-      
-      const saleInfo = JSON.parse(Buffer.from(latestSale.data, 'hex').toString());
-      
-      // For multi-item sales, we need to check if the product is part of the items array
-      let productFound = false;
-      let serialNumberFound = false;
-      
-      if (saleInfo.items && Array.isArray(saleInfo.items)) {
-        // Handle modern format with items array
-        for (const item of saleInfo.items) {
-          if (item.productId === productId) {
-            productFound = true;
-            
-            // Check if serialNumber is in this item's serialNumbers
-            if (item.serialNumbers && Array.isArray(item.serialNumbers)) {
-              if (item.serialNumbers.includes(serialNumber)) {
-                serialNumberFound = true;
-                break;
-              }
-            } else if (item.serialNumber === serialNumber) {
-              // For single serialNumber format
-              serialNumberFound = true;
-              break;
-            }
-          }
-        }
-      } else {
-        // Handle legacy format (direct properties on sale object)
-        if (saleInfo.productId === productId) {
-          productFound = true;
-          if (saleInfo.serialNumber === serialNumber || 
-              (saleInfo.serialNumbers && saleInfo.serialNumbers.includes(serialNumber))) {
-            serialNumberFound = true;
-          }
-        }
-      }
-
-      // Verify that the product details match
-      if (!productFound || !serialNumberFound) {
-        return res.status(400).json({
-          success: false,
-          message: 'Product details do not match sale record'
-        });
-      }
-
-      // Check if the sale is already returned
-      if (saleInfo.status === 'returned') {
-        return res.status(400).json({
-          success: false,
-          message: 'This product has already been returned'
-        });
-      }
-    } catch (error) {
-      console.error('Failed to verify sale:', error);
-      return res.status(500).json({
-        success: false,
-        message: 'Failed to verify sale',
-        error: error.message
-      });
-    }
-
-    // Generate a return ID
-    const returnId = `return-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
-
-    // Create return record
-    const returnRecord = {
-      returnId,
-      saleId,
-      productId,
-      serialNumber,
-      reason,
-      retailerId: req.entity.id,
-      timestamp: Date.now(),
-      status: 'returned'
-    };
-
-    // Get the returns stream from entity config
-    if (!entity.streams.returns) {
+    if (!entity || !entity.streams || !entity.streams.returns) {
       return res.status(404).json({
         success: false,
         message: `Cannot find returns stream for retailer ${req.entity.id}`
       });
     }
 
+    // ===== SIMPLIFIED DISTRIBUTOR LOOKUP =====
+    // Use our direct function to find the distributor
+    const distributorId = await findDistributorForSerial(serialNumber, productId);
+    const returnToDistributor = distributorId !== null;
+    
+    console.log(`Return will go to distributor: ${returnToDistributor}, ID: ${distributorId}`);
+    // ========================================
+
+    // Generate a return ID
+    const returnId = `return-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
+
+    // Get product details for value calculation
+    let productValue = 0;
+    let productName = 'Unknown Product';
+    
+    try {
+      const productData = await executeCommand(
+        'main-chain',
+        `liststreamkeyitems products ${productId}`
+      );
+      
+      const products = JSON.parse(productData);
+      if (products && products.length > 0) {
+        const productInfo = JSON.parse(Buffer.from(products[0].data, 'hex').toString());
+        productName = productInfo.name || productId;
+        productValue = productInfo.unitPrice || 0;
+      }
+    } catch (err) {
+      console.error(`Error getting product details: ${err.message}`);
+    }
+
+    // Create return record
+    const returnRecord = {
+      returnId,
+      saleId,
+      productId,
+      productName,
+      serialNumber,
+      serialNumbers: [serialNumber], // Include array format for consistency
+      reason,
+      defective,
+      value: productValue,
+      retailerId: req.entity.id,
+      timestamp: Date.now(),
+      status: 'processed',
+      returnToDistributor, // Set from our auto-detection
+      distributorId, // Set from our auto-detection
+      notes: req.body.notes || '',
+      defectDescription: req.body.defectDescription || '',
+      replacement: req.body.replacement || false,
+      actionHistory: [
+        {
+          action: 'Return processed',
+          timestamp: Date.now(),
+          user: `Retailer: ${req.entity.name || req.entity.id}`,
+          note: 'Customer return accepted'
+        }
+      ]
+    };
+
+    // Get the returns stream from entity config
     const returnsStreamName = entity.streams.returns;
+    console.log(`Using returns stream: ${returnsStreamName}`);
 
     // Convert to hex for blockchain storage
     const hexData = Buffer.from(JSON.stringify(returnRecord)).toString('hex');
@@ -4062,31 +4713,141 @@ app.post('/api/retailer/returns/process', authenticateRequest, async (req, res) 
       `publish ${returnsStreamName} ${returnId} ${hexData}`
     );
 
-    // Also update the sale status
-    const saleUpdateData = {
-      saleId,
-      productId,
-      serialNumber,
-      retailerId: req.entity.id,
-      status: 'returned',
-      returnId,
-      timestamp: returnRecord.timestamp
-    };
+    console.log(`Published return ${returnId} to stream ${returnsStreamName}`);
 
-    const saleUpdateHexData = Buffer.from(JSON.stringify(saleUpdateData)).toString('hex');
-
+    // Also publish to retailer_transactions stream for easier lookup
     await executeCommand(
       'retailer-chain',
-      `publish ${streamName} ${saleId} ${saleUpdateHexData}`
+      `publish retailer_transactions ${returnId} ${hexData}`
     );
 
-    // Add the product back to inventory
-    const inventoryUpdate = await updateRetailerInventory(
-      req.entity.id,
-      productId,
-      [serialNumber],
-      'add'
-    );
+    // If a sale ID is provided, update the sale status
+    if (saleId) {
+      try {
+        const saleUpdateData = {
+          saleId,
+          productId,
+          serialNumber,
+          retailerId: req.entity.id,
+          status: 'returned',
+          returnId,
+          timestamp: returnRecord.timestamp
+        };
+
+        const saleUpdateHexData = Buffer.from(JSON.stringify(saleUpdateData)).toString('hex');
+
+        await executeCommand(
+          'retailer-chain',
+          `publish ${entity.streams.sales} ${saleId} ${saleUpdateHexData}`
+        );
+        
+        console.log(`Updated sale ${saleId} status to returned`);
+      } catch (saleUpdateError) {
+        console.error(`Error updating sale status: ${saleUpdateError.message}`);
+      }
+    }
+
+    // Add the product back to inventory if not returning to distributor
+    if (!returnToDistributor) {
+      try {
+        const inventoryUpdate = await updateRetailerInventory(
+          req.entity.id,
+          productId,
+          [serialNumber],
+          'add'
+        );
+        console.log(`Added product ${serialNumber} back to inventory`);
+      } catch (inventoryError) {
+        console.error(`Error updating inventory: ${inventoryError.message}`);
+      }
+    }
+
+    // Create a record on main chain for cross-chain verification
+    try {
+      const crossChainData = {
+        returnId,
+        retailerId: req.entity.id,
+        productId,
+        serialNumber,
+        reason,
+        defective,
+        returnToDistributor,
+        distributorId,
+        timestamp: returnRecord.timestamp
+      };
+
+      const crossChainHexData = Buffer.from(JSON.stringify(crossChainData)).toString('hex');
+
+      await executeCommand(
+        'main-chain',
+        `publish cross_chain_verifications ${returnId} ${crossChainHexData}`
+      );
+
+      console.log(`Added cross-chain verification for return ${returnId}`);
+    } catch (crossChainError) {
+      console.error(`Error creating cross-chain verification: ${crossChainError.message}`);
+    }
+
+    // Update transaction status
+    try {
+      await updateTransactionStatus(returnId, 'customer_return', 'processed', {
+        returnId,
+        retailerId: req.entity.id,
+        productId,
+        serialNumber,
+        reason,
+        defective,
+        returnToDistributor,
+        distributorId
+      });
+      
+      console.log(`Updated transaction status for return ${returnId}`);
+    } catch (statusError) {
+      console.error(`Error updating transaction status: ${statusError.message}`);
+    }
+
+    // If returning to distributor, create a return record for the distributor
+    if (returnToDistributor && distributorId) {
+      try {
+        // This record will be visible to the distributor through the existing API
+        const distributorReturnId = `dist-return-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
+        
+        const distributorReturnRecord = {
+          returnId: distributorReturnId,
+          originalReturnId: returnId,
+          productId,
+          productName,
+          serialNumbers: [serialNumber],
+          reason,
+          defective,
+          value: productValue,
+          retailerId: req.entity.id,
+          distributorId,
+          timestamp: Date.now(),
+          status: 'pending',
+          notes: req.body.notes || '',
+          defectDescription: req.body.defectDescription || '',
+          replacement: req.body.replacement || false
+        };
+        
+        const distributorHexData = Buffer.from(JSON.stringify(distributorReturnRecord)).toString('hex');
+        
+        await executeCommand(
+          'retailer-chain',
+          `publish ${returnsStreamName} ${distributorReturnId} ${distributorHexData}`
+        );
+        
+        // Also publish to retailer_transactions for consistency
+        await executeCommand(
+          'retailer-chain',
+          `publish retailer_transactions ${distributorReturnId} ${distributorHexData}`
+        );
+        
+        console.log(`Created distributor return ${distributorReturnId}`);
+      } catch (distReturnError) {
+        console.error(`Error creating distributor return: ${distReturnError.message}`);
+      }
+    }
 
     res.status(201).json({
       success: true,
@@ -4095,6 +4856,9 @@ app.post('/api/retailer/returns/process', authenticateRequest, async (req, res) 
       saleId,
       productId,
       serialNumber,
+      status: 'processed',
+      returnToDistributor,
+      distributorId,
       txid: txid.trim()
     });
   } catch (error) {
@@ -4102,6 +4866,110 @@ app.post('/api/retailer/returns/process', authenticateRequest, async (req, res) 
     res.status(500).json({
       success: false,
       message: 'Failed to process return',
+      error: error.message
+    });
+  }
+});
+
+// Diagnostic endpoint to inspect a specific sale
+app.get('/api/debug/sales/:saleId', authenticateRequest, async (req, res) => {
+  try {
+    const { saleId } = req.params;
+    
+    // Get the retailer entity
+    const retailerId = req.entity.id;
+    const retailer = config.entityStore.retailers[retailerId];
+    
+    if (!retailer || !retailer.streams || !retailer.streams.sales) {
+      return res.status(400).json({
+        success: false,
+        message: 'Retailer streams not configured properly'
+      });
+    }
+    
+    // Get the sale data
+    const salesStream = retailer.streams.sales;
+    const command = `liststreamkeyitems ${salesStream} ${saleId}`;
+    
+    console.log(`Executing command: ${command}`);
+    const saleData = await executeCommand('retailer-chain', command);
+    
+    const sales = JSON.parse(saleData);
+    
+    if (!sales || sales.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Sale not found'
+      });
+    }
+    
+    // Parse all the sale transactions
+    const parsedSales = sales.map(sale => {
+      try {
+        const saleInfo = JSON.parse(Buffer.from(sale.data, 'hex').toString());
+        return {
+          timestamp: sale.time,
+          confirmations: sale.confirmations,
+          txid: sale.txid,
+          data: saleInfo
+        };
+      } catch (err) {
+        return {
+          timestamp: sale.time,
+          confirmations: sale.confirmations,
+          txid: sale.txid,
+          error: 'Failed to parse sale data',
+          rawData: sale.data
+        };
+      }
+    });
+    
+    // Also check retailer_transactions for this product
+    console.log('Checking retailer_transactions for additional context...');
+    const txData = await executeCommand(
+      'retailer-chain',
+      'liststreamitems retailer_transactions'
+    );
+    
+    const txs = JSON.parse(txData);
+    
+    // Filter transactions related to this sale
+    const relatedTransactions = txs.filter(tx => {
+      try {
+        const txInfo = JSON.parse(Buffer.from(tx.data, 'hex').toString());
+        return txInfo.saleId === saleId;
+      } catch {
+        return false;
+      }
+    }).map(tx => {
+      try {
+        return {
+          timestamp: tx.time,
+          txid: tx.txid,
+          data: JSON.parse(Buffer.from(tx.data, 'hex').toString())
+        };
+      } catch {
+        return {
+          timestamp: tx.time,
+          txid: tx.txid,
+          error: 'Failed to parse transaction data'
+        };
+      }
+    });
+    
+    res.json({
+      success: true,
+      saleId,
+      retailerId,
+      salesStream,
+      sales: parsedSales,
+      relatedTransactions
+    });
+  } catch (error) {
+    console.error('Error in debug endpoint:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving sale details',
       error: error.message
     });
   }
@@ -4249,6 +5117,31 @@ app.get('/api/retailer/pending-shipments', authenticateRequest, async (req, res)
                   console.error(`Error getting product details: ${err.message}`);
                 }
 
+                // Get transaction status from the transaction_status stream
+                let currentStatus = shipmentData.status || 'shipped';
+                
+                try {
+                  const statusData = await executeCommand(
+                    'main-chain',
+                    `liststreamkeyitems transaction_status ${shipmentData.shipmentId}`
+                  );
+                  
+                  const statusItems = JSON.parse(statusData);
+                  
+                  if (statusItems && statusItems.length > 0) {
+                    // Sort by timestamp (newest first)
+                    statusItems.sort((a, b) => b.time - a.time);
+                    
+                    // Get the latest status
+                    const latestStatus = statusItems[0];
+                    const statusInfo = JSON.parse(Buffer.from(latestStatus.data, 'hex').toString());
+                    
+                    currentStatus = statusInfo.status;
+                  }
+                } catch (statusError) {
+                  console.error(`Error getting status for shipment ${shipmentData.shipmentId}:`, statusError);
+                }
+
                 // Add to pending shipments
                 pendingShipments.push({
                   shipmentId: shipmentData.shipmentId,
@@ -4258,9 +5151,10 @@ app.get('/api/retailer/pending-shipments', authenticateRequest, async (req, res)
                   productName: productName,
                   quantity: shipmentData.serialNumbers?.length || shipmentData.quantity || 0,
                   serialNumbers: shipmentData.serialNumbers || [],
-                  status: shipmentData.status || 'shipped',
+                  status: currentStatus,
                   timestamp: shipmentData.timestamp,
-                  createdAt: shipmentData.timestamp || shipment.time * 1000
+                  createdAt: shipmentData.timestamp || shipment.time * 1000,
+                  merkleRoot: shipmentData.merkleRoot
                 });
               }
             } catch (parseError) {
@@ -4274,12 +5168,51 @@ app.get('/api/retailer/pending-shipments', authenticateRequest, async (req, res)
       }
     }
 
+    // For each shipment, check merkle verification
+    const pendingShipmentsWithVerification = await Promise.all(pendingShipments.map(async (shipment) => {
+      try {
+        // Check if this shipment has a merkleRoot
+        const shipmentId = shipment.shipmentId;
+        
+        // Check for this merkleRoot in the main chain's verification stream
+        const mainChainData = await executeCommand(
+          'main-chain',
+          `liststreamkeyitems sidechain_merkle_roots ${shipmentId}`
+        );
+        
+        const mainChainRecords = JSON.parse(mainChainData);
+        
+        if (mainChainRecords && mainChainRecords.length > 0) {
+          const mainChainRecord = JSON.parse(Buffer.from(mainChainRecords[0].data, 'hex').toString());
+          
+          return {
+            ...shipment,
+            merkleRoot: mainChainRecord.merkleRoot,
+            merkleVerification: {
+              available: true,
+              verified: shipment.merkleRoot === mainChainRecord.merkleRoot
+            }
+          };
+        }
+        
+        return {
+          ...shipment,
+          merkleVerification: {
+            available: false
+          }
+        };
+      } catch (err) {
+        console.error(`Error checking merkle verification for shipment ${shipment.shipmentId}:`, err);
+        return shipment;
+      }
+    }));
+
     // Sort by timestamp (newest first)
-    pendingShipments.sort((a, b) => b.timestamp - a.timestamp);
+    pendingShipmentsWithVerification.sort((a, b) => b.timestamp - a.timestamp);
 
     res.json({
       success: true,
-      shipments: pendingShipments
+      shipments: pendingShipmentsWithVerification
     });
   } catch (error) {
     console.error('Failed to get pending shipments:', error);
@@ -4291,6 +5224,7 @@ app.get('/api/retailer/pending-shipments', authenticateRequest, async (req, res)
   }
 });
 
+// Update the product verification endpoint to include retailer data and Merkle proof verification
 // Update the product verification endpoint to include retailer data and Merkle proof verification
 app.get('/api/verify/product/:serialNumber', async (req, res) => {
   try {
@@ -4453,36 +5387,42 @@ app.get('/api/verify/product/:serialNumber', async (req, res) => {
           const timestamp = txData.timestamp || txTimestamp;
           
           let hasSerialNumber = false;
+          let txType = null;
           
           if (txData.serialNumber === serialNumber) {
             hasSerialNumber = true;
+            txType = txData.operation || txData.status;
           }
           
           if (Array.isArray(txData.serialNumbers) && txData.serialNumbers.includes(serialNumber)) {
             hasSerialNumber = true;
+            txType = txData.operation || txData.status;
           }
           
           if (Array.isArray(txData.items)) {
             for (const item of txData.items) {
               if (item.serialNumber === serialNumber) {
                 hasSerialNumber = true;
+                txType = 'sold';
                 break;
               }
               if (Array.isArray(item.serialNumbers) && item.serialNumbers.includes(serialNumber)) {
                 hasSerialNumber = true;
+                txType = 'sold';
                 break;
               }
             }
           }
           
           if (hasSerialNumber) {
-            console.log(`Found retailer transaction with serial ${serialNumber}, type: ${txData.status || 'unknown'}, timestamp: ${new Date(timestamp).toISOString()}`);
+            console.log(`Found retailer transaction with serial ${serialNumber}, type: ${txType || txData.status || txData.operation || 'unknown'}, timestamp: ${new Date(timestamp).toISOString()}`);
             
             allTransactions.push({
               chain: 'retailer',
               timestamp,
               data: txData,
-              blockTime: txTimestamp
+              blockTime: txTimestamp,
+              txType: txType || txData.status || txData.operation || 'unknown'
             });
           }
         } catch (e) {
@@ -4506,23 +5446,27 @@ app.get('/api/verify/product/:serialNumber', async (req, res) => {
           const timestamp = txData.timestamp || txTimestamp;
           
           let hasSerialNumber = false;
+          let txType = null;
           
           if (txData.serialNumber === serialNumber) {
             hasSerialNumber = true;
+            txType = txData.operation || txData.status;
           }
           
           if (Array.isArray(txData.serialNumbers) && txData.serialNumbers.includes(serialNumber)) {
             hasSerialNumber = true;
+            txType = txData.operation || txData.status;
           }
           
           if (hasSerialNumber) {
-            console.log(`Found distributor transaction with serial ${serialNumber}, type: ${txData.status || 'unknown'}, timestamp: ${new Date(timestamp).toISOString()}`);
+            console.log(`Found distributor transaction with serial ${serialNumber}, type: ${txType || txData.status || 'unknown'}, timestamp: ${new Date(timestamp).toISOString()}`);
             
             allTransactions.push({
               chain: 'distributor',
               timestamp,
               data: txData,
-              blockTime: txTimestamp
+              blockTime: txTimestamp,
+              txType: txType || txData.status || txData.operation || 'unknown'
             });
           }
         } catch (e) {
@@ -4530,89 +5474,251 @@ app.get('/api/verify/product/:serialNumber', async (req, res) => {
         }
       }
       
-      // Sort all transactions by timestamp, newest first (keep this for the transaction history)
+      // Get transaction status updates from main chain
+      const statusData = await executeCommand(
+        'main-chain',
+        'liststreamitems transaction_status'
+      );
+      
+      const statusItems = JSON.parse(statusData);
+      console.log(`Found ${statusItems.length} potential status updates to check`);
+      
+      // For each status update, check if it's related to a transaction involving our serial number
+      for (const tx of allTransactions) {
+        // Get transaction IDs that might be associated with this transaction
+        const possibleIds = [
+          tx.data.shipmentId,
+          tx.data.saleId,
+          tx.data.returnId,
+          tx.data.updateId,
+          tx.data.id
+        ].filter(id => id); // Filter out undefined/null values
+        
+        for (const statusItem of statusItems) {
+          try {
+            // The key of the status item is the transaction ID
+            const transactionId = statusItem.keys[0];
+            
+            if (possibleIds.includes(transactionId)) {
+              const statusData = JSON.parse(Buffer.from(statusItem.data, 'hex').toString());
+              console.log(`Found status update for transaction ${transactionId}: ${statusData.status}`);
+              
+              // Update the transaction's status
+              tx.latestStatus = statusData.status;
+              tx.statusTimestamp = statusData.timestamp || statusItem.time * 1000;
+            }
+          } catch (e) {
+            // Continue to next status item
+          }
+        }
+      }
+      
+      // Sort all transactions by timestamp, newest first
       allTransactions.sort((a, b) => {
-        const aTime = a.timestamp || a.blockTime;
-        const bTime = b.timestamp || b.blockTime;
+        // Use status timestamp if available, otherwise use transaction timestamp
+        const aTime = a.statusTimestamp || a.timestamp || a.blockTime;
+        const bTime = b.statusTimestamp || b.timestamp || b.blockTime;
         return bTime - aTime;
       });
       
-      // NEW LOGIC: Prioritize supply chain stage over timestamp
-      // Stage priority: customer (sold) > retailer (returned) > retailer (in_stock) > in_transit > distributor > manufacturer
+      // Log the transactions to debug
+      console.log(`Found ${allTransactions.length} total transactions for serial ${serialNumber}`);
+      for (let i = 0; i < Math.min(5, allTransactions.length); i++) {
+        const tx = allTransactions[i];
+        console.log(`Transaction ${i}: chain=${tx.chain}, type=${tx.txType}, data=${JSON.stringify(tx.data)}`);
+      }
       
-      // Find transactions for each stage
-      const customerSale = allTransactions.find(tx => 
-        tx.chain === 'retailer' && tx.data.status === 'sold');
-      
-      const productReturn = allTransactions.find(tx => 
-        tx.chain === 'retailer' && tx.data.status === 'returned');
-      
-      const inRetailerInventory = allTransactions.find(tx => 
-        tx.chain === 'retailer' && (
-          tx.data.status === 'received' || 
-          tx.data.status === 'add' || 
-          (tx.data.retailerId && (tx.data.operation === 'add' || !tx.data.operation))
-        )
-      );
+      // Analyze transactions to determine current location
+      if (allTransactions.length > 0) {
+        // Get the most recent transaction
+        const latestTx = allTransactions[0];
+        
+        // Use either the status update or transaction type
+        const status = latestTx.latestStatus || latestTx.txType;
+        
+        console.log(`Latest transaction: chain=${latestTx.chain}, status=${status}`);
+        
+        if (latestTx.chain === 'retailer') {
+          // Retailer chain transactions
+          if (status === 'sold') {
+            // Product was sold to a customer
+            currentLocation = {
+              type: 'customer',
+              status: 'sold',
+              saleId: latestTx.data.saleId,
+              timestamp: latestTx.timestamp || latestTx.blockTime,
+              retailerId: latestTx.data.retailerId
+            };
+          } else if (status === 'returned') {
+            // Product was returned to retailer
+            currentLocation = {
+              type: 'retailer',
+              status: 'returned',
+              entityId: latestTx.data.retailerId,
+              returnId: latestTx.data.returnId,
+              timestamp: latestTx.timestamp || latestTx.blockTime
+            };
+          } else if (status === 'received' || status === 'add' || status === 'processed') {
+            // Product is in retailer inventory - Improved: added 'processed' status which happens with returns
+            currentLocation = {
+              type: 'retailer',
+              status: 'in_stock',
+              entityId: latestTx.data.retailerId,
+              timestamp: latestTx.timestamp || latestTx.blockTime
+            };
+          } else if (status === 'remove') {
+            // Product was removed from retailer inventory (but not sold)
+            currentLocation = {
+              type: 'retailer',
+              status: 'removed_from_inventory',
+              entityId: latestTx.data.retailerId,
+              timestamp: latestTx.timestamp || latestTx.blockTime
+            };
+          }
+        } else if (latestTx.chain === 'distributor') {
+          // Distributor chain transactions
+          if (status === 'shipped') {
+            // Product was shipped from distributor to retailer
+            currentLocation = {
+              type: 'in_transit',
+              status: 'shipping',
+              from: latestTx.data.distributorId,
+              to: latestTx.data.retailerId,
+              timestamp: latestTx.timestamp || latestTx.blockTime
+            };
+          } else if (status === 'received' || status === 'add') {
+            // Product is in distributor inventory
+            currentLocation = {
+              type: 'distributor',
+              status: 'in_stock',
+              entityId: latestTx.data.distributorId,
+              timestamp: latestTx.timestamp || latestTx.blockTime
+            };
+          } else if (status === 'remove') {
+            // Product was removed from distributor inventory (but not shipped)
+            currentLocation = {
+              type: 'distributor',
+              status: 'removed_from_inventory',
+              entityId: latestTx.data.distributorId,
+              timestamp: latestTx.timestamp || latestTx.blockTime
+            };
+          }
+        }
+      }
 
-      const inTransit = allTransactions.find(tx => 
-        tx.chain === 'distributor' && tx.data.status === 'shipped' && tx.data.retailerId);
-      
-      const inDistributor = allTransactions.find(tx => 
-        tx.chain === 'distributor' && (
-          tx.data.status === 'received' || 
-          (tx.data.distributorId && (tx.data.operation === 'add' || !tx.data.operation))
-        )
+      // SPECIAL CASE FOR RETURNS: Check if there's a processed return that's newer than other transactions
+      const processedReturns = allTransactions.filter(tx => 
+        tx.chain === 'retailer' && 
+        (tx.txType === 'processed' || tx.latestStatus === 'processed') &&
+        tx.data.returnId // Must have a return ID
       );
       
-      // Apply priority-based location determination
-      // If a product is sold and not returned, it's with a customer
-      if (customerSale && !productReturn) {
-        currentLocation = {
-          type: 'customer',
-          status: 'sold',
-          saleId: customerSale.data.saleId,
-          timestamp: customerSale.timestamp || customerSale.blockTime
-        };
-      } 
-      // If returned or in retailer inventory, it's at the retailer
-      else if (productReturn) {
-        currentLocation = {
-          type: 'retailer',
-          status: 'returned',
-          entityId: productReturn.data.retailerId,
-          returnId: productReturn.data.returnId,
-          timestamp: productReturn.timestamp || productReturn.blockTime
-        };
+      if (processedReturns.length > 0) {
+        // Sort to get the newest processed return
+        processedReturns.sort((a, b) => {
+          const aTime = a.statusTimestamp || a.timestamp || a.blockTime;
+          const bTime = b.statusTimestamp || b.timestamp || b.blockTime;
+          return bTime - aTime;
+        });
+        
+        const latestReturn = processedReturns[0];
+        const returnTime = latestReturn.statusTimestamp || latestReturn.timestamp || latestReturn.blockTime;
+        
+        // If this processed return is the newest transaction for this serial, it's in retailer inventory
+        if (currentLocation.type === 'manufacturer' || 
+            (returnTime > (currentLocation.timestamp || 0))) {
+          console.log(`Found newer processed return, updating location to retailer inventory`);
+          currentLocation = {
+            type: 'retailer',
+            status: 'in_stock',
+            entityId: latestReturn.data.retailerId,
+            returnId: latestReturn.data.returnId,
+            timestamp: returnTime
+          };
+        }
       }
-      else if (inRetailerInventory) {
-        currentLocation = {
-          type: 'retailer',
-          status: 'in_stock',
-          entityId: inRetailerInventory.data.retailerId,
-          timestamp: inRetailerInventory.timestamp || inRetailerInventory.blockTime
-        };
+      
+      // SPECIAL CASE FOR ADDS: Check if there's an inventory "add" that should place it in retailer inventory
+      const inventoryAdds = allTransactions.filter(tx => 
+        tx.chain === 'retailer' && 
+        (tx.txType === 'add' || tx.latestStatus === 'add')
+      );
+      
+      if (inventoryAdds.length > 0) {
+        // Sort to get the newest add
+        inventoryAdds.sort((a, b) => {
+          const aTime = a.statusTimestamp || a.timestamp || a.blockTime;
+          const bTime = b.statusTimestamp || b.timestamp || b.blockTime;
+          return bTime - aTime;
+        });
+        
+        const latestAdd = inventoryAdds[0];
+        const addTime = latestAdd.statusTimestamp || latestAdd.timestamp || latestAdd.blockTime;
+        
+        // Also check for removes that might be newer
+        const inventoryRemoves = allTransactions.filter(tx => 
+          tx.chain === 'retailer' && 
+          (tx.txType === 'remove' || tx.latestStatus === 'remove')
+        );
+        
+        const latestRemove = inventoryRemoves.length > 0 ? 
+          inventoryRemoves.sort((a, b) => {
+            const aTime = a.statusTimestamp || a.timestamp || a.blockTime;
+            const bTime = b.statusTimestamp || b.timestamp || b.blockTime;
+            return bTime - aTime;
+          })[0] : null;
+        
+        const removeTime = latestRemove ? 
+          (latestRemove.statusTimestamp || latestRemove.timestamp || latestRemove.blockTime) : 0;
+        
+        // If this add is newer than any remove AND the product is currently shown at manufacturer, update location
+        if ((currentLocation.type === 'manufacturer' || addTime > (currentLocation.timestamp || 0)) && 
+            (!latestRemove || addTime > removeTime)) {
+          console.log(`Found newer inventory add, updating location to retailer inventory`);
+          currentLocation = {
+            type: 'retailer',
+            status: 'in_stock',
+            entityId: latestAdd.data.retailerId,
+            timestamp: addTime
+          };
+        }
       }
-      // If in transit, it's between distributor and retailer
-      else if (inTransit) {
-        currentLocation = {
-          type: 'in_transit',
-          status: 'shipping',
-          from: inTransit.data.distributorId,
-          to: inTransit.data.retailerId,
-          timestamp: inTransit.timestamp || inTransit.blockTime
-        };
+
+      // Look up entity names for better display
+      if (currentLocation.entityId) {
+        let entityName = null;
+        
+        if (currentLocation.type === 'retailer') {
+          const retailer = config.entityStore.retailers[currentLocation.entityId];
+          if (retailer) {
+            entityName = retailer.name || 'Unknown Retailer';
+          }
+        } else if (currentLocation.type === 'distributor') {
+          const distributor = config.entityStore.distributors[currentLocation.entityId];
+          if (distributor) {
+            entityName = distributor.name || 'Unknown Distributor';
+          }
+        } 
+        
+        if (entityName) {
+          currentLocation.entityName = entityName;
+        }
       }
-      // If in distributor inventory, it's at the distributor
-      else if (inDistributor) {
-        currentLocation = {
-          type: 'distributor',
-          status: 'in_stock',
-          entityId: inDistributor.data.distributorId,
-          timestamp: inDistributor.timestamp || inDistributor.blockTime
-        };
+      
+      if (currentLocation.from) {
+        const distributor = config.entityStore.distributors[currentLocation.from];
+        if (distributor) {
+          currentLocation.fromName = distributor.name || 'Unknown Distributor';
+        }
       }
-      // Otherwise, it's still at the manufacturer (default)
+      
+      if (currentLocation.to) {
+        const retailer = config.entityStore.retailers[currentLocation.to];
+        if (retailer) {
+          currentLocation.toName = retailer.name || 'Unknown Retailer';
+        }
+      }
+
     } catch (error) {
       console.error('Error checking product location:', error);
     }
@@ -4640,8 +5746,10 @@ app.get('/api/verify/product/:serialNumber', async (req, res) => {
       transactionCount: allTransactions.length,
       transactionHistory: allTransactions.slice(0, 5).map(tx => ({
         chain: tx.chain,
-        status: tx.data.status || 'unknown',
-        timestamp: new Date(tx.timestamp || tx.blockTime).toISOString()
+        status: tx.latestStatus || tx.txType || 'unknown',
+        timestamp: new Date(tx.timestamp || tx.blockTime).toISOString(),
+        entityId: tx.data.retailerId || tx.data.distributorId,
+        transactionId: tx.data.shipmentId || tx.data.saleId || tx.data.returnId || tx.data.updateId || tx.data.id
       }))
     });
   } catch (error) {
@@ -4784,6 +5892,204 @@ app.get('/api/verify/product/:serialNumber/merkle-proof', async (req, res) => {
   }
 });
 
+// Endpoint for distributors to check status of their shipments
+app.get('/api/distributor/shipments/:shipmentId/status', authenticateRequest, async (req, res) => {
+  try {
+    // Verify that the authenticated entity is a distributor
+    if (req.entityType !== 'distributor') {
+      return res.status(403).json({
+        success: false,
+        message: 'Only distributors can access this endpoint'
+      });
+    }
+
+    const { shipmentId } = req.params;
+
+    if (!shipmentId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Shipment ID is required'
+      });
+    }
+
+    // Find the distributor's transfers_out stream
+    let transfersOutStream = null;
+
+    if (req.entity && req.entity.streams && req.entity.streams.transfersOut) {
+      transfersOutStream = req.entity.streams.transfersOut;
+    } else {
+      // Fallback if stream name not found in entity data
+      const entityCode = req.entity.id.split('-')[2] || crypto.randomBytes(2).toString('hex');
+      transfersOutStream = `d${entityCode}out`;
+    }
+
+    // Get shipment details from distributor chain
+    const shipmentData = await executeCommand(
+      'distributor-chain',
+      `liststreamkeyitems ${transfersOutStream} ${shipmentId}`
+    );
+
+    const shipments = JSON.parse(shipmentData);
+
+    if (!shipments || shipments.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Shipment not found'
+      });
+    }
+
+    // Get most recent shipment data
+    const latestShipment = shipments.reduce((latest, current) => {
+      return latest.time > current.time ? latest : current;
+    }, shipments[0]);
+
+    const shipmentInfo = JSON.parse(Buffer.from(latestShipment.data, 'hex').toString());
+
+    // Verify distributor owns this shipment
+    if (shipmentInfo.distributorId !== req.entity.id) {
+      return res.status(403).json({
+        success: false,
+        message: 'You do not have permission to access this shipment'
+      });
+    }
+
+    // Get status updates from transaction_status stream
+    const statusData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems transaction_status ${shipmentId}`
+    );
+
+    let statusUpdates = [];
+    try {
+      statusUpdates = JSON.parse(statusData);
+    } catch (error) {
+      // If no status updates or error parsing
+      console.error(`Error getting status for shipment ${shipmentId}:`, error);
+    }
+
+    // Format the status updates
+    const formattedUpdates = statusUpdates.map(update => {
+      try {
+        const updateData = JSON.parse(Buffer.from(update.data, 'hex').toString());
+        return {
+          status: updateData.status,
+          timestamp: updateData.timestamp || update.time * 1000,
+          type: updateData.type,
+          retailerId: updateData.retailerId,
+          details: updateData
+        };
+      } catch (error) {
+        console.error('Error parsing status update:', error);
+        return null;
+      }
+    }).filter(update => update !== null);
+
+    // Determine current status based on most recent update
+    let currentStatus = shipmentInfo.status || 'shipped';
+    let statusTimestamp = shipmentInfo.timestamp;
+
+    if (formattedUpdates.length > 0) {
+      // Sort by timestamp (newest first)
+      formattedUpdates.sort((a, b) => b.timestamp - a.timestamp);
+      currentStatus = formattedUpdates[0].status;
+      statusTimestamp = formattedUpdates[0].timestamp;
+    }
+
+    res.json({
+      success: true,
+      shipmentId,
+      currentStatus,
+      statusTimestamp,
+      productId: shipmentInfo.productId,
+      retailerId: shipmentInfo.retailerId,
+      history: formattedUpdates
+    });
+  } catch (error) {
+    console.error('Failed to get shipment status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get shipment status',
+      error: error.message
+    });
+  }
+});
+
+// Endpoint to get return status information
+app.get('/api/returns/:returnId/status', authenticateRequest, async (req, res) => {
+  try {
+    const { returnId } = req.params;
+
+    if (!returnId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Return ID is required'
+      });
+    }
+
+    // Get status updates from transaction_status stream
+    const statusData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems transaction_status ${returnId}`
+    );
+
+    let statusUpdates = [];
+    try {
+      statusUpdates = JSON.parse(statusData);
+    } catch (error) {
+      console.error(`Error getting status for return ${returnId}:`, error);
+      return res.status(404).json({
+        success: false,
+        message: 'No status information found for this return'
+      });
+    }
+
+    // Format the status updates
+    const formattedUpdates = statusUpdates.map(update => {
+      try {
+        const updateData = JSON.parse(Buffer.from(update.data, 'hex').toString());
+        return {
+          status: updateData.status,
+          timestamp: updateData.timestamp || update.time * 1000,
+          type: updateData.type,
+          details: updateData
+        };
+      } catch (error) {
+        console.error('Error parsing status update:', error);
+        return null;
+      }
+    }).filter(update => update !== null);
+
+    if (formattedUpdates.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No status information found for this return'
+      });
+    }
+
+    // Sort by timestamp (newest first)
+    formattedUpdates.sort((a, b) => b.timestamp - a.timestamp);
+    
+    // Get the most recent status
+    const currentStatus = formattedUpdates[0];
+
+    res.json({
+      success: true,
+      returnId,
+      currentStatus: currentStatus.status,
+      statusTimestamp: currentStatus.timestamp,
+      productId: currentStatus.details.productId,
+      retailerId: currentStatus.details.retailerId,
+      history: formattedUpdates
+    });
+  } catch (error) {
+    console.error('Failed to get return status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get return status',
+      error: error.message
+    });
+  }
+});
 
 // Now update your existing entities to have the proper streams
 app.post('/api/fix-retailer-streams', async (req, res) => {
@@ -4842,6 +6148,59 @@ app.post('/api/fix-retailer-streams', async (req, res) => {
     });
   }
 });
+
+app.get('/api/transactions/:transactionId/status', async (req, res) => {
+  try {
+    const { transactionId } = req.params;
+
+    if (!transactionId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Transaction ID is required'
+      });
+    }
+
+    // Get status updates from transaction_status stream
+    const statusData = await executeCommand(
+      'main-chain',
+      `liststreamkeyitems transaction_status ${transactionId}`
+    );
+    
+    const statusItems = JSON.parse(statusData);
+    
+    if (!statusItems || statusItems.length === 0) {
+      return res.json({
+        success: true,
+        status: 'pending',
+        message: 'No status updates found, transaction is pending'
+      });
+    }
+    
+    // Get the latest status
+    const latestStatus = statusItems.reduce((latest, current) => 
+      latest.time > current.time ? latest : current
+    , statusItems[0]);
+    
+    // Parse the status data
+    const statusInfo = JSON.parse(Buffer.from(latestStatus.data, 'hex').toString());
+    
+    return res.json({
+      success: true,
+      transactionId,
+      status: statusInfo.status,
+      timestamp: statusInfo.timestamp,
+      details: statusInfo
+    });
+  } catch (error) {
+    console.error('Error retrieving transaction status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve transaction status',
+      error: error.message
+    });
+  }
+});
+
 
 // Fix the ensureRetailerStreams function
 const ensureRetailerStreams = async (retailerId) => {
