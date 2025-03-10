@@ -1,0 +1,57 @@
+{
+  "manufacturers": {
+    "manufacturer-1741570106699-94b955fa": {
+      "name": "Haier",
+      "contactInfo": {
+        "person": "dkfhjksdj",
+        "email": "hasjdhak@gmail.com",
+        "phone": "-3094230"
+      },
+      "location": "Dhaka",
+      "role": "manufacturer",
+      "apiKey": "cc5dd9166d7105ffb25d6679e1885d2a",
+      "createdAt": 1741570106699,
+      "id": "manufacturer-1741570106699-94b955fa"
+    }
+  },
+  "distributors": {
+    "distributor-1741570362943-88eca9c4": {
+      "name": "Distributor 1",
+      "contactInfo": {
+        "person": "Ehasan",
+        "email": "dist1@gmail.com",
+        "phone": "01875143187"
+      },
+      "location": "Dhaka",
+      "role": "distributor",
+      "apiKey": "00ec3410f63abbacd57be058921324ce",
+      "createdAt": 1741570362943,
+      "streams": {
+        "inventory": "dd828inventory",
+        "transfersIn": "dd828in",
+        "transfersOut": "dd828out"
+      },
+      "id": "distributor-1741570362943-88eca9c4"
+    }
+  },
+  "retailers": {
+    "retailer-1741607893463-a0644dfc": {
+      "name": "Retailer 1",
+      "contactInfo": {
+        "person": "Masum Hasan",
+        "email": "ehasan@gmail.com",
+        "phone": "01914004024"
+      },
+      "location": "Dhaka",
+      "role": "retailer",
+      "apiKey": "93e170107cec01a0081fb9a13145df9a",
+      "createdAt": 1741607893463,
+      "streams": {
+        "inventory": "ra0644dfcinv",
+        "sales": "ra0644dfcsales",
+        "returns": "ra0644dfcreturns"
+      },
+      "id": "retailer-1741607893463-a0644dfc"
+    }
+  }
+}
