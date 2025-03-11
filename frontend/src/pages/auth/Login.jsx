@@ -26,7 +26,7 @@ const Login = () => {
     setErrorMessage('');
     
     if (!credentials.apiKey) {
-      setErrorMessage('API Key is required');
+      setErrorMessage('Key is required');
       return;
     }
     
@@ -65,7 +65,7 @@ const Login = () => {
       <div className="mb-4">
         <h2 className="text-xl font-bold text-neutral-800 mb-1">Login to DistLedger</h2>
         <p className="text-sm text-neutral-600">
-          Enter your API key to access your dashboard
+          Enter your key to access your dashboard
         </p>
       </div>
       
@@ -77,13 +77,13 @@ const Login = () => {
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="API Key"
+          label="Key"
           type="text"
           id="apiKey"
           name="apiKey"
           value={credentials.apiKey}
           onChange={handleChange}
-          placeholder="Your API Key"
+          placeholder="Your Key"
           required
           fullWidth
         />

@@ -12,6 +12,59 @@
       "apiKey": "cc5dd9166d7105ffb25d6679e1885d2a",
       "createdAt": 1741570106699,
       "id": "manufacturer-1741570106699-94b955fa"
+    },
+    "manufacturer-1741707144162-7f5a6ae6": {
+      "name": "TEST",
+      "contactInfo": {
+        "person": "Souvik",
+        "email": "souvik@gmail.com",
+        "phone": "01914004024"
+      },
+      "location": "Dhaka",
+      "role": "manufacturer",
+      "apiKey": "c3d703af96096c525f275844acaa14cd",
+      "createdAt": 1741707144163,
+      "streams": {}
+    },
+    "manufacturer-1741707213733-cde3520e": {
+      "name": "Test 2",
+      "contactInfo": {
+        "person": "Masum",
+        "email": "masum@gmail.com",
+        "phone": "01915657451"
+      },
+      "location": "Dhaka",
+      "role": "manufacturer",
+      "apiKey": "b037ea5ac6dd58754d2cfd4cd01cf425",
+      "createdAt": 1741707213733,
+      "streams": {}
+    },
+    "manufacturer-1741707394949-6e85bb60": {
+      "name": "Test 2",
+      "contactInfo": {
+        "person": "MAsum",
+        "email": "masum@gmai.com",
+        "phone": "09278301923"
+      },
+      "location": "dhaka",
+      "role": "manufacturer",
+      "apiKey": "4619e1c025f2b1bf3ba80d0500b0aaa7",
+      "createdAt": 1741707394949,
+      "streams": {}
+    },
+    "manufacturer-1741707541345-2987cf8b": {
+      "name": "Edison",
+      "contactInfo": {
+        "person": "edison",
+        "email": "edison@gmail.com",
+        "phone": "01913565741"
+      },
+      "location": "Dhaka",
+      "role": "manufacturer",
+      "apiKey": "2820c764a7d23d2dc20f0f8a7fba87ad",
+      "createdAt": 1741707541345,
+      "streams": {},
+      "id": "manufacturer-1741707541345-2987cf8b"
     }
   },
   "distributors": {
@@ -32,6 +85,24 @@
         "transfersOut": "dd828out"
       },
       "id": "distributor-1741570362943-88eca9c4"
+    },
+    "distributor-1741707575907-37a39a32": {
+      "name": "Local Distributor",
+      "contactInfo": {
+        "person": "labib",
+        "email": "distributor@gmail.com",
+        "phone": "01913565741"
+      },
+      "location": "Dhaka",
+      "role": "distributor",
+      "apiKey": "91c3dc242e61391f98384885acf0a085",
+      "createdAt": 1741707575907,
+      "streams": {
+        "inventory": "d430ainventory",
+        "transfersIn": "d430ain",
+        "transfersOut": "d430aout"
+      },
+      "id": "distributor-1741707575907-37a39a32"
     }
   },
   "retailers": {
@@ -52,6 +123,24 @@
         "returns": "ra0644dfcreturns"
       },
       "id": "retailer-1741607893463-a0644dfc"
+    },
+    "retailer-1741707611928-437daac5": {
+      "name": "Edison Retailer",
+      "contactInfo": {
+        "person": "Alamin",
+        "email": "edisonretailer@gmail.com",
+        "phone": "01913565741"
+      },
+      "location": "Dhaka",
+      "role": "retailer",
+      "apiKey": "acc127c40c2db438f1e02f6a28186281",
+      "createdAt": 1741707611928,
+      "streams": {
+        "inventory": "r437daac5inv",
+        "sales": "r437daac5sales",
+        "returns": "r437daac5returns"
+      },
+      "id": "retailer-1741707611928-437daac5"
     }
   }
 }

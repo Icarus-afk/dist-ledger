@@ -27,6 +27,7 @@ const Shipments = () => {
     specialInstructions: "",
   });
   const [formSubmitting, setFormSubmitting] = useState(false);
+  const [autoGenerateTracking, setAutoGenerateTracking] = useState(false);
 
   // Load data when component mounts
   useEffect(() => {
@@ -66,28 +67,37 @@ const Shipments = () => {
     }
   }, [apiError]);
 
+  useEffect(() => {
+    if (autoGenerateTracking && shipmentDetails.carrier) {
+      const trackingNumber = generateTrackingNumber(shipmentDetails.carrier);
+      setShipmentDetails((prev) => ({
+        ...prev,
+        trackingNumber,
+      }));
+    }
+  }, [autoGenerateTracking, shipmentDetails.carrier]);
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-  
+
     try {
       // Fetch all data in parallel for better performance
       const [inventoryData, retailersData, shipmentsData] = await Promise.all([
         api.get("/api/distributor/inventory"),
         api.get("/api/entities/retailer"),
-        api.get("/api/distributor/shipments")
+        api.get("/api/distributor/shipments"),
       ]);
-      
+
       console.log("Inventory data:", inventoryData);
       if (inventoryData.success) {
         setInventory(inventoryData.inventory || []);
       }
-      
+
       console.log("Retailers data:", retailersData);
       if (retailersData.success) {
         setRetailers(retailersData.entities || []);
       }
-      
+
       console.log("Shipments data:", shipmentsData);
       if (shipmentsData?.success && Array.isArray(shipmentsData.shipments)) {
         await processShipmentData(shipmentsData.shipments);
@@ -112,19 +122,20 @@ const Shipments = () => {
       try {
         const shipment = JSON.parse(recentShipment);
         console.log("Using recent shipment from localStorage:", shipment);
-        
+
         // Make sure the shipment has all required fields
         const processedShipment = {
           ...shipment,
           id: shipment.id || shipment.shipmentId || `shipment-${Date.now()}`,
-          shipmentId: shipment.shipmentId || shipment.id || `shipment-${Date.now()}`,
+          shipmentId:
+            shipment.shipmentId || shipment.id || `shipment-${Date.now()}`,
           retailerName: getRetailerName(shipment.retailerId),
           productName: getProductName(shipment.productId),
           status: shipment.status || "shipped",
           timestamp: shipment.timestamp || shipment.createdAt || Date.now(),
           createdAt: shipment.createdAt || shipment.timestamp || Date.now(),
         };
-        
+
         setShipments([processedShipment]);
       } catch (e) {
         console.error("Failed to parse localStorage shipment", e);
@@ -138,13 +149,13 @@ const Shipments = () => {
   // Helper functions to get entity names
   const getRetailerName = (retailerId) => {
     if (!retailerId) return "Unknown Retailer";
-    const retailer = retailers.find(r => r.id === retailerId);
+    const retailer = retailers.find((r) => r.id === retailerId);
     return retailer?.name || retailerId;
   };
 
   const getProductName = (productId) => {
     if (!productId) return "Unknown Product";
-    const product = inventory.find(p => p.productId === productId);
+    const product = inventory.find((p) => p.productId === productId);
     return product?.productName || productId;
   };
 
@@ -201,7 +212,11 @@ const Shipments = () => {
 
       if (response.success) {
         // Show success message
-        setSuccessMessage(`Shipment to ${getRetailerName(selectedRetailer)} created successfully!`);
+        setSuccessMessage(
+          `Shipment to ${getRetailerName(
+            selectedRetailer
+          )} created successfully!`
+        );
 
         // Store the shipment data for fallback access
         const newShipment = {
@@ -240,12 +255,56 @@ const Shipments = () => {
       }
     } catch (err) {
       console.error("Error creating shipment:", err);
-      setError(`Failed to create shipment: ${err.message || "Please try again."}`);
+      setError(
+        `Failed to create shipment: ${err.message || "Please try again."}`
+      );
     } finally {
       setFormSubmitting(false);
     }
   };
-
+  const generateTrackingNumber = (carrier) => {
+    switch (carrier) {
+      case "UPS": {
+        const upsPrefix = "1Z";
+        const upsDigits = Array.from({ length: 16 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join("");
+        return `${upsPrefix}${upsDigits}`;
+      }
+      case "FedEx": {
+        const fedexDigits = Array.from({ length: 12 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join("");
+        return fedexDigits;
+      }
+      case "DHL": {
+        const dhlDigits = Array.from({ length: 10 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join("");
+        return `DHL${dhlDigits}`;
+      }
+      case "USPS": {
+        const uspsPrefix = "94001";
+        const uspsDigits = Array.from({ length: 17 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join("");
+        return `${uspsPrefix}${uspsDigits}`;
+      }
+      case "Amazon": {
+        const amazonPrefix = "TBA";
+        const amazonDigits = Array.from({ length: 10 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join("");
+        return `${amazonPrefix}${amazonDigits}`;
+      }
+      default: {
+        const defaultDigits = Array.from({ length: 12 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join("");
+        return `TRK${defaultDigits}`;
+      }
+    }
+  };
   // Format date with better error handling
   const formatDate = (timestamp) => {
     if (!timestamp) return "N/A";
@@ -260,39 +319,54 @@ const Shipments = () => {
   // Function to refresh the status of a specific shipment
   const refreshShipmentStatus = async (shipmentId) => {
     if (!shipmentId) return;
-    
+
     try {
-      setStatusRefreshing(prev => ({ ...prev, [shipmentId]: true }));
-      
+      setStatusRefreshing((prev) => ({ ...prev, [shipmentId]: true }));
+
       // Use the general transactions endpoint to get status updates
       const response = await api.get(`/api/transactions/${shipmentId}/status`);
-      
+
       if (response.success) {
-        setVerifiedShipmentStatuses(prev => ({
+        setVerifiedShipmentStatuses((prev) => ({
           ...prev,
-          [shipmentId]: response.status || prev[shipmentId] || 'unknown'
+          [shipmentId]: response.status || prev[shipmentId] || "unknown",
         }));
-        
+
         // If status has changed from what we have in state, refresh the full data
         // to make sure we have the most current information
-        const currentShipment = shipments.find(s => s.shipmentId === shipmentId || s.id === shipmentId);
-        if (currentShipment && response.status && currentShipment.status !== response.status) {
+        const currentShipment = shipments.find(
+          (s) => s.shipmentId === shipmentId || s.id === shipmentId
+        );
+        if (
+          currentShipment &&
+          response.status &&
+          currentShipment.status !== response.status
+        ) {
           fetchData();
         }
       }
     } catch (err) {
-      console.error(`Failed to refresh status for shipment ${shipmentId}:`, err);
+      console.error(
+        `Failed to refresh status for shipment ${shipmentId}:`,
+        err
+      );
     } finally {
-      setStatusRefreshing(prev => ({ ...prev, [shipmentId]: false }));
+      setStatusRefreshing((prev) => ({ ...prev, [shipmentId]: false }));
     }
   };
-  
+
   // Process shipment data and check statuses
   const processShipmentData = async (shipmentsList) => {
     try {
       const formattedShipments = shipmentsList.map((shipment) => ({
-        id: shipment.shipmentId || shipment.id || `shipment-${shipment.timestamp || Date.now()}`,
-        shipmentId: shipment.shipmentId || shipment.id || `shipment-${shipment.timestamp || Date.now()}`,
+        id:
+          shipment.shipmentId ||
+          shipment.id ||
+          `shipment-${shipment.timestamp || Date.now()}`,
+        shipmentId:
+          shipment.shipmentId ||
+          shipment.id ||
+          `shipment-${shipment.timestamp || Date.now()}`,
         retailerId: shipment.retailerId,
         retailerName: getRetailerName(shipment.retailerId),
         productId: shipment.productId,
@@ -303,20 +377,22 @@ const Shipments = () => {
         createdAt: shipment.timestamp || shipment.createdAt || Date.now(),
         serialNumbers: shipment.serialNumbers || [],
       }));
-  
+
       console.log(`Found ${formattedShipments.length} shipments`);
       setShipments(formattedShipments);
-      
+
       // Initialize status checks for each shipment
       const statusChecks = {};
       for (const shipment of formattedShipments) {
         try {
           const shipmentId = shipment.shipmentId || shipment.id;
           // First assume it's the status we have in the record
-          statusChecks[shipmentId] = shipment.status || 'shipped';
-          
+          statusChecks[shipmentId] = shipment.status || "shipped";
+
           // Then check with the transaction status API
-          const statusResponse = await api.get(`/api/transactions/${shipmentId}/status`);
+          const statusResponse = await api.get(
+            `/api/transactions/${shipmentId}/status`
+          );
           if (statusResponse.success && statusResponse.status) {
             statusChecks[shipmentId] = statusResponse.status;
           }
@@ -332,12 +408,13 @@ const Shipments = () => {
       fallbackToLocalStorage();
     }
   };
-  
+
   // Render shipment status with appropriate styling
   const renderShipmentStatus = (status, shipmentId) => {
     // Use verified status if available, otherwise fall back to the provided status
-    const currentStatus = verifiedShipmentStatuses[shipmentId] || status || "unknown";
-    
+    const currentStatus =
+      verifiedShipmentStatuses[shipmentId] || status || "unknown";
+
     switch (currentStatus.toLowerCase()) {
       case "received":
         return (
@@ -406,33 +483,39 @@ const Shipments = () => {
           <p>Shipments: {shipments?.length || 0}</p>
           <p>Inventory Items: {inventory?.length || 0}</p>
           <p>Retailers: {retailers?.length || 0}</p>
-          <p>Selected Serial Numbers: {serialNumbers?.length || 0}/{availableSerials?.length || 0}</p>
-          
+          <p>
+            Selected Serial Numbers: {serialNumbers?.length || 0}/
+            {availableSerials?.length || 0}
+          </p>
+
           <h4 className="font-semibold mt-2">Shipment Status Values:</h4>
           {Object.keys(verifiedShipmentStatuses).length > 0 ? (
             <ul className="mt-1 text-sm">
               {Object.entries(verifiedShipmentStatuses).map(([id, status]) => (
                 <li key={id}>
-                  {id.substring(0, 10)}...: <span className="font-medium">{status}</span>
+                  {id.substring(0, 10)}...:{" "}
+                  <span className="font-medium">{status}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-sm text-gray-500">No status information available</p>
+            <p className="text-sm text-gray-500">
+              No status information available
+            </p>
           )}
-          
+
           <details>
             <summary className="cursor-pointer font-semibold text-blue-600 mt-2">
               Raw Data
             </summary>
             <pre className="mt-2 p-2 bg-gray-800 text-green-400 text-xs overflow-auto max-h-60">
               {JSON.stringify(
-                { 
-                  shipments, 
-                  inventory, 
-                  retailers, 
+                {
+                  shipments,
+                  inventory,
+                  retailers,
                   serialNumbers,
-                  verifiedShipmentStatuses
+                  verifiedShipmentStatuses,
                 },
                 null,
                 2
@@ -516,7 +599,7 @@ const Shipments = () => {
                     : "Select All"}
                 </button>
               </div>
-              
+
               <div className="max-h-40 overflow-y-auto border border-gray-300 rounded-md p-2">
                 {availableSerials.length > 0 ? (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -530,8 +613,8 @@ const Shipments = () => {
                           className="mr-2"
                           disabled={formSubmitting}
                         />
-                        <label 
-                          htmlFor={`serial-${serial}`} 
+                        <label
+                          htmlFor={`serial-${serial}`}
                           className="text-sm truncate"
                           title={serial}
                         >
@@ -553,21 +636,51 @@ const Shipments = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Carrier
             </label>
-            <input
-              type="text"
+            <select
               name="carrier"
               value={shipmentDetails.carrier}
               onChange={handleDetailsChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter carrier name"
               disabled={formSubmitting}
-            />
+            >
+              <option value="">Select a carrier</option>
+              <option value="UPS">UPS</option>
+              <option value="FedEx">FedEx</option>
+              <option value="DHL">DHL</option>
+              <option value="USPS">USPS</option>
+              <option value="Amazon">Amazon Logistics</option>
+            </select>
           </div>
 
+          {/* Tracking Number Field with Auto-Generate Toggle */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Tracking Number
-            </label>
+            <div className="flex justify-between items-center mb-1">
+              <label className="block text-sm font-medium text-gray-700">
+                Tracking Number
+              </label>
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="auto-generate"
+                  checked={autoGenerateTracking}
+                  onChange={() =>
+                    setAutoGenerateTracking(!autoGenerateTracking)
+                  }
+                  className="mr-1 h-4 w-4"
+                  disabled={formSubmitting || !shipmentDetails.carrier}
+                />
+                <label
+                  htmlFor="auto-generate"
+                  className={`text-xs ${
+                    !shipmentDetails.carrier
+                      ? "text-gray-400"
+                      : "text-blue-600 cursor-pointer"
+                  }`}
+                >
+                  Auto-generate
+                </label>
+              </div>
+            </div>
             <input
               type="text"
               name="trackingNumber"
@@ -575,7 +688,7 @@ const Shipments = () => {
               onChange={handleDetailsChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter tracking number"
-              disabled={formSubmitting}
+              disabled={formSubmitting || autoGenerateTracking}
             />
           </div>
 
@@ -663,10 +776,7 @@ const Shipments = () => {
                 {shipments.map((shipment) => {
                   const shipmentId = shipment.shipmentId || shipment.id;
                   return (
-                    <tr
-                      key={shipmentId}
-                      className="hover:bg-gray-50"
-                    >
+                    <tr key={shipmentId} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {shipmentId || "N/A"}
                       </td>
@@ -677,7 +787,9 @@ const Shipments = () => {
                         {shipment.productName || shipment.productId || "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {shipment.serialNumbers?.length || shipment.quantity || 0}
+                        {shipment.serialNumbers?.length ||
+                          shipment.quantity ||
+                          0}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {formatDate(shipment.createdAt || shipment.timestamp)}
@@ -690,8 +802,8 @@ const Shipments = () => {
                             disabled={statusRefreshing[shipmentId]}
                             className="text-xs text-blue-600 hover:text-blue-800 mt-1"
                           >
-                            {statusRefreshing[shipmentId] 
-                              ? "Refreshing..." 
+                            {statusRefreshing[shipmentId]
+                              ? "Refreshing..."
                               : "Refresh Status"}
                           </button>
                         </div>

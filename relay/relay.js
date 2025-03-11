@@ -3116,20 +3116,17 @@ app.get('/api/distributor/pending-transfers', authenticateRequest, async (req, r
 });
 
 // Endpoint for distributors to get returned products from retailers
-// Endpoint for distributors to get returned products from retailers
-// Endpoint for distributors to get returned products from retailers
 app.get('/api/distributor/returned-products', authenticateRequest, async (req, res) => {
   try {
     // Verify that the authenticated entity is a distributor
     if (req.entityType !== 'distributor') {
       return res.status(403).json({
         success: false,
-        message: 'Only distributors can access this endpoint'
+        message: 'Access denied. Only distributors can access returned products.'
       });
     }
 
-    const distributorId = req.entity.id;
-    console.log(`Looking up returned products for distributor ${distributorId}`);
+    const distributorId = req.entity.id;    console.log(`Looking up returned products for distributor ${distributorId}`);
     
     // Find retailers that might have returned products to this distributor
     const retailers = Object.entries(config.entityStore.retailers);
@@ -3140,229 +3137,57 @@ app.get('/api/distributor/returned-products', authenticateRequest, async (req, r
       processedItems: 0, 
       matchedItems: 0, 
       errors: [],
-      returnData: [] // Store sample return data for debugging
+      returnData: []
     };
     
     // CHECK THE RETAILER_TRANSACTIONS STREAM FIRST
     try {
-      console.log("Checking retailer_transactions stream for returns");
-      const txData = await executeCommand(
+      const retailerTxData = await executeCommand(
         'retailer-chain',
         'liststreamitems retailer_transactions'
       );
       
-      const transactions = JSON.parse(txData);
-      console.log(`Found ${transactions.length} total transactions to check`);
+      const retailerTransactions = JSON.parse(retailerTxData);
+      debugInfo.processedItems += retailerTransactions.length;
       
-      for (const tx of transactions) {
+      for (const tx of retailerTransactions) {
         try {
-          debugInfo.processedItems++;
-          const txInfo = JSON.parse(Buffer.from(tx.data, 'hex').toString());
+          const txData = JSON.parse(Buffer.from(tx.data, 'hex').toString());
           
-          // Log every transaction that has a return ID for debugging
-          if (txInfo.returnId || txInfo.originalReturnId) {
-            console.log(`Found return transaction:`, JSON.stringify(txInfo));
-            
-            // Store the first 5 return transactions for debugging
-            if (debugInfo.returnData.length < 5) {
-              debugInfo.returnData.push({
-                returnId: txInfo.returnId || txInfo.originalReturnId,
-                hasDistributorId: !!txInfo.distributorId,
-                distributorId: txInfo.distributorId || 'none',
-                returnToDistributor: txInfo.returnToDistributor,
-                reason: txInfo.reason,
-                status: txInfo.status,
-                type: txInfo.type
-              });
-            }
-          }
-          
-          // Much more permissive filtering to catch any possible return
-          const isReturn = 
-            (txInfo.returnId || txInfo.originalReturnId) && // Has a return ID
-            txInfo.productId; // And has a product ID
-          
-          const involvesThisDistributor =
-            txInfo.distributorId === distributorId || // Explicit distributor ID
-            txInfo.returnToDistributor === true || // Any return to distributor
-            (typeof txInfo.notes === 'string' && txInfo.notes.includes(distributorId)) || // Notes mention distributor
-            (txInfo.status === 'returned' && txInfo.type === 'return'); // Generic return
-          
-          if (isReturn && involvesThisDistributor) {
-            console.log(`Matched return for distributor ${distributorId}:`, JSON.stringify(txInfo));
-            
-            debugInfo.matchedItems++;
-            
-            // Check if we already have this return to avoid duplicates
-            if (!returnedProducts.some(r => r.returnId === (txInfo.returnId || txInfo.originalReturnId))) {
-              let retailerName = 'Unknown Retailer';
-              const retailer = config.entityStore.retailers[txInfo.retailerId];
-              if (retailer) {
-                retailerName = retailer.name || txInfo.retailerId;
-              }
+          // Check if this is a return transaction intended for THIS distributor specifically
+          if (txData.type === 'return' || txData.status === 'returned') {
+            // FIXED: Only include returns meant for this specific distributor
+            if (txData.distributorId === distributorId) {
+              debugInfo.matchedItems++;
+              debugInfo.returnData.push({txid: tx.txid, data: txData});
               
-              // Get product details if needed
-              let productName = txInfo.productName || 'Unknown Product';
-              let productValue = txInfo.value || 0;
-              
-              if (!productName || productName === 'Unknown Product' || productValue === 0) {
-                try {
-                  const productData = await executeCommand(
-                    'main-chain',
-                    `liststreamkeyitems products ${txInfo.productId}`
-                  );
-                  
-                  const products = JSON.parse(productData);
-                  if (products && products.length > 0) {
-                    const productInfo = JSON.parse(Buffer.from(products[0].data, 'hex').toString());
-                    productName = productInfo.name || txInfo.productId;
-                    productValue = txInfo.value || productInfo.unitPrice || 0;
-                  }
-                } catch (err) {
-                  console.error(`Error getting product details: ${err.message}`);
-                }
-              }
-              
-              // Format serial numbers consistently
-              let serialNumbers = [];
-              if (txInfo.serialNumbers && Array.isArray(txInfo.serialNumbers)) {
-                serialNumbers = txInfo.serialNumbers;
-              } else if (txInfo.serialNumber) {
-                serialNumbers = [txInfo.serialNumber];
-              }
-              
+              // Format the return data
               returnedProducts.push({
-                returnId: txInfo.returnId || txInfo.originalReturnId,
-                productId: txInfo.productId,
-                productName: productName,
-                serialNumbers: serialNumbers,
-                timestamp: txInfo.timestamp || tx.time * 1000,
-                reason: txInfo.reason || 'Not specified',
-                status: txInfo.status || 'pending',
-                defective: txInfo.defective || false,
-                replacement: txInfo.replacement || false,
-                value: txInfo.value || productValue || 0,
-                retailerId: txInfo.retailerId,
-                retailerName: retailerName,
-                defectDescription: txInfo.defectDescription || txInfo.notes || '',
-                actionHistory: txInfo.actionHistory || []
+                returnId: txData.returnId || tx.txid,
+                timestamp: txData.timestamp || tx.time,
+                retailerId: txData.retailerId || "unknown",
+                retailerName: txData.retailerName || null,
+                productId: txData.productId || "unknown",
+                productName: txData.productName || null,
+                serialNumber: txData.serialNumber || "unknown",
+                serialNumbers: txData.serialNumbers || [txData.serialNumber],
+                reason: txData.reason || "Not specified",
+                condition: txData.condition || "unknown",
+                status: txData.status || "processed",
+                value: txData.value || 0,
+                replacement: !!txData.replacement,
+                defective: !!txData.defective || txData.reason === "defective",
+                merkleVerified: txData.merkleVerified || false
               });
-              
-              console.log(`Added return ${txInfo.returnId || txInfo.originalReturnId} for product ${txInfo.productId}`);
             }
           }
         } catch (parseError) {
-          debugInfo.errors.push(parseError.message);
-          console.error(`Error parsing transaction data: ${parseError.message}`);
+          // Skip unparseable transactions
+          continue;
         }
       }
     } catch (txError) {
-      debugInfo.errors.push(txError.message);
-      console.error(`Error checking transactions stream: ${txError.message}`);
-    }
-    
-    // THEN check each retailer's specific returns stream with more permissive filtering
-    for (const [retailerId, retailer] of retailers) {
-      try {
-        // Skip if retailer has no streams or returns stream
-        if (!retailer || !retailer.streams || !retailer.streams.returns) {
-          console.log(`Retailer ${retailerId} has no returns stream, skipping`);
-          continue;
-        }
-        
-        const returnsStreamName = retailer.streams.returns;
-        
-        // Get returns from retailer chain
-        console.log(`Checking returns stream ${returnsStreamName} for retailer ${retailerId}`);
-        const returnsData = await executeCommand(
-          'retailer-chain',
-          `liststreamitems ${returnsStreamName}`
-        );
-        
-        const returns = JSON.parse(returnsData);
-        
-        if (returns && returns.length > 0) {
-          console.log(`Found ${returns.length} potential returns from retailer ${retailerId}`);
-          
-          // Filter returns with more permissive criteria
-          for (const returnItem of returns) {
-            try {
-              debugInfo.processedItems++;
-              const returnData = JSON.parse(Buffer.from(returnItem.data, 'hex').toString());
-              
-              // Store sample return data for debugging
-              if (debugInfo.returnData.length < 10) {
-                debugInfo.returnData.push({
-                  source: `${returnsStreamName}`,
-                  returnId: returnData.returnId || returnData.originalReturnId,
-                  hasDistributorId: !!returnData.distributorId,
-                  distributorId: returnData.distributorId || 'none',
-                  returnToDistributor: returnData.returnToDistributor,
-                  reason: returnData.reason,
-                  productId: returnData.productId
-                });
-              }
-              
-              // More permissive check - any field indicating this might be for this distributor
-              const isForThisDistributor = 
-                returnData.distributorId === distributorId || // Explicitly for this distributor 
-                returnData.returnToDistributor === true || // Any return to distributor flag
-                (typeof returnData.notes === 'string' && 
-                 returnData.notes.toLowerCase().includes(distributorId.toLowerCase())); // Notes mentioning distributor
-              
-              if (returnData.productId && (returnData.returnId || returnData.originalReturnId) && isForThisDistributor) {
-                console.log(`Found matching return in ${returnsStreamName}:`, JSON.stringify(returnData));
-                
-                debugInfo.matchedItems++;
-                // Check if we already have this return to avoid duplicates
-                if (!returnedProducts.some(r => r.returnId === (returnData.returnId || returnData.originalReturnId))) {
-                  // Get product details and add the return as before
-                  let productName = returnData.productName || 'Unknown Product';
-                  let productValue = returnData.value || 0;
-                  
-                  // Format serial numbers consistently
-                  let serialNumbers = [];
-                  if (returnData.serialNumbers && Array.isArray(returnData.serialNumbers)) {
-                    serialNumbers = returnData.serialNumbers;
-                  } else if (returnData.serialNumber) {
-                    serialNumbers = [returnData.serialNumber];
-                  }
-                  
-                  returnedProducts.push({
-                    returnId: returnData.returnId || returnData.originalReturnId,
-                    productId: returnData.productId,
-                    productName: productName,
-                    serialNumbers: serialNumbers,
-                    timestamp: returnData.timestamp || returnItem.time * 1000,
-                    reason: returnData.reason || 'Not specified',
-                    status: returnData.status || 'pending',
-                    defective: returnData.defective || false,
-                    replacement: returnData.replacement || false,
-                    value: returnData.value || productValue || 0,
-                    retailerId: retailer.id,
-                    retailerName: retailer.name || retailer.id,
-                    defectDescription: returnData.defectDescription || returnData.notes || '',
-                    actionHistory: returnData.actionHistory || []
-                  });
-                  
-                  console.log(`Added return from returns stream: ${returnData.returnId || 'unknown'}`);
-                }
-              }
-            } catch (parseError) {
-              debugInfo.errors.push(parseError.message);
-              console.error(`Error parsing return data: ${parseError.message}`);
-            }
-          }
-        }
-      } catch (retailerError) {
-        debugInfo.errors.push(retailerError.message);
-        console.error(`Error getting returns from retailer ${retailerId}: ${retailerError.message}`);
-      }
-    }
-
-    // Debug: print found returns
-    for (const returnProd of returnedProducts) {
-      console.log(`Return in final list: ${returnProd.returnId}, product: ${returnProd.productId}, reason: ${returnProd.reason}`);
+      debugInfo.errors.push(`Error reading retailer transactions: ${txError.message}`);
     }
     
     // Sort returns by timestamp (newest first)
@@ -3383,8 +3208,7 @@ app.get('/api/distributor/returned-products', authenticateRequest, async (req, r
       totalCount: returnedProducts.length,
       defectiveCount,
       replacementCount,
-      totalValue,
-      debug: debugInfo
+      totalValue
     });
   } catch (error) {
     console.error('Failed to get returned products:', error);

@@ -3002,3 +3002,120 @@
 2025-03-11 21:12:56.834	Rolled back to block 776 successfully
 2025-03-11 21:12:56.854	NewBlock 777, Txs: 0, Rows: 0
 2025-03-11 21:12:56.873	NewBlock 778, Txs: 0, Rows: 0
+2025-03-11 21:57:54.297	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block -1, flags 00000000, import 0
+2025-03-11 21:57:54.297	NewTx ea9c16f8bd2b5ae9f4ed0eff95954acad97a6f75d8734ecf805f86486863a482, block -1, flags 00030004, import 0
+2025-03-11 21:57:54.409	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block -1, flags 00000000, import 0
+2025-03-11 21:57:54.409	NewTx 85822a87238cb431c7a2c2125ab1ea80234a2897dc5c83b3431cacdbff02e836, block -1, flags 00030004, import 0
+2025-03-11 21:57:54.518	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block -1, flags 00000000, import 0
+2025-03-11 21:57:54.518	NewTx 8cafa0eec3e9b4fd32230a84f0c9c7b9a4caee1fba04e9e67d27daafcdd42089, block -1, flags 00030004, import 0
+2025-03-11 21:57:54.628	Entity (00000105, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) added successfully
+2025-03-11 21:57:54.628	Entity (00000205, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) added successfully
+2025-03-11 21:57:54.628	Entity (00000106, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) added successfully
+2025-03-11 21:57:54.628	Entity (00000206, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) added successfully
+2025-03-11 21:57:54.628	Entity (00000107, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) added successfully
+2025-03-11 21:57:54.628	Entity (00000207, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) added successfully
+2025-03-11 21:57:54.628	Starting new import 10 with 6 entities from block 777
+2025-03-11 21:57:54.628	Import: 10, Entity: (00000105, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca), transferred txs: 0
+2025-03-11 21:57:54.628	Import: 10, Entity: (00000205, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca), transferred txs: 0
+2025-03-11 21:57:54.628	Import: 10, Entity: (00000106, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca), transferred txs: 0
+2025-03-11 21:57:54.628	Import: 10, Entity: (00000206, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca), transferred txs: 0
+2025-03-11 21:57:54.628	Import: 10, Entity: (00000107, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca), transferred txs: 0
+2025-03-11 21:57:54.628	Import: 10, Entity: (00000207, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca), transferred txs: 0
+2025-03-11 21:57:54.628	Import 10 successfully started
+2025-03-11 21:57:54.644	NewBlock 778, Txs: 0, Rows: 0
+2025-03-11 21:57:54.644	Could not find parent entity
+2025-03-11 21:57:54.644	Could not find parent entity
+2025-03-11 21:57:54.644	Could not find parent entity
+2025-03-11 21:57:54.644	Import: 10, Transferring entity (00000105, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) to the chain, txs: 0
+2025-03-11 21:57:54.644	Import: 10, Transferring entity (00000205, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) to the chain, txs: 0
+2025-03-11 21:57:54.644	Import: 10, Transferring entity (00000106, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) to the chain, txs: 0
+2025-03-11 21:57:54.644	Import: 10, Transferring entity (00000206, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) to the chain, txs: 0
+2025-03-11 21:57:54.644	Import: 10, Transferring entity (00000107, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) to the chain, txs: 0
+2025-03-11 21:57:54.644	Import: 10, Transferring entity (00000207, 00000000ea9c16f8bd2b5ae9f4ed0eff95954aca) to the chain, txs: 0
+2025-03-11 21:57:54.644	CompleteImport: Successfully updated chain after import 10, removing old records
+2025-03-11 21:57:54.644	CompleteImport: Import 10 completed
+2025-03-11 21:57:54.756	Entity (00000105, 0000000085822a87238cb431c7a2c2125ab1ea80) added successfully
+2025-03-11 21:57:54.756	Entity (00000205, 0000000085822a87238cb431c7a2c2125ab1ea80) added successfully
+2025-03-11 21:57:54.756	Entity (00000106, 0000000085822a87238cb431c7a2c2125ab1ea80) added successfully
+2025-03-11 21:57:54.756	Entity (00000206, 0000000085822a87238cb431c7a2c2125ab1ea80) added successfully
+2025-03-11 21:57:54.756	Entity (00000107, 0000000085822a87238cb431c7a2c2125ab1ea80) added successfully
+2025-03-11 21:57:54.756	Entity (00000207, 0000000085822a87238cb431c7a2c2125ab1ea80) added successfully
+2025-03-11 21:57:54.756	Starting new import 11 with 6 entities from block 777
+2025-03-11 21:57:54.756	Import: 11, Entity: (00000105, 0000000085822a87238cb431c7a2c2125ab1ea80), transferred txs: 0
+2025-03-11 21:57:54.756	Import: 11, Entity: (00000205, 0000000085822a87238cb431c7a2c2125ab1ea80), transferred txs: 0
+2025-03-11 21:57:54.756	Import: 11, Entity: (00000106, 0000000085822a87238cb431c7a2c2125ab1ea80), transferred txs: 0
+2025-03-11 21:57:54.756	Import: 11, Entity: (00000206, 0000000085822a87238cb431c7a2c2125ab1ea80), transferred txs: 0
+2025-03-11 21:57:54.756	Import: 11, Entity: (00000107, 0000000085822a87238cb431c7a2c2125ab1ea80), transferred txs: 0
+2025-03-11 21:57:54.756	Import: 11, Entity: (00000207, 0000000085822a87238cb431c7a2c2125ab1ea80), transferred txs: 0
+2025-03-11 21:57:54.756	Import 11 successfully started
+2025-03-11 21:57:54.768	NewBlock 778, Txs: 0, Rows: 0
+2025-03-11 21:57:54.768	Could not find parent entity
+2025-03-11 21:57:54.768	Could not find parent entity
+2025-03-11 21:57:54.768	Could not find parent entity
+2025-03-11 21:57:54.768	Import: 11, Transferring entity (00000105, 0000000085822a87238cb431c7a2c2125ab1ea80) to the chain, txs: 0
+2025-03-11 21:57:54.768	Import: 11, Transferring entity (00000205, 0000000085822a87238cb431c7a2c2125ab1ea80) to the chain, txs: 0
+2025-03-11 21:57:54.768	Import: 11, Transferring entity (00000106, 0000000085822a87238cb431c7a2c2125ab1ea80) to the chain, txs: 0
+2025-03-11 21:57:54.768	Import: 11, Transferring entity (00000206, 0000000085822a87238cb431c7a2c2125ab1ea80) to the chain, txs: 0
+2025-03-11 21:57:54.768	Import: 11, Transferring entity (00000107, 0000000085822a87238cb431c7a2c2125ab1ea80) to the chain, txs: 0
+2025-03-11 21:57:54.768	Import: 11, Transferring entity (00000207, 0000000085822a87238cb431c7a2c2125ab1ea80) to the chain, txs: 0
+2025-03-11 21:57:54.768	CompleteImport: Successfully updated chain after import 11, removing old records
+2025-03-11 21:57:54.768	CompleteImport: Import 11 completed
+2025-03-11 21:57:54.879	Entity (00000105, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) added successfully
+2025-03-11 21:57:54.879	Entity (00000205, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) added successfully
+2025-03-11 21:57:54.879	Entity (00000106, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) added successfully
+2025-03-11 21:57:54.879	Entity (00000206, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) added successfully
+2025-03-11 21:57:54.879	Entity (00000107, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) added successfully
+2025-03-11 21:57:54.879	Entity (00000207, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) added successfully
+2025-03-11 21:57:54.879	Starting new import 12 with 6 entities from block 777
+2025-03-11 21:57:54.879	Import: 12, Entity: (00000105, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9), transferred txs: 0
+2025-03-11 21:57:54.879	Import: 12, Entity: (00000205, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9), transferred txs: 0
+2025-03-11 21:57:54.879	Import: 12, Entity: (00000106, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9), transferred txs: 0
+2025-03-11 21:57:54.879	Import: 12, Entity: (00000206, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9), transferred txs: 0
+2025-03-11 21:57:54.879	Import: 12, Entity: (00000107, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9), transferred txs: 0
+2025-03-11 21:57:54.879	Import: 12, Entity: (00000207, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9), transferred txs: 0
+2025-03-11 21:57:54.879	Import 12 successfully started
+2025-03-11 21:57:54.891	NewBlock 778, Txs: 0, Rows: 0
+2025-03-11 21:57:54.891	Could not find parent entity
+2025-03-11 21:57:54.891	Could not find parent entity
+2025-03-11 21:57:54.891	Could not find parent entity
+2025-03-11 21:57:54.891	Import: 12, Transferring entity (00000105, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) to the chain, txs: 0
+2025-03-11 21:57:54.891	Import: 12, Transferring entity (00000205, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) to the chain, txs: 0
+2025-03-11 21:57:54.891	Import: 12, Transferring entity (00000106, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) to the chain, txs: 0
+2025-03-11 21:57:54.891	Import: 12, Transferring entity (00000206, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) to the chain, txs: 0
+2025-03-11 21:57:54.891	Import: 12, Transferring entity (00000107, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) to the chain, txs: 0
+2025-03-11 21:57:54.891	Import: 12, Transferring entity (00000207, 000000008cafa0eec3e9b4fd32230a84f0c9c7b9) to the chain, txs: 0
+2025-03-11 21:57:54.891	CompleteImport: Successfully updated chain after import 12, removing old records
+2025-03-11 21:57:54.891	CompleteImport: Import 12 completed
+2025-03-11 21:58:00.101	NewTx 27daff484c7ee62752f05eca2e570af59d43719151001d636cb28684ee25ea03, block -1, flags 00030004, import 0
+2025-03-11 21:58:00.212	NewTx 9e42a9ccd6b08e31a391dbfd845e8ece89bf24db2f097386d175a680628851a4, block -1, flags 00030004, import 0
+2025-03-11 21:58:00.322	NewTx 9f57e480d576e51ea8f50ddfd6c006d792831d4b446d1263bb27191e7453165c, block -1, flags 00030004, import 0
+2025-03-11 21:58:00.432	NewTx f9f566c9bdcdeeb0e0222b615ac7d4469599e4ea5bac21129c248d7e44727447, block -1, flags 00030004, import 0
+2025-03-11 21:58:03.885	NewTx b0d2828e1df6e4944b7f05853be21c2180331b274df788d53cf2b186cb5c5627, block -1, flags 00030004, import 0
+2025-03-11 21:58:03.994	NewTx 566e0649283cd0623df5c01abd0465ca1b0c4aa102e1017711905c2a320196dc, block -1, flags 00030004, import 0
+2025-03-11 21:58:04.105	NewTx e04b03fc1cc47d91bf265151e52c07146ed2000064389956bb4d4c53420f0a75, block -1, flags 00030004, import 0
+2025-03-11 21:58:04.214	NewTx b8d968541c1575a57dc83583aa14884710c7df1a47325ea682cd3276883b6ed0, block -1, flags 00030004, import 0
+2025-03-11 21:58:17.071	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block 779, flags 00000000, import 0
+2025-03-11 21:58:17.071	UpdateTx ea9c16f8bd, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.071	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block 779, flags 00000000, import 0
+2025-03-11 21:58:17.072	UpdateTx 85822a8723, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	NewData 00000000000000000000014b0000000000000000000000000000000000000002, block 779, flags 00000000, import 0
+2025-03-11 21:58:17.072	UpdateTx 8cafa0eec3, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx 27daff484c, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx 9e42a9ccd6, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx 9f57e480d5, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx f9f566c9bd, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx b0d2828e1d, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx 566e064928, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx e04b03fc1c, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.072	UpdateTx b8d968541c, block 779, flags 00030004, import 0
+2025-03-11 21:58:17.076	NewBlock 779, Txs: 16, Rows: 155
+2025-03-11 21:58:21.529	NewBlock 780, Txs: 0, Rows: 0
+2025-03-11 21:58:27.004	NewBlock 781, Txs: 0, Rows: 0
+2025-03-11 21:58:30.148	NewBlock 782, Txs: 0, Rows: 0
+2025-03-11 21:58:40.294	NewBlock 783, Txs: 0, Rows: 0
+2025-03-11 21:58:44.708	NewBlock 784, Txs: 0, Rows: 0
+2025-03-11 21:58:53.351	NewBlock 785, Txs: 0, Rows: 0
+2025-03-11 21:59:02.356	NewBlock 786, Txs: 0, Rows: 0
+2025-03-11 21:59:09.042	NewBlock 787, Txs: 0, Rows: 0
+2025-03-11 21:59:17.889	NewBlock 788, Txs: 0, Rows: 0
+2025-03-11 21:59:31.965	NewBlock 789, Txs: 0, Rows: 0

@@ -2539,3 +2539,85 @@
 2025-03-11 06:09:09.288	Block commit:       958 (Hash: 708149e6, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2509
 2025-03-11 06:09:22.662	Block commit:       959 (Hash: 5f65ab13, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2511
 2025-03-11 06:09:33.837	Block commit:       960 (Hash: 5500e83f, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2513
+2025-03-11 21:39:36.478	Grant: (8f8b3b39-00000000-00000001-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.478	Grant: (8f8b3b39-594a4519-00000008-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.478	Grant: (8f8b3b39-594a4519-00000080-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.478	Grant: (8f8b3b39-594a4519-00002000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.478	Grant: (8f8b3b39-594a4519-00001000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.679	Grant: (c8f1b85a-00000000-00000001-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.679	Grant: (c8f1b85a-594a4519-00000008-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.679	Grant: (c8f1b85a-594a4519-00000080-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.679	Grant: (c8f1b85a-594a4519-00002000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.679	Grant: (c8f1b85a-594a4519-00001000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.980	Grant: (267f8914-00000000-00000001-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.980	Grant: (267f8914-594a4519-00000008-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.980	Grant: (267f8914-594a4519-00000080-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.980	Grant: (267f8914-594a4519-00002000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:36.980	Grant: (267f8914-594a4519-00001000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.559	Mempool copy:       960, Admin count: 1, Miner count: 3, Ledger Rows: 2528
+2025-03-11 21:39:52.571	Mempool ramv:       960, Admin count: 1, Miner count: 3, Ledger Rows: 2528
+2025-03-11 21:39:52.571	Mempool copy:       960, Admin count: 1, Miner count: 3, Ledger Rows: 2528
+2025-03-11 21:39:52.574	Mempool ramv:       960, Admin count: 1, Miner count: 3, Ledger Rows: 2528
+2025-03-11 21:39:52.574	Mempool copy:       960, Admin count: 1, Miner count: 3, Ledger Rows: 2528
+2025-03-11 21:39:52.574	Mempool clr :       960, Admin count: 1, Miner count: 3, Ledger Rows: 2513
+2025-03-11 21:39:52.574	Mempool rstr:       960, Admin count: 1, Miner count: 3, Ledger Rows: 2528
+2025-03-11 21:39:52.575	Mempool clr :       960, Admin count: 1, Miner count: 3, Ledger Rows: 2513
+2025-03-11 21:39:52.575	Grant: (8f8b3b39-00000000-00000001-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (8f8b3b39-594a4519-00000008-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (8f8b3b39-594a4519-00000080-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (8f8b3b39-594a4519-00002000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (8f8b3b39-594a4519-00001000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (c8f1b85a-00000000-00000001-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (c8f1b85a-594a4519-00000008-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (c8f1b85a-594a4519-00000080-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (c8f1b85a-594a4519-00002000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (c8f1b85a-594a4519-00001000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (267f8914-00000000-00000001-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (267f8914-594a4519-00000008-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (267f8914-594a4519-00000080-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (267f8914-594a4519-00002000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.575	Grant: (267f8914-594a4519-00001000-594a4519) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-11 21:39:52.582	Block commit:       961 (Hash: 3612df11, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2530
+2025-03-11 21:39:58.130	Block commit:       962 (Hash: 88f339fa, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2532
+2025-03-11 21:40:07.221	Block commit:       963 (Hash: a5cf2fe7, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2534
+2025-03-11 21:40:12.975	Block rollback:       962, Admin count: 1, Miner count: 3, Ledger Rows: 2532
+2025-03-11 21:40:12.995	Block commit:       963 (Hash: 9143e795, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2534
+2025-03-11 21:40:13.027	Block commit:       964 (Hash: aa786c5c, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2536
+2025-03-11 21:40:25.719	Block commit:       965 (Hash: f722bbdf, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2538
+2025-03-11 21:40:31.311	Block commit:       966 (Hash: 8fa16154, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2540
+2025-03-11 21:40:38.229	Block rollback:       965, Admin count: 1, Miner count: 3, Ledger Rows: 2538
+2025-03-11 21:40:38.237	Block rollback:       964, Admin count: 1, Miner count: 3, Ledger Rows: 2536
+2025-03-11 21:40:38.248	Block commit:       965 (Hash: f1558a5a, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2538
+2025-03-11 21:40:38.268	Block commit:       966 (Hash: e3871b78, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2540
+2025-03-11 21:40:38.288	Block commit:       967 (Hash: 9d275fae, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2542
+2025-03-11 21:40:51.342	Block commit:       968 (Hash: c18258ee, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2544
+2025-03-11 21:41:03.297	Block commit:       969 (Hash: 640e4972, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2546
+2025-03-11 21:41:08.841	Block commit:       970 (Hash: 029b2b00, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2548
+2025-03-11 21:41:17.715	Block commit:       971 (Hash: 2d101b92, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2550
+2025-03-11 21:48:44.884	Block commit:       972 (Hash: dc5ed2e2, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2552
+2025-03-11 21:48:56.616	Block commit:       973 (Hash: ce68b7e0, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2554
+2025-03-11 21:49:08.764	Block commit:       974 (Hash: d1402d51, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2556
+2025-03-11 21:49:13.204	Block commit:       975 (Hash: 7dd5ea4a, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2558
+2025-03-11 21:49:17.592	Block commit:       976 (Hash: 95a3b4d3, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2560
+2025-03-11 21:49:29.750	Block commit:       977 (Hash: 31675372, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2562
+2025-03-11 21:49:43.113	Block commit:       978 (Hash: 8b6b16a9, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2564
+2025-03-11 21:49:53.885	Block commit:       979 (Hash: 88def759, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2566
+2025-03-11 21:50:02.933	Block commit:       980 (Hash: 17aa71a7, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2568
+2025-03-11 21:50:12.668	Block commit:       981 (Hash: 09afb6aa, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2570
+2025-03-11 21:50:21.728	Block rollback:       980, Admin count: 1, Miner count: 3, Ledger Rows: 2568
+2025-03-11 21:50:21.739	Block commit:       981 (Hash: 63d20dcb, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2570
+2025-03-11 21:50:21.758	Block commit:       982 (Hash: d9867562, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2572
+2025-03-11 21:56:40.289	Block commit:       983 (Hash: ee891394, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2574
+2025-03-11 21:56:44.737	Block commit:       984 (Hash: 2bfb812c, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2576
+2025-03-11 21:56:49.282	Block commit:       985 (Hash: c08b0489, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2578
+2025-03-11 21:57:04.152	Block commit:       986 (Hash: dd819f53, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2580
+2025-03-11 21:57:14.138	Block commit:       987 (Hash: 20a7af35, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2582
+2025-03-11 21:57:18.579	Block commit:       988 (Hash: 64d7a06e, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2584
+2025-03-11 21:57:24.124	Block commit:       989 (Hash: b12c55d9, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2586
+2025-03-11 21:57:34.047	Block commit:       990 (Hash: c956c0bb, Miner: 540cfb98), Admin count: 1, Miner count: 3, Ledger Rows: 2588
+2025-03-11 21:57:42.096	Block commit:       991 (Hash: 00e8bad6, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2590
+2025-03-11 21:57:52.797	Block commit:       992 (Hash: dc58ada6, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2592
+2025-03-11 21:57:59.851	Block commit:       993 (Hash: e8503b7a, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2594
+2025-03-11 21:58:20.518	Block commit:       994 (Hash: 84877fb0, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2596
+2025-03-11 21:58:41.267	Block commit:       995 (Hash: f34526ba, Miner: cb0fcf8a), Admin count: 1, Miner count: 3, Ledger Rows: 2598
+2025-03-11 21:59:01.324	Block commit:       996 (Hash: c83560fb, Miner: 594a4519), Admin count: 1, Miner count: 3, Ledger Rows: 2600
