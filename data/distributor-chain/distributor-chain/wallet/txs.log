@@ -4158,3 +4158,112 @@
 2025-03-11 21:58:20.285	NewBlock 994, Txs: 0, Rows: 0
 2025-03-11 21:58:41.726	NewBlock 995, Txs: 0, Rows: 0
 2025-03-11 21:59:01.055	NewBlock 996, Txs: 0, Rows: 0
+2025-03-11 22:04:49.151	Initialized. Chain height: 996, Txs: 1087
+2025-03-11 22:09:25.807	Initialized. Chain height: 996, Txs: 1087
+2025-03-11 22:13:24.709	NewTx 1e87e66bb7bdd973c3f1a7d926a90db40091827d22fcb6544b915a443919109a, block -1, flags 00030004, import 0
+2025-03-11 22:13:24.823	NewTx d6542c0d0ffe5e279c4847f1e3920dfdc813f913e702b44203290d6a604e19f2, block -1, flags 00030004, import 0
+2025-03-11 22:13:24.937	NewTx d740ea17bceebbee1c020fe3ef2b4f8c1fed2641e815b79bd506ceb546407b73, block -1, flags 00030004, import 0
+2025-03-11 22:13:25.050	NewTx fd5e1a08ecfeafe53180d71da967397e3b78fe84a82e0e1e609163e6619061f0, block -1, flags 00030004, import 0
+2025-03-11 22:13:25.164	NewTx f1032028af5a9a9406772bed9ac990c03b031517b3436e252c4bb4ac53cfb0fb, block -1, flags 00030004, import 0
+2025-03-11 22:13:47.825	UpdateTx 1e87e66bb7, block 997, flags 00030004, import 0
+2025-03-11 22:13:47.826	UpdateTx d6542c0d0f, block 997, flags 00030004, import 0
+2025-03-11 22:13:47.826	UpdateTx d740ea17bc, block 997, flags 00030004, import 0
+2025-03-11 22:13:47.826	UpdateTx fd5e1a08ec, block 997, flags 00030004, import 0
+2025-03-11 22:13:47.826	UpdateTx f1032028af, block 997, flags 00030004, import 0
+2025-03-11 22:13:47.831	NewBlock 997, Txs: 8, Rows: 88
+2025-03-11 22:14:08.814	NewBlock 998, Txs: 0, Rows: 0
+2025-03-11 22:14:20.122	Rolled back to block 997 successfully
+2025-03-11 22:14:20.141	NewBlock 998, Txs: 0, Rows: 0
+2025-03-11 22:14:20.161	NewBlock 999, Txs: 0, Rows: 0
+2025-03-11 22:14:33.079	NewBlock 1000, Txs: 0, Rows: 0
+2025-03-11 22:14:45.271	NewTx dcbf53e022f77825089cf1fe8c00b3def41f4a32fc98d1db2893d577bf468e7b, block -1, flags 00030004, import 0
+2025-03-11 22:14:45.382	NewTx 4e47c7eff017a2618f3eecdf2adc0b50adb9088ffbad847fa9a3cd9eb54dae94, block -1, flags 00030004, import 0
+2025-03-11 22:14:45.492	NewTx 2175f61bc49bc9ba6d240bd2409776cea8de018bc96bad45286bcb11339f20b0, block -1, flags 00030004, import 0
+2025-03-11 22:14:45.715	NewTx 75035ba26a8fdc4561fd36a9cc6c43ea1c3af4ae50bae87d85e419cf29089629, block -1, flags 00030004, import 0
+2025-03-11 22:14:45.825	NewTx 70328329b5bf881c5795a86ad1a9eee690ff7c82b341273eefb4dcf0642b06ec, block -1, flags 00030004, import 0
+2025-03-11 22:14:49.761	Rolled back to block 999 successfully
+2025-03-11 22:14:49.761	UpdateTx dcbf53e022, block -1, flags 00030004, import 0
+2025-03-11 22:14:49.761	UpdateTx 4e47c7eff0, block -1, flags 00030004, import 0
+2025-03-11 22:14:49.761	UpdateTx 2175f61bc4, block -1, flags 00030004, import 0
+2025-03-11 22:14:49.761	UpdateTx 75035ba26a, block -1, flags 00030004, import 0
+2025-03-11 22:14:49.761	UpdateTx 70328329b5, block -1, flags 00030004, import 0
+2025-03-11 22:14:49.784	NewBlock 1000, Txs: 7, Rows: 43
+2025-03-11 22:14:49.807	UpdateTx dcbf53e022, block 1001, flags 00030004, import 0
+2025-03-11 22:14:49.807	UpdateTx 4e47c7eff0, block 1001, flags 00030004, import 0
+2025-03-11 22:14:49.807	UpdateTx 2175f61bc4, block 1001, flags 00030004, import 0
+2025-03-11 22:14:49.807	UpdateTx 75035ba26a, block 1001, flags 00030004, import 0
+2025-03-11 22:14:49.807	UpdateTx 70328329b5, block 1001, flags 00030004, import 0
+2025-03-11 22:14:49.814	NewBlock 1001, Txs: 0, Rows: 43
+2025-03-11 22:15:05.388	NewBlock 1002, Txs: 0, Rows: 0
+2025-03-11 22:15:18.663	NewBlock 1003, Txs: 0, Rows: 0
+2025-03-11 22:15:35.132	NewBlock 1004, Txs: 0, Rows: 0
+2025-03-11 22:15:46.083	NewBlock 1005, Txs: 0, Rows: 0
+2025-03-11 22:15:59.539	NewBlock 1006, Txs: 0, Rows: 0
+2025-03-11 22:16:11.063	NewBlock 1007, Txs: 0, Rows: 0
+2025-03-11 22:16:25.819	NewBlock 1008, Txs: 0, Rows: 0
+2025-03-11 22:16:44.173	NewBlock 1009, Txs: 0, Rows: 0
+2025-03-11 22:17:05.119	NewBlock 1010, Txs: 0, Rows: 0
+2025-03-11 22:17:13.227	NewBlock 1011, Txs: 0, Rows: 0
+2025-03-11 22:32:54.410	NewTx f93cef0984a5b0c180c8331ab37a406023943c375303916f40225403e348ae6a, block -1, flags 00030004, import 0
+2025-03-11 22:32:54.527	NewTx 88b44f8d809e09c722fa698f9a566271924705f22dbecb8b5dbf7c12cf630774, block -1, flags 00030004, import 0
+2025-03-11 22:32:54.642	NewTx c6872b44f0fc17037747ea67b519fabfc4db9c854f22d2ad07119f0bf6eb8ad5, block -1, flags 00030004, import 0
+2025-03-11 22:32:54.759	NewTx 8ec4f653e246ebfc703c6ef5db6fb46ddca576dc384378111233f06e83600889, block -1, flags 00030004, import 0
+2025-03-11 22:32:54.877	NewTx 5dbc694b69158ec7f9d94da1731fa5c46b4f903a4b39e58d20e88e06258b2339, block -1, flags 00030004, import 0
+2025-03-11 22:33:09.131	UpdateTx f93cef0984, block 1012, flags 00030004, import 0
+2025-03-11 22:33:09.132	UpdateTx 88b44f8d80, block 1012, flags 00030004, import 0
+2025-03-11 22:33:09.132	UpdateTx c6872b44f0, block 1012, flags 00030004, import 0
+2025-03-11 22:33:09.133	UpdateTx 8ec4f653e2, block 1012, flags 00030004, import 0
+2025-03-11 22:33:09.133	UpdateTx 5dbc694b69, block 1012, flags 00030004, import 0
+2025-03-11 22:33:09.139	NewBlock 1012, Txs: 8, Rows: 88
+2025-03-11 22:33:19.088	NewBlock 1013, Txs: 0, Rows: 0
+2025-03-11 22:33:25.415	NewBlock 1014, Txs: 0, Rows: 0
+2025-03-11 22:33:35.706	NewBlock 1015, Txs: 0, Rows: 0
+2025-03-11 22:33:42.477	NewBlock 1016, Txs: 0, Rows: 0
+2025-03-11 22:33:48.224	NewBlock 1017, Txs: 0, Rows: 0
+2025-03-11 22:34:02.208	NewTx a458c0ef1147f344b011f83f0657773ad4a65d9ed4f8ee503a9684b252916ea2, block -1, flags 00030004, import 0
+2025-03-11 22:34:02.321	NewTx 7712041fae2d92755156d4cf62625861909d2ee00d425ed187f8c3ce728eb78e, block -1, flags 00030004, import 0
+2025-03-11 22:34:02.431	NewTx 6a724f814655b1aecd295d527fc3753c44234952e2b345e00f9ed1b92517ed6b, block -1, flags 00030004, import 0
+2025-03-11 22:34:02.651	NewTx 4f8115638bd7839928c35f6c2ef2ea33b48ef485ac5c330847a5ac05cd56243b, block -1, flags 00030004, import 0
+2025-03-11 22:34:02.767	NewTx 78992166af1806134b6a6eb952dbcd1e380ee3dc0a28dc934119a34d5b0342ce, block -1, flags 00030004, import 0
+2025-03-11 22:34:03.285	UpdateTx a458c0ef11, block 1018, flags 00030004, import 0
+2025-03-11 22:34:03.286	UpdateTx 7712041fae, block 1018, flags 00030004, import 0
+2025-03-11 22:34:03.286	UpdateTx 6a724f8146, block 1018, flags 00030004, import 0
+2025-03-11 22:34:03.286	UpdateTx 4f8115638b, block 1018, flags 00030004, import 0
+2025-03-11 22:34:03.286	UpdateTx 78992166af, block 1018, flags 00030004, import 0
+2025-03-11 22:34:03.295	NewBlock 1018, Txs: 7, Rows: 86
+2025-03-11 22:34:07.757	NewBlock 1019, Txs: 0, Rows: 0
+2025-03-11 22:34:18.103	NewBlock 1020, Txs: 0, Rows: 0
+2025-03-11 22:34:26.560	NewBlock 1021, Txs: 0, Rows: 0
+2025-03-11 22:34:33.361	NewBlock 1022, Txs: 0, Rows: 0
+2025-03-11 22:34:39.832	NewBlock 1023, Txs: 0, Rows: 0
+2025-03-11 22:34:58.581	NewBlock 1024, Txs: 0, Rows: 0
+2025-03-11 22:35:19.558	NewBlock 1025, Txs: 0, Rows: 0
+2025-03-11 22:35:42.767	NewBlock 1026, Txs: 0, Rows: 0
+2025-03-11 22:36:07.215	NewBlock 1027, Txs: 0, Rows: 0
+2025-03-11 22:36:25.731	NewBlock 1028, Txs: 0, Rows: 0
+2025-03-11 22:36:31.594	Rolled back to block 1027 successfully
+2025-03-11 22:36:31.619	NewBlock 1028, Txs: 0, Rows: 0
+2025-03-11 22:36:31.638	NewBlock 1029, Txs: 0, Rows: 0
+2025-03-11 22:37:11.675	NewTx 265a283548adcd6e2707bddb412fefdcf6bd7177ed773e569a5ce0b2f9c552da, block -1, flags 00030004, import 0
+2025-03-11 22:37:11.799	NewTx 5554c9da18ca31cdad3b4e88561d62bf23d90dd2a142d062bd7c7d2175787c70, block -1, flags 00030004, import 0
+2025-03-11 22:37:11.917	NewTx 3ec06417eae03829f6c8f7778e52dbd202840dc8ecfe4eabca97512522b1f17e, block -1, flags 00030004, import 0
+2025-03-11 22:37:12.034	NewTx 3ac836e65545d1dbd54612a63ce88453bfd37d6919f58570b793a39b82a2c483, block -1, flags 00030004, import 0
+2025-03-11 22:37:12.155	NewTx dc9eec75418f6fbf99dd8ebe365ec0ef79db8304293be8e56d66f1347444cae4, block -1, flags 00030004, import 0
+2025-03-11 22:37:29.472	UpdateTx 265a283548, block 1030, flags 00030004, import 0
+2025-03-11 22:37:29.472	UpdateTx 5554c9da18, block 1030, flags 00030004, import 0
+2025-03-11 22:37:29.472	UpdateTx 3ec06417ea, block 1030, flags 00030004, import 0
+2025-03-11 22:37:29.472	UpdateTx 3ac836e655, block 1030, flags 00030004, import 0
+2025-03-11 22:37:29.472	UpdateTx dc9eec7541, block 1030, flags 00030004, import 0
+2025-03-11 22:37:29.480	NewBlock 1030, Txs: 8, Rows: 88
+2025-03-11 22:37:37.334	NewBlock 1031, Txs: 0, Rows: 0
+2025-03-11 22:37:49.699	NewBlock 1032, Txs: 0, Rows: 0
+2025-03-11 22:38:00.861	NewBlock 1033, Txs: 0, Rows: 0
+2025-03-11 22:38:09.713	NewBlock 1034, Txs: 0, Rows: 0
+2025-03-11 22:38:21.315	NewBlock 1035, Txs: 0, Rows: 0
+2025-03-11 22:38:26.174	Rolled back to block 1034 successfully
+2025-03-11 22:38:26.193	NewBlock 1035, Txs: 0, Rows: 0
+2025-03-11 22:38:26.223	NewBlock 1036, Txs: 0, Rows: 0
+2025-03-11 22:38:49.975	NewBlock 1037, Txs: 0, Rows: 0
+2025-03-11 22:39:02.129	NewBlock 1038, Txs: 0, Rows: 0
+2025-03-11 22:39:20.879	NewBlock 1039, Txs: 0, Rows: 0
+2025-03-11 22:39:35.700	NewBlock 1040, Txs: 0, Rows: 0

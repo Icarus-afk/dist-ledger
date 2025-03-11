@@ -3126,7 +3126,8 @@ app.get('/api/distributor/returned-products', authenticateRequest, async (req, r
       });
     }
 
-    const distributorId = req.entity.id;    console.log(`Looking up returned products for distributor ${distributorId}`);
+    const distributorId = req.entity.id;
+    console.log(`Looking up returned products for distributor ${distributorId}`);
     
     // Find retailers that might have returned products to this distributor
     const retailers = Object.entries(config.entityStore.retailers);
@@ -3154,32 +3155,41 @@ app.get('/api/distributor/returned-products', authenticateRequest, async (req, r
         try {
           const txData = JSON.parse(Buffer.from(tx.data, 'hex').toString());
           
-          // Check if this is a return transaction intended for THIS distributor specifically
-          if (txData.type === 'return' || txData.status === 'returned') {
-            // FIXED: Only include returns meant for this specific distributor
-            if (txData.distributorId === distributorId) {
-              debugInfo.matchedItems++;
-              debugInfo.returnData.push({txid: tx.txid, data: txData});
-              
-              // Format the return data
-              returnedProducts.push({
-                returnId: txData.returnId || tx.txid,
-                timestamp: txData.timestamp || tx.time,
-                retailerId: txData.retailerId || "unknown",
-                retailerName: txData.retailerName || null,
-                productId: txData.productId || "unknown",
-                productName: txData.productName || null,
-                serialNumber: txData.serialNumber || "unknown",
-                serialNumbers: txData.serialNumbers || [txData.serialNumber],
-                reason: txData.reason || "Not specified",
-                condition: txData.condition || "unknown",
-                status: txData.status || "processed",
-                value: txData.value || 0,
-                replacement: !!txData.replacement,
-                defective: !!txData.defective || txData.reason === "defective",
-                merkleVerified: txData.merkleVerified || false
-              });
-            }
+          // FIXED: More flexible matching to catch all returns for this distributor
+          // Check multiple possible field combinations that could indicate a return
+          const isReturn = 
+            txData.type === 'return' || 
+            txData.status === 'returned' ||
+            txData.returnToDistributor === true;
+          
+          // Check if this return is meant for this distributor
+          const matchesDistributor = 
+            txData.distributorId === distributorId || 
+            txData.distributorID === distributorId ||
+            txData.toDistributorId === distributorId;
+          
+          if (isReturn && matchesDistributor) {
+            debugInfo.matchedItems++;
+            debugInfo.returnData.push({txid: tx.txid, data: txData});
+            
+            // Format the return data
+            returnedProducts.push({
+              returnId: txData.returnId || tx.txid,
+              timestamp: txData.timestamp || tx.time,
+              retailerId: txData.retailerId || "unknown",
+              retailerName: txData.retailerName || null,
+              productId: txData.productId || "unknown",
+              productName: txData.productName || null,
+              serialNumber: txData.serialNumber || "unknown",
+              serialNumbers: txData.serialNumbers || (txData.serialNumber ? [txData.serialNumber] : []),
+              reason: txData.reason || "Not specified",
+              condition: txData.condition || "unknown",
+              status: txData.status || "processed",
+              value: txData.value || 0,
+              replacement: !!txData.replacement,
+              defective: !!txData.defective || txData.reason === "defective",
+              merkleVerified: txData.merkleVerified || false
+            });
           }
         } catch (parseError) {
           // Skip unparseable transactions
@@ -3189,6 +3199,7 @@ app.get('/api/distributor/returned-products', authenticateRequest, async (req, r
     } catch (txError) {
       debugInfo.errors.push(`Error reading retailer transactions: ${txError.message}`);
     }
+
     
     // Sort returns by timestamp (newest first)
     returnedProducts.sort((a, b) => b.timestamp - a.timestamp);
