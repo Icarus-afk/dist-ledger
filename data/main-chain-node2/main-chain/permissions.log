@@ -1966,3 +1966,510 @@
 2025-03-11 22:39:19.297	Block commit:      1662 (Hash: 328934a0, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3407
 2025-03-11 22:39:33.353	Block commit:      1663 (Hash: 1c9902d5, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3409
 2025-03-11 22:39:52.239	Block commit:      1664 (Hash: c7bd2526, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3411
+2025-03-12 01:15:45.702	Initialized: Admin count: 1, Miner count: 3, ledger rows: 3411
+2025-03-12 01:15:45.860	Block rollback:      1664, Admin count: 1, Miner count: 3, Ledger Rows: 3411
+2025-03-12 01:33:28.298	Block commit:      1665 (Hash: d69a13c8, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3413
+2025-03-12 01:33:43.093	Block commit:      1666 (Hash: 4a8a3595, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3415
+2025-03-12 01:34:00.104	Block commit:      1667 (Hash: bd6b5694, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3417
+2025-03-12 01:34:11.273	Block commit:      1668 (Hash: d105a882, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3419
+2025-03-12 01:34:23.146	Block commit:      1669 (Hash: ebd4ec4d, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3421
+2025-03-12 01:34:38.197	Block commit:      1670 (Hash: 2fc2f001, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3423
+2025-03-12 01:34:51.918	Block commit:      1671 (Hash: 9e413624, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3425
+2025-03-12 01:35:10.681	Block commit:      1672 (Hash: d5bc100a, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3427
+2025-03-12 01:35:29.965	Block commit:      1673 (Hash: 57ba7922, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3429
+2025-03-12 01:35:44.957	Block commit:      1674 (Hash: d54ded10, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3431
+2025-03-12 01:35:57.208	Block commit:      1675 (Hash: f51f126b, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3433
+2025-03-12 01:36:14.663	Block commit:      1676 (Hash: 6cfa6909, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3435
+2025-03-12 02:32:37.319	Grant: (6b631a32-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:37.319	Grant: (6b631a32-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:37.319	Grant: (6b631a32-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:37.319	Grant: (6b631a32-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:37.319	Grant: (6b631a32-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:51.625	Mempool copy:      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3440
+2025-03-12 02:32:51.636	Mempool ramv:      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3440
+2025-03-12 02:32:51.637	Mempool copy:      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3440
+2025-03-12 02:32:51.640	Mempool ramv:      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3440
+2025-03-12 02:32:51.640	Mempool copy:      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3440
+2025-03-12 02:32:51.641	Mempool clr :      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3435
+2025-03-12 02:32:51.641	Mempool rstr:      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3440
+2025-03-12 02:32:51.641	Mempool clr :      1676, Admin count: 1, Miner count: 3, Ledger Rows: 3435
+2025-03-12 02:32:51.641	Grant: (6b631a32-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:51.641	Grant: (6b631a32-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:51.641	Grant: (6b631a32-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:51.641	Grant: (6b631a32-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:51.641	Grant: (6b631a32-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:32:51.650	Block commit:      1677 (Hash: 211dc901, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3442
+2025-03-12 02:33:05.703	Block commit:      1678 (Hash: d8aaed74, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3444
+2025-03-12 02:33:08.962	Block commit:      1679 (Hash: 26dd2fdb, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3446
+2025-03-12 02:33:15.814	Block commit:      1680 (Hash: 5f86a9b2, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3448
+2025-03-12 02:33:24.462	Block commit:      1681 (Hash: 8daad242, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3450
+2025-03-12 02:33:29.159	Block commit:      1682 (Hash: 06de29bc, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3452
+2025-03-12 02:33:35.850	Block commit:      1683 (Hash: 1e2f149f, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3454
+2025-03-12 02:33:42.117	Block commit:      1684 (Hash: 5f91cabd, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3456
+2025-03-12 02:33:48.021	Block commit:      1685 (Hash: 0d58ef98, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3458
+2025-03-12 02:33:58.025	Block commit:      1686 (Hash: 1cebce27, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3460
+2025-03-12 02:34:01.979	Block commit:      1687 (Hash: 99356580, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3462
+2025-03-12 02:34:07.715	Block commit:      1688 (Hash: 8a4021c1, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3464
+2025-03-12 02:34:31.083	Block commit:      1689 (Hash: bcb161f7, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3466
+2025-03-12 02:34:49.835	Block commit:      1690 (Hash: 62577a06, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3468
+2025-03-12 02:35:10.823	Block commit:      1691 (Hash: 11f0c78e, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3470
+2025-03-12 02:35:29.585	Block commit:      1692 (Hash: 403591f7, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3472
+2025-03-12 02:35:50.012	Block rollback:      1691, Admin count: 1, Miner count: 3, Ledger Rows: 3470
+2025-03-12 02:35:50.032	Block commit:      1692 (Hash: a68b74ed, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3472
+2025-03-12 02:35:50.066	Block commit:      1693 (Hash: ae131fe7, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3474
+2025-03-12 02:36:08.737	Block commit:      1694 (Hash: 5e16478b, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3476
+2025-03-12 02:36:13.646	Block commit:      1695 (Hash: 77d33665, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3478
+2025-03-12 02:36:36.409	Block commit:      1696 (Hash: cfe905dd, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3480
+2025-03-12 02:36:43.404	Block commit:      1697 (Hash: 447a72ac, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3482
+2025-03-12 02:36:57.779	Block commit:      1698 (Hash: 4302168e, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3484
+2025-03-12 02:37:08.299	Block commit:      1699 (Hash: d4e7aa32, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3486
+2025-03-12 02:37:28.264	Block commit:      1700 (Hash: 672480ff, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3488
+2025-03-12 02:37:39.407	Block commit:      1701 (Hash: cad26ede, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3490
+2025-03-12 02:40:58.213	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741725657), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:41:15.577	Mempool copy:      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3491
+2025-03-12 02:41:15.578	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741725657), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:41:15.589	Mempool ramv:      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3491
+2025-03-12 02:41:15.590	Mempool copy:      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3491
+2025-03-12 02:41:15.590	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741725657), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:41:15.593	Mempool ramv:      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3491
+2025-03-12 02:41:15.594	Mempool copy:      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3491
+2025-03-12 02:41:15.594	Mempool clr :      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3490
+2025-03-12 02:41:15.594	Mempool rstr:      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3491
+2025-03-12 02:41:15.594	Mempool clr :      1701, Admin count: 1, Miner count: 3, Ledger Rows: 3490
+2025-03-12 02:41:15.594	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741725657), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:41:15.603	Block commit:      1702 (Hash: c6777e57, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3493
+2025-03-12 02:41:28.675	Block commit:      1703 (Hash: 88e1c315, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3495
+2025-03-12 02:41:41.741	Block commit:      1704 (Hash: b0401a10, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3497
+2025-03-12 02:41:42.545	Block commit:      1705 (Hash: dba63977, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3499
+2025-03-12 02:41:52.602	Block commit:      1706 (Hash: 70951b59, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3501
+2025-03-12 02:42:02.700	Block commit:      1707 (Hash: 65454266, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3503
+2025-03-12 02:42:08.064	Block commit:      1708 (Hash: 04a2d29b, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3505
+2025-03-12 02:42:13.610	Block commit:      1709 (Hash: 2bc691a6, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3507
+2025-03-12 02:42:17.053	Block commit:      1710 (Hash: 0e406f9a, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3509
+2025-03-12 02:42:21.449	Block commit:      1711 (Hash: acda4fab, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3511
+2025-03-12 02:42:29.263	Grant: (ea19294e-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:29.263	Grant: (ea19294e-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:29.263	Grant: (ea19294e-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:29.263	Grant: (ea19294e-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:29.263	Grant: (ea19294e-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:42.509	Mempool copy:      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3516
+2025-03-12 02:42:42.512	Mempool ramv:      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3516
+2025-03-12 02:42:42.513	Mempool copy:      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3516
+2025-03-12 02:42:42.516	Mempool ramv:      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3516
+2025-03-12 02:42:42.516	Mempool copy:      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3516
+2025-03-12 02:42:42.516	Mempool clr :      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3511
+2025-03-12 02:42:42.516	Mempool rstr:      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3516
+2025-03-12 02:42:42.516	Mempool clr :      1711, Admin count: 1, Miner count: 3, Ledger Rows: 3511
+2025-03-12 02:42:42.516	Grant: (ea19294e-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:42.516	Grant: (ea19294e-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:42.516	Grant: (ea19294e-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:42.516	Grant: (ea19294e-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:42.517	Grant: (ea19294e-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:42:42.523	Block commit:      1712 (Hash: d98a65d9, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3518
+2025-03-12 02:43:12.125	Block commit:      1713 (Hash: 825ad730, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3520
+2025-03-12 02:43:31.841	Block commit:      1714 (Hash: 9f482015, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3522
+2025-03-12 02:43:56.128	Block commit:      1715 (Hash: 1f3d1d52, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3524
+2025-03-12 02:44:04.988	Block commit:      1716 (Hash: 2af1ec5b, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3526
+2025-03-12 02:44:19.301	Block commit:      1717 (Hash: 5495bc2c, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3528
+2025-03-12 02:44:36.950	Block commit:      1718 (Hash: 7715d7e7, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3530
+2025-03-12 02:44:42.506	Block commit:      1719 (Hash: b1a7bf05, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3532
+2025-03-12 02:45:02.303	Block commit:      1720 (Hash: 62727d52, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3534
+2025-03-12 02:45:12.249	Block commit:      1721 (Hash: bc3ba344, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3536
+2025-03-12 02:45:30.075	Block commit:      1722 (Hash: 59e12056, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3538
+2025-03-12 02:45:41.924	Block commit:      1723 (Hash: 43dc95c1, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3540
+2025-03-12 02:46:02.912	Block commit:      1724 (Hash: 3bb19473, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3542
+2025-03-12 02:46:19.413	Block commit:      1725 (Hash: feea5240, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3544
+2025-03-12 02:46:30.466	Block commit:      1726 (Hash: 2d415c6f, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3546
+2025-03-12 02:46:52.492	Block commit:      1727 (Hash: 8be95858, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3548
+2025-03-12 02:47:13.885	Grant: (d9238ce0-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:13.885	Grant: (d9238ce0-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:13.885	Grant: (d9238ce0-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:13.885	Grant: (d9238ce0-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:13.885	Grant: (d9238ce0-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:19.793	Grant: (00000000-d00eea3a-00000004-1acbaaa4) (0-4294967295, 1741726039), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.935	Mempool copy:      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3554
+2025-03-12 02:47:29.946	Mempool ramv:      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3554
+2025-03-12 02:47:29.947	Mempool copy:      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3554
+2025-03-12 02:47:29.950	Mempool ramv:      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3554
+2025-03-12 02:47:29.950	Mempool copy:      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3554
+2025-03-12 02:47:29.950	Mempool clr :      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3548
+2025-03-12 02:47:29.950	Mempool rstr:      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3554
+2025-03-12 02:47:29.950	Mempool clr :      1727, Admin count: 1, Miner count: 3, Ledger Rows: 3548
+2025-03-12 02:47:29.950	Grant: (d9238ce0-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.950	Grant: (d9238ce0-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.950	Grant: (d9238ce0-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.950	Grant: (d9238ce0-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.950	Grant: (d9238ce0-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.951	Grant: (00000000-d00eea3a-00000004-1acbaaa4) (0-4294967295, 1741726039), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:47:29.957	Block commit:      1728 (Hash: 967d37b1, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3556
+2025-03-12 02:47:36.701	Block commit:      1729 (Hash: 9a463cd0, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3558
+2025-03-12 02:47:39.907	Block commit:      1730 (Hash: 7b216f67, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3560
+2025-03-12 02:47:52.052	Block commit:      1731 (Hash: fa01b5e8, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3562
+2025-03-12 02:48:08.280	Block commit:      1732 (Hash: 3d97f5ab, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3564
+2025-03-12 02:48:21.836	Block commit:      1733 (Hash: d40ca3c6, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3566
+2025-03-12 02:48:36.109	Block commit:      1734 (Hash: 140a4826, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3568
+2025-03-12 02:48:51.409	Block commit:      1735 (Hash: 557e6d57, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3570
+2025-03-12 02:49:08.972	Block commit:      1736 (Hash: 4062e9b2, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3572
+2025-03-12 02:49:24.453	Block commit:      1737 (Hash: 0d0e6644, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3574
+2025-03-12 02:49:39.975	Block commit:      1738 (Hash: 5924d80b, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3576
+2025-03-12 02:50:11.538	Grant: (ebb127c4-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:11.538	Grant: (ebb127c4-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:11.538	Grant: (ebb127c4-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:11.538	Grant: (ebb127c4-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:11.538	Grant: (ebb127c4-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:25.112	Mempool copy:      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3581
+2025-03-12 02:50:25.116	Mempool ramv:      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3581
+2025-03-12 02:50:25.116	Mempool copy:      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3581
+2025-03-12 02:50:25.120	Mempool ramv:      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3581
+2025-03-12 02:50:25.120	Mempool copy:      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3581
+2025-03-12 02:50:25.120	Mempool clr :      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3576
+2025-03-12 02:50:25.120	Mempool rstr:      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3581
+2025-03-12 02:50:25.120	Mempool clr :      1738, Admin count: 1, Miner count: 3, Ledger Rows: 3576
+2025-03-12 02:50:25.120	Grant: (ebb127c4-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:25.120	Grant: (ebb127c4-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:25.120	Grant: (ebb127c4-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:25.120	Grant: (ebb127c4-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:25.120	Grant: (ebb127c4-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:50:25.128	Block commit:      1739 (Hash: f87b831c, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3583
+2025-03-12 02:50:35.992	Block commit:      1740 (Hash: 90bedf3c, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3585
+2025-03-12 02:50:39.482	Block commit:      1741 (Hash: a108455b, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3587
+2025-03-12 02:50:48.155	Block commit:      1742 (Hash: 904d3b6b, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3589
+2025-03-12 02:50:57.141	Block commit:      1743 (Hash: 192146c6, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3591
+2025-03-12 02:51:17.940	Block commit:      1744 (Hash: d512a049, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3593
+2025-03-12 02:51:34.414	Block commit:      1745 (Hash: fa08e8a2, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3595
+2025-03-12 02:51:49.879	Block commit:      1746 (Hash: 3cc30180, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3597
+2025-03-12 02:52:02.111	Block commit:      1747 (Hash: 6f407576, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3599
+2025-03-12 02:52:22.756	Block commit:      1748 (Hash: 6d922f0c, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3601
+2025-03-12 02:52:31.863	Block commit:      1749 (Hash: 3a800d09, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3603
+2025-03-12 02:52:47.553	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:47.654	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:47.755	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:47.855	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:47.956	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.057	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.157	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.258	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.359	Grant: (475dd5b8-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.359	Grant: (475dd5b8-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.359	Grant: (475dd5b8-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.359	Grant: (475dd5b8-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:48.359	Grant: (475dd5b8-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:51.472	Grant: (3dd8bba1-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:51.472	Grant: (3dd8bba1-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:51.472	Grant: (3dd8bba1-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:51.472	Grant: (3dd8bba1-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:52:51.472	Grant: (3dd8bba1-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.941	Mempool copy:      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3621
+2025-03-12 02:53:06.941	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.941	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.945	Mempool ramv:      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3621
+2025-03-12 02:53:06.945	Mempool copy:      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3621
+2025-03-12 02:53:06.945	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.945	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.951	Mempool ramv:      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3621
+2025-03-12 02:53:06.952	Mempool copy:      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3621
+2025-03-12 02:53:06.952	Mempool clr :      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3603
+2025-03-12 02:53:06.952	Mempool rstr:      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3621
+2025-03-12 02:53:06.952	Mempool clr :      1749, Admin count: 1, Miner count: 3, Ledger Rows: 3603
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.952	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741726367), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (475dd5b8-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (475dd5b8-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (475dd5b8-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (475dd5b8-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (475dd5b8-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (3dd8bba1-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (3dd8bba1-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (3dd8bba1-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (3dd8bba1-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.953	Grant: (3dd8bba1-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:53:06.960	Block commit:      1750 (Hash: 97f7be54, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3623
+2025-03-12 02:53:15.915	Block commit:      1751 (Hash: 4d7f75ce, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3625
+2025-03-12 02:53:26.938	Block commit:      1752 (Hash: 4ee2d783, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3627
+2025-03-12 02:53:34.879	Block commit:      1753 (Hash: fab9d676, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3629
+2025-03-12 02:53:50.041	Block commit:      1754 (Hash: 2346e846, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3631
+2025-03-12 02:53:50.107	Block commit:      1755 (Hash: 38a16b49, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3633
+2025-03-12 02:54:15.419	Block commit:      1756 (Hash: 44223fcd, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3635
+2025-03-12 02:54:38.589	Block commit:      1757 (Hash: e58ada41, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3637
+2025-03-12 02:54:50.436	Block commit:      1758 (Hash: 6e0678a2, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3639
+2025-03-12 02:55:06.060	Block commit:      1759 (Hash: dd15c044, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3641
+2025-03-12 02:55:18.258	Grant: (20874f8c-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:18.258	Grant: (20874f8c-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:18.258	Grant: (20874f8c-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:18.258	Grant: (20874f8c-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:18.258	Grant: (20874f8c-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:20.092	Mempool copy:      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3646
+2025-03-12 02:55:20.095	Mempool ramv:      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3646
+2025-03-12 02:55:20.096	Mempool copy:      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3646
+2025-03-12 02:55:20.099	Mempool ramv:      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3646
+2025-03-12 02:55:20.099	Mempool copy:      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3646
+2025-03-12 02:55:20.099	Mempool clr :      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3641
+2025-03-12 02:55:20.099	Mempool rstr:      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3646
+2025-03-12 02:55:20.099	Mempool clr :      1759, Admin count: 1, Miner count: 3, Ledger Rows: 3641
+2025-03-12 02:55:20.100	Grant: (20874f8c-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:20.100	Grant: (20874f8c-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:20.100	Grant: (20874f8c-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:20.100	Grant: (20874f8c-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:20.100	Grant: (20874f8c-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:55:20.107	Block commit:      1760 (Hash: 54bfbb8a, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3648
+2025-03-12 02:55:32.516	Block commit:      1761 (Hash: 1dc29571, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3650
+2025-03-12 02:55:51.898	Block commit:      1762 (Hash: f84eb7bb, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3652
+2025-03-12 02:56:01.167	Block commit:      1763 (Hash: 9d7f0ebf, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3654
+2025-03-12 02:56:17.710	Block commit:      1764 (Hash: 8721cef7, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3656
+2025-03-12 02:56:37.191	Block commit:      1765 (Hash: 1fa3a0ec, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3658
+2025-03-12 02:56:47.263	Block commit:      1766 (Hash: ce3895d8, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3660
+2025-03-12 02:57:01.773	Block commit:      1767 (Hash: 71dd7d90, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3662
+2025-03-12 02:57:18.321	Block commit:      1768 (Hash: 6d77eeb3, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3664
+2025-03-12 02:57:32.670	Block commit:      1769 (Hash: c801edcc, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3666
+2025-03-12 02:57:39.951	Grant: (f6e8b09d-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:39.951	Grant: (f6e8b09d-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:39.951	Grant: (f6e8b09d-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:39.951	Grant: (f6e8b09d-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:39.951	Grant: (f6e8b09d-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:46.991	Mempool copy:      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3671
+2025-03-12 02:57:47.002	Mempool ramv:      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3671
+2025-03-12 02:57:47.002	Mempool copy:      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3671
+2025-03-12 02:57:47.006	Mempool ramv:      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3671
+2025-03-12 02:57:47.006	Mempool copy:      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3671
+2025-03-12 02:57:47.006	Mempool clr :      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3666
+2025-03-12 02:57:47.006	Mempool rstr:      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3671
+2025-03-12 02:57:47.006	Mempool clr :      1769, Admin count: 1, Miner count: 3, Ledger Rows: 3666
+2025-03-12 02:57:47.006	Grant: (f6e8b09d-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:47.006	Grant: (f6e8b09d-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:47.006	Grant: (f6e8b09d-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:47.006	Grant: (f6e8b09d-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:47.006	Grant: (f6e8b09d-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 02:57:47.013	Block commit:      1770 (Hash: 82e27b7c, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3673
+2025-03-12 02:58:09.086	Block commit:      1771 (Hash: 68185952, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3675
+2025-03-12 02:58:21.086	Block commit:      1772 (Hash: e9cbc1c2, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3677
+2025-03-12 02:58:31.940	Block commit:      1773 (Hash: 459f51cd, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3679
+2025-03-12 02:58:49.391	Block commit:      1774 (Hash: 305898f4, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3681
+2025-03-12 02:59:06.257	Block commit:      1775 (Hash: a4fbef3e, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3683
+2025-03-12 02:59:19.119	Block commit:      1776 (Hash: 88d1657b, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3685
+2025-03-12 02:59:38.185	Block commit:      1777 (Hash: 0200da9d, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3687
+2025-03-12 02:59:47.844	Block commit:      1778 (Hash: ecd51cf8, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3689
+2025-03-12 03:00:08.805	Block commit:      1779 (Hash: 9e76fd49, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3691
+2025-03-12 03:00:18.651	Block commit:      1780 (Hash: f2e7e398, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3693
+2025-03-12 03:00:35.096	Grant: (6da89e7e-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:35.096	Grant: (6da89e7e-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:35.096	Grant: (6da89e7e-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:35.096	Grant: (6da89e7e-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:35.096	Grant: (6da89e7e-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:40.111	Grant: (0afa97f1-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:40.111	Grant: (0afa97f1-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:40.111	Grant: (0afa97f1-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:40.111	Grant: (0afa97f1-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:00:40.111	Grant: (0afa97f1-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.546	Mempool copy:      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3703
+2025-03-12 03:01:00.558	Mempool ramv:      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3703
+2025-03-12 03:01:00.558	Mempool copy:      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3703
+2025-03-12 03:01:00.562	Mempool ramv:      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3703
+2025-03-12 03:01:00.562	Mempool copy:      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3703
+2025-03-12 03:01:00.562	Mempool clr :      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3693
+2025-03-12 03:01:00.562	Mempool rstr:      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3703
+2025-03-12 03:01:00.562	Mempool clr :      1780, Admin count: 1, Miner count: 3, Ledger Rows: 3693
+2025-03-12 03:01:00.562	Grant: (6da89e7e-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (6da89e7e-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (6da89e7e-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (6da89e7e-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (6da89e7e-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (0afa97f1-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (0afa97f1-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (0afa97f1-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (0afa97f1-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.563	Grant: (0afa97f1-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:01:00.571	Block commit:      1781 (Hash: 980dedc6, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3705
+2025-03-12 03:01:05.233	Block commit:      1782 (Hash: 33cd48fb, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3707
+2025-03-12 03:01:12.797	Block commit:      1783 (Hash: 19fb060d, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3709
+2025-03-12 03:01:21.765	Block commit:      1784 (Hash: 335bd891, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3711
+2025-03-12 03:01:40.330	Block commit:      1785 (Hash: 006619ca, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3713
+2025-03-12 03:01:50.380	Block commit:      1786 (Hash: 18aa7e49, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3715
+2025-03-12 03:02:05.941	Block commit:      1787 (Hash: 239214c7, Miner: 1acbaaa4), Admin count: 1, Miner count: 3, Ledger Rows: 3717
+2025-03-12 03:02:27.695	Block commit:      1788 (Hash: 536384b4, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3719
+2025-03-12 03:02:43.142	Block commit:      1789 (Hash: 49901647, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3721
+2025-03-12 03:02:59.552	Block commit:      1790 (Hash: 48c912e4, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3723
+2025-03-12 03:03:13.720	Block commit:      1791 (Hash: e9906669, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3725
+2025-03-12 03:06:55.281	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741727214), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.381	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741727214), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.482	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.582	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.683	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.783	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.884	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:55.986	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:56.087	Grant: (a42a874a-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:56.087	Grant: (a42a874a-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:56.087	Grant: (a42a874a-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:56.087	Grant: (a42a874a-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:06:56.087	Grant: (a42a874a-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.249	Mempool copy:      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3738
+2025-03-12 03:07:19.250	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.250	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.262	Mempool ramv:      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3738
+2025-03-12 03:07:19.263	Mempool copy:      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3738
+2025-03-12 03:07:19.263	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.263	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.266	Mempool ramv:      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3738
+2025-03-12 03:07:19.266	Mempool copy:      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3738
+2025-03-12 03:07:19.266	Mempool clr :      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3725
+2025-03-12 03:07:19.266	Mempool rstr:      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3738
+2025-03-12 03:07:19.266	Mempool clr :      1791, Admin count: 1, Miner count: 3, Ledger Rows: 3725
+2025-03-12 03:07:19.267	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741727214), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.267	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741727214), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.267	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741727215), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (a42a874a-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (a42a874a-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (a42a874a-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (a42a874a-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.268	Grant: (a42a874a-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:07:19.276	Block commit:      1792 (Hash: d865450e, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3740
+2025-03-12 03:07:34.645	Block commit:      1793 (Hash: d0f4cb77, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3742
+2025-03-12 03:07:42.603	Block commit:      1794 (Hash: f7c796c2, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3744
+2025-03-12 03:07:45.863	Block commit:      1795 (Hash: 4ab94754, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3746
+2025-03-12 03:07:50.414	Block commit:      1796 (Hash: d61ac7de, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3748
+2025-03-12 03:08:06.704	Block commit:      1797 (Hash: afd38fd4, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3750
+2025-03-12 03:08:11.388	Block commit:      1798 (Hash: d5333972, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3752
+2025-03-12 03:08:17.940	Block commit:      1799 (Hash: bbb18ae9, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3754
+2025-03-12 03:08:22.582	Block commit:      1800 (Hash: c275b068, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3756
+2025-03-12 03:08:32.531	Block commit:      1801 (Hash: ba6948ac, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3758
+2025-03-12 03:08:45.255	Block commit:      1802 (Hash: 7fa0f7c3, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3760
+2025-03-12 03:13:05.197	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741727584), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:05.297	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741727584), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:05.398	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:05.498	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:05.599	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:05.700	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:05.800	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:06.001	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:06.101	Grant: (9de0622b-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:06.101	Grant: (9de0622b-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:06.101	Grant: (9de0622b-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:06.101	Grant: (9de0622b-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:06.101	Grant: (9de0622b-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.947	Mempool copy:      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3773
+2025-03-12 03:13:22.947	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.947	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.954	Mempool ramv:      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3773
+2025-03-12 03:13:22.955	Mempool copy:      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3773
+2025-03-12 03:13:22.955	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.955	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.961	Mempool ramv:      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3773
+2025-03-12 03:13:22.961	Mempool copy:      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3773
+2025-03-12 03:13:22.961	Mempool clr :      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3760
+2025-03-12 03:13:22.961	Mempool rstr:      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3773
+2025-03-12 03:13:22.961	Mempool clr :      1802, Admin count: 1, Miner count: 3, Ledger Rows: 3760
+2025-03-12 03:13:22.961	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741727584), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.961	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741727584), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.961	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741727585), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (9de0622b-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (9de0622b-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (9de0622b-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (9de0622b-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.962	Grant: (9de0622b-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:13:22.975	Block commit:      1803 (Hash: 00e107e0, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3775
+2025-03-12 03:13:34.666	Block commit:      1804 (Hash: d0e83a60, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3777
+2025-03-12 03:13:41.354	Block commit:      1805 (Hash: 4ea013f3, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3779
+2025-03-12 03:13:47.361	Block commit:      1806 (Hash: 2503d393, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3781
+2025-03-12 03:13:56.823	Block commit:      1807 (Hash: 22dadc21, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3783
+2025-03-12 03:14:06.775	Block commit:      1808 (Hash: c5fbc5d4, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3785
+2025-03-12 03:14:12.640	Block commit:      1809 (Hash: 81e1b70b, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3787
+2025-03-12 03:14:24.444	Block commit:      1810 (Hash: 4743b1da, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3789
+2025-03-12 03:14:29.116	Block commit:      1811 (Hash: 9673f8f4, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3791
+2025-03-12 03:14:34.760	Block commit:      1812 (Hash: d49b7814, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3793
+2025-03-12 03:14:43.211	Block commit:      1813 (Hash: ee16a579, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3795
+2025-03-12 03:18:18.945	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.146	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.246	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.347	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.448	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.549	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.650	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.751	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.952	Grant: (3c010c0d-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.952	Grant: (3c010c0d-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.953	Grant: (3c010c0d-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.953	Grant: (3c010c0d-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:19.953	Grant: (3c010c0d-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.116	Mempool copy:      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3808
+2025-03-12 03:18:40.117	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.117	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.122	Mempool ramv:      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3808
+2025-03-12 03:18:40.123	Mempool copy:      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3808
+2025-03-12 03:18:40.123	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.123	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.129	Mempool ramv:      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3808
+2025-03-12 03:18:40.129	Mempool copy:      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3808
+2025-03-12 03:18:40.129	Mempool clr :      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3795
+2025-03-12 03:18:40.129	Mempool rstr:      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3808
+2025-03-12 03:18:40.129	Mempool clr :      1813, Admin count: 1, Miner count: 3, Ledger Rows: 3795
+2025-03-12 03:18:40.129	Grant: (00000000-1acbaaa4-00000001-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00000002-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00000004-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00000010-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00000020-1acbaaa4) (0-4294967295, 1741727898), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00000100-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (00000000-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 1741727899), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (3c010c0d-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (3c010c0d-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (3c010c0d-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (3c010c0d-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.130	Grant: (3c010c0d-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:18:40.143	Block commit:      1814 (Hash: ce40c1b3, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3810
+2025-03-12 03:18:45.341	Block commit:      1815 (Hash: 6548ae37, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3812
+2025-03-12 03:18:51.012	Block commit:      1816 (Hash: 4698ff5c, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3814
+2025-03-12 03:19:00.827	Block commit:      1817 (Hash: 336a8603, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3816
+2025-03-12 03:19:04.378	Block commit:      1818 (Hash: 2d2862d2, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3818
+2025-03-12 03:19:14.068	Block commit:      1819 (Hash: 87af619e, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3820
+2025-03-12 03:19:27.758	Block commit:      1820 (Hash: c5274e01, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3822
+2025-03-12 03:19:31.712	Block commit:      1821 (Hash: d54b4d1c, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3824
+2025-03-12 03:19:46.439	Block rollback:      1820, Admin count: 1, Miner count: 3, Ledger Rows: 3822
+2025-03-12 03:19:46.459	Block commit:      1821 (Hash: a95c2850, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3824
+2025-03-12 03:19:46.495	Block commit:      1822 (Hash: 0ab4b820, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3826
+2025-03-12 03:19:59.661	Block commit:      1823 (Hash: bd8b0483, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3828
+2025-03-12 03:20:07.420	Block commit:      1824 (Hash: c7bfb8f6, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3830
+2025-03-12 03:22:59.427	Grant: (79482ab6-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:22:59.427	Grant: (79482ab6-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:22:59.427	Grant: (79482ab6-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:22:59.427	Grant: (79482ab6-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:22:59.427	Grant: (79482ab6-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:23:16.897	Mempool copy:      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3835
+2025-03-12 03:23:16.901	Mempool ramv:      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3835
+2025-03-12 03:23:16.901	Mempool copy:      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3835
+2025-03-12 03:23:16.905	Mempool ramv:      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3835
+2025-03-12 03:23:16.905	Mempool copy:      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3835
+2025-03-12 03:23:16.905	Mempool clr :      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3830
+2025-03-12 03:23:16.905	Mempool rstr:      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3835
+2025-03-12 03:23:16.905	Mempool clr :      1824, Admin count: 1, Miner count: 3, Ledger Rows: 3830
+2025-03-12 03:23:16.906	Grant: (79482ab6-00000000-00000001-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:23:16.906	Grant: (79482ab6-1acbaaa4-00000008-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:23:16.906	Grant: (79482ab6-1acbaaa4-00000080-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:23:16.906	Grant: (79482ab6-1acbaaa4-00002000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:23:16.906	Grant: (79482ab6-1acbaaa4-00001000-1acbaaa4) (0-4294967295, 0), In consensus: 1, Admin count: 1, Miner count: 3
+2025-03-12 03:23:16.913	Block commit:      1825 (Hash: 22a0d668, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3837
+2025-03-12 03:23:28.328	Block commit:      1826 (Hash: e86e7a50, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3839
+2025-03-12 03:23:43.191	Block commit:      1827 (Hash: 63d6be0b, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3841
+2025-03-12 03:23:54.251	Block commit:      1828 (Hash: 019f47a2, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3843
+2025-03-12 03:24:04.205	Block commit:      1829 (Hash: 267922dc, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3845
+2025-03-12 03:24:07.992	Block commit:      1830 (Hash: 731b00d3, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3847
+2025-03-12 03:24:19.038	Block commit:      1831 (Hash: 661c0299, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3849
+2025-03-12 03:24:27.412	Block commit:      1832 (Hash: d11858fa, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3851
+2025-03-12 03:24:44.070	Block commit:      1833 (Hash: 8435e2ef, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3853
+2025-03-12 03:24:54.022	Block commit:      1834 (Hash: e3f26115, Miner: a54ea328), Admin count: 1, Miner count: 3, Ledger Rows: 3855
+2025-03-12 03:25:02.007	Block commit:      1835 (Hash: 957b1ec1, Miner: b612b89c), Admin count: 1, Miner count: 3, Ledger Rows: 3857
