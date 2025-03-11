@@ -10,7 +10,7 @@ const VerificationLayout = () => {
           <div className="flex items-center">
             <img src="/assets/logo.svg" alt="Logo" className="h-8 w-8" />
             <span className="ml-3 font-bold text-xl text-primary-700">
-              TechChain<span className="text-highlight-600">Verify</span>
+              DistLedger<span className="text-highlight-600">Verify</span>
             </span>
           </div>
           
@@ -34,7 +34,7 @@ const VerificationLayout = () => {
       <footer className="bg-white border-t border-neutral-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm text-neutral-500">
-            &copy; {new Date().getFullYear()} TechChain. All rights reserved.
+            &copy; {new Date().getFullYear()} DistLedger. All rights reserved.
           </p>
           <p className="text-xs text-neutral-400 mt-2">
             Powered by blockchain technology for transparent and secure supply chain verification

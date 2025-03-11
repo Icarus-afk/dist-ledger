@@ -4336,15 +4336,27 @@ app.get('/api/retailer/sales/history', authenticateRequest, async (req, res) => 
       try {
         const saleData = JSON.parse(Buffer.from(sale.data, 'hex').toString());
         
-        // Create a more complete sale object with all available information
+        let customerName = 'Anonymous';
+        if (saleData.encryptedCustomerData) {
+          try {
+            const customerData = decryptSensitiveData(
+              saleData.encryptedCustomerData, 
+              req.entity.id
+            );
+            customerName = customerData.customerName || 'Anonymous';
+            console.log(`Decrypted customer name: ${customerName}`);
+          } catch (decryptError) {
+            console.error('Error decrypting customer data:', decryptError);
+          }
+        }
+        
         return {
           saleId: saleData.saleId,
           timestamp: saleData.timestamp,
           status: saleData.status || 'sold',
-          customerName: saleData.customerName || 'Anonymous',
+          customerName: customerName, // USE THE DECRYPTED NAME, not saleData.customerName!
           items: saleData.items || [],
           itemCount: saleData.items ? saleData.items.length : 0,
-          // Calculate total from items if available
           total: saleData.items 
             ? saleData.items.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 1)), 0)
             : 0

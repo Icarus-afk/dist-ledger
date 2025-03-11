@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import useApi from '../../hooks/useApi';
+import React, { useState, useEffect } from "react";
+import useApi from "../../hooks/useApi";
 
 const RetailerReturns = () => {
   const { api, isLoading: apiLoading, error: apiError } = useApi();
-  
+
   const [tabValue, setTabValue] = useState(0);
   const [returnData, setReturnData] = useState({
-    serialNumber: '',
-    productId: '',
-    saleId: '',
-    reason: '',
-    condition: 'good',
-    customerName: '',
-    customerContact: '',
-    notes: '',
-    distributorId: '' // Added distributorId to track the source distributor
+    serialNumber: "",
+    productId: "",
+    saleId: "",
+    reason: "",
+    condition: "good",
+    customerName: "",
+    customerContact: "",
+    notes: "",
+    distributorId: "", // Added distributorId to track the source distributor
   });
   const [returnHistory, setReturnHistory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,10 +31,10 @@ const RetailerReturns = () => {
   useEffect(() => {
     // Load return history when component mounts
     fetchReturnHistory();
-    
+
     // Load inventory for the returns processing
     fetchInventory();
-    
+
     // Load sales history to reference for returns
     fetchSalesHistory();
   }, []);
@@ -46,16 +46,16 @@ const RetailerReturns = () => {
   const fetchReturnHistory = async () => {
     try {
       setHistoryLoading(true);
-      const response = await api.get('/api/retailer/returns/history');
-      
+      const response = await api.get("/api/retailer/returns/history");
+
       if (response.success) {
         setReturnHistory(response.returns || []);
       } else {
-        setError(response.message || 'Failed to load return history');
+        setError(response.message || "Failed to load return history");
       }
     } catch (err) {
-      console.error('Error fetching return history:', err);
-      setError('Failed to load return history. Please try again.');
+      console.error("Error fetching return history:", err);
+      setError("Failed to load return history. Please try again.");
     } finally {
       setHistoryLoading(false);
     }
@@ -64,15 +64,15 @@ const RetailerReturns = () => {
   const fetchInventory = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/api/retailer/inventory');
-      
+      const response = await api.get("/api/retailer/inventory");
+
       if (response.success) {
         setInventory(response.inventory || []);
       } else {
-        console.error('Error fetching inventory:', response.message);
+        console.error("Error fetching inventory:", response.message);
       }
     } catch (err) {
-      console.error('Error fetching inventory:', err);
+      console.error("Error fetching inventory:", err);
     } finally {
       setLoading(false);
     }
@@ -81,15 +81,15 @@ const RetailerReturns = () => {
   const fetchSalesHistory = async () => {
     try {
       setSalesLoading(true);
-      const response = await api.get('/api/retailer/sales/history');
-      
+      const response = await api.get("/api/retailer/sales/history");
+
       if (response.success) {
         setSales(response.sales || []);
       } else {
-        console.error('Error fetching sales history:', response.message);
+        console.error("Error fetching sales history:", response.message);
       }
     } catch (err) {
-      console.error('Error fetching sales history:', err);
+      console.error("Error fetching sales history:", err);
     } finally {
       setSalesLoading(false);
     }
@@ -99,32 +99,37 @@ const RetailerReturns = () => {
     const { name, value } = e.target;
     setReturnData({
       ...returnData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSaleSelection = (saleId) => {
-    const selectedSale = sales.find(sale => sale.saleId === saleId);
-    
+    const selectedSale = sales.find((sale) => sale.saleId === saleId);
+
     if (selectedSale) {
       // If there are items in the sale
       if (selectedSale.items && selectedSale.items.length > 0) {
         // For single item sales, fill in all item details automatically
         if (selectedSale.items.length === 1) {
           const item = selectedSale.items[0];
-          const serialNumber = item.serialNumbers && item.serialNumbers.length > 0 
-            ? item.serialNumbers[0] 
-            : (item.serialNumber || '');
-            
+          const serialNumber =
+            item.serialNumbers && item.serialNumbers.length > 0
+              ? item.serialNumbers[0]
+              : item.serialNumber || "";
+
           setReturnData({
             ...returnData,
             saleId,
             productId: item.productId,
             serialNumber: serialNumber,
             // Add distributorId from item or sale if available
-            distributorId: item.distributorId || selectedSale.distributorId || '',
+            distributorId:
+              item.distributorId || selectedSale.distributorId || "",
             // Pre-fill customer name if available from sales data
-            customerName: selectedSale.customerName !== 'Anonymous' ? selectedSale.customerName : returnData.customerName
+            customerName:
+              selectedSale.customerName !== "Anonymous"
+                ? selectedSale.customerName
+                : returnData.customerName,
           });
           setExpandedSale(null); // Close any expanded view
         } else {
@@ -133,11 +138,14 @@ const RetailerReturns = () => {
             ...returnData,
             saleId,
             // Include distributor ID if it's at the sale level
-            distributorId: selectedSale.distributorId || '',
+            distributorId: selectedSale.distributorId || "",
             // Pre-fill customer name if available
-            customerName: selectedSale.customerName !== 'Anonymous' ? selectedSale.customerName : returnData.customerName
+            customerName:
+              selectedSale.customerName !== "Anonymous"
+                ? selectedSale.customerName
+                : returnData.customerName,
           });
-          
+
           // Toggle the expanded state for this sale
           setExpandedSale(expandedSale === saleId ? null : saleId);
         }
@@ -147,50 +155,54 @@ const RetailerReturns = () => {
           ...returnData,
           saleId,
           // Include distributor ID if it's at the sale level
-          distributorId: selectedSale.distributorId || ''
+          distributorId: selectedSale.distributorId || "",
         });
         setExpandedSale(null);
       }
     }
   };
 
-  const handleProductSelection = (productId, serialNumber, distributorId = '') => {
+  const handleProductSelection = (
+    productId,
+    serialNumber,
+    distributorId = ""
+  ) => {
     setReturnData({
       ...returnData,
       productId,
       serialNumber,
       // Include distributor ID if provided
-      distributorId: distributorId || returnData.distributorId
+      distributorId: distributorId || returnData.distributorId,
     });
-    
+
     // Clear any errors
     setError(null);
-    
+
     // Close the expanded view after selection
     setExpandedSale(null);
   };
 
   const validateReturnData = () => {
-    if (!returnData.saleId) return 'Sale ID is required';
-    if (!returnData.productId) return 'Product ID is required';
-    if (!returnData.serialNumber) return 'Serial number is required';
-    if (!returnData.reason) return 'Return reason is required';
+    if (!returnData.saleId) return "Sale ID is required";
+    if (!returnData.productId) return "Product ID is required";
+    if (!returnData.serialNumber) return "Serial number is required";
+    if (!returnData.reason) return "Return reason is required";
     return null;
   };
 
   const handleProcessReturn = async (e) => {
     e.preventDefault();
-    
+
     const validationError = validateReturnData();
     if (validationError) {
       setError(validationError);
       return;
     }
-    
+
     try {
       setLoading(true);
-      
-      // Create base request body 
+
+      // Create base request body
       const requestBody = {
         saleId: returnData.saleId,
         productId: returnData.productId,
@@ -199,61 +211,67 @@ const RetailerReturns = () => {
         condition: returnData.condition,
         customerName: returnData.customerName,
         customerContact: returnData.customerContact,
-        notes: returnData.notes
+        notes: returnData.notes,
       };
-      
+
       // Always include distributorId and returnToDistributor when a distributorId exists
       if (returnData.distributorId) {
         requestBody.distributorId = returnData.distributorId;
         requestBody.returnToDistributor = true;
-        requestBody.returnStatus = 'processed'; // Add this to mark it as automatically processed
-        
+        requestBody.returnStatus = "processed"; // Add this to mark it as automatically processed
+
         // Mark as defective if condition indicates so
-        if (returnData.condition === 'defective' || returnData.condition === 'damaged') {
+        if (
+          returnData.condition === "defective" ||
+          returnData.condition === "damaged"
+        ) {
           requestBody.defective = true;
         }
       }
-      
+
       // Log the request body for debugging
-      console.log('Sending return request with body:', requestBody);
-      
-      const response = await api.post('/api/retailer/returns/process', requestBody);
-      
+      console.log("Sending return request with body:", requestBody);
+
+      const response = await api.post(
+        "/api/retailer/returns/process",
+        requestBody
+      );
+
       if (response.success) {
         setSuccess(true);
         setReturnData({
-          serialNumber: '',
-          productId: '',
-          saleId: '',
-          reason: '',
-          condition: 'good',
-          customerName: '',
-          customerContact: '',
-          notes: '',
-          distributorId: '' // Reset distributorId too
+          serialNumber: "",
+          productId: "",
+          saleId: "",
+          reason: "",
+          condition: "good",
+          customerName: "",
+          customerContact: "",
+          notes: "",
+          distributorId: "", // Reset distributorId too
         });
-        
+
         // Refresh the return history
         fetchReturnHistory();
-        
+
         // Refresh inventory since a product has been returned
         fetchInventory();
-        
+
         // Refresh sales history as well
         fetchSalesHistory();
       } else {
-        setError(response.message || 'Failed to process return');
+        setError(response.message || "Failed to process return");
       }
     } catch (err) {
-      console.error('Error processing return:', err);
-      setError('Failed to process return. Please try again.');
+      console.error("Error processing return:", err);
+      setError("Failed to process return. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   const viewReturnDetails = (returnId) => {
-    const returnItem = returnHistory.find(item => item.returnId === returnId);
+    const returnItem = returnHistory.find((item) => item.returnId === returnId);
     if (returnItem) {
       setSelectedReturn(returnItem);
       setDetailsOpen(true);
@@ -270,18 +288,20 @@ const RetailerReturns = () => {
     if (!sale.items || sale.items.length === 0) {
       return null;
     }
-    
+
     return (
       <div className="pl-4 pt-2 pb-2 text-sm border-t border-gray-100 bg-blue-50">
         <p className="font-medium text-gray-700 mb-2">Select Item to Return:</p>
         <div className="space-y-2">
           {sale.items.map((item, index) => {
             // Handle both single serialNumber and array of serialNumbers
-            const serialNumbers = item.serialNumbers || (item.serialNumber ? [item.serialNumber] : []);
-            
+            const serialNumbers =
+              item.serialNumbers ||
+              (item.serialNumber ? [item.serialNumber] : []);
+
             return serialNumbers.map((serial, serialIndex) => (
-              <div 
-                key={`${item.productId}-${serial}-${serialIndex}`} 
+              <div
+                key={`${item.productId}-${serial}-${serialIndex}`}
                 className="flex justify-between items-center p-2 rounded bg-white border border-blue-100"
               >
                 <div className="flex flex-col">
@@ -292,17 +312,19 @@ const RetailerReturns = () => {
                     ID: {item.productId} | SN: {serial}
                     {item.distributorId && (
                       <span className="ml-2 text-blue-600">
-                        • Dist: {item.distributorId.split('-').pop()}
+                        • Dist: {item.distributorId.split("-").pop()}
                       </span>
                     )}
                   </span>
                 </div>
-                <button 
-                  onClick={() => handleProductSelection(
-                    item.productId, 
-                    serial, 
-                    item.distributorId || sale.distributorId
-                  )}
+                <button
+                  onClick={() =>
+                    handleProductSelection(
+                      item.productId,
+                      serial,
+                      item.distributorId || sale.distributorId
+                    )
+                  }
                   className="text-xs py-1 px-3 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
                   Select
@@ -329,8 +351,8 @@ const RetailerReturns = () => {
         <div className="flex border-b">
           <button
             className={`px-4 py-2 text-sm font-medium flex items-center flex-1 justify-center ${
-              tabValue === 0 
-                ? "border-b-2 border-blue-500 text-blue-600" 
+              tabValue === 0
+                ? "border-b-2 border-blue-500 text-blue-600"
                 : "text-gray-600 hover:text-gray-800"
             }`}
             onClick={() => handleTabChange(0)}
@@ -339,8 +361,8 @@ const RetailerReturns = () => {
           </button>
           <button
             className={`px-4 py-2 text-sm font-medium flex items-center flex-1 justify-center ${
-              tabValue === 1 
-                ? "border-b-2 border-blue-500 text-blue-600" 
+              tabValue === 1
+                ? "border-b-2 border-blue-500 text-blue-600"
                 : "text-gray-600 hover:text-gray-800"
             }`}
             onClick={() => handleTabChange(1)}
@@ -422,7 +444,9 @@ const RetailerReturns = () => {
                     <option value="defective">Product Defective</option>
                     <option value="damaged">Product Damaged</option>
                     <option value="wrong_item">Wrong Item Received</option>
-                    <option value="not_as_described">Item Not As Described</option>
+                    <option value="not_as_described">
+                      Item Not As Described
+                    </option>
                     <option value="changed_mind">Customer Changed Mind</option>
                     <option value="other">Other</option>
                   </select>
@@ -489,10 +513,14 @@ const RetailerReturns = () => {
                 {returnData.distributorId && (
                   <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
                     <p className="text-sm text-blue-700">
-                      <span className="font-medium">Return to Distributor:</span> {returnData.distributorId}
+                      <span className="font-medium">
+                        Return to Distributor:
+                      </span>{" "}
+                      {returnData.distributorId}
                     </p>
                     <p className="text-xs text-blue-600 mt-1">
-                      This return will be processed as a distributor return and automatically tracked in the distributor's system.
+                      This return will be processed as a distributor return and
+                      automatically tracked in the distributor's system.
                     </p>
                   </div>
                 )}
@@ -508,9 +536,25 @@ const RetailerReturns = () => {
                 >
                   {loading ? (
                     <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Processing...
                     </span>
@@ -529,9 +573,25 @@ const RetailerReturns = () => {
               <h2 className="text-lg font-medium mb-4">Recent Sales</h2>
               {salesLoading ? (
                 <div className="flex justify-center p-8">
-                  <svg className="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin h-8 w-8 text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                 </div>
               ) : sales.length === 0 ? (
@@ -543,10 +603,18 @@ const RetailerReturns = () => {
                   <table className="min-w-full">
                     <thead>
                       <tr className="border-b">
-                        <th className="text-left py-2 px-4 text-xs font-medium text-gray-500">Sale ID</th>
-                        <th className="text-left py-2 px-4 text-xs font-medium text-gray-500">Date</th>
-                        <th className="text-left py-2 px-4 text-xs font-medium text-gray-500">Items</th>
-                        <th className="text-right py-2 px-4 text-xs font-medium text-gray-500">Action</th>
+                        <th className="text-left py-2 px-4 text-xs font-medium text-gray-500">
+                          Sale ID
+                        </th>
+                        <th className="text-left py-2 px-4 text-xs font-medium text-gray-500">
+                          Customer
+                        </th>
+                        <th className="text-left py-2 px-4 text-xs font-medium text-gray-500">
+                          Items
+                        </th>
+                        <th className="text-right py-2 px-4 text-xs font-medium text-gray-500">
+                          Action
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -555,46 +623,99 @@ const RetailerReturns = () => {
                         const isSelected = returnData.saleId === sale.saleId;
                         // Determine if this sale's details are expanded
                         const isExpanded = expandedSale === sale.saleId;
-                        // Count items in the sale
-                        const itemCount = sale.items ? sale.items.length : 0;
-                        
+                        // Check if the sale has been returned
+                        const isReturned =
+                          sale.status === "returned" ||
+                          !sale.items ||
+                          sale.items.length === 0;
+                        // Calculate total item count
+                        const itemCount = isReturned
+                          ? 0
+                          : sale.items.reduce(
+                              (total, item) =>
+                                total + (Number(item.quantity) || 1),
+                              0
+                            );
+
                         return (
                           <React.Fragment key={sale.saleId}>
-                            <tr className={`border-b ${isSelected ? 'bg-blue-50' : 'hover:bg-gray-50'}`}>
-                              <td className="py-2 px-4 text-sm">{sale.saleId}</td>
+                            <tr
+                              className={`border-b ${
+                                isSelected ? "bg-blue-50" : "hover:bg-gray-50"
+                              } ${isReturned ? "text-gray-400" : ""}`}
+                            >
                               <td className="py-2 px-4 text-sm">
-                                {new Date(sale.timestamp).toLocaleDateString()}
+                                <div className="truncate max-w-[100px]">
+                                  {sale.saleId.substring(0, 10)}...
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {new Date(
+                                    sale.timestamp
+                                  ).toLocaleDateString()}
+                                </div>
                               </td>
                               <td className="py-2 px-4 text-sm">
-                                {itemCount}
-                                {sale.distributorId && (
-                                  <span className="ml-2 text-xs text-blue-600">
-                                    • Dist: {sale.distributorId.split('-').pop()}
+                                {sale.customerName || "Anonymous"}
+                              </td>
+                              <td className="py-2 px-4 text-sm">
+                                {isReturned ? (
+                                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+                                    Returned
                                   </span>
+                                ) : (
+                                  <div>
+                                    <span className="font-medium">
+                                      {itemCount}
+                                    </span>
+                                    {sale.items && sale.items[0] && (
+                                      <div className="text-xs text-gray-500 truncate max-w-[100px]">
+                                        {sale.items[0].productId.substring(
+                                          0,
+                                          8
+                                        )}
+                                        ...
+                                        {sale.items.length > 1
+                                          ? ` +${sale.items.length - 1} more`
+                                          : ""}
+                                      </div>
+                                    )}
+                                  </div>
                                 )}
                               </td>
                               <td className="py-2 px-4 text-right">
                                 <button
-                                  onClick={() => handleSaleSelection(sale.saleId)}
+                                  onClick={() =>
+                                    handleSaleSelection(sale.saleId)
+                                  }
+                                  disabled={isReturned}
                                   className={`text-xs py-1 px-2 rounded ${
-                                    isSelected
+                                    isReturned
+                                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                      : isSelected
                                       ? "bg-blue-600 text-white hover:bg-blue-700"
                                       : "bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
                                   }`}
                                 >
-                                  {isSelected ? 'Selected' : 'Select'}
+                                  {isReturned
+                                    ? "Returned"
+                                    : isSelected
+                                    ? "Selected"
+                                    : "Select"}
                                 </button>
                               </td>
                             </tr>
-                            
+
                             {/* Show expanded item list when this sale is expanded */}
-                            {isExpanded && itemCount > 0 && (
-                              <tr>
-                                <td colSpan="4" className="p-0">
-                                  {renderSaleItems(sale)}
-                                </td>
-                              </tr>
-                            )}
+                            {isExpanded &&
+                              !isReturned &&
+                              sale.items &&
+                              sale.items.length > 0 && (
+                                <tr>
+                                  <td colSpan="4" className="p-0">
+                                    {renderSaleItems(sale)}
+                                  </td>
+                                </tr>
+                              )}
                           </React.Fragment>
                         );
                       })}
@@ -614,9 +735,25 @@ const RetailerReturns = () => {
 
           {historyLoading ? (
             <div className="flex justify-center p-8">
-              <svg className="animate-spin h-10 w-10 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg
+                className="animate-spin h-10 w-10 text-blue-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
               </svg>
             </div>
           ) : returnHistory.length === 0 ? (
@@ -638,7 +775,10 @@ const RetailerReturns = () => {
                 </thead>
                 <tbody>
                   {returnHistory.map((ret) => (
-                    <tr key={ret.returnId} className="border-b hover:bg-gray-50">
+                    <tr
+                      key={ret.returnId}
+                      className="border-b hover:bg-gray-50"
+                    >
                       <td className="py-2 px-4">{ret.returnId}</td>
                       <td className="py-2 px-4">{ret.productId}</td>
                       <td className="py-2 px-4">{ret.serialNumber}</td>
@@ -669,7 +809,10 @@ const RetailerReturns = () => {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-lg mx-4">
             <div className="border-b px-6 py-3 flex justify-between items-center">
               <h3 className="text-lg font-medium">Return Details</h3>
-              <button onClick={closeDetails} className="text-gray-400 hover:text-gray-500">
+              <button
+                onClick={closeDetails}
+                className="text-gray-400 hover:text-gray-500"
+              >
                 ✕
               </button>
             </div>
@@ -704,23 +847,27 @@ const RetailerReturns = () => {
               </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-500">Return Date</p>
-                <p className="font-medium">{new Date(selectedReturn.timestamp).toLocaleString()}</p>
+                <p className="font-medium">
+                  {new Date(selectedReturn.timestamp).toLocaleString()}
+                </p>
               </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-500">Status</p>
                 <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                  {selectedReturn.status || 'Processed'}
+                  {selectedReturn.status || "Processed"}
                 </span>
               </div>
               {selectedReturn.distributorId && (
                 <div className="mb-4">
-                  <p className="text-sm text-gray-500">Returned to Distributor</p>
+                  <p className="text-sm text-gray-500">
+                    Returned to Distributor
+                  </p>
                   <p className="font-medium">{selectedReturn.distributorId}</p>
                 </div>
               )}
             </div>
             <div className="bg-gray-50 px-6 py-3 flex justify-end">
-            <button
+              <button
                 onClick={closeDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
               >

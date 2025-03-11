@@ -25,76 +25,129 @@ const Inventory = () => {
   const [selectedProductName, setSelectedProductName] = useState("");
   const [verifiedTransferStatuses, setVerifiedTransferStatuses] = useState({});
 
-  // Fetch data function that can be called to refresh
+  const refreshAllTransferStatuses = async () => {
+    // Don't do anything if no transfers to refresh
+    if (!pendingTransfers || pendingTransfers.length === 0) return;
+
+    // Create an array of promises for all status checks
+    const refreshPromises = pendingTransfers.map(async (transfer) => {
+      if (!transfer.id) return;
+
+      try {
+        const response = await api.get(
+          `/api/transactions/${transfer.id}/status`
+        );
+        if (response.success) {
+          return {
+            id: transfer.id,
+            status: response.status || "unknown",
+          };
+        }
+      } catch (err) {
+        console.error(
+          `Failed to refresh status for transfer ${transfer.id}:`,
+          err
+        );
+      }
+      return { id: transfer.id, status: "unknown" };
+    });
+
+    // Process all refresh responses
+    const results = await Promise.all(refreshPromises);
+
+    // Update the verified statuses with the results
+    const newStatuses = { ...verifiedTransferStatuses };
+    results.forEach((result) => {
+      if (result && result.id) {
+        newStatuses[result.id] = result.status;
+      }
+    });
+
+    setVerifiedTransferStatuses(newStatuses);
+  };
+
+  // Modify the fetchData function to refresh transfer statuses after loading transfers
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       // Fetch all data in parallel for better performance
-      const [inventoryData, pendingData, manufacturersData] = await Promise.all([
-        api.get('/api/distributor/inventory'),
-        api.get('/api/distributor/pending-transfers'),
-        api.get('/api/entities/manufacturer')
-      ]);
-      
-      console.log('Inventory data:', inventoryData);
+      const [inventoryData, pendingData, manufacturersData] = await Promise.all(
+        [
+          api.get("/api/distributor/inventory"),
+          api.get("/api/distributor/pending-transfers"),
+          api.get("/api/entities/manufacturer"),
+        ]
+      );
+
+      console.log("Inventory data:", inventoryData);
       if (inventoryData.success) {
         setInventory(inventoryData.inventory || []);
       }
-      
-      console.log('Pending transfers data:', pendingData);
+
+      console.log("Pending transfers data:", pendingData);
       if (pendingData.success) {
         // The API now only returns truly pending transfers with current statuses
-        const normalizedTransfers = (pendingData.transfers || []).map(transfer => ({
-          ...transfer,
-          id: transfer.id || transfer.transferId,
-          createdAt: transfer.createdAt || transfer.timestamp || Date.now(),
-          quantity: transfer.serialNumbers?.length || transfer.quantity || 0,
-          status: transfer.currentStatus || 'pending' // Already filtered by API
-        }));
-        
+        const normalizedTransfers = (pendingData.transfers || []).map(
+          (transfer) => ({
+            ...transfer,
+            id: transfer.id || transfer.transferId,
+            createdAt: transfer.createdAt || transfer.timestamp || Date.now(),
+            quantity: transfer.serialNumbers?.length || transfer.quantity || 0,
+            status: transfer.currentStatus || "pending", // Already filtered by API
+          })
+        );
+
         setPendingTransfers(normalizedTransfers);
-        
+
         // Set initial status for each transfer
         const statusChecks = {};
-        normalizedTransfers.forEach(transfer => {
-          statusChecks[transfer.id] = transfer.currentStatus || 'pending';
+        normalizedTransfers.forEach((transfer) => {
+          statusChecks[transfer.id] = transfer.currentStatus || "pending";
         });
-        
+
         setVerifiedTransferStatuses(statusChecks);
+
+        // After setting transfers, refresh all statuses
+        if (normalizedTransfers.length > 0) {
+          setTimeout(() => refreshAllTransferStatuses(), 500); // Small delay to ensure state is updated
+        }
       }
-      
-      console.log('Manufacturers data:', manufacturersData);
+
+      console.log("Manufacturers data:", manufacturersData);
       if (manufacturersData.success) {
         setManufacturers(manufacturersData.entities || []);
       }
     } catch (err) {
-      console.error('Error fetching inventory data:', err);
-      setError('Failed to load inventory data. Please try again.');
+      console.error("Error fetching inventory data:", err);
+      setError("Failed to load inventory data. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-// Add a function to refresh the status of a specific transfer
-const refreshTransferStatus = async (transferId) => {
-  if (!transferId) return;
-  
-  try {
-    // Use the general transactions endpoint to get status updates
-    const response = await api.get(`/api/transactions/${transferId}/status`);
-    
-    if (response.success) {
-      setVerifiedTransferStatuses(prev => ({
-        ...prev,
-        [transferId]: response.status || prev[transferId] || 'unknown'
-      }));
+  // Add a function to refresh the status of a specific transfer
+  const refreshTransferStatus = async (transferId) => {
+    if (!transferId) return;
+
+    try {
+      // Use the general transactions endpoint to get status updates
+      const response = await api.get(`/api/transactions/${transferId}/status`);
+
+      if (response.success) {
+        setVerifiedTransferStatuses((prev) => ({
+          ...prev,
+          [transferId]: response.status || prev[transferId] || "unknown",
+        }));
+      }
+    } catch (err) {
+      console.error(
+        `Failed to refresh status for transfer ${transferId}:`,
+        err
+      );
     }
-  } catch (err) {
-    console.error(`Failed to refresh status for transfer ${transferId}:`, err);
-  }
-};
+  };
 
   const trulyPendingTransfers = pendingTransfers.filter(
     (transfer) =>
@@ -329,7 +382,29 @@ const refreshTransferStatus = async (transferId) => {
 
       {/* Pending Transfers Section */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">Pending Transfers</h2>
+        <div className="flex justify-between items-center mb-3">
+          <h2 className="text-xl font-semibold">Pending Transfers</h2>
+          <button
+            onClick={refreshAllTransferStatuses}
+            className="text-xs text-blue-600 hover:text-blue-800 flex items-center"
+          >
+            <span className="mr-1">Refresh All</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
+            </svg>
+          </button>
+        </div>
         {loading || apiLoading ? (
           <div className="text-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
@@ -536,9 +611,6 @@ const refreshTransferStatus = async (transferId) => {
                     Product ID
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Quantity
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -550,12 +622,7 @@ const refreshTransferStatus = async (transferId) => {
                 {inventory.map((item) => (
                   <tr key={item.productId} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span title={item.productId}>
-                        {truncateId(item.productId)}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {item.productName || "Unknown"}
+                      <span title={item.productId}>{item.productId}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {item.serialNumbers?.length || item.quantity || 0}

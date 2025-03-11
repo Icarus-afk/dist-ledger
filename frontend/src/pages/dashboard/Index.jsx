@@ -24,13 +24,13 @@ const DashboardIndex = () => {
         return (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <QuickActionButton 
-              to="/manufacturer/products/register" 
+              to="/manufacturer/register-product" // Fixed: was /manufacturer/products/register
               icon="➕" 
               label="Register New Product" 
               color="emerald" 
             />
             <QuickActionButton 
-              to="/manufacturer/transfers/create" 
+              to="/manufacturer/products" // Changed to existing route
               icon="🚚" 
               label="Transfer Products" 
               color="blue" 
@@ -42,7 +42,7 @@ const DashboardIndex = () => {
               color="primary" 
             />
             <QuickActionButton 
-              to="/manufacturer/analytics" 
+              to="/manufacturer/dashboard" // Changed to dashboard as fallback
               icon="📊" 
               label="View Analytics" 
               color="indigo" 
@@ -54,13 +54,13 @@ const DashboardIndex = () => {
         return (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <QuickActionButton 
-              to="/distributor/shipments/receive" 
+              to="/distributor/shipments" // Fixed: was /distributor/shipments/receive
               icon="📥" 
               label="Receive Shipment" 
               color="blue" 
             />
             <QuickActionButton 
-              to="/distributor/shipments/create" 
+              to="/distributor/shipments" // Fixed: was /distributor/shipments/create
               icon="📤" 
               label="Create Shipment" 
               color="emerald" 
@@ -84,13 +84,13 @@ const DashboardIndex = () => {
         return (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <QuickActionButton 
-              to="/retailer/sales/record" 
+              to="/retailer/sales" // Fixed: was /retailer/sales/record
               icon="💰" 
               label="Record Sale" 
               color="emerald" 
             />
             <QuickActionButton 
-              to="/retailer/returns/process" 
+              to="/retailer/returns" // Fixed: was /retailer/returns/process
               icon="↩️" 
               label="Process Return" 
               color="amber" 
@@ -102,7 +102,7 @@ const DashboardIndex = () => {
               color="primary" 
             />
             <QuickActionButton 
-              to="/retailer/shipments/receive" 
+              to="/retailer/sales" // Changed to sales as fallback since no shipments route exists
               icon="📥" 
               label="Receive Products" 
               color="blue" 
@@ -114,25 +114,25 @@ const DashboardIndex = () => {
         return (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <QuickActionButton 
-              to="/admin/entities" 
+              to="/admin/dashboard" // Fixed: was /admin/entities
               icon="🏢" 
               label="Manage Entities" 
               color="primary" 
             />
             <QuickActionButton 
-              to="/admin/users" 
+              to="/admin/dashboard" // Fixed: was /admin/users
               icon="👤" 
               label="Manage Users" 
               color="indigo" 
             />
             <QuickActionButton 
-              to="/admin/system" 
+              to="/admin/dashboard" // Fixed: was /admin/system
               icon="⚙️" 
               label="System Status" 
               color="emerald" 
             />
             <QuickActionButton 
-              to="/admin/blockchain" 
+              to="/admin/dashboard" // Fixed: was /admin/blockchain
               icon="🔗" 
               label="Blockchain Explorer" 
               color="amber" 

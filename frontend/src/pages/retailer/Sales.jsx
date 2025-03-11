@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import useApi from "../../hooks/useApi"; // Changed to use the API hook for consistency
+import useApi from "../../hooks/useApi";
 
 const RetailerSales = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -144,21 +144,35 @@ const RetailerSales = () => {
 
     // If there's only one available, add it directly
     if (availableSerials.length === 1) {
-      addProductToCart(productId, [availableSerials[0]]);
+      addProductToCart(productId, [availableSerials[0]], product.price);
     } else {
       // Otherwise, open the selection modal
-      setCurrentProduct({ ...product, availableSerials });
+      setCurrentProduct({
+        ...product,
+        availableSerials,
+        originalPrice: product.price, // Store original price for reference
+      });
       setSelectedSerials([]);
       setIsSelectingSerials(true);
     }
   };
 
-  // Helper function to add products to cart
-  const addProductToCart = (productId, serialsToAdd) => {
+  // FIXED: Helper function to add products to cart with correct pricing
+  const addProductToCart = (productId, serialsToAdd, customPrice) => {
     if (!serialsToAdd || serialsToAdd.length === 0) return;
 
     const product = inventory.find((item) => item.productId === productId);
     if (!product) return;
+
+    // Use custom price if provided, otherwise use inventory price
+    const productPrice =
+      customPrice !== undefined ? customPrice : product.price || 0;
+
+    if (productPrice === 0) {
+      console.warn(
+        `Warning: Product ${productId} has no price defined in inventory`
+      );
+    }
 
     // Check if we already have this product in our cart
     const alreadySelectedIndex = selectedItems.findIndex(
@@ -175,7 +189,7 @@ const RetailerSales = () => {
           ...currentItem,
           quantity: currentItem.quantity + serialsToAdd.length,
           serialNumbers: [...currentItem.serialNumbers, ...serialsToAdd],
-          price: currentItem.price || 99.99,
+          price: productPrice, // Use actual price from inventory
         };
 
         return updated;
@@ -187,7 +201,7 @@ const RetailerSales = () => {
         {
           productId,
           productName: product.productName || productId,
-          price: 99.99, // Default price
+          price: productPrice, // Use actual price from inventory
           quantity: serialsToAdd.length,
           serialNumbers: serialsToAdd,
         },
@@ -217,7 +231,7 @@ const RetailerSales = () => {
       return;
     }
 
-    addProductToCart(currentProduct.productId, selectedSerials);
+    addProductToCart(currentProduct.productId, selectedSerials, currentProduct.price);
     setIsSelectingSerials(false);
     setCurrentProduct(null);
     setSelectedSerials([]);
@@ -297,7 +311,7 @@ const RetailerSales = () => {
           // Use proper format expected by the backend
           return {
             productId: item.productId,
-            price: item.price,
+            price: item.price, // Now using correct price from inventory
             serialNumber: allSerialNumbers[0], // For single item compatibility
             serialNumbers: allSerialNumbers, // Keep this for multiple items
             quantity: item.quantity,
@@ -411,16 +425,6 @@ const RetailerSales = () => {
             onClick={() => handleTabChange(1)}
           >
             <span className="mr-2">📃</span> Sales History
-          </button>
-          <button
-            className={`px-4 py-2 text-sm font-medium flex items-center flex-1 justify-center ${
-              tabValue === 2
-                ? "border-b-2 border-blue-500 text-blue-600"
-                : "text-gray-600 hover:text-gray-800"
-            }`}
-            onClick={() => handleTabChange(2)}
-          >
-            <span className="mr-2">📊</span> Daily Summary
           </button>
         </div>
       </div>
@@ -697,6 +701,27 @@ const RetailerSales = () => {
                 </strong>{" "}
                 to add:
               </p>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Unit Price ($)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={currentProduct.price || 0}
+                  onChange={(e) =>
+                    setCurrentProduct({
+                      ...currentProduct,
+                      price: parseFloat(e.target.value) || 0,
+                    })
+                  }
+                  className="w-full p-2 border border-gray-300 rounded"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Default: ${currentProduct.originalPrice?.toFixed(2) || "0.00"}
+                </p>
+              </div>
 
               <div className="mb-4 flex justify-between">
                 <span className="text-sm text-gray-500">
@@ -755,254 +780,136 @@ const RetailerSales = () => {
       )}
 
       {/* Sales History Tab */}
-      {tabValue === 1 && (
-        <div className="bg-white shadow rounded p-4">
-          <h2 className="text-lg font-medium mb-4">Sales History</h2>
+{/* Sales History Tab */}
+{tabValue === 1 && (
+  <div className="bg-white shadow rounded p-4">
+    <h2 className="text-lg font-medium mb-4">Sales History</h2>
 
-          {historyLoading ? (
-            <div className="flex justify-center p-8">
-              <svg
-                className="animate-spin h-10 w-10 text-blue-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            </div>
-          ) : salesHistory.length === 0 ? (
-            <p className="text-gray-500 text-center py-4">
-              No sales records found.
-            </p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-2 px-4">Sale ID</th>
-                    <th className="text-left py-2 px-4">Customer</th>
-                    <th className="text-right py-2 px-4">Items</th>
-                    <th className="text-right py-2 px-4">Date</th>
-                    <th className="text-right py-2 px-4">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesHistory.map((sale) => (
-                    <tr key={sale.saleId} className="border-b hover:bg-gray-50">
-                      <td className="py-2 px-4">{sale.saleId}</td>
-                      <td className="py-2 px-4">
-                        {sale.customerName || "Anonymous"}
-                      </td>
-                      <td className="py-2 px-4 text-right">
-                        {sale.items?.length || 0}
-                      </td>
-                      <td className="py-2 px-4 text-right">
-                        {new Date(sale.timestamp).toLocaleDateString()}
-                      </td>
-                      <td className="py-2 px-4 text-right">
-                        $
-                        {sale.items
-                          ?.reduce(
-                            (total, item) =>
-                              total + (item.price || 0) * (item.quantity || 1),
-                            0
-                          )
-                          .toFixed(2) || "0.00"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+    {historyLoading ? (
+      <div className="flex justify-center p-8">
+        <svg
+          className="animate-spin h-10 w-10 text-blue-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+      </div>
+    ) : salesHistory.length === 0 ? (
+      <p className="text-gray-500 text-center py-4">
+        No sales records found.
+      </p>
+    ) : (
+      <div className="overflow-x-auto">
+        <table className="min-w-full">
+          <thead>
+            <tr className="border-b">
+              <th className="text-left py-2 px-4">Sale ID</th>
+              <th className="text-left py-2 px-4">Customer</th>
+              <th className="text-right py-2 px-4">Items</th>
+              <th className="text-right py-2 px-4">Date</th>
+              <th className="text-right py-2 px-4">Total</th>
+              <th className="text-right py-2 px-4">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {salesHistory.map((sale) => {
+              // Check if the sale has been returned
+              const isReturned = sale.status === "returned" || 
+                                (!sale.items || sale.items.length === 0);
+              
+              return (
+                <tr 
+                  key={sale.saleId} 
+                  className={`border-b hover:bg-gray-50 ${isReturned ? 'text-gray-500' : ''}`}
+                >
+                  <td className="py-2 px-4">
+                    <span className="text-xs font-mono">
+                      {sale.saleId.substring(0, 8)}...
+                    </span>
+                  </td>
+                  <td className="py-2 px-4">
+                    {sale.customerName || "Anonymous"}
+                  </td>
+                  <td className="py-2 px-4 text-right">
+                    {isReturned ? (
+                      <span>-</span>
+                    ) : (
+                      // Sum up quantities of all items
+                      sale.items.reduce((total, item) => total + (Number(item.quantity) || 1), 0)
+                    )}
+                  </td>
+                  <td className="py-2 px-4 text-right">
+                    {new Date(sale.timestamp).toLocaleDateString()}
+                  </td>
+                  <td className="py-2 px-4 text-right font-medium">
+                    {isReturned ? (
+                      "$0.00"
+                    ) : (
+                      `$${calculateTotal(sale.items).toFixed(2)}`
+                    )}
+                  </td>
+                  <td className="py-2 px-4 text-right">
+                    {isReturned ? (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+                        Returned
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                        Completed
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+)}
+
+      {/* Error and Success Messages */}
+      {error && (
+        <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded">
+          {error}
         </div>
       )}
 
-      {/* Daily Summary Tab */}
-      {tabValue === 2 && (
-        <div className="bg-white shadow rounded p-4">
-          <h2 className="text-lg font-medium mb-4">Daily Summary</h2>
-
-          <form onSubmit={handleRecordDailySummary}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Date
-                </label>
-                <input
-                  type="date"
-                  name="date"
-                  value={summaryData.date}
-                  onChange={handleSummaryDataChange}
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Total Sales
-                </label>
-                <input
-                  type="number"
-                  name="totalSales"
-                  value={summaryData.totalSales}
-                  onChange={handleSummaryDataChange}
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Total Revenue
-                </label>
-                <div className="relative">
-                  <span className="absolute left-2 top-2">$</span>
-                  <input
-                    type="number"
-                    name="totalRevenue"
-                    value={summaryData.totalRevenue}
-                    onChange={handleSummaryDataChange}
-                    className="w-full p-2 pl-6 border border-gray-300 rounded"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Cash Revenue
-                </label>
-                <div className="relative">
-                  <span className="absolute left-2 top-2">$</span>
-                  <input
-                    type="number"
-                    name="cashRevenue"
-                    value={summaryData.cashRevenue}
-                    onChange={handleSummaryDataChange}
-                    className="w-full p-2 pl-6 border border-gray-300 rounded"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Card Revenue
-                </label>
-                <div className="relative">
-                  <span className="absolute left-2 top-2">$</span>
-                  <input
-                    type="number"
-                    name="cardRevenue"
-                    value={summaryData.cardRevenue}
-                    onChange={handleSummaryDataChange}
-                    className="w-full p-2 pl-6 border border-gray-300 rounded"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Summary Notes
-              </label>
-              <textarea
-                name="notes"
-                value={summaryData.notes}
-                onChange={handleSummaryDataChange}
-                rows="3"
-                className="w-full p-2 border border-gray-300 rounded"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full py-2 px-4 rounded flex items-center justify-center ${
-                loading
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
-              }`}
-            >
-              {loading ? (
-                <span className="flex items-center">
-                  <svg
-                    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Processing...
-                </span>
-              ) : (
-                <>
-                  <span className="mr-2">📊</span> Record Summary
-                </>
-              )}
-            </button>
-          </form>
-        </div>
-      )}
-
-      {/* Success notification */}
       {success && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded shadow-lg flex items-center">
-          <span className="mr-2">✅</span>
+        <div className="mt-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded">
           {tabValue === 0
             ? "Sale recorded successfully!"
-            : tabValue === 2
-            ? "Daily summary recorded successfully!"
-            : "Operation completed successfully!"}
-          <button
-            className="ml-4 text-green-600 hover:text-green-800"
-            onClick={() => setSuccess(false)}
-          >
-            ✕
-          </button>
-        </div>
-      )}
-
-      {/* Error notification */}
-      {error && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded shadow-lg flex items-center">
-          <span className="mr-2">❌</span>
-          {error}
-          <button
-            className="ml-4 text-red-600 hover:text-red-800"
-            onClick={() => setError(null)}
-          >
-            ✕
-          </button>
+            : "Daily summary recorded successfully!"}
         </div>
       )}
     </div>
   );
+};
+
+// Helper function to calculate total sale amount
+const calculateTotal = (items) => {
+  if (!items || !Array.isArray(items)) return 0;
+  return items.reduce((total, item) => {
+    // Multiply each item's price by quantity
+    const price = Number(item.price) || 0;
+    const quantity = Number(item.quantity) || 1;
+    return total + price * quantity;
+  }, 0);
 };
 
 export default RetailerSales;

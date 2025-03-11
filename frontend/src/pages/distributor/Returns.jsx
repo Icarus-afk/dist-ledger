@@ -12,7 +12,7 @@ const Returns = () => {
   const [selectedReturn, setSelectedReturn] = useState(null);
   const [showReturnDetails, setShowReturnDetails] = useState(false);
   const [filters, setFilters] = useState({
-    status: "all",
+    status: "processed", 
     timeframe: "all"
   });
   
@@ -210,14 +210,6 @@ const Returns = () => {
           <p className="text-sm text-gray-500">Total Value</p>
           <p className="text-xl font-bold">{formatCurrency(totalValue)}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <p className="text-sm text-gray-500">Defective Products</p>
-          <p className="text-xl font-bold">{defectiveCount}</p>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <p className="text-sm text-gray-500">Replacements Sent</p>
-          <p className="text-xl font-bold">{replacementCount}</p>
-        </div>
       </div>
 
       {error && (
@@ -226,63 +218,6 @@ const Returns = () => {
         </div>
       )}
 
-      {showDebug && (
-        <div className="p-3 mb-4 bg-gray-100 border border-gray-200 rounded">
-          <h3 className="font-bold mb-2">Debug Information</h3>
-          <p>Returned Products: {returnedProducts?.length || 0}</p>
-          <p>Filtered Products: {filteredProducts?.length || 0}</p>
-          
-          <details>
-            <summary className="cursor-pointer font-semibold text-blue-600 mt-2">
-              Raw Data
-            </summary>
-            <pre className="mt-2 p-2 bg-gray-800 text-green-400 text-xs overflow-auto max-h-60">
-              {JSON.stringify(
-                { 
-                  returnedProducts,
-                  filters 
-                },
-                null,
-                2
-              )}
-            </pre>
-          </details>
-        </div>
-      )}
-
-      {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow mb-6">
-        <div className="flex flex-wrap gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-            <select
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-              value={filters.status}
-              onChange={(e) => setFilters({...filters, status: e.target.value})}
-            >
-              <option value="all">All Statuses</option>
-              <option value="processing">Processing</option>
-              <option value="inspection">Inspection</option>
-              <option value="completed">Completed</option>
-              <option value="refunded">Refunded</option>
-              <option value="awaiting replacement">Awaiting Replacement</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Time Period</label>
-            <select
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-              value={filters.timeframe}
-              onChange={(e) => setFilters({...filters, timeframe: e.target.value})}
-            >
-              <option value="all">All Time</option>
-              <option value="week">Last 7 Days</option>
-              <option value="month">Last 30 Days</option>
-              <option value="quarter">Last 90 Days</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
       {/* Returned Products List */}
       <div className="bg-white p-6 rounded-lg shadow">
